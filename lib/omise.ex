@@ -1,4 +1,8 @@
 defmodule Omise do
+  @moduledoc """
+  HTTP client for Omise.
+  """
+
   def process_url(endpoint) do
     "https://api.omise.co/" <> endpoint
   end

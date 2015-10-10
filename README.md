@@ -1,6 +1,6 @@
 # Omise
 
-**TODO: Add description**
+**Omise for Elixir**
 
 ## Installation
 
