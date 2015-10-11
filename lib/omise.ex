@@ -11,12 +11,21 @@ defmodule Omise do
     %{"User-Agent": "Elixir Client"}
   end
 
-  def key do
+  def secret_key do
     Application.get_env(:omise, :secret_key) ||
       System.get_env "OMISE_SECRET_KEY"
   end
 
+  def public_key do
+    Application.get_env(:omise, :public_key) ||
+      System.get_env "OMISE_PUBLIC_KEY"
+  end
+
   def auth do
-    [hackney: [basic_auth: {key, ""}]]
+    [hackney: [basic_auth: {secret_key, ""}]]
+  end
+
+  def vault_auth do
+    [hackney: [basic_auth: {public_key, ""}]]
   end
 end

@@ -43,21 +43,9 @@ defmodule Omise.Charges do
   ```
 
   """
-  def create(%{amount: amount, currency: currency, card: card}) do
+  def create(params) do
     Omise.process_url(@endpoint)
-      |> HTTPoison.post({:form, [amount: amount, currency: currency, card: card]}, Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
-  end
-
-  def create(%{amount: amount, currency: currency, customer: customer}) do
-    Omise.process_url(@endpoint)
-      |> HTTPoison.post({:form, [amount: amount, currency: currency, customer: customer]}, Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
-  end
-
-  def create(%{amount: amount, currency: currency, customer: customer, card: card}) do
-    Omise.process_url(@endpoint)
-      |> HTTPoison.post({:form, [amount: amount, currency: currency, customer: customer, card: card]}, Omise.req_headers, Omise.auth)
+      |> HTTPoison.post({:form, Omise.Util.transform_to_keyword(params)}, Omise.req_headers, Omise.auth)
       |> Omise.Util.handle_response
   end
 

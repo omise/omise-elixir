@@ -15,10 +15,11 @@ defmodule Omise.Util do
     {:error, reason}
   end
 
-  @doc """
-  Transform Map to Keyword (ordered by key)
-  """
-  def into_keyword(map) do
-    Enum.into(map, Keyword.new)
+  def transform_to_keyword(params) do
+    params |> Enum.into(Keyword.new)
+  end
+
+  def transform_token_params(params) do
+    params |> Enum.map(fn {k, v} -> {"card[#{k}]", v} end)
   end
 end
