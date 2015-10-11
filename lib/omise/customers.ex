@@ -105,7 +105,7 @@ defmodule Omise.Customers do
   """
   def destroy(id) do
     Omise.process_url("#{@endpoint}/#{id}")
-      |> HTTPoison.delete(Omise.req_headers)
+      |> HTTPoison.delete(Omise.req_headers, Omise.auth)
       |> Omise.Util.handle_response
   end
 end
