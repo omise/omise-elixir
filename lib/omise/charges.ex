@@ -83,6 +83,48 @@ defmodule Omise.Charges do
 
   """
   def capture(id) do
-    Omise.make_request(:post, "#{@endpoint}/#{id}/capture", "")
+    Omise.make_request(:post, "#{@endpoint}/#{id}/capture")
+  end
+
+  @doc """
+  List all refunds of a charge.
+
+  ## Example
+
+  ```
+    {:ok, refunds} = Omise.Charges.list_refunds("chrg_test_4xso2s8ivdej29pqnhz")
+  ```
+
+  """
+  def list_refunds(id) do
+    Omise.make_request(:get, "#{@endpoint}/#{id}/refunds")
+  end
+
+  @doc """
+  Create a refund.
+
+  ## Example
+
+  ```
+    {:ok, refund} = Omise.Charges.create_refund("chrg_test_4xso2s8ivdej29pqnhz", %{amount: 10000})
+  ```
+
+  """
+  def create_refund(id, params) do
+    Omise.make_request(:post, "#{@endpoint}/#{id}/refunds", params)
+  end
+
+  @doc """
+  Retrieve a refund.
+
+  ## Example
+
+  ```
+    {:ok, refund} = Omise.Charges.retrieve_refund("chrg_test_4xso2s8ivdej29pqnhz", "rfnd_test_4zgf1d7jcw5kr123puq")
+  ```
+
+  """
+  def retrieve_refund(charge_id, refund_id) do
+    Omise.make_request(:get, "#{@endpoint}/#{charge_id}/refunds/#{refund_id}")
   end
 end

@@ -21,7 +21,7 @@ defmodule Omise.Token do
       expiration_year: 2019
     }
 
-    {:ok, token} = Omise.Token.create
+    {:ok, token} = Omise.Token.create(params)
   ```
 
   """

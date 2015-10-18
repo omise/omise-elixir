@@ -5,30 +5,54 @@ defmodule Omise do
 
   alias Omise.Util
 
+  @doc """
+  GET request.
+  """
   def make_request(:get, endpoint) do
     process_url(endpoint)
     |> HTTPoison.get(req_headers, auth)
     |> Util.handle_response
   end
 
+  @doc """
+  POST request for creating tokens.
+  """
   def make_request(:post, endpoint, params) when endpoint == "tokens" do
     vault_url(endpoint)
     |> HTTPoison.post({:form, Util.transform_card_params(params)}, req_headers, vault_auth)
     |> Util.handle_response
   end
 
+  @doc """
+  POST request without parameters.
+  """
+  def make_request(:post, endpoint) do
+    process_url(endpoint)
+    |> HTTPoison.post("", req_headers, auth)
+    |> Util.handle_response
+  end
+
+  @doc """
+  POST request with parameters.
+  """
   def make_request(:post, endpoint, params) do
     process_url(endpoint)
     |> HTTPoison.post({:form, Util.transform_to_keyword(params)}, req_headers, auth)
     |> Util.handle_response
   end
 
+  @doc """
+  PUT/PATCH request.
+  """
   def make_request(:patch, endpoint, params) do
     process_url(endpoint)
     |> HTTPoison.patch({:form, Util.transform_to_keyword(params)}, req_headers, auth)
     |> Util.handle_response
   end
 
+  @doc """
+  DELETE request.
+  """
   def make_request(:delete, endpoint) do
     process_url(endpoint)
     |> HTTPoison.delete(req_headers, auth)

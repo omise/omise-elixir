@@ -3,6 +3,10 @@ defmodule Omise.Util do
     {:ok, Poison.decode!(body)}
   end
 
+  def handle_response({:ok, %HTTPoison.Response{status_code: 400, body: body}}) do
+    {:error, Poison.decode!(body)}
+  end
+
   def handle_response({:ok, %HTTPoison.Response{status_code: 404}}) do
     {:error, "Not found"}
   end
@@ -17,10 +21,6 @@ defmodule Omise.Util do
 
   def transform_to_keyword(params) when is_map(params) do
     params |> Enum.into(Keyword.new)
-  end
-
-  def transform_to_keyword(params) do
-    params
   end
 
   def transform_card_params(params) do
