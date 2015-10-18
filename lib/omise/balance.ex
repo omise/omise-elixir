@@ -16,8 +16,6 @@ defmodule Omise.Balance do
 
   """
   def retrieve do
-    Omise.process_url(@endpoint)
-      |> HTTPoison.get(Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:get, @endpoint)
   end
 end

@@ -5,7 +5,6 @@ defmodule Omise.Charges do
 
   @endpoint "charges"
 
-
   @doc """
   List all charges.
 
@@ -17,9 +16,21 @@ defmodule Omise.Charges do
 
   """
   def list do
-    Omise.process_url(@endpoint)
-      |> HTTPoison.get(Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:get, @endpoint)
+  end
+
+  @doc """
+  Retrieve a charge.
+
+  ## Example
+
+  ```
+    {:ok, charge} = Omise.Charges.retrieve("chrg_test_4xso2s8ivdej29pqnhz")
+  ```
+
+  """
+  def retrieve(id) do
+    Omise.make_request(:get, "#{@endpoint}/#{id}")
   end
 
   @doc """
@@ -44,25 +55,7 @@ defmodule Omise.Charges do
 
   """
   def create(params) do
-    Omise.process_url(@endpoint)
-      |> HTTPoison.post({:form, Omise.Util.transform_to_keyword(params)}, Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
-  end
-
-  @doc """
-  Retrieve a charge.
-
-  ## Example
-
-  ```
-    {:ok, charge} = Omise.Charges.retrieve("chrg_test_4xso2s8ivdej29pqnhz")
-  ```
-
-  """
-  def retrieve(id) do
-    Omise.process_url("#{@endpoint}/#{id}")
-      |> HTTPoison.get(Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:post, @endpoint, params)
   end
 
   @doc """
@@ -75,10 +68,8 @@ defmodule Omise.Charges do
   ```
 
   """
-  def update(id, %{description: description}) do
-    Omise.process_url("#{@endpoint}/#{id}")
-      |> HTTPoison.patch({:form, [description: description]}, Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+  def update(id, params) do
+    Omise.make_request(:patch, "#{@endpoint}/#{id}", params)
   end
 
   @doc """
@@ -92,8 +83,6 @@ defmodule Omise.Charges do
 
   """
   def capture(id) do
-    Omise.process_url("#{@endpoint}/#{id}/capture")
-      |> HTTPoison.post("", Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:post, "#{@endpoint}/#{id}/capture", "")
   end
 end

@@ -15,11 +15,29 @@ defmodule Omise.Util do
     {:error, reason}
   end
 
-  def transform_to_keyword(params) do
+  def transform_to_keyword(params) when is_map(params) do
     params |> Enum.into(Keyword.new)
   end
 
-  def transform_token_params(params) do
+  def transform_to_keyword(params) do
+    params
+  end
+
+  def transform_card_params(params) do
     params |> Enum.map(fn {k, v} -> {"card[#{k}]", v} end)
+  end
+
+  def transform_recipient_params(params) do
+    params
+    |> Map.delete(:bank_account)
+    |> Map.merge(normalize_bank_account_params(params[:bank_account]))
+  end
+
+  defp normalize_bank_account_params(params) do
+    %{
+      "bank_account[brand]":  params.brand,
+      "bank_account[number]": params.number,
+      "bank_account[name]":   params.name
+    }
   end
 end

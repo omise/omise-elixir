@@ -16,9 +16,7 @@ defmodule Omise.Recipients do
 
   """
   def list do
-    Omise.process_url(@endpoint)
-      |> HTTPoison.get(Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:get, @endpoint)
   end
 
   @doc """
@@ -32,9 +30,7 @@ defmodule Omise.Recipients do
 
   """
   def retrieve(id) do
-    Omise.process_url("#{@endpoint}/#{id}")
-      |> HTTPoison.get(Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:get, "#{@endpoint}/#{id}")
   end
 
   @doc """
@@ -51,7 +47,7 @@ defmodule Omise.Recipients do
       bank_account: %{
         brand: "bbl",
         number: "acc12345",
-        account_name: "James Smith"
+        name: "James Smith"
       }
     }
 
@@ -59,10 +55,8 @@ defmodule Omise.Recipients do
   ```
 
   """
-  def create(%{name: name, email: email, description: description, type: type, bank_account: %{brand: brand, number: number, account_name: account_name}}) do
-    Omise.process_url(@endpoint)
-      |> HTTPoison.post({:form, [name: name, email: email, description: description, type: type, "bank_account[brand]": brand, "bank_account[number]": number, "bank_account[name]": account_name]}, Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+  def create(params) do
+    Omise.make_request(:post, @endpoint, Omise.Util.transform_recipient_params(params))
   end
 
   @doc """
@@ -76,8 +70,6 @@ defmodule Omise.Recipients do
 
   """
   def destroy(id) do
-    Omise.process_url("#{@endpoint}/#{id}")
-      |> HTTPoison.delete(Omise.req_headers, Omise.auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:delete, "#{@endpoint}/#{id}")
   end
 end

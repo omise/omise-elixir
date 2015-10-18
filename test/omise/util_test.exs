@@ -22,6 +22,6 @@ defmodule Omise.UtilTest do
       {"card[security_code]", 123},
     ]
 
-    assert Omise.Util.transform_token_params(params) == expected_params
+    assert Omise.Util.transform_card_params(params) == expected_params
   end
 end

@@ -3,7 +3,7 @@ defmodule Omise.Token do
   An API for working with Token at Omise.
   """
 
-  @url "https://vault.omise.co/tokens"
+  @endpoint "tokens"
 
   @doc """
   Create a token.
@@ -26,8 +26,6 @@ defmodule Omise.Token do
 
   """
   def create(params) do
-    @url
-      |> HTTPoison.post({:form, Omise.Util.transform_token_params(params)}, Omise.req_headers, Omise.vault_auth)
-      |> Omise.Util.handle_response
+    Omise.make_request(:post, @endpoint, params)
   end
 end
