@@ -11,21 +11,22 @@ defmodule Omise.Token do
   ## Example
 
   ```
-    params = %{
-      name: "JOHN DOE",
+    params = [
+      name: "Edward Elric",
       city: "Bangkok",
       postal_code: 10320,
       number: 4242424242424242,
       security_code: 123,
       expiration_month: 10,
       expiration_year: 2019
-    }
+    ]
 
     {:ok, token} = Omise.Token.create(params)
+    token_id = token["id"]
   ```
 
   """
   def create(params) do
-    Omise.make_request(:post, @endpoint, params)
+    Omise.post(@endpoint, params)
   end
 end

@@ -2,15 +2,16 @@ defmodule Omise.TokenTest do
   use ExUnit.Case, async: true
 
   setup do
-    params = %{
-      name: "JOHN DOE",
+    params = [
+      name: "Edward Elric",
       city: "Bangkok",
       postal_code: 10320,
       number: 4242424242424242,
       security_code: 123,
       expiration_month: 10,
       expiration_year: 2019
-    }
+    ]
+
     {:ok, [params: params]}
   end
 

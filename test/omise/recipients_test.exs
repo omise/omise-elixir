@@ -2,17 +2,17 @@ defmodule Omise.RecipientsTest do
   use ExUnit.Case, async: true
 
   setup do
-    params = %{
-      name: "James Smith",
+    params = [
+      name: "Edward Elric",
       email: "test_recp123@localhost",
       description: "Move on",
       type: "individual",
-      bank_account: %{
+      bank_account: [
         brand: "bbl",
         number: "acc12345",
-        name: "James Smith"
-      }
-    }
+        name: "Edward Elric"
+      ]
+    ]
 
     {:ok, [params: params]}
   end

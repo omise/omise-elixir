@@ -2,9 +2,12 @@ defmodule Omise.CustomersTest do
   use ExUnit.Case, async: true
 
   setup do
-    customer_id = "cust_test_51n85ryt33q8ukhv4bx"
+    {:ok, customer} = Omise.Customers.create(
+      [email: "edward@omistry.com",
+      description: "Memory is the wonderful thing if you don't have to deal with the past."
+    ])
 
-    {:ok, [customer_id: customer_id]}
+    {:ok, [customer_id: customer["id"]]}
   end
 
   test "list all customers" do
@@ -20,22 +23,21 @@ defmodule Omise.CustomersTest do
   end
 
   test "create a customer" do
-    {:ok, customer} = Omise.Customers.create(%{email: "teerawat@test.com", description: "La la la"})
+    {:ok, customer} = Omise.Customers.create([email: "teerawat@test.com", description: "Memory is the wonderful thing if you don't have to deal with the past."])
 
     assert customer["object"] == "customer"
     assert customer["email"] == "teerawat@test.com"
   end
 
   test "update a customer", %{customer_id: customer_id} do
-    {:ok, customer} = Omise.Customers.update(customer_id, %{email: "teerawat@test.com", description: "new description"})
+    {:ok, customer} = Omise.Customers.update(customer_id, [email: "teerawat@test.com", description: "new description"])
 
     assert customer["object"] == "customer"
     assert customer["description"] == "new description"
   end
 
-  test "destroy a customer" do
-    {:ok, customer} = Omise.Customers.create(%{email: "teerawat@test.com", description: "La la la"})
-    {:ok, data} = Omise.Customers.destroy(customer["id"])
+  test "destroy a customer", %{customer_id: customer_id} do
+    {:ok, data} = Omise.Customers.destroy(customer_id)
 
     assert data["deleted"] == true
   end

@@ -1,4 +1,6 @@
 defmodule Omise.Util do
+  ### Response Handling ###
+
   def handle_response({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
     {:ok, Poison.decode!(body)}
   end
@@ -19,25 +21,26 @@ defmodule Omise.Util do
     {:error, reason}
   end
 
-  def transform_to_keyword(params) when is_map(params) do
-    params |> Enum.into(Keyword.new)
-  end
+  ### Card Params Normalization ###
 
   def transform_card_params(params) do
-    params |> Enum.map(fn {k, v} -> {"card[#{k}]", v} end)
+    params
+    |> Enum.map(fn {k, v} -> {"card[#{k}]", v} end)
   end
+
+  ### Recipient Params Normalization ###
 
   def transform_recipient_params(params) do
     params
-    |> Map.delete(:bank_account)
-    |> Map.merge(normalize_bank_account_params(params[:bank_account]))
+    |> Dict.delete(:bank_account)
+    |> Dict.merge(normalize_bank_account_params(params[:bank_account]))
   end
 
   defp normalize_bank_account_params(params) do
-    %{
-      "bank_account[brand]":  params.brand,
-      "bank_account[number]": params.number,
-      "bank_account[name]":   params.name
-    }
+    [
+      "bank_account[brand]":  params[:brand],
+      "bank_account[number]": params[:number],
+      "bank_account[name]":   params[:name]
+    ]
   end
 end

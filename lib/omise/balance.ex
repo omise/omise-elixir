@@ -16,6 +16,6 @@ defmodule Omise.Balance do
 
   """
   def retrieve do
-    Omise.make_request(:get, @endpoint)
+    Omise.get(@endpoint)
   end
 end

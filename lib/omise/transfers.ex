@@ -16,7 +16,7 @@ defmodule Omise.Transfers do
 
   """
   def list do
-    Omise.make_request(:get, @endpoint)
+    Omise.get(@endpoint)
   end
 
 
@@ -26,13 +26,13 @@ defmodule Omise.Transfers do
   ## Examples
 
   ```
-    {:ok, transfer} = Omise.Transfers.create(%{amount: 100000})
+    {:ok, transfer} = Omise.Transfers.create([amount: 100000])
 
-    {:ok, transfer} = Omise.Transfers.create(%{amount: 100000, recipient: "recp_test_4z3wur7amjq2nbg8x44"})
+    {:ok, transfer} = Omise.Transfers.create([amount: 100000, recipient: "recp_test_4z3wur7amjq2nbg8x44"])
   ```
 
   """
   def create(params) do
-    Omise.make_request(:post, @endpoint, params)
+    Omise.post(@endpoint, params)
   end
 end
