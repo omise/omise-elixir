@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/teerawat1992/omistry.svg?branch=master)](https://travis-ci.org/teerawat1992/omistry)
+
 # Omise
 
 **Omise for Elixir**
