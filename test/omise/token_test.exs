@@ -1,4 +1,4 @@
-defmodule Omise.TokenTest do
+defmodule Omise.TokensTest do
   use ExUnit.Case, async: true
 
   setup do
@@ -12,12 +12,12 @@ defmodule Omise.TokenTest do
       expiration_year: 2019
     ]
 
-    {:ok, [params: params]}
+    {:ok, params: params}
   end
 
   test "that token can be created", %{params: params} do
-    {:ok, token} = Omise.Token.create(params)
+    {:ok, token} = Omise.Tokens.create(params)
 
-    assert token["id"] != nil
+    assert token.id != nil
   end
 end

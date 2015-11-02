@@ -1,4 +1,4 @@
-defmodule Omise.Token do
+defmodule Omise.Tokens do
   @moduledoc """
   An API for working with Token at Omise.
   """
@@ -21,12 +21,11 @@ defmodule Omise.Token do
       expiration_year: 2019
     ]
 
-    {:ok, token} = Omise.Token.create(params)
-    token_id = token["id"]
+    {:ok, token} = Omise.Tokens.create(params)
   ```
 
   """
   def create(params) do
-    Omise.post(@endpoint, params)
+    Omise.make_request({:post, @endpoint, Omise.Util.normalize_card_params(params)})
   end
 end

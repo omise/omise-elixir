@@ -3,5 +3,6 @@
 use Mix.Config
 
 config :omise,
+  public_key: System.get_env("OMISE_PUBLIC_KEY"),
   secret_key: System.get_env("OMISE_SECRET_KEY"),
-  public_key: System.get_env("OMISE_PUBLIC_KEY")
+  api_version: nil

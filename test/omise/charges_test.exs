@@ -1,166 +1,144 @@
 defmodule Omise.ChargesTest do
   use ExUnit.Case, async: true
 
+  setup do
+    {:ok, customer} = Omise.Customers.create(
+      email: "edward@omistry.com",
+      description: "Memory is the wonderful thing if you don't have to deal with the past.",
+      card: token.id
+    )
+
+    {:ok, customer: customer}
+  end
+
   test "list all charges" do
     {:ok, charges} = Omise.Charges.list
 
-    assert is_list charges["data"]
+    assert is_list(charges.data)
   end
 
   test "charge a card using a token" do
-    token = get_token
-
-    {:ok, charge} = Omise.Charges.create([
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      card: token
-    ])
+      card: token.id
+    )
 
-    assert charge["object"] == "charge"
-    assert charge["amount"] == 10000
-    assert charge["authorized"] == true
-    assert charge["capture"] == true
+    assert charge.object == "charge"
+    assert charge.amount == 10000
+    assert charge.authorized == true
+    assert charge.capture == true
   end
 
-  test "charge a card using a customer" do
-    customer = create_customer
-
-    {:ok, charge} = Omise.Charges.create([
+  test "charge a card using a customer", %{customer: customer} do
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      customer: customer["id"]
-    ])
+      customer: customer.id
+    )
 
-    assert charge["object"] == "charge"
-    assert charge["amount"] == 10000
-    assert charge["authorized"] == true
-    assert charge["capture"] == true
+    assert charge.object == "charge"
+    assert charge.amount == 10000
+    assert charge.authorized == true
+    assert charge.capture == true
   end
 
-  test "charge a card using a customer and a card" do
-    customer = create_customer
-
-    {:ok, charge} = Omise.Charges.create([
+  test "charge a card using a customer and a card", %{customer: customer} do
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      customer: customer["id"],
-      card: customer["default_card"]
-    ])
+      customer: customer.id,
+      card: customer.default_card
+    )
 
-    assert charge["object"] == "charge"
-    assert charge["amount"] == 10000
-    assert charge["authorized"] == true
-    assert charge["capture"] == true
+    assert charge.object == "charge"
+    assert charge.amount == 10000
+    assert charge.authorized == true
+    assert charge.capture == true
   end
 
-  test "capture a charge" do
-    customer = create_customer
-
-    {:ok, uncaptured_charge} = Omise.Charges.create([
+  test "capture a charge", %{customer: customer} do
+    {:ok, uncaptured_charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      customer: customer["id"],
+      customer: customer.id,
       capture: false
-    ])
+    )
 
-    {:ok, captured_charge} = Omise.Charges.capture(uncaptured_charge["id"])
+    {:ok, captured_charge} = uncaptured_charge.id |> Omise.Charges.capture
 
-    assert uncaptured_charge["captured"] == false
-    assert captured_charge["captured"] == true
+    assert uncaptured_charge.paid == false
+    assert captured_charge.paid == true
   end
 
   test "list all refunds" do
-    token = get_token
-
-    {:ok, charge} = Omise.Charges.create([
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      card: token
-    ])
+      card: token.id
+    )
 
-    {:ok, refunds} = Omise.Charges.list_refunds(charge["id"])
+    {:ok, refunds} = charge.id |> Omise.Charges.list_refunds
 
-    assert is_list refunds["data"]
-    assert refunds["object"] == "list"
+    assert is_list(refunds.data)
+    assert refunds.object == "list"
   end
 
-  test "create a full refund" do
-    customer = create_customer
-
-    {:ok, charge} = Omise.Charges.create([
+  test "create a full refund", %{customer: customer} do
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      customer: customer["id"]
-    ])
+      customer: customer.id
+    )
 
-    {:ok, refunded_charge} = Omise.Charges.create_refund(charge["id"], [amount: 10000])
+    {:ok, refunded_charge} = charge.id |> Omise.Charges.create_refund(amount: 10000)
 
-    assert refunded_charge["object"] == "refund"
-    assert refunded_charge["amount"] == 10000
+    assert refunded_charge.object == "refund"
+    assert refunded_charge.amount == 10000
   end
 
-  test "create a partial refund" do
-    customer = create_customer
-
-    {:ok, charge} = Omise.Charges.create([
+  test "create a partial refund", %{customer: customer} do
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      customer: customer["id"]
-    ])
+      customer: customer.id
+    )
 
-    {:ok, refunded_charge} = Omise.Charges.create_refund(charge["id"], [amount: 5000])
+    {:ok, refunded_charge} = charge.id |> Omise.Charges.create_refund(amount: 5000)
 
-    assert refunded_charge["object"] == "refund"
-    assert refunded_charge["amount"] == 5000
+    assert refunded_charge.object == "refund"
+    assert refunded_charge.amount == 5000
   end
 
-  test "failed refund" do
-    customer = create_customer
-
-    {:ok, charge} = Omise.Charges.create([
+  test "failed refund", %{customer: customer} do
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      customer: customer["id"]
-    ])
+      customer: customer.id
+    )
 
-    {:error, refunded_charge} = Omise.Charges.create_refund(charge["id"], [amount: 100000])
+    {:error, error} = charge.id |> Omise.Charges.create_refund(amount: 100000)
 
-    assert refunded_charge["object"] == "error"
-    assert refunded_charge["code"] == "failed_refund"
+    assert error.code == "failed_refund"
   end
 
   test "retrieve a refund" do
-    token = get_token
-
-    {:ok, charge} = Omise.Charges.create([
+    {:ok, charge} = Omise.Charges.create(
       amount: 10000,
       currency: "thb",
-      card: token
-    ])
+      card: token.id
+    )
 
-    {:ok, refunded_charge} = Omise.Charges.create_refund(charge["id"], [amount: 10000])
-    {:ok, refund} = Omise.Charges.retrieve_refund(charge["id"], refunded_charge["id"])
+    {:ok, refunded_charge} = charge.id |> Omise.Charges.create_refund(amount: 10000)
+    {:ok, refund} = charge.id |> Omise.Charges.retrieve_refund(refunded_charge.id)
 
-    assert refund["object"] == "refund"
-    assert refund["id"] != nil
+    assert refund.object == "refund"
+    assert refund.id != nil
   end
 
-  defp create_customer do
-    {:ok, customer} = Omise.Customers.create(customer_params)
-    customer
-  end
-
-  defp customer_params do
-    [
-      email: "edward@omistry.com",
-      description: "Memory is the wonderful thing if you don't have to deal with the past.",
-      card: get_token
-    ]
-  end
-
-  defp get_token do
-    {:ok, token} = Omise.Token.create(token_params)
-    token["id"]
+  defp token do
+    {:ok, token} = Omise.Tokens.create(token_params)
+    token
   end
 
   defp token_params do

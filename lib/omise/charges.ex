@@ -8,7 +8,7 @@ defmodule Omise.Charges do
   @doc """
   List all charges.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, charges} = Omise.Charges.list
@@ -16,13 +16,13 @@ defmodule Omise.Charges do
 
   """
   def list do
-    Omise.get(@endpoint)
+    Omise.make_request({:get, @endpoint})
   end
 
   @doc """
   Retrieve a charge.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, charge} = Omise.Charges.retrieve("chrg_test_4xso2s8ivdej29pqnhz")
@@ -30,7 +30,7 @@ defmodule Omise.Charges do
 
   """
   def retrieve(id) do
-    Omise.get("#{@endpoint}/#{id}")
+    Omise.make_request({:get, "#{@endpoint}/#{id}"})
   end
 
   @doc """
@@ -68,27 +68,27 @@ defmodule Omise.Charges do
 
   """
   def create(params) do
-    Omise.post(@endpoint, params)
+    Omise.make_request({:post, @endpoint, params})
   end
 
   @doc """
   Update a charge.
 
-  ## Example
+  ## Examples
 
   ```
-    {:ok, charge} = Omise.Charges.update("chrg_test_4xso2s8ivdej29pqnhz", [description: "Hello from the outside."])
+    {:ok, charge} = Omise.Charges.update("chrg_test_4xso2s8ivdej29pqnhz", description: "Hello from the outside.")
   ```
 
   """
   def update(id, params) do
-    Omise.put("#{@endpoint}/#{id}", params)
+    Omise.make_request({:patch, "#{@endpoint}/#{id}", params})
   end
 
   @doc """
   Capture a charge.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, charge} = Omise.Charges.capture("chrg_test_4xso2s8ivdej29pqnhz")
@@ -96,13 +96,13 @@ defmodule Omise.Charges do
 
   """
   def capture(id) do
-    Omise.post("#{@endpoint}/#{id}/capture")
+    Omise.make_request({:post, "#{@endpoint}/#{id}/capture", []})
   end
 
   @doc """
   List all refunds of a charge.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, refunds} = Omise.Charges.list_refunds("chrg_test_4xso2s8ivdej29pqnhz")
@@ -110,27 +110,27 @@ defmodule Omise.Charges do
 
   """
   def list_refunds(id) do
-    Omise.get("#{@endpoint}/#{id}/refunds")
+    Omise.make_request({:get, "#{@endpoint}/#{id}/refunds"})
   end
 
   @doc """
   Create a refund.
 
-  ## Example
+  ## Examples
 
   ```
-    {:ok, refund} = Omise.Charges.create_refund("chrg_test_4xso2s8ivdej29pqnhz", [amount: 10000])
+    {:ok, refund} = Omise.Charges.create_refund("chrg_test_4xso2s8ivdej29pqnhz", amount: 10000)
   ```
 
   """
   def create_refund(id, params) do
-    Omise.post("#{@endpoint}/#{id}/refunds", params)
+    Omise.make_request({:post, "#{@endpoint}/#{id}/refunds", params})
   end
 
   @doc """
   Retrieve a refund.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, refund} = Omise.Charges.retrieve_refund("chrg_test_4xso2s8ivdej29pqnhz", "rfnd_test_4zgf1d7jcw5kr123puq")
@@ -138,6 +138,6 @@ defmodule Omise.Charges do
 
   """
   def retrieve_refund(charge_id, refund_id) do
-    Omise.get("#{@endpoint}/#{charge_id}/refunds/#{refund_id}")
+    Omise.make_request({:get, "#{@endpoint}/#{charge_id}/refunds/#{refund_id}"})
   end
 end

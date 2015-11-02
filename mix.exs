@@ -4,11 +4,13 @@ defmodule Omise.Mixfile do
   def project do
     [
       app: :omise,
-      version: "0.0.1",
+      version: "0.1.0",
       elixir: "~> 1.1",
+      description: description,
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps
+      deps: deps,
+      package: package
     ]
   end
 
@@ -32,6 +34,21 @@ defmodule Omise.Mixfile do
     [
       {:httpoison, "~> 0.7.4"},
       {:poison, "~> 1.5"}
+    ]
+  end
+
+  defp description do
+    """
+    Omise client library for Elixir.
+    """
+  end
+
+  defp package do
+    [
+      files: ~w(lib mix.exs README.md),
+      contributors: ["Teerawat Lamanchart"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/teerawat1992/omistry"}
     ]
   end
 end
