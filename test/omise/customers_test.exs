@@ -23,14 +23,17 @@ defmodule Omise.CustomersTest do
   end
 
   test "create a customer" do
-    {:ok, customer} = Omise.Customers.create([email: "teerawat@test.com", description: "Memory is the wonderful thing if you don't have to deal with the past."])
+    {:ok, customer} = Omise.Customers.create([
+      email: "edward@omistry.com",
+      description: "Memory is the wonderful thing if you don't have to deal with the past."
+    ])
 
     assert customer["object"] == "customer"
-    assert customer["email"] == "teerawat@test.com"
+    assert customer["email"] == "edward@omistry.com"
   end
 
   test "update a customer", %{customer_id: customer_id} do
-    {:ok, customer} = Omise.Customers.update(customer_id, [email: "teerawat@test.com", description: "new description"])
+    {:ok, customer} = Omise.Customers.update(customer_id, [email: "ezra@omistry.com", description: "new description"])
 
     assert customer["object"] == "customer"
     assert customer["description"] == "new description"
