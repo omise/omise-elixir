@@ -1,4 +1,4 @@
-# Omistry [![Build Status](https://travis-ci.org/teerawat1992/omistry.svg?branch=master)](https://travis-ci.org/teerawat1992/omistry)
+# Omise [![Build Status](https://travis-ci.org/teerawat1992/omistry.svg?branch=master)](https://travis-ci.org/teerawat1992/omistry)
 
 **Omise for Elixir**
 
