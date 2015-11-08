@@ -46,7 +46,7 @@ defmodule Omise.Mixfile do
   defp package do
     [
       files: ~w(lib mix.exs README.md),
-      contributors: ["Teerawat Lamanchart"],
+      maintainers: ["Teerawat Lamanchart"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/teerawat1992/omistry"}
     ]

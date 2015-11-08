@@ -67,8 +67,8 @@ defmodule Omise.ChargesTest do
 
     {:ok, captured_charge} = uncaptured_charge.id |> Omise.Charges.capture
 
-    assert uncaptured_charge.paid == false
-    assert captured_charge.paid == true
+    assert uncaptured_charge.captured == false
+    assert captured_charge.captured == true
   end
 
   test "list all refunds" do
