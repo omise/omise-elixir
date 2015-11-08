@@ -86,16 +86,14 @@ defmodule Omise do
   end
 
   defp public_key do
-    Application.get_env(:omise, :public_key)
+    Application.get_env(:omise, :public_key) || System.get_env("OMISE_PUBLIC_KEY")
   end
 
   defp secret_key do
-    Application.get_env(:omise, :secret_key)
+    Application.get_env(:omise, :secret_key) || System.get_env("OMISE_SECRET_KEY")
   end
 
   defp omise_env do
-    Application.get_all_env(:omise)
-    |> Dict.keys
-    |> List.delete(:included_applications)
+    [:public_key, :secret_key, :api_version]
   end
 end

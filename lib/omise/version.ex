@@ -1,7 +1,7 @@
 defmodule Omise.Version do
   @doc false
   def omise_version do
-    Mix.Project.config[:version]
+    "0.1.1"
   end
 
   @doc false
