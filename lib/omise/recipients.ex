@@ -8,7 +8,7 @@ defmodule Omise.Recipients do
   @doc """
   List all recipients.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, recipients} = Omise.Recipients.list
@@ -16,13 +16,13 @@ defmodule Omise.Recipients do
 
   """
   def list do
-    Omise.get(@endpoint)
+    Omise.make_request({:get, @endpoint})
   end
 
   @doc """
   Retrieve a recipient.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, recipient} = Omise.Recipients.retrieve("recp_test_4z6p7e0m4k40txecj5o")
@@ -30,13 +30,13 @@ defmodule Omise.Recipients do
 
   """
   def retrieve(id) do
-    Omise.get("#{@endpoint}/#{id}")
+    Omise.make_request({:get, "#{@endpoint}/#{id}"})
   end
 
   @doc """
   Create a recipient.
 
-  ## Example
+  ## Examples
 
   ```
     params = [
@@ -56,13 +56,13 @@ defmodule Omise.Recipients do
 
   """
   def create(params) do
-    Omise.post(@endpoint, Omise.Util.transform_recipient_params(params))
+    Omise.make_request({:post, @endpoint, Omise.Util.normalize_recipient_params(params)})
   end
 
   @doc """
   Destroy a recipient.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, recipient} = Omise.Recipients.destroy("recp_test_4z6p7e0m4k40txecj5o")
@@ -70,6 +70,6 @@ defmodule Omise.Recipients do
 
   """
   def destroy(id) do
-    Omise.delete("#{@endpoint}/#{id}")
+    Omise.make_request({:delete, "#{@endpoint}/#{id}"})
   end
 end

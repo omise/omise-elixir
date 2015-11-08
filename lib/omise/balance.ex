@@ -8,7 +8,7 @@ defmodule Omise.Balance do
   @doc """
   Retrieve the balance.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, balance} = Omise.Balance.retrieve
@@ -16,6 +16,6 @@ defmodule Omise.Balance do
 
   """
   def retrieve do
-    Omise.get(@endpoint)
+    Omise.make_request({:get, @endpoint})
   end
 end

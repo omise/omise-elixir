@@ -3,45 +3,45 @@ defmodule Omise.CustomersTest do
 
   setup do
     {:ok, customer} = Omise.Customers.create(
-      [email: "edward@omistry.com",
+      email: "edward@omistry.com",
       description: "Memory is the wonderful thing if you don't have to deal with the past."
-    ])
+    )
 
-    {:ok, [customer_id: customer["id"]]}
+    {:ok, customer_id: customer.id}
   end
 
   test "list all customers" do
     {:ok, customers} = Omise.Customers.list
 
-    assert is_list customers["data"]
+    assert is_list(customers.data)
   end
 
   test "retrieve a customer", %{customer_id: customer_id} do
     {:ok, customer} = Omise.Customers.retrieve(customer_id)
 
-    assert customer["id"] == customer_id
+    assert customer.id == customer_id
   end
 
   test "create a customer" do
-    {:ok, customer} = Omise.Customers.create([
+    {:ok, customer} = Omise.Customers.create(
       email: "edward@omistry.com",
       description: "Memory is the wonderful thing if you don't have to deal with the past."
-    ])
+    )
 
-    assert customer["object"] == "customer"
-    assert customer["email"] == "edward@omistry.com"
+    assert customer.object == "customer"
+    assert customer.email == "edward@omistry.com"
   end
 
   test "update a customer", %{customer_id: customer_id} do
-    {:ok, customer} = Omise.Customers.update(customer_id, [email: "ezra@omistry.com", description: "new description"])
+    {:ok, customer} = customer_id |> Omise.Customers.update(email: "ezra@omistry.com", description: "new description")
 
-    assert customer["object"] == "customer"
-    assert customer["description"] == "new description"
+    assert customer.object == "customer"
+    assert customer.description == "new description"
   end
 
   test "destroy a customer", %{customer_id: customer_id} do
-    {:ok, data} = Omise.Customers.destroy(customer_id)
+    {:ok, data} = customer_id |> Omise.Customers.destroy
 
-    assert data["deleted"] == true
+    assert data.deleted == true
   end
 end

@@ -3,76 +3,99 @@ defmodule Omise do
   Omise Elixir Client
   """
 
-  alias Omise.Util
+  use HTTPoison.Base
+  import Omise.Util, only: [handle_response: 1]
+  import Omise.Version
 
   @doc """
-  GET request.
+  Configure public_key and secret_key for Omise API.
+
+  ## Examples
+
+  ```
+    Omise.config(public_key: "public_key", secret_key: "secret_key", api_version: "2014-07-27")
+  ```
+
   """
-  def get(endpoint) do
-    api_url(endpoint)
-    |> HTTPoison.get(req_headers, api_auth)
-    |> Util.handle_response
+  def configure(params) do
+    params
+    |> Enum.filter(fn {k,_} -> k in omise_env end)
+    |> Enum.map(fn {k,v} -> Application.put_env(:omise, k, v) end)
   end
 
   @doc """
-  POST request.
+  Make a request to Omise API
   """
-  def post(endpoint, params \\ []) do
+  def make_request({:get, endpoint}) do
+    endpoint
+    |> get!(req_headers, auth(endpoint))
+    |> handle_response
+  end
+  def make_request({:post, endpoint, params}) do
+    endpoint
+    |> post!({:form, params}, req_headers, auth(endpoint))
+    |> handle_response
+  end
+  def make_request({:patch, endpoint, params}) do
+    endpoint
+    |> patch!({:form, params}, req_headers, auth(endpoint))
+    |> handle_response
+  end
+  def make_request({:delete, endpoint}) do
+    endpoint
+    |> delete!(req_headers, auth(endpoint))
+    |> handle_response
+  end
+
+  @doc false
+  def process_response_body(body) do
+    Poison.decode!(body, keys: :atoms)
+  end
+
+  @doc false
+  def process_url(endpoint) do
     case endpoint do
-      "tokens" ->
-        vault_url(endpoint)
-        |> HTTPoison.post({:form, Util.transform_card_params(params)}, req_headers, vault_auth)
-        |> Util.handle_response
-      _others  ->
-        api_url(endpoint)
-        |> HTTPoison.post({:form, params}, req_headers, api_auth)
-        |> Util.handle_response
+      "tokens" -> "https://vault.omise.co/" <> endpoint
+      _others  -> "https://api.omise.co/" <> endpoint
     end
   end
 
-  @doc """
-  PUT/PATCH request.
-  """
-  def put(endpoint, params \\ []) do
-    api_url(endpoint)
-    |> HTTPoison.patch({:form, params}, req_headers, api_auth)
-    |> Util.handle_response
-  end
-
-  @doc """
-  DELETE request.
-  """
-  def delete(endpoint) do
-    api_url(endpoint)
-    |> HTTPoison.delete(req_headers, api_auth)
-    |> Util.handle_response
-  end
-
-  def api_url(endpoint) do
-    "https://api.omise.co/" <> endpoint
-  end
-
-  def vault_url(endpoint) do
-    "https://vault.omise.co/" <> endpoint
-  end
-
+  @doc false
   def req_headers do
-    %{"User-Agent": "Elixir Client"}
+    headers = %{
+      "User-Agent"    => "OmiseElixir/#{omise_version} Elixir/#{elixir_version}",
+      "Content-type"  => "application/x-www-form-urlencoded",
+    }
+    if api_version, do: headers.put("Omise-Version", api_version)
+    headers
   end
 
-  def public_key do
-    Application.get_env(:omise, :public_key)
+  defp auth(endpoint) do
+    case endpoint do
+      "tokens" -> vault_auth
+      _others  -> api_auth
+    end
   end
 
-  def secret_key do
-    Application.get_env(:omise, :secret_key)
-  end
-
-  def api_auth do
+  defp api_auth do
     [hackney: [basic_auth: {secret_key, ""}]]
   end
 
-  def vault_auth do
+  defp vault_auth do
     [hackney: [basic_auth: {public_key, ""}]]
+  end
+
+  defp public_key do
+    Application.get_env(:omise, :public_key)
+  end
+
+  defp secret_key do
+    Application.get_env(:omise, :secret_key)
+  end
+
+  defp omise_env do
+    Application.get_all_env(:omise)
+    |> Dict.keys
+    |> List.delete(:included_applications)
   end
 end

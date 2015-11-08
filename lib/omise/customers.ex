@@ -8,7 +8,7 @@ defmodule Omise.Customers do
   @doc """
   List all customers.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, customers} = Omise.Customers.list
@@ -16,13 +16,13 @@ defmodule Omise.Customers do
 
   """
   def list do
-    Omise.get(@endpoint)
+    Omise.make_request({:get, @endpoint})
   end
 
   @doc """
   Retrieve a customer.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, customer} = Omise.Customers.retrieve("cust_test_4xtrb759599jsxlhkrb")
@@ -30,7 +30,7 @@ defmodule Omise.Customers do
 
   """
   def retrieve(id) do
-    Omise.get("#{@endpoint}/#{id}")
+    Omise.make_request({:get, "#{@endpoint}/#{id}"})
   end
 
   @doc """
@@ -51,13 +51,13 @@ defmodule Omise.Customers do
     {:ok, customer} = Omise.Customers.create([
       email: "edward@omistry.com",
       description: "Shut up, thief.",
-      card: "tokn_test_4xs9408a642a1htto8z"
+      card: "tokn_test_51yer81s9aqqyktdoeh"
     ])
   ```
 
   """
   def create(params) do
-    Omise.post(@endpoint, params)
+    Omise.make_request({:post, @endpoint, params})
   end
 
   @doc """
@@ -67,23 +67,23 @@ defmodule Omise.Customers do
 
   Update email and description.
   ```
-    {:ok, customer} = Omise.Customers.update("cust_test_4xtrb759599jsxlhkrb", [email: "edward@omistry.com", description: "Shut up, thief."])
+    {:ok, customer} = Omise.Customers.update("cust_test_51yerhn3ghztgv31n4p", email: "edward@omistry.com", description: "Hello, it's me.")
   ```
 
   Attach a card to a customer.
   ```
-    {:ok, customer} = Omise.Customers.update("cust_test_4xtrb759599jsxlhkrb", [card: "tokn_test_4xs9408a642a1htto8z"])
+    {:ok, customer} = Omise.Customers.update("cust_test_4xtrb759599jsxlhkrb", card: "tokn_test_4xs9408a642a1htto8z")
   ```
 
   """
   def update(id, params) do
-    Omise.put("#{@endpoint}/#{id}", params)
+    Omise.make_request({:patch, "#{@endpoint}/#{id}", params})
   end
 
   @doc """
   Destroy a customer.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, customer} = Omise.Customers.destroy("cust_test_4xtrb759599jsxlhkrb")
@@ -91,6 +91,6 @@ defmodule Omise.Customers do
 
   """
   def destroy(id) do
-    Omise.delete("#{@endpoint}/#{id}")
+    Omise.make_request({:delete, "#{@endpoint}/#{id}"})
   end
 end

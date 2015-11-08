@@ -8,7 +8,7 @@ defmodule Omise.Account do
   @doc """
   Retrieve the account.
 
-  ## Example
+  ## Examples
 
   ```
     {:ok, account} = Omise.Account.retrieve
@@ -16,6 +16,6 @@ defmodule Omise.Account do
 
   """
   def retrieve do
-    Omise.get(@endpoint)
+    Omise.make_request({:get, @endpoint})
   end
 end

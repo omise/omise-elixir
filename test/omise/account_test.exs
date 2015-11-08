@@ -4,6 +4,6 @@ defmodule Omise.AccountTest do
   test "that account can be retrieved" do
     {:ok, account} = Omise.Account.retrieve
 
-    assert account["object"] == "account"
+    assert account.object == "account"
   end
 end

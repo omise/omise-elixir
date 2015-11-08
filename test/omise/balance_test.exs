@@ -4,6 +4,6 @@ defmodule Omise.BalanceTest do
   test "that balance can be retrieved" do
     {:ok, balance} = Omise.Balance.retrieve
 
-    assert balance["object"] == "balance"
+    assert balance.object == "balance"
   end
 end

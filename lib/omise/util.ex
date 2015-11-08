@@ -1,36 +1,25 @@
 defmodule Omise.Util do
   ### Response Handling ###
 
-  def handle_response({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    {:ok, Poison.decode!(body)}
+  @doc false
+  def handle_response(%HTTPoison.Response{body: body = %{object: "error"}}) do
+    {:error, %{code: body.code, message: body.message}}
   end
-
-  def handle_response({:ok, %HTTPoison.Response{status_code: 400, body: body}}) do
-    {:error, Poison.decode!(body)}
-  end
-
-  def handle_response({:ok, %HTTPoison.Response{status_code: 404}}) do
-    {:error, "Not found"}
-  end
-
-  def handle_response({:ok, %HTTPoison.Response{status_code: status_code}}) do
-    {:error, status_code}
-  end
-
-  def handle_response({:error, %HTTPoison.Error{reason: reason}}) do
-    {:error, reason}
+  def handle_response(%HTTPoison.Response{body: body}) do
+    {:ok, body}
   end
 
   ### Card Params Normalization ###
 
-  def transform_card_params(params) do
-    params
-    |> Enum.map(fn {k, v} -> {"card[#{k}]", v} end)
+  @doc false
+  def normalize_card_params(params) do
+    Enum.map(params, fn {k, v} -> {"card[#{k}]", v} end)
   end
 
   ### Recipient Params Normalization ###
 
-  def transform_recipient_params(params) do
+  @doc false
+  def normalize_recipient_params(params) do
     params
     |> Dict.delete(:bank_account)
     |> Dict.merge(normalize_bank_account_params(params[:bank_account]))
