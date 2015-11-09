@@ -48,7 +48,7 @@ defmodule Omise.Mixfile do
       files: ~w(lib mix.exs README.md),
       maintainers: ["Teerawat Lamanchart"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/teerawat1992/omistry"}
+      links: %{"GitHub" => "https://github.com/teerawat1992/omise"}
     ]
   end
 end
