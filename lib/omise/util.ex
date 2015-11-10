@@ -1,22 +1,21 @@
 defmodule Omise.Util do
-  ### Response Handling ###
+  @moduledoc false
 
   @doc false
-  def handle_response(%HTTPoison.Response{body: body = %{object: "error"}}) do
-    {:error, %{code: body.code, message: body.message}}
+  def handle_response(%HTTPoison.Response{body: %Omise.Error{} = error}) do
+    {:error, error}
+  end
+  def handle_response(%HTTPoison.Response{body: %{data: data}}) do
+    {:ok, data}
   end
   def handle_response(%HTTPoison.Response{body: body}) do
     {:ok, body}
   end
 
-  ### Card Params Normalization ###
-
   @doc false
   def normalize_card_params(params) do
     Enum.map(params, fn {k, v} -> {"card[#{k}]", v} end)
   end
-
-  ### Recipient Params Normalization ###
 
   @doc false
   def normalize_recipient_params(params) do

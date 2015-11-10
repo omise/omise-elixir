@@ -1,5 +1,5 @@
 defmodule Omise.CustomersTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
 
   setup do
     {:ok, customer} = Omise.Customers.create(
@@ -13,7 +13,7 @@ defmodule Omise.CustomersTest do
   test "list all customers" do
     {:ok, customers} = Omise.Customers.list
 
-    assert is_list(customers.data)
+    assert is_list(customers)
   end
 
   test "retrieve a customer", %{customer_id: customer_id} do
@@ -28,20 +28,20 @@ defmodule Omise.CustomersTest do
       description: "Memory is the wonderful thing if you don't have to deal with the past."
     )
 
-    assert customer.object == "customer"
+    assert %Omise.Customer{} = customer
     assert customer.email == "edward@omistry.com"
   end
 
   test "update a customer", %{customer_id: customer_id} do
     {:ok, customer} = customer_id |> Omise.Customers.update(email: "ezra@omistry.com", description: "new description")
 
-    assert customer.object == "customer"
+    assert %Omise.Customer{} = customer
     assert customer.description == "new description"
   end
 
   test "destroy a customer", %{customer_id: customer_id} do
-    {:ok, data} = customer_id |> Omise.Customers.destroy
+    {:ok, deleted_customer} = customer_id |> Omise.Customers.destroy
 
-    assert data.deleted == true
+    assert deleted_customer.deleted == true
   end
 end

@@ -1,5 +1,5 @@
 defmodule Omise.TokensTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
 
   setup do
     params = [
@@ -17,7 +17,7 @@ defmodule Omise.TokensTest do
 
   test "that token can be created", %{params: params} do
     {:ok, token} = Omise.Tokens.create(params)
-
+    assert %Omise.Token{} = token
     assert token.id != nil
   end
 end

@@ -8,14 +8,18 @@ defmodule Omise do
   import Omise.Version
 
   @doc """
-  Configure public_key and secret_key for Omise API.
+  Configure public_key, secret_key and api_version for Omise API.
 
   ## Examples
 
-  ```
-    Omise.config(public_key: "public_key", secret_key: "secret_key", api_version: "2014-07-27")
-  ```
+      # configure both public_key and secret_key
+      Omise.config(public_key: "public_key", secret_key: "secret_key")
 
+      # configure only secret_key
+      Omise.config(secret_key: "secret_key")
+
+      # configure api_verion
+      Omise.config(secret_key: "secret_key", api_verion: "api_verion")
   """
   def configure(params) do
     params
@@ -23,40 +27,32 @@ defmodule Omise do
     |> Enum.map(fn {k,v} -> Application.put_env(:omise, k, v) end)
   end
 
-  @doc """
-  Make a request to Omise API
-  """
-  def make_request({:get, endpoint}) do
-    endpoint
-    |> get!(req_headers, auth(endpoint))
-    |> handle_response
-  end
-  def make_request({:post, endpoint, params}) do
-    endpoint
-    |> post!({:form, params}, req_headers, auth(endpoint))
-    |> handle_response
-  end
-  def make_request({:patch, endpoint, params}) do
-    endpoint
-    |> patch!({:form, params}, req_headers, auth(endpoint))
-    |> handle_response
-  end
-  def make_request({:delete, endpoint}) do
-    endpoint
-    |> delete!(req_headers, auth(endpoint))
+  @doc false
+  def make_request(method, endpoint, params \\ [], body \\ "") do
+    method
+    |> request!(endpoint, body, req_headers, auth(endpoint) ++ params)
     |> handle_response
   end
 
   @doc false
   def process_response_body(body) do
-    Poison.decode!(body, keys: :atoms)
+    case decoded_body = Poison.decode!(body, keys: :atoms) do
+      %{object: "list", data: [%{object: object} | _]} ->
+        Poison.decode!(body, keys: :atoms!, as: %{data: [initialize_module(object)]})
+
+      %{object: object} when object != "list" ->
+        Poison.decode!(body, keys: :atoms!, as: initialize_module(object))
+
+      _ ->
+        decoded_body
+    end
   end
 
   @doc false
   def process_url(endpoint) do
     case endpoint do
-      "tokens" -> "https://vault.omise.co/" <> endpoint
-      _others  -> "https://api.omise.co/" <> endpoint
+      "tokens" -> "http://vault.omise.co/" <> endpoint
+      _others  -> "http://api.omise.co/"   <> endpoint
     end
   end
 
@@ -66,7 +62,7 @@ defmodule Omise do
       "User-Agent"    => "OmiseElixir/#{omise_version} Elixir/#{elixir_version}",
       "Content-type"  => "application/x-www-form-urlencoded",
     }
-    if api_version, do: headers.put("Omise-Version", api_version)
+    if api_version, do: headers = headers |> Dict.put("Omise-Version", api_version)
     headers
   end
 
@@ -95,5 +91,9 @@ defmodule Omise do
 
   defp omise_env do
     [:public_key, :secret_key, :api_version]
+  end
+
+  defp initialize_module(object) do
+    Module.concat(__MODULE__, String.capitalize(object))
   end
 end

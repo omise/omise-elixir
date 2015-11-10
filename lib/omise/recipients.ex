@@ -1,6 +1,6 @@
 defmodule Omise.Recipients do
   @moduledoc """
-  An API for working with Recipients at Omise.
+  Provides Recipients API interfaces.
   """
 
   @endpoint "recipients"
@@ -8,68 +8,88 @@ defmodule Omise.Recipients do
   @doc """
   List all recipients.
 
+  Returns `{:ok, recipients}` if the request is successful, `{:error, error}` otherwise.
+
+  Query Parameters:
+    * `offset` - (optional, default: 0) The offset of the first record returned.
+    * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
+    * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
+    * `to` - (optional, default: current UTC Datetime, format: ISO 8601) The UTC date and time limiting the end of returned records.
+
   ## Examples
 
-  ```
-    {:ok, recipients} = Omise.Recipients.list
-  ```
+      {:ok, recipients} = Omise.Recipients.list
+
+      {:ok, recipients} = Omise.Recipients.list(limit: 5)
 
   """
-  def list do
-    Omise.make_request({:get, @endpoint})
+  @spec list(Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  def list(params \\ []) do
+    Omise.make_request(:get, @endpoint, [params: params])
   end
 
   @doc """
   Retrieve a recipient.
 
+  Returns `{:ok, recipient}` if the request is successful, `{:error, error}` otherwise.
+
   ## Examples
 
-  ```
-    {:ok, recipient} = Omise.Recipients.retrieve("recp_test_4z6p7e0m4k40txecj5o")
-  ```
+      {:ok, recipient} = Omise.Recipients.retrieve("recp_test_4z6p7e0m4k40txecj5o")
 
   """
+  @spec retrieve(binary) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
   def retrieve(id) do
-    Omise.make_request({:get, "#{@endpoint}/#{id}"})
+    Omise.make_request(:get, "#{@endpoint}/#{id}")
   end
 
   @doc """
   Create a recipient.
 
+  Returns `{:ok, recipient}` if the request is successful, `{:error, error}` otherwise.
+
+  Request Parameters:
+    * `name` - The recipient's name.
+    * `email` - (optional) The recipient's email.
+    * `description` - (optional) The recipient's description.
+    * `type` - Either individual or corporation.
+    * `tax_id` - (optional) The recipient's tax id.
+    * `bank_account` - A valid bank account.
+
   ## Examples
 
-  ```
-    params = [
-      name: "Edward Elric",
-      email: "edward@omistry.com",
-      description: "Go away!",
-      type: "individual",
-      bank_account: [
-        brand: "bbl",
-        number: "acc12345",
-        name: "Edward Elric"
+      params = [
+        name: "Edward Elric",
+        email: "edward@omistry.com",
+        description: "Go away!",
+        type: "individual",
+        bank_account: [
+          brand: "bbl",
+          number: "acc12345",
+          name: "Edward Elric"
+        ]
       ]
-    ]
 
-    {:ok, recipient} = Omise.Recipients.create(params)
-  ```
+      {:ok, recipient} = Omise.Recipients.create(params)
 
   """
+  @spec create(Keyword.t) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
   def create(params) do
-    Omise.make_request({:post, @endpoint, Omise.Util.normalize_recipient_params(params)})
+    Omise.make_request(:post, @endpoint, [], {:form, Omise.Util.normalize_recipient_params(params)})
   end
 
   @doc """
   Destroy a recipient.
 
+  Returns `{:ok, recipient}` if the request is successful, `{:error, error}` otherwise.
+
   ## Examples
 
-  ```
-    {:ok, recipient} = Omise.Recipients.destroy("recp_test_4z6p7e0m4k40txecj5o")
-  ```
+      {:ok, recipient} = Omise.Recipients.destroy("recp_test_4z6p7e0m4k40txecj5o")
 
   """
+  @spec destroy(binary) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
   def destroy(id) do
-    Omise.make_request({:delete, "#{@endpoint}/#{id}"})
+    Omise.make_request(:delete, "#{@endpoint}/#{id}")
   end
 end

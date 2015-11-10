@@ -1,4 +1,6 @@
 defmodule Omise.Version do
+  @moduledoc false
+    
   @doc false
   def omise_version do
     "0.1.1"

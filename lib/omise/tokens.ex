@@ -1,6 +1,6 @@
 defmodule Omise.Tokens do
   @moduledoc """
-  An API for working with Token at Omise.
+  Provides Tokens API interfaces.
   """
 
   @endpoint "tokens"
@@ -8,24 +8,25 @@ defmodule Omise.Tokens do
   @doc """
   Create a token.
 
-  ## Example
+  Returns `{:ok, token}` if the request is successful, `{:error, error}` otherwise.
 
-  ```
-    params = [
-      name: "Edward Elric",
-      city: "Bangkok",
-      postal_code: 10320,
-      number: 4242424242424242,
-      security_code: 123,
-      expiration_month: 10,
-      expiration_year: 2019
-    ]
+  ## Examples
 
-    {:ok, token} = Omise.Tokens.create(params)
-  ```
+      params = [
+        name: "Edward Elric",
+        city: "Bangkok",
+        postal_code: 10320,
+        number: 4242424242424242,
+        security_code: 123,
+        expiration_month: 10,
+        expiration_year: 2019
+      ]
+
+      {:ok, token} = Omise.Tokens.create(params)
 
   """
+  @spec create(Keyword.t) :: {:ok, Omise.Token.t} | {:error, Omise.Error.t}
   def create(params) do
-    Omise.make_request({:post, @endpoint, Omise.Util.normalize_card_params(params)})
+    Omise.make_request(:post, @endpoint, [], {:form, Omise.Util.normalize_card_params(params)})
   end
 end
