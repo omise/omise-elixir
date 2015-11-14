@@ -4,7 +4,7 @@ defmodule Omise.Mixfile do
   def project do
     [
       app: :omise,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.1",
       description: description,
       build_embedded: Mix.env == :prod,
@@ -33,7 +33,9 @@ defmodule Omise.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.7.4"},
-      {:poison, "~> 1.5"}
+      {:poison, "~> 1.5"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.10", only: :dev}
     ]
   end
 

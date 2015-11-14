@@ -10,7 +10,7 @@ defmodule Omise.Refunds do
 
   Returns `{:ok, refunds}` if the request is successful, `{:error, error}` otherwise.
 
-  Query Parameters:
+  ## Query Parameters:
     * `offset` - (optional, default: 0) The offset of the first record returned.
     * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
     * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
@@ -22,7 +22,7 @@ defmodule Omise.Refunds do
       {:ok, refunds} = charge |> Omise.refunds.list(limit: 2)
 
   """
-  @spec list(Omise.Charge.t, Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Omise.Charge.t, Keyword.t) :: {:ok, [Omise.Refund.t]} | {:error, Omise.Error.t}
   def list(charge, params \\ []) do
     Omise.make_request(:get, "charges/#{charge.id}/#{@endpoint}",  [params: params])
   end
@@ -38,7 +38,7 @@ defmodule Omise.Refunds do
       {:ok, refund} = charge |> Omise.Refunds.retrieve("dspt_test_51yfnnpsxajeybpytm4")
 
   """
-  @spec retrieve(Omise.Charge.t, binary) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
+  @spec retrieve(Omise.Charge.t, String.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
   def retrieve(charge, id) do
     Omise.make_request(:get, "charges/#{charge.id}/#{@endpoint}/#{id}")
   end
@@ -48,7 +48,7 @@ defmodule Omise.Refunds do
 
   Returns `{:ok, refund}` if the request is successful, `{:error, error}` otherwise.
 
-  Request Parameters:
+  ## Request Parameters:
     * `amount` - The amount in the smallest subunits of the currency used.
       So for thb (Thai Baht) you'll need to pass the amount in satangs.
 

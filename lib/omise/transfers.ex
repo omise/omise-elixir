@@ -10,7 +10,7 @@ defmodule Omise.Transfers do
 
   Returns `{:ok, transfers}` if the request is successful, `{:error, error}` otherwise.
 
-  Query Parameters:
+  ## Query Parameters:
     * `offset` - (optional, default: 0) The offset of the first record returned.
     * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
     * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
@@ -23,7 +23,7 @@ defmodule Omise.Transfers do
       {:ok, transfers} = Omise.Transfers.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, [Omise.Transfer.t]} | {:error, Omise.Error.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -34,7 +34,7 @@ defmodule Omise.Transfers do
 
   Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
 
-  Request Parameters:
+  ## Request Parameters:
     * `amount` - The amount in the smallest subunits of the currency used. So for thb (Thai Baht) you'll need to pass the amount in satangs.
     * `recipient` - The recipient id.
 

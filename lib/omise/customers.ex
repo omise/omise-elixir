@@ -10,7 +10,7 @@ defmodule Omise.Customers do
 
   Returns `{:ok, customers}` if the request is successful, `{:error, error}` otherwise.
 
-  Query Parameters:
+  ## Query Parameters:
     * `offset` - (optional, default: 0) The offset of the first record returned.
     * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
     * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
@@ -21,7 +21,7 @@ defmodule Omise.Customers do
       {:ok, customers} = Omise.Customers.list
 
   """
-  @spec list(Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, [Omise.Customer.t]} | {:error, Omise.Error.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -36,7 +36,7 @@ defmodule Omise.Customers do
       {:ok, customer} = Omise.Customers.retrieve("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec retrieve(binary) :: {:ok, Omise.Customer.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, Omise.Customer.t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.make_request(:get, "#{@endpoint}/#{id}")
   end
@@ -46,7 +46,7 @@ defmodule Omise.Customers do
 
   Returns `{:ok, customer}` if the request is successful, `{:error, error}` otherwise.
 
-  Request Parameters:
+  ## Request Parameters:
     * `email` - (optional) Customer's email.
     * `description` - (optional) A custom description for the customer.
     * `card` - (optional) A card token in case you want to add a card to the customer.
@@ -77,7 +77,7 @@ defmodule Omise.Customers do
 
   Returns `{:ok, customer}` if the request is successful, `{:error, error}` otherwise.
 
-  Request Parameters:
+  ## Request Parameters:
     * `email` - (optional) Customer's email.
     * `description` - (optional) A custom description for the customer.
     * `card` - (optional) A card token in case you want to add a card to the customer.
@@ -91,7 +91,7 @@ defmodule Omise.Customers do
       {:ok, customer} = Omise.Customers.update("cust_test_4xtrb759599jsxlhkrb", card: "tokn_test_4xs9408a642a1htto8z")
 
   """
-  @spec update(binary, Keyword.t) :: {:ok, Omise.Customer.t} | {:error, Omise.Error.t}
+  @spec update(String.t, Keyword.t) :: {:ok, Omise.Customer.t} | {:error, Omise.Error.t}
   def update(id, params) do
     Omise.make_request(:patch, "#{@endpoint}/#{id}", [], {:form, params})
   end
@@ -106,7 +106,7 @@ defmodule Omise.Customers do
       {:ok, customer} = Omise.Customers.destroy("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec destroy(binary) :: {:ok, Omise.Customer.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t) :: {:ok, Omise.Customer.t} | {:error, Omise.Error.t}
   def destroy(id) do
     Omise.make_request(:delete, "#{@endpoint}/#{id}")
   end

@@ -1,7 +1,5 @@
 defmodule Omise do
-  @moduledoc """
-  Omise Elixir Client
-  """
+  @moduledoc false
 
   use HTTPoison.Base
   import Omise.Util, only: [handle_response: 1]

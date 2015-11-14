@@ -10,7 +10,7 @@ defmodule Omise.Cards do
 
   Returns `{:ok, cards}` if the request is successful, `{:error, error}` otherwise.
 
-  Query Parameters:
+  ## Query Parameters:
     * `offset` - (optional, default: 0) The offset of the first record returned.
     * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
     * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
@@ -23,7 +23,7 @@ defmodule Omise.Cards do
       {:ok, cards} = customer |> Omise.Cards.list
 
   """
-  @spec list(Omise.Customer.t, Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Omise.Customer.t, Keyword.t) :: {:ok, [Omise.Card.t]} | {:error, Omise.Error.t}
   def list(customer, params \\ []) do
     Omise.make_request(:get, "customers/#{customer.id}/#{@endpoint}", [params: params])
   end
@@ -39,7 +39,7 @@ defmodule Omise.Cards do
       {:ok, card} = customer |> Omise.Cards.retrieve("card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec retrieve(Omise.Customer.t, binary) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
+  @spec retrieve(Omise.Customer.t, String.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
   def retrieve(customer, id) do
     Omise.make_request(:get, "customers/#{customer.id}/#{@endpoint}/#{id}")
   end
@@ -49,7 +49,7 @@ defmodule Omise.Cards do
 
   Returns `{:ok, card}` if the request is successful, `{:error, error}` otherwise.
 
-  Request Parameters:
+  ## Request Parameters:
     * `name` - (optional) The cardholder name as printed on the card.
     * `expiration_month` - (optional) The expiration month printed on the card.
     * `expiration_year` - (optional) The expiration year printed on the card in the format YYYY.
