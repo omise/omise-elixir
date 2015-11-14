@@ -23,7 +23,7 @@ defmodule Omise.Transfers do
       {:ok, transfers} = Omise.Transfers.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, [Omise.Transfer.t]} | {:error, Omise.Error.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end

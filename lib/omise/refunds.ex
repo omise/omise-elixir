@@ -22,7 +22,7 @@ defmodule Omise.Refunds do
       {:ok, refunds} = charge |> Omise.refunds.list(limit: 2)
 
   """
-  @spec list(Omise.Charge.t, Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Omise.Charge.t, Keyword.t) :: {:ok, [Omise.Refund.t]} | {:error, Omise.Error.t}
   def list(charge, params \\ []) do
     Omise.make_request(:get, "charges/#{charge.id}/#{@endpoint}",  [params: params])
   end
@@ -38,7 +38,7 @@ defmodule Omise.Refunds do
       {:ok, refund} = charge |> Omise.Refunds.retrieve("dspt_test_51yfnnpsxajeybpytm4")
 
   """
-  @spec retrieve(Omise.Charge.t, binary) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
+  @spec retrieve(Omise.Charge.t, String.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
   def retrieve(charge, id) do
     Omise.make_request(:get, "charges/#{charge.id}/#{@endpoint}/#{id}")
   end

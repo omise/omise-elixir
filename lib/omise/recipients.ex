@@ -23,7 +23,7 @@ defmodule Omise.Recipients do
       {:ok, recipients} = Omise.Recipients.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, [Omise.Recipient.t]} | {:error, Omise.Error.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -38,7 +38,7 @@ defmodule Omise.Recipients do
       {:ok, recipient} = Omise.Recipients.retrieve("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec retrieve(binary) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.make_request(:get, "#{@endpoint}/#{id}")
   end
@@ -88,7 +88,7 @@ defmodule Omise.Recipients do
       {:ok, recipient} = Omise.Recipients.destroy("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec destroy(binary) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
   def destroy(id) do
     Omise.make_request(:delete, "#{@endpoint}/#{id}")
   end

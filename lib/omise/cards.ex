@@ -23,7 +23,7 @@ defmodule Omise.Cards do
       {:ok, cards} = customer |> Omise.Cards.list
 
   """
-  @spec list(Omise.Customer.t, Keyword.t) :: {:ok, List.t} | {:error, Omise.Error.t}
+  @spec list(Omise.Customer.t, Keyword.t) :: {:ok, [Omise.Card.t]} | {:error, Omise.Error.t}
   def list(customer, params \\ []) do
     Omise.make_request(:get, "customers/#{customer.id}/#{@endpoint}", [params: params])
   end
@@ -39,7 +39,7 @@ defmodule Omise.Cards do
       {:ok, card} = customer |> Omise.Cards.retrieve("card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec retrieve(Omise.Customer.t, binary) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
+  @spec retrieve(Omise.Customer.t, String.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
   def retrieve(customer, id) do
     Omise.make_request(:get, "customers/#{customer.id}/#{@endpoint}/#{id}")
   end
