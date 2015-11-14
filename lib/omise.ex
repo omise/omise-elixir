@@ -36,23 +36,27 @@ defmodule Omise do
 
   @doc false
   def process_response_body(body) do
-    case decoded_body = Poison.decode!(body, keys: :atoms) do
-      %{object: "list", data: [%{object: object} | _]} ->
-        Poison.decode!(body, keys: :atoms!, as: %{data: [initialize_module(object)]})
+    try do
+      case decoded_body = Poison.decode!(body, keys: :atoms) do
+        %{object: "list", data: [%{object: object} | _]} ->
+          Poison.decode!(body, keys: :atoms!, as: %{data: [initialize_module(object)]})
 
-      %{object: object} when object != "list" ->
-        Poison.decode!(body, keys: :atoms!, as: initialize_module(object))
+        %{object: object} when object != "list" ->
+          Poison.decode!(body, keys: :atoms!, as: initialize_module(object))
 
-      _ ->
-        decoded_body
+        _ ->
+          decoded_body
+      end
+    rescue
+      _errors -> body
     end
   end
 
   @doc false
   def process_url(endpoint) do
     case endpoint do
-      "tokens" -> "http://vault.omise.co/" <> endpoint
-      _others  -> "http://api.omise.co/"   <> endpoint
+      "tokens" -> "https://vault.omise.co/" <> endpoint
+      _others  -> "https://api.omise.co/"   <> endpoint
     end
   end
 
