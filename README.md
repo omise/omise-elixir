@@ -1,4 +1,7 @@
-# Omise [![Build Status](https://travis-ci.org/teerawat1992/omise.svg?branch=master)](https://travis-ci.org/teerawat1992/omise)
+# Omise 
+[![Build Status](https://travis-ci.org/teerawat1992/omise.svg?branch=master)](https://travis-ci.org/teerawat1992/omise)
+[![Hex.pm](https://img.shields.io/hexpm/v/omise.svg?style=flat-square)](https://hex.pm/packages/omise)
+
 
 **Omise for Elixir**
 
@@ -49,4 +52,6 @@ case response do
 end
 ```
 
-***NOTE***: More in-depth documentation is coming soon.
+## Documentation
+
+ * http://hexdocs.pm/omise/
