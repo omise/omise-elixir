@@ -1,6 +1,6 @@
 defmodule Omise.Transfer do
   @moduledoc """
-  Transfer object.
+  Transfer struct.
 
   ## Reference:
   https://www.omise.co/transfers-api

@@ -3,7 +3,7 @@ defmodule Omise.Version do
 
   @doc false
   def omise_version do
-    "0.1.2"
+    "0.1.3"
   end
 
   @doc false

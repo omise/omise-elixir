@@ -5,6 +5,9 @@ defmodule Omise.Util do
   def handle_response(%HTTPoison.Response{body: %Omise.Error{} = error}) do
     {:error, error}
   end
+  def handle_response(%HTTPoison.Response{body: %Omise.Event{} = event}) do
+    {:ok, event}
+  end
   def handle_response(%HTTPoison.Response{body: %{data: data}}) do
     {:ok, data}
   end

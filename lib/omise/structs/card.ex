@@ -1,6 +1,6 @@
 defmodule Omise.Card do
   @moduledoc """
-  Card object.
+  Card struct.
 
   ## Reference:
   https://www.omise.co/cards-api

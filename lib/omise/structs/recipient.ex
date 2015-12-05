@@ -1,6 +1,6 @@
 defmodule Omise.Recipient do
   @moduledoc """
-  Recipient object.
+  Recipient struct.
 
   ## Reference:
   https://www.omise.co/recipients-api

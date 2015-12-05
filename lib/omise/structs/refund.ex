@@ -1,18 +1,16 @@
-defmodule Omise.Dispute do
+defmodule Omise.Refund do
   @moduledoc """
-  Dispute object.
+  Refund struct.
 
   ## Reference:
-  https://www.omise.co/disputes-api
+  https://www.omise.co/refunds-api
   """
   defstruct [
     :id,
     :livemode,
-    :location,
     :amount,
     :currency,
-    :status,
-    :message,
+    :transaction,
     :charge,
     :created
   ]

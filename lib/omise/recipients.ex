@@ -65,7 +65,7 @@ defmodule Omise.Recipients do
         type: "individual",
         bank_account: [
           brand: "bbl",
-          number: "acc12345",
+          number: "1234567890",
           name: "Edward Elric"
         ]
       ]

@@ -1,6 +1,6 @@
 defmodule Omise.Transaction do
   @moduledoc """
-  Transaction object.
+  Transaction struct.
 
   ## Reference:
   https://www.omise.co/transactions-api

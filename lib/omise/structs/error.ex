@@ -1,6 +1,6 @@
 defmodule Omise.Error do
   @moduledoc """
-  Error object.
+  Error struct.
 
   ## Reference:
   https://www.omise.co/api-errors

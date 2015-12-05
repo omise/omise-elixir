@@ -1,6 +1,6 @@
 defmodule Omise.Balance do
   @moduledoc """
-  Balance object.
+  Balance struct.
 
   ## Reference:
   https://www.omise.co/balance-api

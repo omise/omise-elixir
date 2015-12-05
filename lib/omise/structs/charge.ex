@@ -1,6 +1,6 @@
 defmodule Omise.Charge do
   @moduledoc """
-  Charge object.
+  Charge struct.
 
   ## Reference:
   https://www.omise.co/charges-api

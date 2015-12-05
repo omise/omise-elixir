@@ -1,6 +1,6 @@
 defmodule Omise.Customer do
   @moduledoc """
-  Customer object.
+  Customer struct.
 
   ## Reference:
   https://www.omise.co/customers-api

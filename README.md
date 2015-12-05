@@ -9,7 +9,7 @@
   1. Add omise to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:omise, "~> 0.1.2"}]
+          [{:omise, "~> 0.1.3"}]
         end
 
   2. Ensure omise is started before your application:

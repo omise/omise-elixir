@@ -1,6 +1,6 @@
 defmodule Omise.Account do
   @moduledoc """
-  Account object.
+  Account struct.
 
   ## Reference:
   https://www.omise.co/account-api

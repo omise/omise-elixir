@@ -1,6 +1,6 @@
 defmodule Omise.Token do
   @moduledoc """
-  Token object.
+  Token struct.
 
   ## Reference:
   https://www.omise.co/tokens-api
