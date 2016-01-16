@@ -1,0 +1,10 @@
+{
+  "object": "transaction",
+  "id": "trxn_test_52om9enzl8bqx3f2bf4",
+  "location": "/transactions/trxn_test_52om9enzl8bqx3f2bf4",
+  "type": "credit",
+  "amount": 96094,
+  "currency": "thb",
+  "transferable": "2016-01-14T07:31:56Z",
+  "created": "2016-01-14T07:31:56Z"
+}

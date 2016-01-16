@@ -1,39 +1,69 @@
 defmodule Omise.RecipientsTest do
   use ExUnit.Case, async: false
 
-  setup do
-    params = [
-      name: "Edward Elric",
-      email: "test_recp123@localhost",
-      description: "Move on",
-      type: "individual",
-      bank_account: [
-        brand: "bbl",
-        number: "1234567890",
-        name: "Edward Elric"
-      ]
-    ]
-
-    {:ok, params: params}
-  end
+  import TestHelper
 
   test "list all recipients" do
-    {:ok, recipients} = Omise.Recipients.list
+    with_mock_request "recipients_list", fn ->
+      {:ok, recipients} = Omise.Recipients.list
 
-    assert is_list(recipients)
+      assert is_list(recipients)
+      assert hd(recipients).__struct__ == Omise.Recipient
+    end
   end
 
-  test "create, retrieve and destroy a recipient", %{params: params} do
-    {:ok, recipient} = Omise.Recipients.create(params)
+  test "retrieve a recipient" do
+    with_mock_request "recipient_retrieve", fn ->
+      {:ok, recipient} = Omise.Recipients.retrieve("recp_test_52olwbmurp6nwkc5ig6")
 
-    assert %Omise.Recipient{} = recipient
-    assert recipient.bank_account != nil
+      assert recipient.__struct__ == Omise.Recipient
+      assert recipient.id == "recp_test_52olwbmurp6nwkc5ig6"
+      assert recipient.location
+      assert recipient.verified
+      assert recipient.active
+      assert recipient.name
+      assert recipient.email
+      assert recipient.description
+      assert recipient.type
+      assert recipient.tax_id
+      assert recipient.bank_account
+      assert recipient.created
+    end
+  end
 
-    {:ok, retrieved_recipient} =  Omise.Recipients.retrieve(recipient.id)
+  test "create a recipient" do
+    with_mock_request "recipient_create", fn ->
+      params = [
+        name: "Edward Elric",
+        email: "test_recp123@email.com",
+        description: "Move on",
+        type: "individual",
+        bank_account: [
+          brand: "bbl",
+          number: "1234567890",
+          name: "Edward Elric"
+        ]
+      ]
+      {:ok, recipient} = Omise.Recipients.create(params)
 
-    assert recipient.id == retrieved_recipient.id
+      assert recipient.__struct__ == Omise.Recipient
+      assert recipient.location
+      refute recipient.verified
+      refute recipient.active
+      assert recipient.name
+      assert recipient.email
+      assert recipient.description
+      assert recipient.type
+      assert recipient.bank_account
+      assert recipient.created
+    end
+  end
 
-    {:ok, deleted_recipient} = Omise.Recipients.destroy(recipient.id)
-    assert deleted_recipient.deleted == true
+  test "destroy a recipient" do
+    with_mock_request "recipient_destroy", fn ->
+      {:ok, deleted_recipient} = Omise.Recipients.destroy("recp_test_52pe2zrremcckpx8f1g")
+
+      assert deleted_recipient.deleted == true
+    end
   end
 end

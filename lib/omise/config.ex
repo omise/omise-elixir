@@ -9,13 +9,13 @@ defmodule Omise.Config do
   ## Examples
 
       # configure both public_key and secret_key
-      Omise.configure(public_key: "public_key", secret_key: "secret_key")
+      Omise.Config.configure(public_key: "public_key", secret_key: "secret_key")
 
       # configure only secret_key
-      Omise.configure(secret_key: "secret_key")
+      Omise.Config.configure(secret_key: "secret_key")
 
       # configure api_verion
-      Omise.configure(secret_key: "secret_key", api_verion: "api_verion")
+      Omise.Config.configure(secret_key: "secret_key", api_verion: "api_verion")
   """
   def configure(params) do
     params

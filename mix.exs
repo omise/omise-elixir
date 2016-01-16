@@ -5,7 +5,7 @@ defmodule Omise.Mixfile do
     [
       app: :omise,
       version: "0.1.3",
-      elixir: "~> 1.1",
+      elixir: "~> 1.2",
       description: description,
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -35,7 +35,8 @@ defmodule Omise.Mixfile do
       {:httpoison, "~> 0.8.0"},
       {:poison, "~> 1.5"},
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.11.1", only: :dev}
+      {:ex_doc, "~> 0.11.1", only: :dev},
+      {:mock, "~> 0.1.1", only: :test}
     ]
   end
 

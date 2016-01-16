@@ -1,0 +1,12 @@
+{
+  "object": "dispute",
+  "id": "dspt_test_52pdgtq055yw92v7zsi",
+  "livemode": false,
+  "location": "/disputes/dspt_test_52pdgtq055yw92v7zsi",
+  "amount": 10000,
+  "currency": "thb",
+  "status": "won",
+  "message": "this is a test dispute",
+  "charge": "chrg_test_52pd9t97pl8zed2zk9s",
+  "created": "2016-01-16T05:54:13Z"
+}

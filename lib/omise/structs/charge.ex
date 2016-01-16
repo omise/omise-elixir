@@ -26,7 +26,8 @@ defmodule Omise.Charge do
     :dispute,
     :created,
     :return_uri,
-    :return_uri
+    :status,
+    :location
   ]
   @type t :: %__MODULE__{}
 end

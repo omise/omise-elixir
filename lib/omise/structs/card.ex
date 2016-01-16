@@ -20,7 +20,9 @@ defmodule Omise.Card do
     :fingerprint,
     :name,
     :created,
-    :deleted
+    :deleted,
+    :bank,
+    :security_code_check
   ]
   @type t :: %__MODULE__{}
 end

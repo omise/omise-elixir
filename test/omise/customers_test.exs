@@ -1,47 +1,42 @@
 defmodule Omise.CustomersTest do
   use ExUnit.Case, async: false
 
-  setup do
-    {:ok, customer} = Omise.Customers.create(
-      email: "edward@omistry.com",
-      description: "Memory is the wonderful thing if you don't have to deal with the past."
-    )
-
-    {:ok, customer_id: customer.id}
-  end
+  import TestHelper
 
   test "list all customers" do
-    {:ok, customers} = Omise.Customers.list
+    with_mock_request "customers_list", fn ->
+      {:ok, customers} =  Omise.Customers.list
 
-    assert is_list(customers)
+      assert is_list(customers)
+      assert hd(customers).__struct__ == Omise.Customer
+    end
   end
 
-  test "retrieve a customer", %{customer_id: customer_id} do
-    {:ok, customer} = Omise.Customers.retrieve(customer_id)
+  test "retrieve a customer" do
+    with_mock_request "customer_retrieve", fn ->
+      {:ok, customer} =  Omise.Customers.retrieve("cust_test_52om9f276dyzfkhmjch")
 
-    assert customer.id == customer_id
+      assert customer.__struct__ == Omise.Customer
+      assert customer.id == "cust_test_52om9f276dyzfkhmjch"
+      assert customer.location
+      assert customer.default_card
+      assert customer.email
+      assert customer.description
+      assert customer.created
+      assert customer.cards
+    end
   end
 
   test "create a customer" do
-    {:ok, customer} = Omise.Customers.create(
-      email: "edward@omistry.com",
-      description: "Memory is the wonderful thing if you don't have to deal with the past."
-    )
+    with_mock_request "customer_create", fn ->
+      {:ok, customer} =  Omise.Customers.create(
+        email: "jibanyan@email.com",
+        description: "Meowwww"
+      )
 
-    assert %Omise.Customer{} = customer
-    assert customer.email == "edward@omistry.com"
-  end
-
-  test "update a customer", %{customer_id: customer_id} do
-    {:ok, customer} = customer_id |> Omise.Customers.update(email: "ezra@omistry.com", description: "new description")
-
-    assert %Omise.Customer{} = customer
-    assert customer.description == "new description"
-  end
-
-  test "destroy a customer", %{customer_id: customer_id} do
-    {:ok, deleted_customer} = customer_id |> Omise.Customers.destroy
-
-    assert deleted_customer.deleted == true
+      assert customer.__struct__ == Omise.Customer
+      assert customer.email == "jibanyan@email.com"
+      assert customer.description == "Meowwww"
+    end
   end
 end

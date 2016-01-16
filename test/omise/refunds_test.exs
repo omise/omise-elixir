@@ -1,50 +1,40 @@
 defmodule Omise.RefundsTest do
   use ExUnit.Case, async: false
-  
-  setup_all do
-    token_params = [
-      name: "Edward Elric",
-      city: "Bangkok",
-      postal_code: 10320,
-      number: 4242424242424242,
-      security_code: 123,
-      expiration_month: 10,
-      expiration_year: 2019
-    ]
-    {:ok, token}  = Omise.Tokens.create(token_params)
-    {:ok, charge} = Omise.Charges.create(
-      amount: 1000_00,
-      currency: "thb",
-      card: token.id
-    )
 
-    {:ok, charge: charge}
+  import TestHelper
+
+  test "list all refunds" do
+    with_mock_request "refunds_list", fn ->
+      charge = %Omise.Charge{id: "chrg_test_52oo08bwpgnwb95rye8"}
+      {:ok, refunds} = Omise.Refunds.list(charge)
+
+      assert is_list(refunds)
+      assert hd(refunds).__struct__ == Omise.Refund
+    end
   end
 
-  test "list all refunds", %{charge: charge} do
-    {:ok, refunds} = charge |> Omise.Refunds.list
+  test "retrieve a refund" do
+    with_mock_request "refund_retrieve", fn ->
+      charge = %Omise.Charge{id: "chrg_test_52oo08bwpgnwb95rye8"}
+      {:ok, refund} = Omise.Refunds.retrieve(charge, "rfnd_test_52oo08fnmjlb61n8yda")
 
-    assert is_list(refunds)
+      assert refund.__struct__ == Omise.Refund
+      assert refund.id == "rfnd_test_52oo08fnmjlb61n8yda"
+      assert refund.charge == charge.id
+      assert refund.location
+      assert refund.amount
+      assert refund.transaction
+      assert refund.created
+    end
   end
 
-  test "create a refund", %{charge: charge} do
-    {:ok, refund} = charge |> Omise.Refunds.create(amount: 500_00)
+  test "create a refund" do
+    with_mock_request "refund_create", fn ->
+      charge = %Omise.Charge{id: "chrg_test_52oo08bwpgnwb95rye8"}
+      {:ok, refund} = Omise.Refunds.create(charge, amount: 50_00)
 
-    assert %Omise.Refund{} = refund
-    assert refund.amount == 500_00
-  end
-
-  test "failed refund", %{charge: charge} do
-    {:error, error} = charge |> Omise.Refunds.create(amount: 10000_00)
-
-    assert error.code == "failed_refund"
-  end
-
-  test "retrieve a refund", %{charge: charge} do
-    {:ok, created_refund} = charge |> Omise.Refunds.create(amount: 100_00)
-    {:ok, retrieved_refund} = charge |> Omise.Refunds.retrieve(created_refund.id)
-
-    assert %Omise.Refund{} = retrieved_refund
-    assert retrieved_refund.id != nil
+      assert refund.__struct__ == Omise.Refund
+      assert refund.amount == 50_00
+    end
   end
 end

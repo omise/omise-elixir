@@ -1,0 +1,30 @@
+{
+  "object": "event",
+  "id": "evnt_test_52om9d14y2bl9c2sgy8",
+  "livemode": false,
+  "location": "/events/evnt_test_52om9d14y2bl9c2sgy8",
+  "key": "recipient.create",
+  "created": "2016-01-14T07:31:48Z",
+  "data": {
+    "object": "recipient",
+    "id": "recp_test_52om9d0sa9h4p5eygfs",
+    "livemode": false,
+    "location": "/recipients/recp_test_52om9d0sa9h4p5eygfs",
+    "verified": false,
+    "active": false,
+    "name": "Edward Elric",
+    "email": "test_recp123@localhost",
+    "description": "Move on",
+    "type": "individual",
+    "tax_id": null,
+    "bank_account": {
+      "object": "bank_account",
+      "brand": "bbl",
+      "last_digits": "7890",
+      "name": "Edward Elric",
+      "created": "2016-01-14T07:31:48Z"
+    },
+    "failure_code": null,
+    "created": "2016-01-14T07:31:48Z"
+  }
+}

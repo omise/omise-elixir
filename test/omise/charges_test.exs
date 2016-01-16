@@ -1,96 +1,33 @@
 defmodule Omise.ChargesTest do
   use ExUnit.Case, async: false
 
-  setup_all do
-    {:ok, customer} = Omise.Customers.create(
-      email: "edward@omistry.com",
-      description: "Memory is the wonderful thing if you don't have to deal with the past.",
-      card: token.id
-    )
-
-    {:ok, customer: customer}
-  end
+  import TestHelper
 
   test "list all charges" do
-    {:ok, charges} = Omise.Charges.list
+    with_mock_request "charges_list", fn ->
+      {:ok, charges} =  Omise.Charges.list
 
-    assert is_list(charges)
-  end
-
-  test "charge a card using a token" do
-    {:ok, charge} = Omise.Charges.create(
-      amount: 10000,
-      currency: "thb",
-      card: token.id
-    )
-
-    assert %Omise.Charge{} = charge
-    assert charge.amount == 10000
-    assert charge.authorized == true
-    assert charge.capture == true
-  end
-
-  test "charge a card using a customer", %{customer: customer} do
-    {:ok, charge} = Omise.Charges.create(
-      amount: 10000,
-      currency: "thb",
-      customer: customer.id
-    )
-
-    assert %Omise.Charge{} = charge
-    assert charge.amount == 10000
-    assert charge.authorized == true
-    assert charge.capture == true
-  end
-
-  test "charge a card using a customer and a card", %{customer: customer} do
-    {:ok, charge} = Omise.Charges.create(
-      amount: 10000,
-      currency: "thb",
-      customer: customer.id,
-      card: customer.default_card
-    )
-
-    assert %Omise.Charge{} = charge
-    assert charge.amount == 10000
-    assert charge.authorized == true
-    assert charge.capture == true
-  end
-
-  test "capture a charge", %{customer: customer} do
-    {:ok, uncaptured_charge} = Omise.Charges.create(
-      amount: 10000,
-      currency: "thb",
-      customer: customer.id,
-      capture: false
-    )
-
-    {:ok, captured_charge} = uncaptured_charge.id |> Omise.Charges.capture
-
-    try do
-      assert uncaptured_charge.captured == false
-      assert captured_charge.captured == true
-    rescue
-      _ ->
-        assert uncaptured_charge.paid == false
-        assert captured_charge.paid == true
+      assert is_list(charges)
+      assert hd(charges).__struct__ == Omise.Charge
     end
   end
 
-  defp token do
-    {:ok, token} = Omise.Tokens.create(token_params)
-    token
-  end
+  test "charge a card" do
+    with_mock_request "charge_create", fn ->
+      {:ok, charge} = Omise.Charges.create(
+        amount: 100_00,
+        currency: "thb",
+        card: "tokn_test_12p4j8aeb6x1v7mk63x"
+      )
 
-  defp token_params do
-    [
-      name: "Edward Elric",
-      city: "Bangkok",
-      postal_code: 10320,
-      number: 4242424242424242,
-      security_code: 123,
-      expiration_month: 10,
-      expiration_year: 2019
-    ]
+      assert charge.__struct__ == Omise.Charge
+      assert charge.location
+      assert charge.authorized
+      assert charge.capture
+      assert charge.paid
+      assert charge.amount == 100_00
+      assert charge.transaction == "trxn_test_52p4rhst6ycli7rbxj6"
+      assert charge.status == "successful"
+    end
   end
 end
