@@ -19,13 +19,12 @@ defmodule Omise.Cards do
 
   ## Examples
 
-      {:ok, customer} = Omise.Customers.retrieve("cust_test_520j6g67py52xa7qbu2")
-      {:ok, cards} = customer |> Omise.Cards.list
+      {:ok, cards} = Omise.Cards.list("cust_test_520j6g67py52xa7qbu2")
 
   """
-  @spec list(Omise.Customer.t, Keyword.t) :: {:ok, [Omise.Card.t]} | {:error, Omise.Error.t}
-  def list(customer, params \\ []) do
-    Omise.make_request(:get, "customers/#{customer.id}/#{@endpoint}", [params: params])
+  @spec list(String.t, Keyword.t) :: {:ok, [Omise.Card.t]} | {:error, Omise.Error.t}
+  def list(customer_id, params \\ []) do
+    Omise.make_request(:get, "customers/#{customer_id}/#{@endpoint}", [params: params])
   end
 
   @doc """
@@ -35,13 +34,12 @@ defmodule Omise.Cards do
 
   ## Examples
 
-      {:ok, customer} = Omise.Customers.retrieve("cust_test_520j6g67py52xa7qbu2")
-      {:ok, card} = customer |> Omise.Cards.retrieve("card_test_520j6g4rxrmurw16b2d")
+      {:ok, card} = Omise.Cards.retrieve("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec retrieve(Omise.Customer.t, String.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
-  def retrieve(customer, id) do
-    Omise.make_request(:get, "customers/#{customer.id}/#{@endpoint}/#{id}")
+  @spec retrieve(String.t, String.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
+  def retrieve(customer_id, id) do
+    Omise.make_request(:get, "customers/#{customer_id}/#{@endpoint}/#{id}")
   end
 
   @doc """
@@ -58,14 +56,16 @@ defmodule Omise.Cards do
 
   ## Examples
 
-      {:ok, customer} = Omise.Customers.retrieve("cust_test_520j6g67py52xa7qbu2")
-      {:ok, card} = customer |> Omise.Cards.retrieve("card_test_520j6g4rxrmurw16b2d")
-      {:ok, updated_card} = customer |> Omise.Cards.update(card, name: "George Ezra", city: "London")
+      {:ok, updated_card} = Omise.Cards.update(
+        "cust_test_520j6g67py52xa7qbu2",
+        "card_test_520j6g4rxrmurw16b2d",
+        name: "George Ezra", city: "London"
+      )
 
   """
-  @spec update(Omise.Customer.t, Omise.Card.t, Keyword.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
-  def update(customer, card, params) do
-    Omise.make_request(:patch, "customers/#{customer.id}/#{@endpoint}/#{card.id}", [], {:form, params})
+  @spec update(String.t, String.t, Keyword.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
+  def update(customer_id, card_id, params) do
+    Omise.make_request(:patch, "customers/#{customer_id}/#{@endpoint}/#{card_id}", [], {:form, params})
   end
 
   @doc """
@@ -75,13 +75,14 @@ defmodule Omise.Cards do
 
   ## Examples
 
-      {:ok, customer} = Omise.Customers.retrieve("cust_test_520j6g67py52xa7qbu2")
-      {:ok, card} = customer |> Omise.Cards.retrieve("card_test_520j6g4rxrmurw16b2d")
-      {:ok, updated_card} = customer |> Omise.Cards.destroy(card)
+      {:ok, card} = Omise.Cards.destroy(
+        "cust_test_520j6g67py52xa7qbu2",
+        "card_test_520j6g4rxrmurw16b2d"
+      )
 
   """
-  @spec destroy(Omise.Customer.t, Omise.Card.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
-  def destroy(customer, card) do
-    Omise.make_request(:delete, "customers/#{customer.id}/#{@endpoint}/#{card.id}")
+  @spec destroy(String.t, String.t) :: {:ok, Omise.Card.t} | {:error, Omise.Error.t}
+  def destroy(customer_id, card_id) do
+    Omise.make_request(:delete, "customers/#{customer_id}/#{@endpoint}/#{card_id}")
   end
 end

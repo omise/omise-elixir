@@ -15,7 +15,7 @@ defmodule Omise.Accounts do
       {:ok, account} = Omise.Accounts.retrieve
 
   """
-  @spec retrieve :: {:ok, Omise.Account.t} | {:error, Omise.Error.t} 
+  @spec retrieve :: {:ok, Omise.Account.t} | {:error, Omise.Error.t}
   def retrieve do
     Omise.make_request(:get, @endpoint)
   end

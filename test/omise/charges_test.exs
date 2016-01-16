@@ -12,6 +12,23 @@ defmodule Omise.ChargesTest do
     end
   end
 
+  test "retrieve a charge" do
+    with_mock_request "charge_retrieve", fn ->
+      {:ok, charge} = Omise.Charges.retrieve("chrg_test_52oo08bwpgnwb95rye8")
+
+      assert charge.__struct__ == Omise.Charge
+      assert charge.id == "chrg_test_52oo08bwpgnwb95rye8"
+      assert charge.location
+      assert charge.amount
+      assert charge.currency
+      assert charge.status
+      assert charge.capture
+      assert charge.card
+      assert charge.refunds
+      assert charge.created
+    end
+  end
+
   test "charge a card" do
     with_mock_request "charge_create", fn ->
       {:ok, charge} = Omise.Charges.create(

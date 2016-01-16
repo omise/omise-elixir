@@ -5,8 +5,7 @@ defmodule Omise.RefundsTest do
 
   test "list all refunds" do
     with_mock_request "refunds_list", fn ->
-      charge = %Omise.Charge{id: "chrg_test_52oo08bwpgnwb95rye8"}
-      {:ok, refunds} = Omise.Refunds.list(charge)
+      {:ok, refunds} = Omise.Refunds.list("chrg_test_52oo08bwpgnwb95rye8")
 
       assert is_list(refunds)
       assert hd(refunds).__struct__ == Omise.Refund
@@ -15,12 +14,11 @@ defmodule Omise.RefundsTest do
 
   test "retrieve a refund" do
     with_mock_request "refund_retrieve", fn ->
-      charge = %Omise.Charge{id: "chrg_test_52oo08bwpgnwb95rye8"}
-      {:ok, refund} = Omise.Refunds.retrieve(charge, "rfnd_test_52oo08fnmjlb61n8yda")
+      {:ok, refund} = Omise.Refunds.retrieve("", "rfnd_test_52oo08fnmjlb61n8yda")
 
       assert refund.__struct__ == Omise.Refund
       assert refund.id == "rfnd_test_52oo08fnmjlb61n8yda"
-      assert refund.charge == charge.id
+      assert refund.charge == "chrg_test_52oo08bwpgnwb95rye8"
       assert refund.location
       assert refund.amount
       assert refund.transaction
@@ -30,8 +28,7 @@ defmodule Omise.RefundsTest do
 
   test "create a refund" do
     with_mock_request "refund_create", fn ->
-      charge = %Omise.Charge{id: "chrg_test_52oo08bwpgnwb95rye8"}
-      {:ok, refund} = Omise.Refunds.create(charge, amount: 50_00)
+      {:ok, refund} = Omise.Refunds.create("chrg_test_52oo08bwpgnwb95rye8", amount: 50_00)
 
       assert refund.__struct__ == Omise.Refund
       assert refund.amount == 50_00

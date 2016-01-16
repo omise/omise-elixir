@@ -18,13 +18,13 @@ defmodule Omise.Refunds do
 
   ## Examples
 
-      {:ok, charge}  = Omise.Charges.retrieve("chrg_test_520jim7x8u6t4si58va")
-      {:ok, refunds} = charge |> Omise.refunds.list(limit: 2)
+      {:ok, refunds} = Omise.refunds.list("chrg_test_52oo08bwpgnwb95rye8")
+      {:ok, refunds} = Omise.refunds.list("chrg_test_52oo08bwpgnwb95rye8", limit: 2)
 
   """
-  @spec list(Omise.Charge.t, Keyword.t) :: {:ok, [Omise.Refund.t]} | {:error, Omise.Error.t}
-  def list(charge, params \\ []) do
-    Omise.make_request(:get, "charges/#{charge.id}/#{@endpoint}",  [params: params])
+  @spec list(String.t, Keyword.t) :: {:ok, [Omise.Refund.t]} | {:error, Omise.Error.t}
+  def list(charge_id, params \\ []) do
+    Omise.make_request(:get, "charges/#{charge_id}/#{@endpoint}",  [params: params])
   end
 
   @doc """
@@ -34,13 +34,12 @@ defmodule Omise.Refunds do
 
   ## Examples
 
-      {:ok, charge} = Omise.Charges.retrieve("chrg_test_520jim7x8u6t4si58va")
-      {:ok, refund} = charge |> Omise.Refunds.retrieve("dspt_test_51yfnnpsxajeybpytm4")
+      {:ok, refund} = Omise.Refunds.retrieve("chrg_test_520jim7x8u6t4si58va", "dspt_test_51yfnnpsxajeybpytm4")
 
   """
-  @spec retrieve(Omise.Charge.t, String.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
-  def retrieve(charge, id) do
-    Omise.make_request(:get, "charges/#{charge.id}/#{@endpoint}/#{id}")
+  @spec retrieve(String.t, String.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
+  def retrieve(charge_id, id) do
+    Omise.make_request(:get, "charges/#{charge_id}/#{@endpoint}/#{id}")
   end
 
   @doc """
@@ -54,12 +53,11 @@ defmodule Omise.Refunds do
 
   ## Examples
 
-      {:ok, charge} = Omise.Charges.retrieve("chrg_test_520jim7x8u6t4si58va")
-      {:ok, refund} = charge |> Omise.Refunds.create(amount: 100_00)
+      {:ok, refund} = Omise.Refunds.create("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
 
   """
-  @spec create(Omise.Charge.t, Keyword.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
-  def create(charge, params) do
-    Omise.make_request(:post, "charges/#{charge.id}/#{@endpoint}", [], {:form, params})
+  @spec create(String.t, Keyword.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
+  def create(charge_id, params) do
+    Omise.make_request(:post, "charges/#{charge_id}/#{@endpoint}", [], {:form, params})
   end
 end

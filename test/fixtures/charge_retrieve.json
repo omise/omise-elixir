@@ -1,0 +1,81 @@
+{
+  "object": "charge",
+  "id": "chrg_test_52oo08bwpgnwb95rye8",
+  "livemode": false,
+  "location": "/charges/chrg_test_52oo08bwpgnwb95rye8",
+  "amount": 100000,
+  "currency": "thb",
+  "description": null,
+  "status": "successful",
+  "capture": true,
+  "authorized": true,
+  "paid": true,
+  "transaction": "trxn_test_52oo08d34xvw0ufbl2h",
+  "refunded": 65000,
+  "refunds": {
+    "object": "list",
+    "from": "1970-01-01T07:00:00+07:00",
+    "to": "2016-01-16T18:32:23+07:00",
+    "offset": 0,
+    "limit": 20,
+    "total": 3,
+    "order": null,
+    "location": "/charges/chrg_test_52oo08bwpgnwb95rye8/refunds",
+    "data": [
+      {
+        "object": "refund",
+        "id": "rfnd_test_52oo08fnmjlb61n8yda",
+        "location": "/charges/chrg_test_52oo08bwpgnwb95rye8/refunds/rfnd_test_52oo08fnmjlb61n8yda",
+        "amount": 50000,
+        "currency": "thb",
+        "charge": "chrg_test_52oo08bwpgnwb95rye8",
+        "transaction": "trxn_test_52oo08fu85vch6y42c8",
+        "created": "2016-01-14T10:30:25Z"
+      },
+      {
+        "object": "refund",
+        "id": "rfnd_test_52oo08h9wxifqf45dky",
+        "location": "/charges/chrg_test_52oo08bwpgnwb95rye8/refunds/rfnd_test_52oo08h9wxifqf45dky",
+        "amount": 10000,
+        "currency": "thb",
+        "charge": "chrg_test_52oo08bwpgnwb95rye8",
+        "transaction": "trxn_test_52oo08hfy72ey43nrlp",
+        "created": "2016-01-14T10:30:25Z"
+      },
+      {
+        "object": "refund",
+        "id": "rfnd_test_52pe9k4bj1yqy2p1d42",
+        "location": "/charges/chrg_test_52oo08bwpgnwb95rye8/refunds/rfnd_test_52pe9k4bj1yqy2p1d42",
+        "amount": 5000,
+        "currency": "thb",
+        "charge": "chrg_test_52oo08bwpgnwb95rye8",
+        "transaction": "trxn_test_52pe9k4gplpjuvq53fm",
+        "created": "2016-01-16T07:15:51Z"
+      }
+    ]
+  },
+  "failure_code": null,
+  "failure_message": null,
+  "card": {
+    "object": "card",
+    "id": "card_test_52oo08bahhhhqebyr6z",
+    "livemode": false,
+    "country": "us",
+    "city": "Bangkok",
+    "postal_code": "10320",
+    "financing": "",
+    "bank": "",
+    "last_digits": "4242",
+    "brand": "Visa",
+    "expiration_month": 10,
+    "expiration_year": 2019,
+    "fingerprint": "YFW3wgBgSCJB0726bXGBkx2HZOIx9vEWFk+BX0h75HI=",
+    "name": "Edward Elric",
+    "security_code_check": true,
+    "created": "2016-01-14T10:30:24Z"
+  },
+  "customer": null,
+  "ip": null,
+  "dispute": null,
+  "created": "2016-01-14T10:30:24Z"
+}
