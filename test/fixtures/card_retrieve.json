@@ -1,0 +1,19 @@
+{
+  "object": "card",
+  "id": "card_test_52p4j8aapq87o18uq04",
+  "livemode": false,
+  "location": "/customers/cust_test_52p4kmy02q0i59akn84/cards/card_test_52p4j8aapq87o18uq04",
+  "country": "",
+  "city": "Tokyo",
+  "postal_code": "55555",
+  "financing": "",
+  "bank": "",
+  "last_digits": "4242",
+  "brand": "Visa",
+  "expiration_month": 10,
+  "expiration_year": 2019,
+  "fingerprint": "YFW3wgBgSCJB0726bXGBkx2HZOIx9vEWFk+BX0h75HI=",
+  "name": "Jibanyan",
+  "security_code_check": true,
+  "created": "2016-01-15T14:40:39Z"
+}

@@ -1,30 +1,46 @@
 defmodule Omise.Util do
   @moduledoc false
 
-  @doc false
-  def handle_response(%HTTPoison.Response{body: %Omise.Error{} = error}) do
-    {:error, error}
-  end
-  def handle_response(%HTTPoison.Response{body: %Omise.Event{} = event}) do
-    {:ok, event}
-  end
-  def handle_response(%HTTPoison.Response{body: %{data: data}}) do
-    {:ok, data}
-  end
   def handle_response(%HTTPoison.Response{body: body}) do
-    {:ok, body}
+    body
+    |> process_response
+    |> normalize_response
   end
 
-  @doc false
+  defp process_response(body) do
+    decoded_body = Poison.decode!(body, keys: :atoms)
+    case decoded_body do
+      %{object: "error"} ->
+        Poison.decode!(body, keys: :atoms, as: initialize_module("error"))
+
+      %{object: "list", data: [ %{object: object} | _ ]} ->
+        Poison.decode!(body, keys: :atoms, as: %{data: [initialize_module(object)]})
+
+      %{object: object} when object != "list" ->
+        Poison.decode!(body, keys: :atoms, as: initialize_module(object))
+
+      _ ->
+        decoded_body
+    end
+  end
+
+  defp normalize_response(error = %Omise.Error{}), do: {:error, error}
+  defp normalize_response(event = %Omise.Event{}), do: {:ok, event}
+  defp normalize_response(%{data: data}),          do: {:ok, data}
+  defp normalize_response(data),                   do: {:ok, data}
+
+  defp initialize_module(object) do
+    Module.concat(Omise, String.capitalize(object))
+  end
+
   def normalize_card_params(params) do
     Enum.map(params, fn {k, v} -> {"card[#{k}]", v} end)
   end
 
-  @doc false
   def normalize_recipient_params(params) do
     params
-    |> Dict.delete(:bank_account)
-    |> Dict.merge(normalize_bank_account_params(params[:bank_account]))
+    |> Keyword.delete(:bank_account)
+    |> Keyword.merge(normalize_bank_account_params(params[:bank_account]))
   end
 
   defp normalize_bank_account_params(params) do

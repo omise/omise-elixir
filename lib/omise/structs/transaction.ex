@@ -5,6 +5,6 @@ defmodule Omise.Transaction do
   ## Reference:
   https://www.omise.co/transactions-api
   """
-  defstruct [:id, :type, :amount, :currency, :created]
+  defstruct [:id, :location, :type, :amount, :currency, :transferable, :created]
   @type t :: %__MODULE__{}
 end

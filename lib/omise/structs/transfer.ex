@@ -15,6 +15,7 @@ defmodule Omise.Transfer do
     :paid,
     :amount,
     :currency,
+    :fee,
     :failure_code,
     :failure_message,
     :transaction,

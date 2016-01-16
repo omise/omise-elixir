@@ -8,6 +8,7 @@ defmodule Omise.Refund do
   defstruct [
     :id,
     :livemode,
+    :location,
     :amount,
     :currency,
     :transaction,

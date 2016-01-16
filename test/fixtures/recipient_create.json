@@ -1,0 +1,22 @@
+{
+  "object": "recipient",
+  "id": "recp_test_52pe2zrremcckpx8f1g",
+  "livemode": false,
+  "location": "/recipients/recp_test_52pe2zrremcckpx8f1g",
+  "verified": false,
+  "active": false,
+  "name": "Edward Elric",
+  "email": "test_recp123@email.com",
+  "description": "Move on",
+  "type": "individual",
+  "tax_id": null,
+  "bank_account": {
+    "object": "bank_account",
+    "brand": "bbl",
+    "last_digits": "7890",
+    "name": "Edward Elric",
+    "created": "2016-01-16T06:57:12Z"
+  },
+  "failure_code": null,
+  "created": "2016-01-16T06:57:12Z"
+}

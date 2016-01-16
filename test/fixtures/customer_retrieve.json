@@ -1,0 +1,41 @@
+{
+  "object": "customer",
+  "id": "cust_test_52om9f276dyzfkhmjch",
+  "livemode": false,
+  "location": "/customers/cust_test_52om9f276dyzfkhmjch",
+  "default_card": "card_test_52om9f1g3mlbtghm1sj",
+  "email": "adele@email.com",
+  "description": "Don't underestimate the things that i will do.",
+  "created": "2016-01-14T07:31:58Z",
+  "cards": {
+    "object": "list",
+    "from": "1970-01-01T07:00:00+07:00",
+    "to": "2016-01-16T12:42:41+07:00",
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "order": null,
+    "location": "/customers/cust_test_52om9f276dyzfkhmjch/cards",
+    "data": [
+      {
+        "object": "card",
+        "id": "card_test_52om9f1g3mlbtghm1sj",
+        "livemode": false,
+        "location": "/customers/cust_test_52om9f276dyzfkhmjch/cards/card_test_52om9f1g3mlbtghm1sj",
+        "country": "us",
+        "city": "London",
+        "postal_code": "55555",
+        "financing": "",
+        "bank": "",
+        "last_digits": "4242",
+        "brand": "Visa",
+        "expiration_month": 10,
+        "expiration_year": 2019,
+        "fingerprint": "YFW3wgBgSCJB0726bXGBkx2HZOIx9vEWFk+BX0h75HI=",
+        "name": "Adele",
+        "security_code_check": true,
+        "created": "2016-01-14T07:31:58Z"
+      }
+    ]
+  }
+}

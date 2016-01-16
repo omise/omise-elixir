@@ -5,6 +5,6 @@ defmodule Omise.Balance do
   ## Reference:
   https://www.omise.co/balance-api
   """
-  defstruct [:livemode, :available, :total, :currency]
+  defstruct [:livemode, :location, :available, :total, :currency]
   @type t :: %__MODULE__{}
 end
