@@ -1,5 +1,7 @@
 # GOT
 
+![GOT](https://raw.githubusercontent.com/teerawat1992/omise/add-example-app/example/got/data/example.png)
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
