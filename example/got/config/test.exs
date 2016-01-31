@@ -17,3 +17,7 @@ config :got, GOT.Repo,
   database: "got_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Omise Api
+config :got,
+  omise_api: GOT.OmiseTest
