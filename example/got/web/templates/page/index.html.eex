@@ -1,0 +1,47 @@
+<div class="text-center">
+  <h1>Game of Thrones</h1>
+  <h3>Donate to the noble house you love.</h3>
+</div>
+
+<div id="errors"></div>
+
+<div class="well">
+  <%= form_for @conn, "/donate", [as: :donate, id: :donate], fn f -> %>
+    <input type="hidden" name="omise_token">
+
+    <div class="form-group">
+      <label>I would like to donate to: </label>
+      <%= select f, :house, noble_houses %>
+      <%= select f, :amount, amounts %>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name on card</label>
+      <input type="text" class="form-control" id="name" placeholder="Your Name">
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-8">
+        <label for="number">Card Number</label>
+        <input type="text" class="form-control" id="number" placeholder="0000 0000 0000 0000">
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="cvv">Code (CVV)</label>
+        <input type="text" class="form-control" id="cvv">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Expiration Date: </label>
+      <%= datetime_select f, :expiration, id: "expiration", builder: fn b -> %>
+        <%= b.(:year, [options: year_range]) %>
+        <%= b.(:month, []) %>
+      <% end %>
+    </div>
+
+    <%= submit "Donate", class: "btn btn-default" %>
+  <% end %>
+</div>
+
+
