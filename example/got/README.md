@@ -1,6 +1,6 @@
 # GOT
 
-![GOT](https://raw.githubusercontent.com/teerawat1992/omise/add-example-app/example/got/data/example.png)
+![GOT](https://raw.githubusercontent.com/teerawat1992/omise/master/example/got/data/example.png)
 
 To start your Phoenix app:
 

@@ -51,6 +51,10 @@ case response do
 end
 ```
 
+## How to integrate with Phoenix Application
+
+ * https://github.com/teerawat1992/omise/tree/master/example/got
+
 ## Documentation
 
  * http://hexdocs.pm/omise/
