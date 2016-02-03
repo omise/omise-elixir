@@ -11,7 +11,12 @@ defmodule GOT.PageController do
     description = "Donate to #{house}"
     response = @omise_api.create_charge(card: card, amount: amount, description: description)
     conn = case response do
-      {:ok, _charge}  -> put_flash(conn, :info, "Thanks for donating!")
+      {:ok, charge}  ->
+        if charge.paid do
+          put_flash(conn, :info, "Thanks for donating!")
+        else
+          put_flash(conn, :error, charge.failure_message || "Something went wrong :(")
+        end
       {:error, error} -> put_flash(conn, :error, error.message)
     end
     redirect(conn, to: page_path(conn, :index))

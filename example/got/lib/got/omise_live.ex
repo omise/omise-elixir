@@ -1,4 +1,4 @@
-defmodule GOT.Omise do
+defmodule GOT.OmiseLive do
   def create_charge(params) do
     Omise.Charges.create(
       currency: "thb",

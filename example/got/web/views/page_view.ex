@@ -15,6 +15,6 @@ defmodule GOT.PageView do
   end
 
   def amounts do
-    ["500 BTH": 500_00, "1,000 BTH": 1000_00, "5000 BTH": 5000_00]
+    ["500 BTH": 500_00, "1,000 BTH": 1000_00, "5,000 BTH": 5000_00]
   end
 end
