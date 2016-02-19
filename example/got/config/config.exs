@@ -24,7 +24,8 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :omise,
-  secret_key: System.get_env("OMISE_SECRET_KEY")
+  secret_key: System.get_env("OMISE_SECRET_KEY"),
+  public_key: System.get_env("OMISE_PUBLIC_KEY")
 
 # Omise Api
 config :got,

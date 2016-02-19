@@ -7,18 +7,21 @@ defmodule GOT.PageController do
     render conn, "index.html"
   end
 
-  def donate(conn, %{"omise_token" => card, "donate" => %{"house" => house, "amount" => amount}}) do
-    description = "Donate to #{house}"
-    response = @omise_api.create_charge(card: card, amount: amount, description: description)
-    conn = case response do
-      {:ok, charge}  ->
-        if charge.paid do
-          put_flash(conn, :info, "Thanks for donating!")
-        else
-          put_flash(conn, :error, charge.failure_message || "Something went wrong :(")
+  def donate(conn, params) do
+    params
+    |> build_charge_params
+    |> @omise_api.create_charge
+    |> case do
+      {:ok, charge} ->
+        cond do
+          charge.paid -> put_flash(conn, :info, "Thanks for donating!")
+          true        -> put_flash(conn, :error, charge.failure_message || "Something went wrong :(")
         end
       {:error, error} -> put_flash(conn, :error, error.message)
     end
-    redirect(conn, to: page_path(conn, :index))
+    |> redirect(to: page_path(conn, :index))
   end
+
+  defp build_charge_params(%{"omise_token" => card, "donate" => %{"house" => house, "amount" => amount}}),
+    do: [card: card, amount: amount, description: "Donate to #{house}"]
 end
