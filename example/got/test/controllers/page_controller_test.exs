@@ -29,6 +29,6 @@ defmodule GOT.PageControllerTest do
     get conn, "/"
     conn = post conn, "/donate", invalid_donate_params
     assert html_response(conn, 302)
-    assert get_flash(conn, :error) =~ "failed processing"
+    assert get_flash(conn, :error) =~ "token was already used"
   end
 end
