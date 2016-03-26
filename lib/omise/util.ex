@@ -30,7 +30,9 @@ defmodule Omise.Util do
   defp normalize_response(data),                   do: {:ok, data}
 
   defp initialize_module(object) do
-    Module.concat(Omise, String.capitalize(object))
+    Omise
+    |> Module.concat(String.capitalize(object))
+    |> struct
   end
 
   def normalize_card_params(params) do
