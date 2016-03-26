@@ -7,11 +7,9 @@ defmodule GOT.PageView do
   end
 
   def noble_houses do
-    [
-      "House Stark": "house_stark",
-      "House Targaryen": "house_targaryen",
-      "House Lanister": "house_lanister"
-    ]
+    ["House Stark": "house_stark",
+     "House Targaryen": "house_targaryen",
+     "House Lanister": "house_lanister"]
   end
 
   def amounts do

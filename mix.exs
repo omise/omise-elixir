@@ -33,7 +33,7 @@ defmodule Omise.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.8.0"},
-      {:poison, "~> 1.5"},
+      {:poison, "~> 2.1.0"},
       {:earmark, "~> 0.2", only: :dev},
       {:ex_doc, "~> 0.11.1", only: :dev},
       {:mock, "~> 0.1.1", only: :test}
