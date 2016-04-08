@@ -3,11 +3,11 @@ defmodule Omise.Config do
 
   def configure(params) do
     params
-    |> Enum.filter(fn {k,_} -> k in omise_env end)
-    |> Enum.map(fn {k,v} -> Application.put_env(:omise, k, v) end)
+    |> Enum.filter(fn {k, _} -> k in permitted_params end)
+    |> Enum.map(fn {k, v} -> Application.put_env(:omise, k, v) end)
   end
 
-  defp omise_env do
+  defp permitted_params do
     [:public_key, :secret_key, :api_version]
   end
 end

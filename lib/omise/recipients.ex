@@ -1,6 +1,8 @@
 defmodule Omise.Recipients do
   @moduledoc """
   Provides Recipients API interfaces.
+
+  https://www.omise.co/recipients-api
   """
 
   @endpoint "recipients"
@@ -23,7 +25,7 @@ defmodule Omise.Recipients do
       {:ok, recipients} = Omise.Recipients.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, [Omise.Recipient.t]} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -38,7 +40,7 @@ defmodule Omise.Recipients do
       {:ok, recipient} = Omise.Recipients.retrieve("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec retrieve(String.t) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, Map.t} | {:error, Map.t}
   def retrieve(id) do
     Omise.make_request(:get, "#{@endpoint}/#{id}")
   end
@@ -73,7 +75,7 @@ defmodule Omise.Recipients do
       {:ok, recipient} = Omise.Recipients.create(params)
 
   """
-  @spec create(Keyword.t) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(params) do
     Omise.make_request(:post, @endpoint, [], {:form, Omise.Util.normalize_recipient_params(params)})
   end
@@ -88,7 +90,7 @@ defmodule Omise.Recipients do
       {:ok, recipient} = Omise.Recipients.destroy("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec destroy(String.t) :: {:ok, Omise.Recipient.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t) :: {:ok, Map.t} | {:error, Map.t}
   def destroy(id) do
     Omise.make_request(:delete, "#{@endpoint}/#{id}")
   end

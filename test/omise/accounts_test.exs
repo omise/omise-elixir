@@ -7,7 +7,6 @@ defmodule Omise.AccountsTest do
     with_mock_request "account_retrieve", fn ->
       {:ok, account} = Omise.Accounts.retrieve
 
-      assert account.__struct__ == Omise.Account
       assert account.id
       assert account.email
       assert account.created

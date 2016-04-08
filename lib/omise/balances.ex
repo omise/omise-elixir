@@ -1,6 +1,8 @@
 defmodule Omise.Balances do
   @moduledoc """
   Provides Balance API interfaces.
+
+  https://www.omise.co/balance-api
   """
 
   @endpoint "balance"
@@ -15,7 +17,7 @@ defmodule Omise.Balances do
       {:ok, balance} = Omise.Balances.retrieve
 
   """
-  @spec retrieve :: {:ok, Omise.Balance.t} | {:error, Omise.Error.t}
+  @spec retrieve :: {:ok, Map.t} | {:error, Map.t}
   def retrieve do
     Omise.make_request(:get, @endpoint)
   end

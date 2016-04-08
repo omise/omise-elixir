@@ -1,4 +1,4 @@
-defmodule Omise.Api do
+defmodule Omise.HTTPClient do
   @moduledoc false
 
   use HTTPoison.Base
@@ -18,12 +18,15 @@ defmodule Omise.Api do
   end
 
   defp req_headers do
-    headers = %{
-      "User-Agent"   => "OmiseElixir/#{omise_version} Elixir/#{elixir_version}",
-      "Content-type" => "application/x-www-form-urlencoded",
-    }
-    if api_version, do: headers = headers |> Map.put("Omise-Version", api_version)
-    headers
+    case api_version do
+      nil -> default_req_headers
+      _   -> Map.merge(default_req_headers, %{"Omise-Version" => api_version})
+    end
+  end
+
+  defp default_req_headers do
+    %{"User-Agent"   => "OmiseElixir/#{omise_version} Elixir/#{elixir_version}",
+      "Content-type" => "application/x-www-form-urlencoded"}
   end
 
   defp auth("tokens"), do: vault_auth

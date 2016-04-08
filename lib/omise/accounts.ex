@@ -1,6 +1,8 @@
 defmodule Omise.Accounts do
   @moduledoc """
   Provides Account API interfaces.
+  
+  https://www.omise.co/account-api
   """
 
   @endpoint "account"
@@ -15,7 +17,7 @@ defmodule Omise.Accounts do
       {:ok, account} = Omise.Accounts.retrieve
 
   """
-  @spec retrieve :: {:ok, Omise.Account.t} | {:error, Omise.Error.t}
+  @spec retrieve :: {:ok, Map.t} | {:error, Map.t}
   def retrieve do
     Omise.make_request(:get, @endpoint)
   end

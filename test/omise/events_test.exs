@@ -7,8 +7,7 @@ defmodule Omise.EventsTest do
     with_mock_request "events_list", fn ->
       {:ok, events} = Omise.Events.list
 
-      assert is_list(events)
-      assert hd(events).__struct__ == Omise.Event
+      assert is_list(events[:data])
     end
   end
 
@@ -16,7 +15,6 @@ defmodule Omise.EventsTest do
     with_mock_request "event_retrieve", fn ->
       {:ok, event} = Omise.Events.retrieve("evnt_test_52om9d14y2bl9c2sgy8")
 
-      assert event.__struct__ == Omise.Event
       assert event.id
       assert event.location
       assert event.key

@@ -7,8 +7,7 @@ defmodule Omise.TransfersTest do
     with_mock_request "transfers_list", fn ->
       {:ok, transfers} = Omise.Transfers.list
 
-      assert is_list(transfers)
-      assert hd(transfers).__struct__ == Omise.Transfer
+      assert is_list(transfers[:data])
     end
   end
 
@@ -16,7 +15,6 @@ defmodule Omise.TransfersTest do
     with_mock_request "transfer_create", fn ->
       {:ok, transfer} = Omise.Transfers.create(amount: 1000_00)
 
-      assert transfer.__struct__ == Omise.Transfer
       assert transfer.id
       assert transfer.location
       assert transfer.recipient
