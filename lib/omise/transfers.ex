@@ -1,6 +1,8 @@
 defmodule Omise.Transfers do
   @moduledoc """
   Provides Transfers API interfaces.
+
+  https://www.omise.co/transfers-api
   """
 
   @endpoint "transfers"
@@ -23,7 +25,7 @@ defmodule Omise.Transfers do
       {:ok, transfers} = Omise.Transfers.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, [Omise.Transfer.t]} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -45,7 +47,7 @@ defmodule Omise.Transfers do
       {:ok, transfer} = Omise.Transfers.create(amount: 100000, recipient: "recp_test_4z3wur7amjq2nbg8x44")
 
   """
-  @spec create(Keyword.t) :: {:ok, Omise.Transfer.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(params) do
     Omise.make_request(:post, @endpoint, [], {:form, params})
   end

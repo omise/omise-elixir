@@ -1,6 +1,8 @@
 defmodule Omise.Util do
   @moduledoc false
 
+  # Responses
+
   def handle_response(%HTTPoison.Response{body: body}) do
     body
     |> process_response
@@ -8,48 +10,35 @@ defmodule Omise.Util do
   end
 
   defp process_response(body) do
-    decoded_body = Poison.decode!(body, keys: :atoms)
-    case decoded_body do
-      %{object: "error"} ->
-        Poison.decode!(body, keys: :atoms, as: initialize_module("error"))
+    Poison.decode!(body, keys: :atoms)
+  end
 
-      %{object: "list", data: [ %{object: object} | _ ]} ->
-        Poison.decode!(body, keys: :atoms, as: %{data: [initialize_module(object)]})
+  defp normalize_response(response = %{object: "error"}) do
+    {:error, response}
+  end
+  defp normalize_response(response) do
+    {:ok, response}
+  end
 
-      %{object: object} when object != "list" ->
-        Poison.decode!(body, keys: :atoms, as: initialize_module(object))
+  # Cards
 
-      _ ->
-        decoded_body
+  def normalize_card_params(params) do
+    Enum.map params, fn({k, v}) ->
+      {"card[#{k}]", v}
     end
   end
 
-  defp normalize_response(error = %Omise.Error{}), do: {:error, error}
-  defp normalize_response(event = %Omise.Event{}), do: {:ok, event}
-  defp normalize_response(%{data: data}),          do: {:ok, data}
-  defp normalize_response(data),                   do: {:ok, data}
-
-  defp initialize_module(object) do
-    Omise
-    |> Module.concat(String.capitalize(object))
-    |> struct
-  end
-
-  def normalize_card_params(params) do
-    Enum.map(params, fn {k, v} -> {"card[#{k}]", v} end)
-  end
+  # Recipients
 
   def normalize_recipient_params(params) do
     params
     |> Keyword.delete(:bank_account)
-    |> Keyword.merge(normalize_bank_account_params(params[:bank_account]))
+    |> Keyword.merge(normalize_bank_account(params[:bank_account]))
   end
 
-  defp normalize_bank_account_params(params) do
-    [
-      "bank_account[brand]":  params[:brand],
-      "bank_account[number]": params[:number],
-      "bank_account[name]":   params[:name]
-    ]
+  defp normalize_bank_account(params) do
+    Enum.map params, fn({k, v}) ->
+      {"bank_account[#{k}]", v}
+    end
   end
 end

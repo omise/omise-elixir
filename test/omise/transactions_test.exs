@@ -7,8 +7,7 @@ defmodule Omise.TransactionsTest do
     with_mock_request "transactions_list", fn ->
       {:ok, transactions} = Omise.Transactions.list
 
-      assert is_list(transactions)
-      assert hd(transactions).__struct__ == Omise.Transaction
+      assert is_list(transactions[:data])
     end
   end
 
@@ -16,7 +15,6 @@ defmodule Omise.TransactionsTest do
     with_mock_request "transaction_retrieve", fn ->
       {:ok, transaction} = Omise.Transactions.retrieve("trxn_test_52om9enzl8bqx3f2bf4")
 
-      assert transaction.__struct__ == Omise.Transaction
       assert transaction.id == "trxn_test_52om9enzl8bqx3f2bf4"
       assert transaction.location
       assert transaction.amount

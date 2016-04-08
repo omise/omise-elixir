@@ -1,6 +1,8 @@
 defmodule Omise.Refunds do
   @moduledoc """
   Provides Refunds API interfaces.
+
+  https://www.omise.co/refunds-api
   """
 
   @endpoint "refunds"
@@ -22,7 +24,7 @@ defmodule Omise.Refunds do
       {:ok, refunds} = Omise.refunds.list("chrg_test_52oo08bwpgnwb95rye8", limit: 2)
 
   """
-  @spec list(String.t, Keyword.t) :: {:ok, [Omise.Refund.t]} | {:error, Omise.Error.t}
+  @spec list(String.t, Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def list(charge_id, params \\ []) do
     Omise.make_request(:get, "charges/#{charge_id}/#{@endpoint}",  [params: params])
   end
@@ -37,7 +39,7 @@ defmodule Omise.Refunds do
       {:ok, refund} = Omise.Refunds.retrieve("chrg_test_520jim7x8u6t4si58va", "dspt_test_51yfnnpsxajeybpytm4")
 
   """
-  @spec retrieve(String.t, String.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t, String.t) :: {:ok, Map.t} | {:error, Map.t}
   def retrieve(charge_id, id) do
     Omise.make_request(:get, "charges/#{charge_id}/#{@endpoint}/#{id}")
   end
@@ -56,7 +58,7 @@ defmodule Omise.Refunds do
       {:ok, refund} = Omise.Refunds.create("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
 
   """
-  @spec create(String.t, Keyword.t) :: {:ok, Omise.Refund.t} | {:error, Omise.Error.t}
+  @spec create(String.t, Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(charge_id, params) do
     Omise.make_request(:post, "charges/#{charge_id}/#{@endpoint}", [], {:form, params})
   end

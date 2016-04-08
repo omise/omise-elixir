@@ -1,6 +1,8 @@
 defmodule Omise.Events do
   @moduledoc """
   Provides Events API interfaces.
+
+  https://www.omise.co/api-webhooks
   """
 
   @endpoint "events"
@@ -23,7 +25,7 @@ defmodule Omise.Events do
       {:ok, events} = Omise.Events.list(limit: 10)
 
   """
-  @spec list(Keyword.t) :: {:ok, [Omise.Event.t]} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -38,7 +40,7 @@ defmodule Omise.Events do
       {:ok, event} = Omise.Events.retrieve("evnt_test_5285sfiqfo8t32x6h5h")
 
   """
-  @spec retrieve(String.t) :: {:ok, Omise.Event.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, Map.t} | {:error, Map.t}
   def retrieve(id) do
     Omise.make_request(:get, "#{@endpoint}/#{id}")
   end

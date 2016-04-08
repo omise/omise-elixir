@@ -7,8 +7,7 @@ defmodule Omise.ChargesTest do
     with_mock_request "charges_list", fn ->
       {:ok, charges} =  Omise.Charges.list
 
-      assert is_list(charges)
-      assert hd(charges).__struct__ == Omise.Charge
+      assert is_list(charges[:data])
     end
   end
 
@@ -16,7 +15,6 @@ defmodule Omise.ChargesTest do
     with_mock_request "charge_retrieve", fn ->
       {:ok, charge} = Omise.Charges.retrieve("chrg_test_52oo08bwpgnwb95rye8")
 
-      assert charge.__struct__ == Omise.Charge
       assert charge.id == "chrg_test_52oo08bwpgnwb95rye8"
       assert charge.location
       assert charge.amount
@@ -37,7 +35,6 @@ defmodule Omise.ChargesTest do
         card: "tokn_test_12p4j8aeb6x1v7mk63x"
       )
 
-      assert charge.__struct__ == Omise.Charge
       assert charge.location
       assert charge.authorized
       assert charge.capture

@@ -7,7 +7,6 @@ defmodule Omise.BalancesTest do
     with_mock_request "balance_retrieve", fn ->
       {:ok, balance} = Omise.Balances.retrieve
 
-      assert balance.__struct__ == Omise.Balance
       assert balance.location
       assert balance.available
       assert balance.total

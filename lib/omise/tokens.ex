@@ -2,6 +2,8 @@ defmodule Omise.Tokens do
   @moduledoc """
   Provides Tokens API interfaces.
 
+  https://www.omise.co/tokens-api
+
   ***NOTE***:
   Full Credit Card data should never go through your server.
   Do not send the credit card data to Omise from your servers directly.
@@ -41,7 +43,7 @@ defmodule Omise.Tokens do
       {:ok, token} = Omise.Tokens.create(params)
 
   """
-  @spec create(Keyword.t) :: {:ok, Omise.Token.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(params) do
     Omise.make_request(:post, @endpoint, [], {:form, Omise.Util.normalize_card_params(params)})
   end

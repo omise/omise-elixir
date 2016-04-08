@@ -1,6 +1,8 @@
 defmodule Omise.Charges do
   @moduledoc """
   Provides Charges API interfaces.
+
+  https://www.omise.co/charges-api
   """
 
   @endpoint "charges"
@@ -21,7 +23,7 @@ defmodule Omise.Charges do
       {:ok, charges} = Omise.Charges.list
 
   """
-  @spec list(Keyword.t) :: {:ok, [Omise.Charge.t]} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -34,7 +36,7 @@ defmodule Omise.Charges do
       {:ok, charge} = Omise.Charges.retrieve("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec retrieve(String.t) :: {:ok, Omise.Charge.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, Map.t} | {:error, Map.t}
   def retrieve(id) do
     Omise.make_request(:get, "#{@endpoint}/#{id}")
   end
@@ -83,7 +85,7 @@ defmodule Omise.Charges do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, Omise.Charge.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(params) do
     Omise.make_request(:post, @endpoint, [], {:form, params})
   end
@@ -101,7 +103,7 @@ defmodule Omise.Charges do
       {:ok, charge} = Omise.Charges.update("chrg_test_4xso2s8ivdej29pqnhz", description: "Hello from the outside.")
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, Omise.Charge.t} | {:error, Omise.Error.t}
+  @spec update(String.t, Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def update(id, params) do
     Omise.make_request(:patch, "#{@endpoint}/#{id}", [], {:form, params})
   end
@@ -120,7 +122,7 @@ defmodule Omise.Charges do
       {:ok, charge} = Omise.Charges.capture("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec capture(String.t) :: {:ok, Omise.Charge.t} | {:error, Omise.Error.t}
+  @spec capture(String.t) :: {:ok, Map.t} | {:error, Map.t}
   def capture(id) do
     Omise.make_request(:post, "#{@endpoint}/#{id}/capture")
   end

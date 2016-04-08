@@ -1,6 +1,8 @@
 defmodule Omise.Transactions do
   @moduledoc """
   Provides Transactions API interfaces.
+
+  https://www.omise.co/transactions-api
   """
 
   @endpoint "transactions"
@@ -23,7 +25,7 @@ defmodule Omise.Transactions do
       {:ok, transactions} = Omise.Transactions.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, [Omise.Transaction.t]} | {:error, Omise.Error.t}
+  @spec list(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def list(params \\ []) do
     Omise.make_request(:get, @endpoint, [params: params])
   end
@@ -38,7 +40,7 @@ defmodule Omise.Transactions do
       {:ok, transaction} = Omise.Transactions.retrieve("trxn_test_51yg3xs2yggzsfbai3e")
 
   """
-  @spec retrieve(String.t) :: {:ok, Omise.Transaction.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, Map.t} | {:error, Map.t}
   def retrieve(id) do
     Omise.make_request(:get, "#{@endpoint}/#{id}")
   end

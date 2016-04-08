@@ -7,8 +7,7 @@ defmodule Omise.RecipientsTest do
     with_mock_request "recipients_list", fn ->
       {:ok, recipients} = Omise.Recipients.list
 
-      assert is_list(recipients)
-      assert hd(recipients).__struct__ == Omise.Recipient
+      assert is_list(recipients[:data])
     end
   end
 
@@ -16,7 +15,6 @@ defmodule Omise.RecipientsTest do
     with_mock_request "recipient_retrieve", fn ->
       {:ok, recipient} = Omise.Recipients.retrieve("recp_test_52olwbmurp6nwkc5ig6")
 
-      assert recipient.__struct__ == Omise.Recipient
       assert recipient.id == "recp_test_52olwbmurp6nwkc5ig6"
       assert recipient.location
       assert recipient.verified
@@ -46,7 +44,6 @@ defmodule Omise.RecipientsTest do
       ]
       {:ok, recipient} = Omise.Recipients.create(params)
 
-      assert recipient.__struct__ == Omise.Recipient
       assert recipient.location
       refute recipient.verified
       refute recipient.active

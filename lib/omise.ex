@@ -23,6 +23,6 @@ defmodule Omise do
 
   @doc false
   def make_request(method, endpoint, params \\ [], body \\ "") do
-    Omise.Api.make_request(method, endpoint, params, body)
+    Omise.HTTPClient.make_request(method, endpoint, params, body)
   end
 end

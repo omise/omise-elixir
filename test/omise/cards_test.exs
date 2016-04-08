@@ -7,8 +7,7 @@ defmodule Omise.CardsTest do
     with_mock_request "cards_list", fn ->
       {:ok, cards} =  Omise.Cards.list("cust_test_52p4kmy02q0i59akn84")
 
-      assert is_list(cards)
-      assert hd(cards).__struct__ == Omise.Card
+      assert is_list(cards[:data])
     end
   end
 
@@ -16,7 +15,6 @@ defmodule Omise.CardsTest do
     with_mock_request "card_retrieve", fn ->
       {:ok, card} = Omise.Cards.retrieve("cust_test_52p4kmy02q0i59akn84", "card_test_52p4j8aapq87o18uq04")
 
-      assert card.__struct__ == Omise.Card
       assert card.id
       assert card.location
       assert card.country
@@ -43,7 +41,6 @@ defmodule Omise.CardsTest do
         name: "New name", city: "New city"
       )
 
-      assert card.__struct__ == Omise.Card
       assert card.id == "card_test_52p4j8aapq87o18uq04"
       assert card.name == "New name"
       assert card.city == "New city"
@@ -57,7 +54,6 @@ defmodule Omise.CardsTest do
         "card_test_52onkq3un15dxeuuusr"
       )
 
-      assert card.__struct__ == Omise.Card
       assert card.id == "card_test_52onkq3un15dxeuuusr"
       assert card.deleted
     end
