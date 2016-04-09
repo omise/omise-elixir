@@ -30,6 +30,20 @@ defmodule Omise.Transfers do
     Omise.make_request(:get, @endpoint, [params: params])
   end
 
+  @doc """
+  Retrieve a transfer.
+
+  Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Examples
+
+      {:ok, transfer} = Omise.Transfers.retrieve("trsf_test_5086uxn23hfaxv8nl0f")
+
+  """
+  @spec retrieve(String.t) :: {:ok, Map.t} | {:error, Map.t}
+  def retrieve(id) do
+    Omise.make_request(:get, "#{@endpoint}/#{id}")
+  end
 
   @doc """
   Create a transfer.
@@ -44,11 +58,49 @@ defmodule Omise.Transfers do
 
       {:ok, transfer} = Omise.Transfers.create(amount: 100000)
 
-      {:ok, transfer} = Omise.Transfers.create(amount: 100000, recipient: "recp_test_4z3wur7amjq2nbg8x44")
+      {:ok, transfer} =
+        Omise.Transfers.create(
+          amount: 100000,
+          recipient: "recp_test_4z3wur7amjq2nbg8x44"
+        )
 
   """
   @spec create(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(params) do
     Omise.make_request(:post, @endpoint, [], {:form, params})
+  end
+
+  @doc """
+  Update a transfer.
+
+  Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Request Parameters:
+    * `amount` - The amount in the smallest subunits of the currency used.
+
+  ## Examples
+
+      {:ok, transfer} =
+        Omise.Transfers.update("trsf_test_5086uxn23hfaxv8nl0f", amount: 500_00)
+
+  """
+  @spec update(String.t, Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
+  def update(id, params) do
+    Omise.make_request(:patch, "#{@endpoint}/#{id}", [], {:form, params})
+  end
+
+  @doc """
+  Destroy a transfer.
+
+  Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Examples
+
+      {:ok, transfer} = Omise.Transfers.destroy("trsf_test_5086uxn23hfaxv8nl0f")
+
+  """
+  @spec destroy(String.t) :: {:ok, Map.t} | {:error, Map.t}
+  def destroy(id) do
+    Omise.make_request(:delete, "#{@endpoint}/#{id}")
   end
 end
