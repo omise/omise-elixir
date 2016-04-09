@@ -36,6 +36,7 @@ defmodule Omise.Util do
     |> Keyword.merge(normalize_bank_account(params[:bank_account]))
   end
 
+  defp normalize_bank_account(nil), do: []
   defp normalize_bank_account(params) do
     Enum.map params, fn({k, v}) ->
       {"bank_account[#{k}]", v}

@@ -45,6 +45,7 @@ defmodule Omise.Tokens do
   """
   @spec create(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(params) do
-    Omise.make_request(:post, @endpoint, [], {:form, Omise.Util.normalize_card_params(params)})
+    normalized_params = Omise.Util.normalize_card_params(params)
+    Omise.make_request(:post, @endpoint, [], {:form, normalized_params})
   end
 end

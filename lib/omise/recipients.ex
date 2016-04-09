@@ -77,7 +77,42 @@ defmodule Omise.Recipients do
   """
   @spec create(Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
   def create(params) do
-    Omise.make_request(:post, @endpoint, [], {:form, Omise.Util.normalize_recipient_params(params)})
+    normalized_params = Omise.Util.normalize_recipient_params(params)
+    Omise.make_request(:post, @endpoint, [], {:form, normalized_params})
+  end
+
+  @doc """
+  Update a recipient.
+
+  Returns `{:ok, recipient}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Request Parameters:
+    * `name` - The recipient's name.
+    * `email` - (optional) The recipient's email.
+    * `description` - (optional) The recipient's description.
+    * `type` - Either individual or corporation.
+    * `tax_id` - (optional) The recipient's tax id.
+    * `bank_account` - A valid bank account.
+
+  ## Examples
+
+      params = [
+        name: "Emma Stone",
+        email: "emma@omistry.com",
+        bank_account: [
+          brand: "tmb",
+          name: "Emma Stone"
+        ]
+      ]
+
+      {:ok, recipient} =
+        Omise.Recipients.update("recp_test_4z6p7e0m4k40txecj5oparams", params)
+
+  """
+  @spec update(String.t, Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
+  def update(id, params) do
+    normalized_params = Omise.Util.normalize_recipient_params(params)
+    Omise.make_request(:patch, "#{@endpoint}/#{id}", [], {:form, normalized_params})
   end
 
   @doc """

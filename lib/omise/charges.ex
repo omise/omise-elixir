@@ -100,7 +100,8 @@ defmodule Omise.Charges do
 
   ## Examples
 
-      {:ok, charge} = Omise.Charges.update("chrg_test_4xso2s8ivdej29pqnhz", description: "Hello from the outside.")
+      {:ok, charge} =
+        Omise.Charges.update("chrg_test_4xso2s8ivdej29pqnhz", description: "Hello from the outside.")
 
   """
   @spec update(String.t, Keyword.t) :: {:ok, Map.t} | {:error, Map.t}
