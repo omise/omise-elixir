@@ -2,7 +2,7 @@ defmodule Omise.Version do
   @moduledoc false
 
   def omise_version do
-    "0.2.1"
+    "0.2.2"
   end
 
   def api_version do
