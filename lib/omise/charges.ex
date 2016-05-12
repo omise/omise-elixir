@@ -127,4 +127,23 @@ defmodule Omise.Charges do
   def capture(id) do
     Omise.make_request(:post, "#{@endpoint}/#{id}/capture")
   end
+
+  @doc """
+  Reverse an uncaptured charge.
+
+  Returns `{:ok, charge}` if the request is successful, `{:error, error}` otherwise.
+
+  ***NOTE***:
+  If you have created a charge and passed `capture=false`,
+  you'll have an authorized only charge that can be reversed, release hold money, at a later time.
+
+  ## Examples
+
+      {:ok, charge} = Omise.Charges.reverse("chrg_test_4xso2s8ivdej29pqnhz")
+
+  """
+  @spec reverse(String.t) :: {:ok, Map.t} | {:error, Map.t}
+  def reverse(id) do
+    Omise.make_request(:post, "#{@endpoint}/#{id}/reverse")
+  end
 end
