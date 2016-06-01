@@ -1,5 +1,5 @@
 # Omise
-[![Build Status](https://travis-ci.org/teerawat1992/omise.svg?branch=master)](https://travis-ci.org/teerawat1992/omise)
+[![Build Status](https://travis-ci.org/teerawat1992/omise-elixir.svg?branch=master)](https://travis-ci.org/teerawat1992/omise-elixir)
 [![Hex.pm](https://img.shields.io/hexpm/v/omise.svg?style=flat-square)](https://hex.pm/packages/omise)
 
 **Omise for Elixir**
