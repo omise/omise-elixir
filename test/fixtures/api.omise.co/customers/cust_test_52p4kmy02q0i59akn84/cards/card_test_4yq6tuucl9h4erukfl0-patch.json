@@ -1,0 +1,19 @@
+{
+  "object": "card",
+  "id": "card_test_4yq6tuucl9h4erukfl0",
+  "livemode": false,
+  "location": "/customers/cust_test_52p4kmy02q0i59akn84/cards/card_test_4yq6tuucl9h4erukfl0",
+  "country": "",
+  "city": "Surin",
+  "postal_code": "10320",
+  "financing": "",
+  "bank": "",
+  "last_digits": "4242",
+  "brand": "Visa",
+  "expiration_month": 12,
+  "expiration_year": 2019,
+  "fingerprint": "sRF/oMw2UQJJp/WbU+2/ZbVzwROjpMf1lyhOHhOqziw=",
+  "name": "JOHN DOE",
+  "security_code_check": true,
+  "created": "2015-01-15T04:03:40Z"
+}

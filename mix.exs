@@ -3,14 +3,15 @@ defmodule Omise.Mixfile do
 
   def project do
     [
-      app: :omise,
-      version: "0.2.2",
-      elixir: "~> 1.2",
-      description: description,
-      build_embedded: Mix.env == :prod,
+      app:             :omise,
+      version:         "0.3.0",
+      elixir:          "~> 1.2",
+      description:     description,
+      build_embedded:  Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps,
-      package: package
+      deps:            deps,
+      package:         package,
+      docs:            [extras: ["README.md"]]
     ]
   end
 
@@ -32,26 +33,24 @@ defmodule Omise.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.8.0"},
-      {:poison, "~> 1.5 or ~> 2.1.0"},
-      {:earmark, "~> 0.2", only: :dev},
-      {:ex_doc, "~> 0.11.1", only: :dev},
-      {:mock, "~> 0.1.1", only: :test}
+      {:httpoison, "~> 0.9.0"},
+      {:poison, "~> 2.2"},
+      {:earmark, "~> 0.2.1", only: :dev},
+      {:ex_doc, "~> 0.12.0", only: :dev},
+      {:mock, "~> 0.1.3", only: :test}
     ]
   end
 
   defp description do
-    """
-    Omise client library for Elixir.
-    """
+    "Omise client library for Elixir."
   end
 
   defp package do
     [
-      files: ~w(lib mix.exs README.md),
+      files:       ~w(lib mix.exs README.md),
       maintainers: ["Teerawat Lamanchart"],
-      licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/teerawat1992/omise"}
+      licenses:    ["MIT"],
+      links:       %{"GitHub" => "https://github.com/teerawat1992/omise"}
     ]
   end
 end

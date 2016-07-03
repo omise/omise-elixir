@@ -20,9 +20,4 @@ defmodule Omise do
   def configure(params) do
     Omise.Config.configure(params)
   end
-
-  @doc false
-  def make_request(method, endpoint, params \\ [], body \\ "") do
-    Omise.HTTPClient.make_request(method, endpoint, params, body)
-  end
 end

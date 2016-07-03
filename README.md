@@ -9,7 +9,7 @@
   1. Add omise to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:omise, "~> 0.2.1"}]
+          [{:omise, "~> 0.3.0"}]
         end
 
   2. Ensure omise is started before your application:
@@ -37,7 +37,7 @@ Omise.configure(public_key: "OMISE_PUBLIC_KEY", secret_key: "OMISE_SECRET_KEY")
 ## Example
 
 ```elixir
-response = Omise.Charges.create(
+response = Omise.Charge.create(
   amount: 1000_00,
   currency: "thb",
   card: "tokn_51w6fvilnsxalda4cih"
@@ -51,9 +51,10 @@ case response do
 end
 ```
 
-## How to integrate with Phoenix Application
+## Development
 
- * https://github.com/teerawat1992/omise/tree/master/example/got
+- Install all dependencies with `mix deps.get`
+- Run tests with `mix test`
 
 ## Documentation
 

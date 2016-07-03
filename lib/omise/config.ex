@@ -1,6 +1,7 @@
 defmodule Omise.Config do
   @moduledoc false
 
+  @doc false
   def configure(params) do
     params
     |> Enum.filter(fn {k, _} -> k in permitted_params end)
