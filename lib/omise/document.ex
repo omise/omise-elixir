@@ -71,11 +71,11 @@ defmodule Omise.Document do
 
   ## Examples
 
-      Omise.Document.upload("dspt_test_4zgf15h89w8t775kcm8", file: "screenshot.jpg")
+      Omise.Document.create("dspt_test_4zgf15h89w8t775kcm8", file: "pictures/screenshot.jpg")
 
   """
-  @spec upload(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
-  def upload(dispute_id, params) do
+  @spec create(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  def create(dispute_id, params) do
     Omise.HTTP.make_request(:post, "disputes/#{dispute_id}/#{@endpoint}", body: {:multipart, params}, as: %__MODULE__{})
   end
 
