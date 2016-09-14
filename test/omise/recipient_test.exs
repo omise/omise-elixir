@@ -108,4 +108,23 @@ defmodule Omise.RecipientTest do
       assert recipient.deleted
     end
   end
+
+  test "search recipients" do
+    with_mock_request "search-recipient-get", fn ->
+      {:ok, search_data} = Omise.Recipient.search(filters: [kind: "individual"])
+
+      assert %Omise.Search{data: data} = search_data
+      assert search_data.object == "search"
+      assert search_data.scope == "recipient"
+      assert search_data.query == ""
+      assert search_data.filters == %{"kind" => "individual"}
+      assert search_data.page == 1
+      assert search_data.total_pages == 1
+      assert search_data.total == 1
+      assert is_list(data)
+      Enum.each data, fn(recipient) ->
+        assert recipient.type == "individual"
+      end
+    end
+  end
 end

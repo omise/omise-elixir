@@ -1,0 +1,37 @@
+{
+  "object": "search",
+  "order": "chronological",
+  "scope": "recipient",
+  "query": "",
+  "filters": {
+    "kind": "individual"
+  },
+  "page": 1,
+  "location": "/search",
+  "total_pages": 1,
+  "total": 1,
+  "data": [
+    {
+      "object": "recipient",
+      "id": "recp_test_556jkf7u174ptxuytac",
+      "livemode": false,
+      "location": "/recipients/recp_test_556jkf7u174ptxuytac",
+      "verified": true,
+      "active": true,
+      "name": "The A-Team",
+      "email": "test@gmail.com",
+      "description": "Default recipient",
+      "type": "individual",
+      "tax_id": "",
+      "bank_account": {
+        "object": "bank_account",
+        "brand": "test",
+        "last_digits": "6789",
+        "name": "DEFAULT BANK ACCOUNT",
+        "created": "2016-08-31T05:22:15Z"
+      },
+      "failure_code": null,
+      "created": "2016-08-31T05:22:15Z"
+    }
+  ]
+}

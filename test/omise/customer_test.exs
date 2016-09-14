@@ -109,4 +109,23 @@ defmodule Omise.CustomerTest do
       assert customer.deleted
     end
   end
+
+  test "search customers" do
+    with_mock_request "search-customer-get", fn ->
+      {:ok, search_data} = Omise.Customer.search(query: "elixir")
+
+      assert %Omise.Search{data: data} = search_data
+      assert search_data.object == "search"
+      assert search_data.scope == "customer"
+      assert search_data.query == "elixir"
+      assert search_data.filters == %{}
+      assert search_data.page == 1
+      assert search_data.total_pages == 1
+      assert search_data.total == 2
+      assert is_list(data)
+      Enum.each data, fn(customer) ->
+        assert Regex.match?(~r/elixir/i, customer.description)
+      end
+    end
+  end
 end

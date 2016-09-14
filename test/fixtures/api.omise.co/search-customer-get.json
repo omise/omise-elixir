@@ -1,0 +1,60 @@
+{
+  "object": "search",
+  "order": "chronological",
+  "scope": "customer",
+  "query": "elixir",
+  "filters": {
+  },
+  "page": 1,
+  "location": "/search",
+  "total_pages": 1,
+  "total": 2,
+  "data": [
+    {
+      "object": "customer",
+      "id": "cust_test_55c6cmhxbvgre5f3hx0",
+      "livemode": false,
+      "location": "/customers/cust_test_55c6cmhxbvgre5f3hx0",
+      "default_card": null,
+      "email": "chris@example.com",
+      "description": "Elixir core team",
+      "created": "2016-09-14T15:00:21Z",
+      "cards": {
+        "object": "list",
+        "from": "1970-01-01T00:00:00+00:00",
+        "to": "2016-09-14T15:02:05+00:00",
+        "offset": 0,
+        "limit": 20,
+        "total": 0,
+        "order": null,
+        "location": "/customers/cust_test_55c6cmhxbvgre5f3hx0/cards",
+        "data": [
+
+        ]
+      }
+    },
+    {
+      "object": "customer",
+      "id": "cust_test_55c6cjwyr9kl4rt4jso",
+      "livemode": false,
+      "location": "/customers/cust_test_55c6cjwyr9kl4rt4jso",
+      "default_card": null,
+      "email": "jose@example.com",
+      "description": "Elixir core team",
+      "created": "2016-09-14T15:00:09Z",
+      "cards": {
+        "object": "list",
+        "from": "1970-01-01T00:00:00+00:00",
+        "to": "2016-09-14T15:02:05+00:00",
+        "offset": 0,
+        "limit": 20,
+        "total": 0,
+        "order": null,
+        "location": "/customers/cust_test_55c6cjwyr9kl4rt4jso/cards",
+        "data": [
+
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "object": "search",
+  "order": "chronological",
+  "scope": "dispute",
+  "query": "",
+  "filters": {
+    "status": "open"
+  },
+  "page": 1,
+  "location": "/search",
+  "total_pages": 1,
+  "total": 2,
+  "data": [
+    {
+      "object": "dispute",
+      "id": "dspt_test_55c67rmhjevajamo8sz",
+      "livemode": false,
+      "location": "/disputes/dspt_test_55c67rmhjevajamo8sz",
+      "amount": 300000,
+      "currency": "thb",
+      "status": "open",
+      "transaction": "trxn_test_55c67rmmqvu2mcteco2",
+      "message": null,
+      "reason_code": "goods_or_services_not_provided",
+      "reason_message": "Services not provided or Merchandise not received",
+      "charge": "chrg_test_557e8sdlkf8qakd15na",
+      "created": "2016-09-14T14:46:33Z"
+    },
+    {
+      "object": "dispute",
+      "id": "dspt_test_55aj9q9iipt3tcdwb5r",
+      "livemode": false,
+      "location": "/disputes/dspt_test_55aj9q9iipt3tcdwb5r",
+      "amount": 1000000,
+      "currency": "thb",
+      "status": "open",
+      "transaction": "trxn_test_55aj9q9nyokxlvall1i",
+      "message": null,
+      "reason_code": "goods_or_services_not_provided",
+      "reason_message": "Services not provided or Merchandise not received",
+      "charge": "chrg_test_557ib11djeat7p5k22r",
+      "created": "2016-09-10T10:18:21Z"
+    }
+  ]
+}
