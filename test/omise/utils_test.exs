@@ -18,8 +18,7 @@ defmodule Omise.UtilsTest do
         {"card[number]", 4242424242424242},
         {"card[security_code]", 999},
         {"card[expiration_month]", 10},
-        {"card[expiration_year]", 2022},
-
+        {"card[expiration_year]", 2022}
       ]
   end
 
@@ -47,13 +46,13 @@ defmodule Omise.UtilsTest do
   test "normalize recipient params without bank_account key" do
     params = [
       name: "Emma Stone",
-      email: "emma@omise.co",
+      email: "emma@omise.co"
     ]
 
     assert Utils.normalize_recipient_params(params) ==
       [
         {:name, "Emma Stone"},
-        {:email, "emma@omise.co"},
+        {:email, "emma@omise.co"}
       ]
   end
 
@@ -67,7 +66,7 @@ defmodule Omise.UtilsTest do
       [
         {:query, "elixir"},
         {"filters[amount]", 1000},
-        {"filters[paid]", true},
+        {"filters[paid]", true}
       ]
   end
 
@@ -80,7 +79,7 @@ defmodule Omise.UtilsTest do
     assert Utils.normalize_search_params(params) ==
       [
         {:query, "elixir"},
-        {:scope, "customer"},
+        {:scope, "customer"}
       ]
   end
 end

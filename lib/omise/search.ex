@@ -29,6 +29,8 @@ defmodule Omise.Search do
     data:        List.t
   }
 
+  @searchable_scopes ~w(charge customer dispute recipient)
+
   @doc """
   Retrieve a search data.
 
@@ -54,7 +56,7 @@ defmodule Omise.Search do
 
   """
   @spec execute(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
-  def execute(scope, params) do
+  def execute(scope, params) when scope in @searchable_scopes do
     normalized_params = Omise.Utils.normalize_search_params(params)
     module = Module.concat(Omise, String.capitalize(scope))
     Omise.HTTP.make_request(:get, "search",
