@@ -1,5 +1,5 @@
 # Omise
-[![Build Status](https://travis-ci.org/teerawat1992/omise-elixir.svg?branch=master)](https://travis-ci.org/teerawat1992/omise-elixir)
+[![Build Status](https://travis-ci.org/omise/omise-elixir.svg)](https://travis-ci.org/omise/omise-elixir)
 [![Hex.pm](https://img.shields.io/hexpm/v/omise.svg?style=flat-square)](https://hex.pm/packages/omise)
 
 **Omise for Elixir**
@@ -8,15 +8,19 @@
 
   1. Add omise to your list of dependencies in `mix.exs`:
 
-        def deps do
-          [{:omise, "~> 0.3.0"}]
-        end
+  ```elixir
+  def deps do
+    [{:omise, "~> 0.3"}]
+  end
+  ```
 
   2. Ensure omise is started before your application:
 
-        def application do
-          [applications: [:omise]]
-        end
+  ```elixir
+  def application do
+    [applications: [:omise]]
+  end
+  ```
 
 ## Configuration
 
