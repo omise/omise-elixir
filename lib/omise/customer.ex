@@ -145,4 +145,25 @@ defmodule Omise.Customer do
   def destroy(id) do
     Omise.HTTP.make_request(:delete, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end
+
+  @doc """
+  Search all the customers.
+
+  Returns `{:ok, customers}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+
+      https://www.omise.co/search-query-and-filters
+
+  ## Examples
+
+      Omise.Customer.search(filters: [created: "2016-09-09"])
+
+      Omise.Customer.search(query: "eleven@omise.co")
+
+  """
+  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ []) do
+    Omise.Search.execute("customer", params)
+  end
 end

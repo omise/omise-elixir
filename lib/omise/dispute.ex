@@ -96,4 +96,25 @@ defmodule Omise.Dispute do
   def update(id, params) do
     Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
   end
+
+  @doc """
+  Search all the disputes.
+
+  Returns `{:ok, disputes}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+
+      https://www.omise.co/search-query-and-filters
+
+  ## Examples
+
+      Omise.Dispute.search(filters: [status: "pending"])
+
+      Omise.Dispute.search(query: "dspt_5089off452g5m5te7xs")
+
+  """
+  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ []) do
+    Omise.Search.execute("dispute", params)
+  end
 end

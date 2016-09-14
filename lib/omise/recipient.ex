@@ -164,4 +164,25 @@ defmodule Omise.Recipient do
   def destroy(id) do
     Omise.HTTP.make_request(:delete, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end
+
+  @doc """
+  Search all the recipients.
+
+  Returns `{:ok, recipients}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+
+      https://www.omise.co/search-query-and-filters
+
+  ## Examples
+
+      Omise.Recipient.search(filters: [kind: "individual"])
+
+      Omise.Recipient.search(query: "recp_235k46kl6ljl")
+
+  """
+  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ []) do
+    Omise.Search.execute("recipient", params)
+  end
 end

@@ -218,4 +218,25 @@ defmodule Omise.Charge do
   def reverse(id) do
     Omise.HTTP.make_request(:post, "#{@endpoint}/#{id}/reverse", as: %__MODULE__{})
   end
+
+  @doc """
+  Search all the charges.
+
+  Returns `{:ok, charges}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+
+      https://www.omise.co/search-query-and-filters
+
+  ## Examples
+
+      Omise.Charge.search(filters: [paid: true])
+
+      Omise.Charge.search(query: "omise")
+
+  """
+  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ []) do
+    Omise.Search.execute("charge", params)
+  end
 end
