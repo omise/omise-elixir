@@ -27,8 +27,8 @@ defmodule Omise.Document do
 
   defmacro __using__(opts) do
     quote do
-      @resource   unquote(opts)[:resource] || raise "document expects :resource to be given"
-      @doc_module unquote(__MODULE__)
+      @resource unquote(opts)[:resource] || raise "document expects :resource to be given"
+      @document unquote(__MODULE__)
 
       @doc """
       List all documents.
@@ -44,7 +44,7 @@ defmodule Omise.Document do
       """
       @spec list_documents(String.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
       def list_documents(resource_id, params \\ []) do
-        @doc_module.list("#{@resource}/#{resource_id}", params)
+        @document.list(resource_path(resource_id), params)
       end
 
       @doc """
@@ -53,9 +53,9 @@ defmodule Omise.Document do
       Returns `{:ok, document}` if the request is successful, `{:error, error}` otherwise.
 
       """
-      @spec retrieve_document(String.t, String.t) :: {:ok, unquote(__MODULE__).t} | {:error, Omise.Error.t}
+      @spec retrieve_document(String.t, String.t) :: {:ok, @document.t} | {:error, Omise.Error.t}
       def retrieve_document(resource_id, document_id) do
-        @doc_module.retrieve("#{@resource}/#{resource_id}", document_id)
+        @document.retrieve(resource_path(resource_id), document_id)
       end
 
       @doc """
@@ -67,9 +67,9 @@ defmodule Omise.Document do
         * `file` - (required) The file to upload. Valid files include PNG and JPG images and PDF files. The uploaded file should also includes metadata such as filename and content type.
 
       """
-      @spec upload_document(String.t, Keyword.t) :: {:ok, unquote(__MODULE__).t} | {:error, Omise.Error.t}
+      @spec upload_document(String.t, Keyword.t) :: {:ok, @document.t} | {:error, Omise.Error.t}
       def upload_document(resource_id, params) do
-        @doc_module.create("#{@resource}/#{resource_id}", params)
+        @document.create(resource_path(resource_id), params)
       end
 
       @doc """
@@ -78,9 +78,13 @@ defmodule Omise.Document do
       Returns `{:ok, document}` if the request is successful, `{:error, error}` otherwise.
 
       """
-      @spec destroy_document(String.t, String.t) :: {:ok, unquote(__MODULE__).t} | {:error, Omise.Error.t}
+      @spec destroy_document(String.t, String.t) :: {:ok, @document.t} | {:error, Omise.Error.t}
       def destroy_document(resource_id, document_id) do
-        @doc_module.destroy("#{@resource}/#{resource_id}", document_id)
+        @document.destroy(resource_path(resource_id), document_id)
+      end
+
+      defp resource_path(id) do
+        "#{@resource}/#{id}"
       end
     end
   end
