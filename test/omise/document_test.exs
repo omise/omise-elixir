@@ -7,7 +7,7 @@ defmodule Omise.DocumentTest do
 
   test "list all documents" do
     with_mock_request "disputes/#{@dispute_id}/documents-get", fn ->
-      {:ok, list} = Omise.Document.list(@dispute_id)
+      {:ok, list} = Omise.Document.list("disputes/#{@dispute_id}")
 
       assert %Omise.List{data: documents} = list
       assert list.object == "list"
@@ -27,7 +27,7 @@ defmodule Omise.DocumentTest do
 
   test "retrieve a document" do
     with_mock_request "disputes/#{@dispute_id}/documents/#{@document_id}-get", fn ->
-      {:ok, document} = Omise.Document.retrieve(@dispute_id, @document_id)
+      {:ok, document} = Omise.Document.retrieve("disputes/#{@dispute_id}", @document_id)
 
       assert %Omise.Document{} = document
       assert document.object == "document"
@@ -39,7 +39,7 @@ defmodule Omise.DocumentTest do
 
   test "upload a document" do
     with_mock_request "disputes/#{@dispute_id}/documents-post", fn ->
-      {:ok, document} = Omise.Document.create(@dispute_id, file: "screenshot.png")
+      {:ok, document} = Omise.Document.create("disputes/#{@dispute_id}", file: "screenshot.png")
 
       assert %Omise.Document{} = document
       assert document.object == "document"
@@ -51,13 +51,11 @@ defmodule Omise.DocumentTest do
 
   test "destroy a document" do
     with_mock_request "disputes/#{@dispute_id}/documents-delete", fn ->
-      {:ok, document} = Omise.Document.destroy(@dispute_id, @document_id)
+      {:ok, document} = Omise.Document.destroy("disputes/#{@dispute_id}", @document_id)
 
       assert %Omise.Document{} = document
       assert document.object == "document"
-      assert document.id
-      refute document.livemode
-      assert document.filename
+      assert document.deleted
     end
   end
 end

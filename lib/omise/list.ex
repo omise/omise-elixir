@@ -6,24 +6,26 @@ defmodule Omise.List do
   """
 
   defstruct [
-    object: "list",
-    from:   nil,
-    to:     nil,
-    offset: nil,
-    limit:  nil,
-    total:  nil,
-    order:  nil,
-    data:   []
+    object:   "list",
+    from:     nil,
+    to:       nil,
+    offset:   nil,
+    limit:    nil,
+    total:    nil,
+    order:    nil,
+    location: nil,
+    data:     []
   ]
 
   @type t :: %__MODULE__{
-    object: String.t,
-    from:   String.t,
-    to:     String.t,
-    offset: Integer.t,
-    limit:  Integer.t,
-    total:  Integer.t,
-    order:  String.t,
-    data:   List.t
+    object:   String.t,
+    from:     String.t,
+    to:       String.t,
+    offset:   Integer.t,
+    limit:    Integer.t,
+    total:    Integer.t,
+    order:    String.t,
+    location: String.t,
+    data:     List.t
   }
 end
