@@ -5,6 +5,8 @@ defmodule Omise.Dispute do
   https://www.omise.co/disputes-api
   """
 
+  use Omise.Document, resource: "disputes"
+
   defstruct [
     object:   "dispute",
     id:       nil,

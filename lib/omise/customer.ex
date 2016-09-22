@@ -138,7 +138,7 @@ defmodule Omise.Customer do
 
   ## Examples
 
-      Omise.Customers.destroy("cust_test_4xtrb759599jsxlhkrb")
+      Omise.Customer.destroy("cust_test_4xtrb759599jsxlhkrb")
 
   """
   @spec destroy(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
