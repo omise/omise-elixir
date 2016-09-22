@@ -21,7 +21,7 @@ defmodule Omise.Transaction do
     id:           String.t,
     location:     String.t,
     type:         String.t,
-    amount:       Integer.t,
+    amount:       integer,
     currency:     String.t,
     transferable: String.t,
     created:      String.t
@@ -62,7 +62,7 @@ defmodule Omise.Transaction do
       Omise.Transaction.retrieve("trxn_test_51yg3xs2yggzsfbai3e")
 
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end

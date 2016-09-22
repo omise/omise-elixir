@@ -66,7 +66,7 @@ defmodule Omise.Customer do
       Omise.Customer.retrieve("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end
@@ -97,7 +97,7 @@ defmodule Omise.Customer do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(params) do
     Omise.HTTP.make_request(:post, @endpoint, body: {:form, params}, as: %__MODULE__{})
   end
@@ -126,7 +126,7 @@ defmodule Omise.Customer do
       )
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def update(id, params) do
     Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
   end
@@ -141,7 +141,7 @@ defmodule Omise.Customer do
       Omise.Customer.destroy("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec destroy(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def destroy(id) do
     Omise.HTTP.make_request(:delete, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end

@@ -18,8 +18,8 @@ defmodule Omise.Balance do
     object:    String.t,
     livemode:  boolean,
     location:  String.t,
-    available: Integer.t,
-    total:     Integer.t,
+    available: integer,
+    total:     integer,
     currency:  String.t
   }
 
@@ -35,7 +35,7 @@ defmodule Omise.Balance do
       Omise.Balance.retrieve
 
   """
-  @spec retrieve :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve do
     Omise.HTTP.make_request(:get, @endpoint, as: %__MODULE__{})
   end

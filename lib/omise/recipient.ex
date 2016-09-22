@@ -76,7 +76,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.retrieve("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end
@@ -111,7 +111,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.create(params)
 
   """
-  @spec create(Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(params) do
     normalized_params = Omise.Utils.normalize_recipient_params(params)
     Omise.HTTP.make_request(:post, @endpoint, body: {:form, normalized_params}, as: %__MODULE__{})
@@ -144,7 +144,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.update("recp_test_4z6p7e0m4k40txecj5oparams", params)
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def update(id, params) do
     normalized_params = Omise.Utils.normalize_recipient_params(params)
     Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, normalized_params}, as: %__MODULE__{})
@@ -160,7 +160,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.destroy("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec destroy(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def destroy(id) do
     Omise.HTTP.make_request(:delete, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end

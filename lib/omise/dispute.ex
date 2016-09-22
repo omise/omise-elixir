@@ -25,7 +25,7 @@ defmodule Omise.Dispute do
     id:       String.t,
     livemode: boolean,
     location: String.t,
-    amount:   Integer.t,
+    amount:   integer,
     currency: String.t,
     status:   String.t,
     message:  String.t,
@@ -76,7 +76,7 @@ defmodule Omise.Dispute do
       Omise.Dispute.retrieve("dspt_test_51yfnnpsxajeybpytm4")
 
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end
@@ -94,7 +94,7 @@ defmodule Omise.Dispute do
       Omise.Dispute.update("dspt_test_4zgf15h89w8t775kcm8", message: "Shut up and dance with me!")
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def update(id, params) do
     Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
   end

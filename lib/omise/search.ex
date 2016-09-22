@@ -22,11 +22,11 @@ defmodule Omise.Search do
     location:    String.t,
     scope:       String.t,
     query:       String.t,
-    filters:     Map.t,
-    page:        Integer.t,
-    total_pages: Integer.t,
-    total:       Integer.t,
-    data:        List.t
+    filters:     map,
+    page:        integer,
+    total_pages: integer,
+    total:       integer,
+    data:        list
   }
 
   @searchable_scopes ~w(charge customer dispute recipient)
@@ -55,10 +55,11 @@ defmodule Omise.Search do
       )
 
   """
-  @spec execute(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec execute(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def execute(scope, params) when scope in @searchable_scopes do
     normalized_params = Omise.Utils.normalize_search_params(params)
     module = Module.concat(Omise, String.capitalize(scope))
+
     Omise.HTTP.make_request(:get, "search",
       params: normalized_params ++ [scope: scope],
       as: %__MODULE__{data: [struct(module)]}

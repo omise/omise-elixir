@@ -21,11 +21,11 @@ defmodule Omise.List do
     object:   String.t,
     from:     String.t,
     to:       String.t,
-    offset:   Integer.t,
-    limit:    Integer.t,
-    total:    Integer.t,
+    offset:   integer,
+    limit:    integer,
+    total:    integer,
     order:    String.t,
     location: String.t,
-    data:     List.t
+    data:     list
   }
 end

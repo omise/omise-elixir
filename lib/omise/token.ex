@@ -63,7 +63,7 @@ defmodule Omise.Token do
       Omise.Token.create(params)
 
   """
-  @spec create(Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(params) do
     normalized_params = Omise.Utils.normalize_card_params(params)
     Omise.HTTP.make_request(:post, @endpoint, body: {:form, normalized_params}, as: %__MODULE__{})
@@ -78,7 +78,7 @@ defmodule Omise.Token do
 
       Omise.Token.retrieve("tokn_test_4xs9408a642a1htto8z")
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end

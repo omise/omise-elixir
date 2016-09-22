@@ -38,8 +38,8 @@ defmodule Omise.Card do
     financing:           String.t,
     last_digits:         String.t,
     brand:               String.t,
-    expiration_month:    Integer.t,
-    expiration_year:     Integer.t,
+    expiration_month:    integer,
+    expiration_year:     integer,
     fingerprint:         String.t,
     name:                String.t,
     security_code_check: boolean,
@@ -81,7 +81,7 @@ defmodule Omise.Card do
       Omise.Card.retrieve("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec retrieve(String.t, String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(customer_id, id) do
     Omise.HTTP.make_request(:get, "customers/#{customer_id}/#{@endpoint}/#{id}", as: %__MODULE__{})
   end
@@ -104,7 +104,7 @@ defmodule Omise.Card do
       Omise.Card.update("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d", params)
 
   """
-  @spec update(String.t, String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec update(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def update(customer_id, card_id, params) do
     Omise.HTTP.make_request(:patch, "customers/#{customer_id}/#{@endpoint}/#{card_id}", body: {:form, params}, as: %__MODULE__{})
   end
@@ -119,7 +119,7 @@ defmodule Omise.Card do
       Omise.Card.destroy("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec destroy(String.t, String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def destroy(customer_id, card_id) do
     Omise.HTTP.make_request(:delete, "customers/#{customer_id}/#{@endpoint}/#{card_id}", as: %__MODULE__{})
   end

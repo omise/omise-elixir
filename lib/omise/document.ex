@@ -125,7 +125,7 @@ defmodule Omise.Document do
       Omise.Document.retrieve("disputes/dspt_test_51yfnnpsxajeybpytm4", "docu_test_55a1e900ys2srz0xu2r")
 
   """
-  @spec retrieve(String.t, String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(path, document_id) do
     Omise.HTTP.make_request(:get, "#{path}/#{@endpoint}/#{document_id}",
       as: %__MODULE__{}
@@ -145,7 +145,7 @@ defmodule Omise.Document do
       Omise.Document.create("disputes/dspt_test_4zgf15h89w8t775kcm8", file: "pictures/screenshot.jpg")
 
   """
-  @spec create(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec create(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(path, params) do
     Omise.HTTP.make_request(:post, "#{path}/#{@endpoint}",
       body: {:multipart, params},
@@ -163,7 +163,7 @@ defmodule Omise.Document do
       Omise.Document.destroy("disputes/dspt_test_4zgf15h89w8t775kcm8", "docu_test_55a1e900ys2srz0xu2r")
 
   """
-  @spec destroy(String.t, String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def destroy(path, document_id) do
     Omise.HTTP.make_request(:delete, "#{path}/#{@endpoint}/#{document_id}",
       as: %__MODULE__{}
