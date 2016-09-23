@@ -1,7 +1,7 @@
 defmodule Omise.Mixfile do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.3.1"
 
   def project do
     [
@@ -52,7 +52,7 @@ defmodule Omise.Mixfile do
       files:       ~w(lib mix.exs README.md),
       maintainers: ["Teerawat Lamanchart"],
       licenses:    ["MIT"],
-      links:       %{"GitHub" => "https://github.com/teerawat1992/omise"}
+      links:       %{"GitHub" => "https://github.com/omise/omise-elixir"}
     ]
   end
 end

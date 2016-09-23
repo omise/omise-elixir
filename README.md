@@ -1,4 +1,4 @@
-# Omise
+# Omise Elixir Client
 [![Build Status](https://travis-ci.org/omise/omise-elixir.svg)](https://travis-ci.org/omise/omise-elixir)
 [![Hex.pm](https://img.shields.io/hexpm/v/omise.svg?style=flat-square)](https://hex.pm/packages/omise)
 
