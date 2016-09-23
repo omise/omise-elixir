@@ -37,9 +37,9 @@ defmodule Omise.Mixfile do
     [
       {:httpoison, "~> 0.9.0"},
       {:poison, "~> 2.2"},
-      {:earmark, "~> 0.2.1", only: :dev},
-      {:ex_doc, "~> 0.12.0", only: :dev},
-      {:mock, "~> 0.1.3", only: :test}
+      {:earmark, "~> 1.0", only: :dev},
+      {:ex_doc, "~> 0.13", only: :dev},
+      {:mock, "~> 0.2", only: :test}
     ]
   end
 
