@@ -61,7 +61,7 @@ defmodule Omise.Event do
       Omise.Event.retrieve("evnt_test_5285sfiqfo8t32x6h5h")
 
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end

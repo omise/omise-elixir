@@ -46,7 +46,7 @@ defmodule Omise.Charge do
     livemode:        boolean,
     location:        String.t,
     status:          String.t,
-    amount:          Integer.t,
+    amount:          integer,
     currency:        String.t,
     description:     String.t,
     capture:         boolean,
@@ -60,7 +60,7 @@ defmodule Omise.Charge do
 
     transaction:     String.t,
     card:            Omise.Card.t,
-    refunded:        Integer.t,
+    refunded:        integer,
     refunds:         Omise.List.t,
     failure_code:    String.t,
     failure_message: String.t,
@@ -108,7 +108,7 @@ defmodule Omise.Charge do
       Omise.Charge.retrieve("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end
@@ -157,7 +157,7 @@ defmodule Omise.Charge do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(params) do
     Omise.HTTP.make_request(:post, @endpoint, body: {:form, params}, as: %__MODULE__{})
   end
@@ -176,7 +176,7 @@ defmodule Omise.Charge do
         description: "The funny thing is that when I am okay, oh it makes me wish for rain")
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def update(id, params) do
     Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
   end
@@ -195,7 +195,7 @@ defmodule Omise.Charge do
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec capture(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec capture(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def capture(id) do
     Omise.HTTP.make_request(:post, "#{@endpoint}/#{id}/capture", as: %__MODULE__{})
   end
@@ -214,8 +214,29 @@ defmodule Omise.Charge do
       Omise.Charge.reverse("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec reverse(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec reverse(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def reverse(id) do
     Omise.HTTP.make_request(:post, "#{@endpoint}/#{id}/reverse", as: %__MODULE__{})
+  end
+
+  @doc """
+  Search all the charges.
+
+  Returns `{:ok, charges}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+
+      https://www.omise.co/search-query-and-filters
+
+  ## Examples
+
+      Omise.Charge.search(filters: [paid: true])
+
+      Omise.Charge.search(query: "omise")
+
+  """
+  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ []) do
+    Omise.Search.execute("charge", params)
   end
 end

@@ -23,4 +23,19 @@ defmodule Omise.Utils do
       {"bank_account[#{k}]", v}
     end
   end
+
+  # Search
+
+  def normalize_search_params(params) do
+    params
+    |> Keyword.delete(:filters)
+    |> Keyword.merge(normalize_filters_params(params[:filters]))
+  end
+
+  defp normalize_filters_params(nil), do: []
+  defp normalize_filters_params(params) do
+    Enum.map params, fn({k, v}) ->
+      {"filters[#{k}]", v}
+    end
+  end
 end

@@ -21,7 +21,7 @@ defmodule Omise.Refund do
     object:      String.t,
     id:          String.t,
     location:    String.t,
-    amount:      Integer.t,
+    amount:      integer,
     currency:    String.t,
     voided:      boolean,
     charge:      String.t,
@@ -64,7 +64,7 @@ defmodule Omise.Refund do
       Omise.Refund.retrieve("chrg_test_520jim7x8u6t4si58va", "rfnd_test_4zgf1d7jcw5kr123puq")
 
   """
-  @spec retrieve(String.t, String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(charge_id, id) do
     Omise.HTTP.make_request(:get, "charges/#{charge_id}/#{@endpoint}/#{id}", as: %__MODULE__{})
   end
@@ -83,7 +83,7 @@ defmodule Omise.Refund do
       Omise.Refund.create("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
 
   """
-  @spec create(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec create(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(charge_id, params) do
     Omise.HTTP.make_request(:post, "charges/#{charge_id}/#{@endpoint}", body: {:form, params}, as: %__MODULE__{})
   end

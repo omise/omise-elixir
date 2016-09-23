@@ -33,7 +33,7 @@ defmodule Omise.Account do
       Omise.Account.retrieve
 
   """
-  @spec retrieve :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve do
     Omise.HTTP.make_request(:get, @endpoint, as: %__MODULE__{})
   end

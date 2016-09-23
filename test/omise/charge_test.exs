@@ -114,4 +114,25 @@ defmodule Omise.ChargeTest do
       assert charge.reversed
     end
   end
+
+  test "search charges" do
+    with_mock_request "search-charge-get", fn ->
+      {:ok, search_data} =
+        Omise.Charge.search(filters: [amount: 10_000, paid: true])
+
+      assert %Omise.Search{data: data} = search_data
+      assert search_data.object == "search"
+      assert search_data.scope == "charge"
+      assert search_data.query == ""
+      assert search_data.filters == %{"amount" => "10000", "paid" => "true"}
+      assert search_data.page == 1
+      assert search_data.total_pages == 1
+      assert search_data.total == 1
+      assert is_list(data)
+      Enum.each data, fn(charge) ->
+        assert charge.amount == 1000000
+        assert charge.paid
+      end
+    end
+  end
 end

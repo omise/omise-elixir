@@ -33,9 +33,9 @@ defmodule Omise.Transfer do
     bank_account:    Omise.BankAccount.t,
     sent:            boolean,
     paid:            boolean,
-    amount:          Integer.t,
+    amount:          integer,
     currency:        String.t,
-    fee:             Integer.t,
+    fee:             integer,
     failure_code:    String.t,
     failure_message: String.t,
     transaction:     String.t,
@@ -78,7 +78,7 @@ defmodule Omise.Transfer do
       Omise.Transfer.retrieve("trsf_test_5086uxn23hfaxv8nl0f")
 
   """
-  @spec retrieve(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def retrieve(id) do
     Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end
@@ -103,7 +103,7 @@ defmodule Omise.Transfer do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(params) do
     Omise.HTTP.make_request(:post, @endpoint, body: {:form, params}, as: %__MODULE__{})
   end
@@ -121,7 +121,7 @@ defmodule Omise.Transfer do
       Omise.Transfer.update("trsf_test_5086uxn23hfaxv8nl0f", amount: 500_00)
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def update(id, params) do
     Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
   end
@@ -136,7 +136,7 @@ defmodule Omise.Transfer do
       Omise.Transfer.destroy("trsf_test_5086uxn23hfaxv8nl0f")
 
   """
-  @spec destroy(String.t) :: {:ok, __MODULE__.t} | {:error, Omise.Error.t}
+  @spec destroy(String.t) :: {:ok, t} | {:error, Omise.Error.t}
   def destroy(id) do
     Omise.HTTP.make_request(:delete, "#{@endpoint}/#{id}", as: %__MODULE__{})
   end

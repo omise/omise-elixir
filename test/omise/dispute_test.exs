@@ -54,6 +54,25 @@ defmodule Omise.DisputeTest do
     end
   end
 
+  test "search disputes" do
+    with_mock_request "search-dispute-get", fn ->
+      {:ok, search_data} = Omise.Dispute.search(filters: [status: "open"])
+
+      assert %Omise.Search{data: data} = search_data
+      assert search_data.object == "search"
+      assert search_data.scope == "dispute"
+      assert search_data.query == ""
+      assert search_data.filters == %{"status" => "open"}
+      assert search_data.page == 1
+      assert search_data.total_pages == 1
+      assert search_data.total == 2
+      assert is_list(data)
+      Enum.each data, fn(dispute) ->
+        assert dispute.status == "open"
+      end
+    end
+  end
+
   test "list all documents" do
     with_mock_request "disputes/#{@dispute_id}/documents-get", fn ->
       {:ok, list} = Omise.Dispute.list_documents(@dispute_id)
