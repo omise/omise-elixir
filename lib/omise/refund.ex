@@ -44,13 +44,18 @@ defmodule Omise.Refund do
 
   ## Examples
 
+      # List all refunds that belong to current account.
+      Omise.Refund.list("account")
+
+      # List all refunds that belong to a particular charge.
       Omise.Refund.list("chrg_test_52oo08bwpgnwb95rye8")
-
-      Omise.Refund.list("chrg_test_52oo08bwpgnwb95rye8", limit: 2)
-
   """
   @spec list(String.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(charge_id, params \\ []) do
+  def list(refunds_owner, params \\ [])
+  def list("account", params) do
+    Omise.HTTP.make_request(:get, @endpoint, params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  end
+  def list(charge_id, params) do
     Omise.HTTP.make_request(:get, "charges/#{charge_id}/#{@endpoint}", params: params, as: %Omise.List{data: [%__MODULE__{}]})
   end
 
