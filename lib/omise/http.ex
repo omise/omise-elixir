@@ -53,8 +53,10 @@ defmodule Omise.HTTP do
 
   defp req_headers do
     case api_version() do
-      nil -> default_req_headers()
-      _   -> Map.merge(default_req_headers(), %{"Omise-Version" => api_version()})
+      nil ->
+        default_req_headers()
+      _   ->
+        Map.merge(default_req_headers(), %{"Omise-Version" => api_version()})
     end
   end
 
