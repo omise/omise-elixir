@@ -2,11 +2,7 @@ defmodule Omise.TransferTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    transfer_id = "trsf_test_4yqacz8t3cbipcj766u"
-
-    {:ok, transfer_id: transfer_id}
-  end
+  @transfer_id "trsf_test_4yqacz8t3cbipcj766u"
 
   test "list all transfers" do
     with_mock_request "transfers-get", fn ->
@@ -28,9 +24,9 @@ defmodule Omise.TransferTest do
     end
   end
 
-  test "retrieve a transfer", %{transfer_id: transfer_id} do
-    with_mock_request "transfers/#{transfer_id}-get", fn ->
-      {:ok, transfer} = Omise.Transfer.retrieve(transfer_id)
+  test "retrieve a transfer" do
+    with_mock_request "transfers/#{@transfer_id}-get", fn ->
+      {:ok, transfer} = Omise.Transfer.retrieve(@transfer_id)
 
       assert %Omise.Transfer{} = transfer
       assert transfer.object == "transfer"
@@ -48,7 +44,7 @@ defmodule Omise.TransferTest do
       refute transfer.deleted
 
       bank_account = transfer.bank_account
-      assert %Omise.ThaiBankAccount{} = bank_account
+      assert %Omise.BankAccount{} = bank_account
       assert bank_account.object == "bank_account"
       assert bank_account.brand
       assert bank_account.last_digits
@@ -67,9 +63,9 @@ defmodule Omise.TransferTest do
     end
   end
 
-  test "update a transfer", %{transfer_id: transfer_id} do
-    with_mock_request "transfers/#{transfer_id}-patch", fn ->
-      {:ok, transfer} = Omise.Transfer.update(transfer_id, amount: 2000_00)
+  test "update a transfer" do
+    with_mock_request "transfers/#{@transfer_id}-patch", fn ->
+      {:ok, transfer} = Omise.Transfer.update(@transfer_id, amount: 2000_00)
 
       assert %Omise.Transfer{} = transfer
       assert transfer.object == "transfer"
@@ -77,13 +73,13 @@ defmodule Omise.TransferTest do
     end
   end
 
-  test "destroy a transfer", %{transfer_id: transfer_id} do
-    with_mock_request "transfers/#{transfer_id}-delete", fn ->
-      {:ok, transfer} = Omise.Transfer.destroy(transfer_id)
+  test "destroy a transfer" do
+    with_mock_request "transfers/#{@transfer_id}-delete", fn ->
+      {:ok, transfer} = Omise.Transfer.destroy(@transfer_id)
 
       assert %Omise.Transfer{} = transfer
       assert transfer.object == "transfer"
-      assert transfer.id == transfer_id
+      assert transfer.id == @transfer_id
       assert transfer.deleted
     end
   end

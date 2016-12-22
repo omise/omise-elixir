@@ -2,11 +2,7 @@ defmodule Omise.RecipientTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    recipient_id = "recp_test_50894vc13y8z4v51iuc"
-
-    {:ok, recipient_id: recipient_id}
-  end
+  @recipient_id "recp_test_50894vc13y8z4v51iuc"
 
   test "list all recipients" do
     with_mock_request "recipients-get", fn ->
@@ -28,9 +24,9 @@ defmodule Omise.RecipientTest do
     end
   end
 
-  test "retrieve a recipient", %{recipient_id: recipient_id} do
-    with_mock_request "recipients/#{recipient_id}-get", fn ->
-      {:ok, recipient} = Omise.Recipient.retrieve(recipient_id)
+  test "retrieve a recipient" do
+    with_mock_request "recipients/#{@recipient_id}-get", fn ->
+      {:ok, recipient} = Omise.Recipient.retrieve(@recipient_id)
 
       assert %Omise.Recipient{} = recipient
       assert recipient.object == "recipient"
@@ -50,7 +46,7 @@ defmodule Omise.RecipientTest do
       refute recipient.deleted
 
       bank_account = recipient.bank_account
-      assert %Omise.ThaiBankAccount{} = bank_account
+      assert %Omise.BankAccount{} = bank_account
       assert bank_account.object == "bank_account"
       assert bank_account.brand
       assert bank_account.last_digits
@@ -78,7 +74,7 @@ defmodule Omise.RecipientTest do
       assert recipient.name == "john.doe@example.com"
 
       bank_account = recipient.bank_account
-      assert %Omise.ThaiBankAccount{} = bank_account
+      assert %Omise.BankAccount{} = bank_account
       assert bank_account.object == "bank_account"
       assert bank_account.brand == "test"
       assert bank_account.last_digits == "6789"
@@ -87,10 +83,10 @@ defmodule Omise.RecipientTest do
     end
   end
 
-  test "update a recipient", %{recipient_id: recipient_id} do
-    with_mock_request "recipients/#{recipient_id}-patch", fn ->
+  test "update a recipient" do
+    with_mock_request "recipients/#{@recipient_id}-patch", fn ->
       description = "New description"
-      {:ok, recipient} = Omise.Recipient.update(recipient_id, description: description)
+      {:ok, recipient} = Omise.Recipient.update(@recipient_id, description: description)
 
       assert %Omise.Recipient{} = recipient
       assert recipient.object == "recipient"
@@ -99,9 +95,9 @@ defmodule Omise.RecipientTest do
     end
   end
 
-  test "destroy a recipient", %{recipient_id: recipient_id} do
-    with_mock_request "recipients/#{recipient_id}-delete", fn ->
-      {:ok, recipient} = Omise.Recipient.destroy(recipient_id)
+  test "destroy a recipient" do
+    with_mock_request "recipients/#{@recipient_id}-delete", fn ->
+      {:ok, recipient} = Omise.Recipient.destroy(@recipient_id)
 
       assert %Omise.Recipient{} = recipient
       assert recipient.object == "recipient"
