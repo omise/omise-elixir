@@ -17,7 +17,7 @@ defmodule Omise.Recipient do
     description:  nil,
     type:         nil,
     tax_id:       nil,
-    bank_account: nil,
+    bank_account: %Omise.BankAccount{},
     failure_code: nil,
     created:      nil,
     deleted:      false

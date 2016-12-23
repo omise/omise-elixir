@@ -11,7 +11,7 @@ defmodule Omise.Transfer do
     livemode:        nil,
     location:        nil,
     recipient:       nil,
-    bank_account:    nil,
+    bank_account:    %Omise.BankAccount{},
     sent:            nil,
     paid:            nil,
     amount:          nil,
