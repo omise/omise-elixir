@@ -1,11 +1,13 @@
 defmodule Omise.Dispute do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Dispute API interfaces.
 
   https://www.omise.co/disputes-api
   """
 
   use Omise.Document, resource: "disputes"
+
+  import Omise.HTTP
 
   defstruct [
     object:   "dispute",
@@ -35,7 +37,7 @@ defmodule Omise.Dispute do
 
   @endpoint "disputes"
 
-  @doc """
+  @doc ~S"""
   List all disputes.
 
   Returns `{:ok, disputes}` if the request is successful, `{:error, error}` otherwise.
@@ -60,13 +62,14 @@ defmodule Omise.Dispute do
       Omise.Dispute.list(status: "closed")
 
   """
-  @spec list(Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(params \\ []) do
+  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(params \\ [], opts \\ []) do
     status = params[:status] || ""
-    Omise.HTTP.make_request(:get, "#{@endpoint}/#{status}", params: params, as: %Omise.List{data: [%__MODULE__{}]})
+    opts   = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get("#{@endpoint}/#{status}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a dispute.
 
   Returns `{:ok, dispute}` if the request is successful, `{:error, error}` otherwise.
@@ -76,12 +79,13 @@ defmodule Omise.Dispute do
       Omise.Dispute.retrieve("dspt_test_51yfnnpsxajeybpytm4")
 
   """
-  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(id) do
-    Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("#{@endpoint}/#{id}", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Update a dispute.
 
   Returns `{:ok, dispute}` if the request is successful, `{:error, error}` otherwise.
@@ -94,12 +98,13 @@ defmodule Omise.Dispute do
       Omise.Dispute.update("dspt_test_4zgf15h89w8t775kcm8", message: "Shut up and dance with me!")
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def update(id, params) do
-    Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
+  @spec update(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def update(id, params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    put("#{@endpoint}/#{id}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Search all the disputes.
 
   Returns `{:ok, disputes}` if the request is successful, `{:error, error}` otherwise.
@@ -115,8 +120,8 @@ defmodule Omise.Dispute do
       Omise.Dispute.search(query: "dspt_5089off452g5m5te7xs")
 
   """
-  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
-  def search(params \\ []) do
-    Omise.Search.execute("dispute", params)
+  @spec search(Keyword.t, Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ [], opts \\ []) do
+    Omise.Search.execute("dispute", params, opts)
   end
 end

@@ -1,9 +1,11 @@
 defmodule Omise.Customer do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Customer API interfaces.
 
   https://www.omise.co/customers-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:       "customer",
@@ -33,7 +35,7 @@ defmodule Omise.Customer do
 
   @endpoint "customers"
 
-  @doc """
+  @doc ~S"""
   List all customers.
 
   Returns `{:ok, customers}` if the request is successful, `{:error, error}` otherwise.
@@ -51,12 +53,13 @@ defmodule Omise.Customer do
       Omise.Customer.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(params \\ []) do
-    Omise.HTTP.make_request(:get, @endpoint, params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a customer.
 
   Returns `{:ok, customer}` if the request is successful, `{:error, error}` otherwise.
@@ -66,12 +69,13 @@ defmodule Omise.Customer do
       Omise.Customer.retrieve("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(id) do
-    Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("#{@endpoint}/#{id}", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Create a customer.
 
   Returns `{:ok, customer}` if the request is successful, `{:error, error}` otherwise.
@@ -97,12 +101,13 @@ defmodule Omise.Customer do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def create(params) do
-    Omise.HTTP.make_request(:post, @endpoint, body: {:form, params}, as: %__MODULE__{})
+  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def create(params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Update a customer.
 
   Returns `{:ok, customer}` if the request is successful, `{:error, error}` otherwise.
@@ -126,12 +131,13 @@ defmodule Omise.Customer do
       )
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def update(id, params) do
-    Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
+  @spec update(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def update(id, params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    put("#{@endpoint}/#{id}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Destroy a customer.
 
   Returns `{:ok, customer}` if the request is successful, `{:error, error}` otherwise.
@@ -141,12 +147,13 @@ defmodule Omise.Customer do
       Omise.Customer.destroy("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec destroy(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def destroy(id) do
-    Omise.HTTP.make_request(:delete, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec destroy(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def destroy(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    delete("#{@endpoint}/#{id}", opts)
   end
 
-  @doc """
+  @doc ~S"""
   Search all the customers.
 
   Returns `{:ok, customers}` if the request is successful, `{:error, error}` otherwise.
@@ -162,8 +169,8 @@ defmodule Omise.Customer do
       Omise.Customer.search(query: "eleven@omise.co")
 
   """
-  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
-  def search(params \\ []) do
-    Omise.Search.execute("customer", params)
+  @spec search(Keyword.t, Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ [], opts \\ []) do
+    Omise.Search.execute("customer", params, opts)
   end
 end

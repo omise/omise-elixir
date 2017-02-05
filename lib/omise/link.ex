@@ -1,7 +1,9 @@
 defmodule Omise.Link do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Link API interfaces.
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:      "link",
@@ -37,7 +39,7 @@ defmodule Omise.Link do
 
   @endpoint "links"
 
-  @doc """
+  @doc ~S"""
   List all links.
 
   Returns `{:ok, links}` if the request is successful, `{:error, error}` otherwise.
@@ -49,12 +51,13 @@ defmodule Omise.Link do
       Omise.Link.list(limit: 10, order: "reverse_chronological")
 
   """
-  @spec list(Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(params \\ []) do
-    Omise.HTTP.make_request(:get, @endpoint, params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a link.
 
   ## Examples
@@ -62,12 +65,13 @@ defmodule Omise.Link do
       Omise.Link.retrieve("link_test_55s7oubg54yln9ey2h4")
 
   """
-  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(id) do
-    Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("#{@endpoint}/#{id}", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Create a link.
 
   Returns `{:ok, link}` if the request is successful, `{:error, error}` otherwise.
@@ -92,8 +96,9 @@ defmodule Omise.Link do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def create(params \\ []) do
-    Omise.HTTP.make_request(:post, @endpoint, body: {:form, params}, as: %__MODULE__{})
+  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def create(params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post(@endpoint, params, opts)
   end
 end

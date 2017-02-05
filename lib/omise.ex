@@ -3,7 +3,7 @@ defmodule Omise do
   Omise client library for Elixir.
   """
 
-  @doc """
+  @doc ~S"""
   Configure public_key, secret_key and api_version for Omise API.
 
   ## Examples
@@ -17,7 +17,5 @@ defmodule Omise do
       # configure api_verion
       Omise.configure(secret_key: "secret_key", api_verion: "api_verion")
   """
-  def configure(params) do
-    Omise.Config.configure(params)
-  end
+  defdelegate configure(list), to: Omise.Config
 end

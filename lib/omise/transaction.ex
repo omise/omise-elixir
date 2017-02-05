@@ -1,9 +1,11 @@
 defmodule Omise.Transaction do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Transaction API interfaces.
 
   https://www.omise.co/transactions-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:       "transaction",
@@ -29,7 +31,7 @@ defmodule Omise.Transaction do
 
   @endpoint "transactions"
 
-  @doc """
+  @doc ~S"""
   List all transactions.
 
   Returns `{:ok, transactions}` if the request is successful, `{:error, error}` otherwise.
@@ -47,12 +49,13 @@ defmodule Omise.Transaction do
       Omise.Transaction.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(params \\ []) do
-    Omise.HTTP.make_request(:get, @endpoint, params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a transaction.
 
   Returns `{:ok, transaction}` if the request is successful, `{:error, error}` otherwise.
@@ -62,8 +65,9 @@ defmodule Omise.Transaction do
       Omise.Transaction.retrieve("trxn_test_51yg3xs2yggzsfbai3e")
 
   """
-  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(id) do
-    Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("#{@endpoint}/#{id}", [], opts)
   end
 end

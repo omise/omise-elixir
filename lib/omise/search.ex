@@ -1,9 +1,11 @@
 defmodule Omise.Search do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Search API interfaces.
 
   https://www.omise.co/search-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:      "search",
@@ -29,9 +31,9 @@ defmodule Omise.Search do
     data:        list
   }
 
-  @searchable_scopes ~w(charge customer dispute recipient)
+  @endpoint "search"
 
-  @doc """
+  @doc ~S"""
   Retrieve a search data.
 
   ## Query Parameters:
@@ -55,14 +57,11 @@ defmodule Omise.Search do
       )
 
   """
-  @spec execute(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def execute(scope, params) when scope in @searchable_scopes do
-    normalized_params = Omise.Utils.normalize_search_params(params)
+  @spec execute(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def execute(scope, params, opts \\ []) do
     module = Module.concat(Omise, String.capitalize(scope))
+    opts   = Keyword.merge(opts, as: %Omise.Search{data: [struct(module)]})
 
-    Omise.HTTP.make_request(:get, "search",
-      params: normalized_params ++ [scope: scope],
-      as: %__MODULE__{data: [struct(module)]}
-    )
+    get(@endpoint, Keyword.merge(params, scope: scope), opts)
   end
 end

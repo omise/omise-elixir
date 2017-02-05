@@ -2,11 +2,7 @@ defmodule Omise.TokenTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    token_id = "tokn_test_12p4j8aeb6x1v7mk63x"
-
-    {:ok, token_id: token_id}
-  end
+  @token_id "tokn_test_12p4j8aeb6x1v7mk63x"
 
   test "create a token" do
     with_mock_request "tokens-post", fn ->
@@ -25,13 +21,13 @@ defmodule Omise.TokenTest do
     end
   end
 
-  test "retrieve a token", %{token_id: token_id} do
-    with_mock_request "tokens/#{token_id}-get", fn ->
-      {:ok, token} = Omise.Token.retrieve(token_id)
+  test "retrieve a token" do
+    with_mock_request "tokens/#{@token_id}-get", fn ->
+      {:ok, token} = Omise.Token.retrieve(@token_id)
 
       assert %Omise.Token{} = token
       assert token.object == "token"
-      assert token.id == token_id
+      assert token.id == @token_id
     end
   end
 end

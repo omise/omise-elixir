@@ -1,9 +1,11 @@
 defmodule Omise.Card do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Card API interfaces.
 
   https://www.omise.co/cards-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:              "card",
@@ -49,7 +51,7 @@ defmodule Omise.Card do
 
   @endpoint "cards"
 
-  @doc """
+  @doc ~S"""
   List all cards that belongs to the customer.
 
   Returns `{:ok, cards}` if the request is successful, `{:error, error}` otherwise.
@@ -66,12 +68,13 @@ defmodule Omise.Card do
       Omise.Card.list("cust_test_520j6g67py52xa7qbu2")
 
   """
-  @spec list(String.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(customer_id, params \\ []) do
-    Omise.HTTP.make_request(:get, "customers/#{customer_id}/#{@endpoint}", params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  @spec list(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(customer_id, params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get("customers/#{customer_id}/#{@endpoint}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a card.
 
   Returns `{:ok, card}` if the request is successful, `{:error, error}` otherwise.
@@ -81,12 +84,13 @@ defmodule Omise.Card do
       Omise.Card.retrieve("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec retrieve(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(customer_id, id) do
-    Omise.HTTP.make_request(:get, "customers/#{customer_id}/#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(customer_id, id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("customers/#{customer_id}/#{@endpoint}/#{id}", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Update a card.
 
   Returns `{:ok, card}` if the request is successful, `{:error, error}` otherwise.
@@ -104,12 +108,13 @@ defmodule Omise.Card do
       Omise.Card.update("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d", params)
 
   """
-  @spec update(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def update(customer_id, card_id, params) do
-    Omise.HTTP.make_request(:patch, "customers/#{customer_id}/#{@endpoint}/#{card_id}", body: {:form, params}, as: %__MODULE__{})
+  @spec update(String.t, String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def update(customer_id, id, params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    put("customers/#{customer_id}/#{@endpoint}/#{id}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Destroy a card.
 
   Returns `{:ok, card}` if the request is successful, `{:error, error}` otherwise.
@@ -119,8 +124,9 @@ defmodule Omise.Card do
       Omise.Card.destroy("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec destroy(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def destroy(customer_id, card_id) do
-    Omise.HTTP.make_request(:delete, "customers/#{customer_id}/#{@endpoint}/#{card_id}", as: %__MODULE__{})
+  @spec destroy(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def destroy(customer_id, id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    delete("customers/#{customer_id}/#{@endpoint}/#{id}", opts)
   end
 end

@@ -1,6 +1,6 @@
 defmodule Omise.BankAccount do
-  @moduledoc """
-  Omise Bank Account Object.
+  @moduledoc ~S"""
+  Omise Bank Account Struct.
 
   https://www.omise.co/bank-account-api
   """

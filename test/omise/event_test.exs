@@ -2,11 +2,7 @@ defmodule Omise.EventTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    event_id = "evnt_test_52cin5n9bb6lytxduh9"
-
-    {:ok, event_id: event_id}
-  end
+  @event_id "evnt_test_52cin5n9bb6lytxduh9"
 
   test "list all events" do
     with_mock_request "events-get", fn ->
@@ -29,9 +25,9 @@ defmodule Omise.EventTest do
     end
   end
 
-  test "retrieve an event", %{event_id: event_id} do
-    with_mock_request "events/#{event_id}-get", fn ->
-      {:ok, event} = Omise.Event.retrieve(event_id)
+  test "retrieve an event" do
+    with_mock_request "events/#{@event_id}-get", fn ->
+      {:ok, event} = Omise.Event.retrieve(@event_id)
 
       assert %Omise.Event{} = event
       assert event.object == "event"
