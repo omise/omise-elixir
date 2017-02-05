@@ -34,7 +34,7 @@ defmodule Omise.HTTP do
     key = Keyword.get(opts, :key)
     as  = Keyword.fetch!(opts, :as)
 
-    query_params = Keyword.get(request_params, :query_params, "")
+    query_params = Keyword.get(request_params, :query_params, [])
     body_params  = Keyword.get(request_params, :body_params, [])
 
     {url, auth_params} = url_with_auth_params(endpoint, key)

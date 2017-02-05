@@ -2,7 +2,7 @@ defmodule Omise.SearchTest do
   use ExUnit.Case
   import TestHelper
 
-  test "search with scope and " do
+  test "search data" do
     with_mock_request "search-charge-get", fn ->
       {:ok, search_data} =
         Omise.Search.execute("charge", [filters: [amount: 10000, paid: true]])
