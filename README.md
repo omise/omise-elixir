@@ -55,10 +55,10 @@ case response do
 end
 ```
 
-You can also set a per-request key when making an API call:
+You can also set a per-request key and api version when making an API call:
 
 ```elixir
-Omise.Charge.list([], key: "skey_test_xxx")
+Omise.Charge.list([], key: "skey_test_xxx", api_version: "2015-11-17")
 
 Omise.Charge.retrieve("chrg_test_4yq7duw15p9hdrjp8oq", key: "skey_test_xxx")
 

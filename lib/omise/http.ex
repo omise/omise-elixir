@@ -1,9 +1,7 @@
 defmodule Omise.HTTP do
   @moduledoc false
 
-  import Omise.Version
-
-  alias Omise.Utils
+  alias Omise.{Utils, Version}
 
   @vault_endpoints ~w(tokens)
   @base_vault_uri  Application.get_env(:omise, :base_vault_uri, "https://vault.omise.co/")
@@ -31,18 +29,20 @@ defmodule Omise.HTTP do
 
   @spec request(atom, String.t, Keyword.t, Keyword.t) :: {:ok, struct} | {:error, struct}
   def request(method, endpoint, request_params \\ [], opts \\ []) do
-    key = Keyword.get(opts, :key)
-    as  = Keyword.fetch!(opts, :as)
+    key         = Keyword.get(opts, :key)
+    api_version = Keyword.get(opts, :api_version, Version.api_version)
+    as          = Keyword.fetch!(opts, :as)
 
     query_params = Keyword.get(request_params, :query_params, [])
     body_params  = Keyword.get(request_params, :body_params, [])
 
     {url, auth_params} = url_with_auth_params(endpoint, key)
     request_body       = Utils.encode_to_json(body_params)
+    request_headers    = req_headers(api_version)
     request_options    = [params: query_params] ++ auth_params
 
     method
-    |> HTTPoison.request!(url, request_body, req_headers(), request_options)
+    |> HTTPoison.request!(url, request_body, request_headers, request_options)
     |> handle_response(as: as)
   end
 
@@ -72,9 +72,9 @@ defmodule Omise.HTTP do
     [hackney: [basic_auth: {key, ""}]]
   end
 
-  defp req_headers do
-    if api_version() do
-      Map.merge(default_req_headers(), %{"Omise-Version" => api_version()})
+  defp req_headers(api_version) do
+    if api_version do
+      Map.merge(default_req_headers(), %{"Omise-Version" => api_version})
     else
       default_req_headers()
     end
@@ -84,7 +84,9 @@ defmodule Omise.HTTP do
     %{"User-Agent" => user_agent(), "Content-type" => "application/json"}
   end
 
-  defp user_agent do
-    "OmiseElixir/#{project_version()} Elixir/#{elixir_version()}"
+  def user_agent do
+    """
+    OmiseElixir/#{Version.project_version} Elixir/#{Version.elixir_version}
+    """
   end
 end
