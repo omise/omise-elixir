@@ -85,8 +85,6 @@ defmodule Omise.HTTP do
   end
 
   def user_agent do
-    """
-    OmiseElixir/#{Version.project_version} Elixir/#{Version.elixir_version}
-    """
+    "OmiseElixir/#{Version.project_version} Elixir/#{Version.elixir_version}"
   end
 end
