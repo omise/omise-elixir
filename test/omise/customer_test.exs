@@ -2,11 +2,7 @@ defmodule Omise.CustomerTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    customer_id = "cust_test_52p4kmy02q0i59akn84"
-
-    {:ok, customer_id: customer_id}
-  end
+  @customer_id "cust_test_52p4kmy02q0i59akn84"
 
   test "list all customers" do
     with_mock_request "customers-get", fn ->
@@ -28,9 +24,9 @@ defmodule Omise.CustomerTest do
     end
   end
 
-  test "retrieve a customer", %{customer_id: customer_id} do
-    with_mock_request "customers/#{customer_id}-get", fn ->
-      {:ok, customer} = Omise.Customer.retrieve(customer_id)
+  test "retrieve a customer" do
+    with_mock_request "customers/#{@customer_id}-get", fn ->
+      {:ok, customer} = Omise.Customer.retrieve(@customer_id)
 
       assert %Omise.Customer{} = customer
       assert customer.object == "customer"
@@ -74,15 +70,15 @@ defmodule Omise.CustomerTest do
     end
   end
 
-  test "update a customer", %{customer_id: customer_id} do
-    with_mock_request "customers/#{customer_id}-patch", fn ->
-      email = "jane.doe@example.com"
+  test "update a customer" do
+    with_mock_request "customers/#{@customer_id}-patch", fn ->
+      email       = "jane.doe@example.com"
       description = "Jane Doe (id: 30)"
-      {:ok, customer} = Omise.Customer.update(
-        customer_id,
-        email: email,
-        description: description
-      )
+
+      {:ok, customer} = Omise.Customer.update(@customer_id, [
+        email:       email,
+        description: description,
+      ])
 
       assert %Omise.Customer{} = customer
       assert customer.object == "customer"
@@ -100,9 +96,9 @@ defmodule Omise.CustomerTest do
     end
   end
 
-  test "destroy a customer", %{customer_id: customer_id} do
-    with_mock_request "customers/#{customer_id}-delete", fn ->
-      {:ok, customer} = Omise.Customer.destroy(customer_id)
+  test "destroy a customer" do
+    with_mock_request "customers/#{@customer_id}-delete", fn ->
+      {:ok, customer} = Omise.Customer.destroy(@customer_id)
 
       assert %Omise.Customer{} = customer
       assert customer.object == "customer"

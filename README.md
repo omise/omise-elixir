@@ -28,14 +28,14 @@ Set the following configuration variables in `config/config.exs` file:
 
 ```elixir
 config :omise,
-  public_key: "OMISE_PUBLIC_KEY",
-  secret_key: "OMISE_SECRET_KEY"
+  public_key: "pkey_test_xxx",
+  secret_key: "skey_test_xxx"
 ```
 
 Or manually configure at runtime:
 
 ```elixir
-Omise.configure(public_key: "OMISE_PUBLIC_KEY", secret_key: "OMISE_SECRET_KEY")
+Omise.configure(public_key: "pkey_test_xxx", secret_key: "skey_test_xxx")
 ```
 
 ## Example
@@ -53,6 +53,20 @@ case response do
   {:error, error} ->
     # handle failure
 end
+```
+
+You can also set a per-request key and api version when making an API call:
+
+```elixir
+Omise.Charge.list([], key: "skey_test_xxx", api_version: "2015-11-17")
+
+Omise.Charge.retrieve("chrg_test_4yq7duw15p9hdrjp8oq", key: "skey_test_xxx")
+
+Omise.Charge.create([
+  amount: 1000_00,
+  currency: "thb",
+  customer: "cust_test_xxx"
+], key: "skey_test_xxx")
 ```
 
 ## Development

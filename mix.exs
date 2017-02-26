@@ -35,7 +35,7 @@ defmodule Omise.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.9.0"},
+      {:httpoison, "~> 0.9"},
       {:poison, "~> 2.2 or ~> 3.0"},
 
       # Dev dependencies
@@ -44,6 +44,9 @@ defmodule Omise.Mixfile do
 
       # Test dependencies
       {:mock, "~> 0.2", only: :test},
+
+      # Dev & Test dependencies
+      {:credo, "~> 0.6", only: [:dev, :test]}
     ]
   end
 

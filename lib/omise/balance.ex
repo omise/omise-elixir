@@ -1,9 +1,11 @@
 defmodule Omise.Balance do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Balance API interfaces.
 
   https://www.omise.co/balance-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:    "balance",
@@ -25,7 +27,7 @@ defmodule Omise.Balance do
 
   @endpoint "balance"
 
-  @doc """
+  @doc ~S"""
   Retrieve the balance.
 
   Returns `{:ok, balance}` if the request is successful, `{:error, error}` otherwise.
@@ -34,9 +36,12 @@ defmodule Omise.Balance do
 
       Omise.Balance.retrieve
 
+      Omise.Balance.retrieve(key: "skey_56ia27lqtvg32u7iww8")
+
   """
-  @spec retrieve :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve do
-    Omise.HTTP.make_request(:get, @endpoint, as: %__MODULE__{})
+  @spec retrieve(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get(@endpoint, [], opts)
   end
 end

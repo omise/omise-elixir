@@ -2,11 +2,7 @@ defmodule Omise.TransactionTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    transaction_id = "trxn_test_4yq7duwb9jts1vxgqua"
-
-    {:ok, transaction_id: transaction_id}
-  end
+  @transaction_id "trxn_test_4yq7duwb9jts1vxgqua"
 
   test "list all transactions" do
     with_mock_request "transactions-get", fn ->
@@ -28,9 +24,9 @@ defmodule Omise.TransactionTest do
     end
   end
 
-  test "retrieve a transaction", %{transaction_id: transaction_id} do
-    with_mock_request "transactions/#{transaction_id}-get", fn ->
-      {:ok, transaction} = Omise.Transaction.retrieve(transaction_id)
+  test "retrieve a transaction" do
+    with_mock_request "transactions/#{@transaction_id}-get", fn ->
+      {:ok, transaction} = Omise.Transaction.retrieve(@transaction_id)
 
       assert %Omise.Transaction{} = transaction
       assert transaction.object == "transaction"

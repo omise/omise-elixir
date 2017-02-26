@@ -1,9 +1,11 @@
 defmodule Omise.Refund do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Refunds API interfaces.
 
   https://www.omise.co/refunds-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:      "refund",
@@ -31,7 +33,7 @@ defmodule Omise.Refund do
 
   @endpoint "refunds"
 
-  @doc """
+  @doc ~S"""
   List all refunds.
 
   Returns `{:ok, refunds}` if the request is successful, `{:error, error}` otherwise.
@@ -50,16 +52,18 @@ defmodule Omise.Refund do
       # List all refunds that belong to a particular charge.
       Omise.Refund.list("chrg_test_52oo08bwpgnwb95rye8")
   """
-  @spec list(String.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(refunds_owner, params \\ [])
-  def list("account", params) do
-    Omise.HTTP.make_request(:get, @endpoint, params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  @spec list(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(refunds_owner, params \\ [], opts \\ [])
+  def list("account", params, opts) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get(@endpoint, params, opts)
   end
-  def list(charge_id, params) do
-    Omise.HTTP.make_request(:get, "charges/#{charge_id}/#{@endpoint}", params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  def list(charge_id, params, opts) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get("charges/#{charge_id}/#{@endpoint}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a refund.
 
   Returns `{:ok, refund}` if the request is successful, `{:error, error}` otherwise.
@@ -69,12 +73,13 @@ defmodule Omise.Refund do
       Omise.Refund.retrieve("chrg_test_520jim7x8u6t4si58va", "rfnd_test_4zgf1d7jcw5kr123puq")
 
   """
-  @spec retrieve(String.t, String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(charge_id, id) do
-    Omise.HTTP.make_request(:get, "charges/#{charge_id}/#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(charge_id, id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("charges/#{charge_id}/#{@endpoint}/#{id}", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Create a refund.
 
   Returns `{:ok, refund}` if the request is successful, `{:error, error}` otherwise.
@@ -88,8 +93,9 @@ defmodule Omise.Refund do
       Omise.Refund.create("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
 
   """
-  @spec create(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def create(charge_id, params) do
-    Omise.HTTP.make_request(:post, "charges/#{charge_id}/#{@endpoint}", body: {:form, params}, as: %__MODULE__{})
+  @spec create(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def create(charge_id, params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post("charges/#{charge_id}/#{@endpoint}", params, opts)
   end
 end

@@ -1,9 +1,15 @@
 defmodule Omise.Config do
   @moduledoc false
 
-  @permitted_params [:public_key, :secret_key, :api_version]
+  @permitted_params ~w(
+    public_key
+    secret_key
+    api_version
+    base_vault_uri
+    base_api_uri
+  )a
 
-  @doc false
+  @spec configure(Keyword.t) :: list
   def configure(params) do
     params
     |> Enum.filter(fn {k, _} -> k in @permitted_params end)

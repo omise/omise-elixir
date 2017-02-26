@@ -1,6 +1,6 @@
 defmodule Omise.List do
   @moduledoc """
-  Omise List Object.
+  Omise List Struct.
 
   https://www.omise.co/api-pagination
   """

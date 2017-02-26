@@ -1,9 +1,11 @@
 defmodule Omise.Charge do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Charge API interfaces.
 
   https://www.omise.co/charges-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:          "charge",
@@ -77,7 +79,7 @@ defmodule Omise.Charge do
 
   @endpoint "charges"
 
-  @doc """
+  @doc ~S"""
   List all charges.
 
   Returns `{:ok, charges}` if the request is successful, `{:error, error}` otherwise.
@@ -95,12 +97,13 @@ defmodule Omise.Charge do
       Omise.Charge.list(limit: 10)
 
   """
-  @spec list(Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(params \\ []) do
-    Omise.HTTP.make_request(:get, @endpoint, params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a charge.
 
   ## Examples
@@ -108,12 +111,13 @@ defmodule Omise.Charge do
       Omise.Charge.retrieve("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(id) do
-    Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("#{@endpoint}/#{id}", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Create a charge.
 
   Returns `{:ok, charge}` if the request is successful, `{:error, error}` otherwise.
@@ -157,12 +161,13 @@ defmodule Omise.Charge do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def create(params) do
-    Omise.HTTP.make_request(:post, @endpoint, body: {:form, params}, as: %__MODULE__{})
+  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def create(params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Update a charge.
 
   Returns `{:ok, charge}` if the request is successful, `{:error, error}` otherwise.
@@ -176,12 +181,13 @@ defmodule Omise.Charge do
         description: "The funny thing is that when I am okay, oh it makes me wish for rain")
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def update(id, params) do
-    Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
+  @spec update(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def update(id, params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    put("#{@endpoint}/#{id}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Capture a charge.
 
   Returns `{:ok, charge}` if the request is successful, `{:error, error}` otherwise.
@@ -195,12 +201,13 @@ defmodule Omise.Charge do
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec capture(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def capture(id) do
-    Omise.HTTP.make_request(:post, "#{@endpoint}/#{id}/capture", as: %__MODULE__{})
+  @spec capture(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def capture(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post("#{@endpoint}/#{id}/capture", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Reverse an uncaptured charge.
 
   Returns `{:ok, charge}` if the request is successful, `{:error, error}` otherwise.
@@ -214,12 +221,13 @@ defmodule Omise.Charge do
       Omise.Charge.reverse("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec reverse(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def reverse(id) do
-    Omise.HTTP.make_request(:post, "#{@endpoint}/#{id}/reverse", as: %__MODULE__{})
+  @spec reverse(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def reverse(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post("#{@endpoint}/#{id}/reverse", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Search all the charges.
 
   Returns `{:ok, charges}` if the request is successful, `{:error, error}` otherwise.
@@ -235,8 +243,8 @@ defmodule Omise.Charge do
       Omise.Charge.search(query: "omise")
 
   """
-  @spec search(Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
-  def search(params \\ []) do
-    Omise.Search.execute("charge", params)
+  @spec search(Keyword.t, Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  def search(params \\ [], opts \\ []) do
+    Omise.Search.execute("charge", params, opts)
   end
 end

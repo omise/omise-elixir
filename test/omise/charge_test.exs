@@ -2,11 +2,7 @@ defmodule Omise.ChargeTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    charge_id = "chrg_test_4yq7duw15p9hdrjp8oq"
-
-    {:ok, charge_id: charge_id}
-  end
+  @charge_id "chrg_test_4yq7duw15p9hdrjp8oq"
 
   test "list all charges" do
     with_mock_request "charges-get", fn ->
@@ -28,9 +24,9 @@ defmodule Omise.ChargeTest do
     end
   end
 
-  test "retrieve a charge", %{charge_id: charge_id} do
-    with_mock_request "charges/#{charge_id}-get", fn ->
-      {:ok, charge} = Omise.Charge.retrieve(charge_id)
+  test "retrieve a charge" do
+    with_mock_request "charges/#{@charge_id}-get", fn ->
+      {:ok, charge} = Omise.Charge.retrieve(@charge_id)
 
       assert %Omise.Charge{} = charge
       assert charge.object == "charge"
@@ -84,10 +80,10 @@ defmodule Omise.ChargeTest do
     end
   end
 
-  test "update a charge", %{charge_id: charge_id} do
-    with_mock_request "charges/#{charge_id}-patch", fn ->
+  test "update a charge" do
+    with_mock_request "charges/#{@charge_id}-patch", fn ->
       description = "Elixir is awesome"
-      {:ok, charge} = Omise.Charge.update(charge_id, description: description)
+      {:ok, charge} = Omise.Charge.update(@charge_id, description: description)
 
       assert %Omise.Charge{} = charge
       assert charge.object == "charge"
@@ -95,9 +91,9 @@ defmodule Omise.ChargeTest do
     end
   end
 
-  test "capure a charge", %{charge_id: charge_id} do
-    with_mock_request "charges/#{charge_id}/capture-post", fn ->
-      {:ok, charge} = Omise.Charge.capture(charge_id)
+  test "capure a charge" do
+    with_mock_request "charges/#{@charge_id}/capture-post", fn ->
+      {:ok, charge} = Omise.Charge.capture(@charge_id)
 
       assert %Omise.Charge{} = charge
       assert charge.object == "charge"
@@ -105,9 +101,9 @@ defmodule Omise.ChargeTest do
     end
   end
 
-  test "reverse a charge", %{charge_id: charge_id} do
-    with_mock_request "charges/#{charge_id}/reverse-post", fn ->
-      {:ok, charge} = Omise.Charge.reverse(charge_id)
+  test "reverse a charge" do
+    with_mock_request "charges/#{@charge_id}/reverse-post", fn ->
+      {:ok, charge} = Omise.Charge.reverse(@charge_id)
 
       assert %Omise.Charge{} = charge
       assert charge.object == "charge"

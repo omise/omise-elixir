@@ -2,16 +2,12 @@ defmodule Omise.CardTest do
   use ExUnit.Case
   import TestHelper
 
-  setup_all do
-    customer_id = "cust_test_52p4kmy02q0i59akn84"
-    card_id     = "card_test_4yq6tuucl9h4erukfl0"
+  @customer_id "cust_test_52p4kmy02q0i59akn84"
+  @card_id     "card_test_4yq6tuucl9h4erukfl0"
 
-    {:ok, customer_id: customer_id, card_id: card_id}
-  end
-
-  test "list all cards", %{customer_id: customer_id} do
-    with_mock_request "customers/#{customer_id}/cards", fn ->
-      {:ok, list} = Omise.Card.list(customer_id)
+  test "list all cards" do
+    with_mock_request "customers/#{@customer_id}/cards", fn ->
+      {:ok, list} = Omise.Card.list(@customer_id)
 
       assert %Omise.List{data: cards} = list
       assert list.object == "list"
@@ -29,9 +25,9 @@ defmodule Omise.CardTest do
     end
   end
 
-  test "retrieve a card", %{customer_id: customer_id, card_id: card_id} do
-    with_mock_request "customers/#{customer_id}/cards/#{card_id}-get", fn ->
-      {:ok, card} = Omise.Card.retrieve(customer_id, card_id)
+  test "retrieve a card" do
+    with_mock_request "customers/#{@customer_id}/cards/#{@card_id}-get", fn ->
+      {:ok, card} = Omise.Card.retrieve(@customer_id, @card_id)
 
       assert %Omise.Card{} = card
       assert card.object == "card"
@@ -55,9 +51,9 @@ defmodule Omise.CardTest do
     end
   end
 
-  test "retrieve a non existing card", %{customer_id: customer_id} do
-    with_mock_request "customers/#{customer_id}/cards/404-get", fn ->
-      {:error, error} = Omise.Card.retrieve(customer_id, "404")
+  test "retrieve a non existing card" do
+    with_mock_request "customers/#{@customer_id}/cards/404-get", fn ->
+      {:error, error} = Omise.Card.retrieve(@customer_id, "404")
 
       assert %Omise.Error{} = error
       assert error.object == "error"
@@ -67,23 +63,23 @@ defmodule Omise.CardTest do
     end
   end
 
-  test "update a card", %{customer_id: customer_id, card_id: card_id}  do
-    with_mock_request "customers/#{customer_id}/cards/#{card_id}-patch", fn ->
-      {:ok, card} = Omise.Card.update(customer_id, card_id, city: "Surin")
+  test "update a card"  do
+    with_mock_request "customers/#{@customer_id}/cards/#{@card_id}-patch", fn ->
+      {:ok, card} = Omise.Card.update(@customer_id, @card_id, city: "Surin")
 
       assert %Omise.Card{} = card
-      assert card.id == card_id
+      assert card.id == @card_id
       assert card.city == "Surin"
       refute card.deleted
     end
   end
 
-  test "destroy a card", %{customer_id: customer_id, card_id: card_id}  do
-    with_mock_request "customers/#{customer_id}/cards/#{card_id}-delete", fn ->
-      {:ok, card} = Omise.Card.destroy(customer_id, card_id)
+  test "destroy a card"  do
+    with_mock_request "customers/#{@customer_id}/cards/#{@card_id}-delete", fn ->
+      {:ok, card} = Omise.Card.destroy(@customer_id, @card_id)
 
       assert %Omise.Card{} = card
-      assert card.id == card_id
+      assert card.id == @card_id
       assert card.deleted
     end
   end

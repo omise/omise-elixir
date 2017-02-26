@@ -1,9 +1,11 @@
 defmodule Omise.Transfer do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Transfers API interfaces.
 
   https://www.omise.co/transfers-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:          "transfer",
@@ -45,7 +47,7 @@ defmodule Omise.Transfer do
 
   @endpoint "transfers"
 
-  @doc """
+  @doc ~S"""
   List all transfers.
 
   Returns `{:ok, transfers}` if the request is successful, `{:error, error}` otherwise.
@@ -63,12 +65,13 @@ defmodule Omise.Transfer do
       Omise.Transfer.list(limit: 5)
 
   """
-  @spec list(Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(params \\ []) do
-    Omise.HTTP.make_request(:get, @endpoint, params: params, as: %Omise.List{data: [%__MODULE__{}]})
+  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
+    get(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Retrieve a transfer.
 
   Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
@@ -78,12 +81,13 @@ defmodule Omise.Transfer do
       Omise.Transfer.retrieve("trsf_test_5086uxn23hfaxv8nl0f")
 
   """
-  @spec retrieve(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(id) do
-    Omise.HTTP.make_request(:get, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get("#{@endpoint}/#{id}", [], opts)
   end
 
-  @doc """
+  @doc ~S"""
   Create a transfer.
 
   Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
@@ -103,12 +107,13 @@ defmodule Omise.Transfer do
       )
 
   """
-  @spec create(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def create(params) do
-    Omise.HTTP.make_request(:post, @endpoint, body: {:form, params}, as: %__MODULE__{})
+  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def create(params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post(@endpoint, params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Update a transfer.
 
   Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
@@ -121,12 +126,13 @@ defmodule Omise.Transfer do
       Omise.Transfer.update("trsf_test_5086uxn23hfaxv8nl0f", amount: 500_00)
 
   """
-  @spec update(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def update(id, params) do
-    Omise.HTTP.make_request(:patch, "#{@endpoint}/#{id}", body: {:form, params}, as: %__MODULE__{})
+  @spec update(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def update(id, params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    put("#{@endpoint}/#{id}", params, opts)
   end
 
-  @doc """
+  @doc ~S"""
   Destroy a transfer.
 
   Returns `{:ok, transfer}` if the request is successful, `{:error, error}` otherwise.
@@ -136,8 +142,9 @@ defmodule Omise.Transfer do
       Omise.Transfer.destroy("trsf_test_5086uxn23hfaxv8nl0f")
 
   """
-  @spec destroy(String.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def destroy(id) do
-    Omise.HTTP.make_request(:delete, "#{@endpoint}/#{id}", as: %__MODULE__{})
+  @spec destroy(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def destroy(id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    delete("#{@endpoint}/#{id}", opts)
   end
 end

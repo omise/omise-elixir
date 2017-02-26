@@ -1,28 +1,49 @@
 defmodule Omise.HTTP do
   @moduledoc false
 
-  import Omise.Version
+  alias Omise.{Utils, Version}
 
-  @vault_url "https://vault.omise.co/"
-  @api_url   "https://api.omise.co/"
+  @vault_endpoints ~w(tokens)
+  @base_vault_uri  Application.get_env(:omise, :base_vault_uri, "https://vault.omise.co/")
+  @base_api_uri    Application.get_env(:omise, :base_api_uri, "https://api.omise.co/")
 
-  @doc false
-  def make_request(method, endpoint, options) do
-    req_body    = options[:body] || ""
-    req_params  = (options[:params] && [params: options[:params]]) || []
-    {url, auth} = url_with_basic_auth(endpoint)
-
-    method
-    |> HTTPoison.request!(url, req_body, req_headers(), auth ++ req_params)
-    |> handle_response(as: options[:as])
+  @spec get(String.t, Keyword.t, Keyword.t) :: {:ok, struct} | {:error, struct}
+  def get(endpoint, query_params \\ [], opts \\ []) do
+    request(:get, endpoint, [query_params: query_params], opts)
   end
 
-  defp url_with_basic_auth(endpoint) do
-    if request_to_vault?(endpoint) do
-      {@vault_url <> endpoint, vault_auth()}
-    else
-      {@api_url <> endpoint, api_auth()}
-    end
+  @spec post(String.t, Keyword.t, Keyword.t) :: {:ok, struct} | {:error, struct}
+  def post(endpoint, body_params \\ [], opts \\ []) do
+    request(:post, endpoint, [body_params: body_params], opts)
+  end
+
+  @spec put(String.t, Keyword.t, Keyword.t) :: {:ok, struct} | {:error, struct}
+  def put(endpoint, body_params \\ [], opts \\ []) do
+    request(:put, endpoint, [body_params: body_params], opts)
+  end
+
+  @spec delete(String.t, Keyword.t) :: {:ok, struct} | {:error, struct}
+  def delete(endpoint, opts \\ []) do
+    request(:delete, endpoint, [], opts)
+  end
+
+  @spec request(atom, String.t, Keyword.t, Keyword.t) :: {:ok, struct} | {:error, struct}
+  def request(method, endpoint, request_params \\ [], opts \\ []) do
+    key         = Keyword.get(opts, :key)
+    api_version = Keyword.get(opts, :api_version, Version.api_version)
+    as          = Keyword.fetch!(opts, :as)
+
+    query_params = Keyword.get(request_params, :query_params, [])
+    body_params  = Keyword.get(request_params, :body_params, [])
+
+    {url, auth_params} = url_with_auth_params(endpoint, key)
+    request_body       = Utils.encode_to_json(body_params)
+    request_headers    = req_headers(api_version)
+    request_options    = [params: query_params] ++ auth_params
+
+    method
+    |> HTTPoison.request!(url, request_body, request_headers, request_options)
+    |> handle_response(as: as)
   end
 
   defp handle_response(%HTTPoison.Response{body: body}, as: as) do
@@ -35,33 +56,37 @@ defmodule Omise.HTTP do
     end
   end
 
-  defp request_to_vault?(endpoint) do
-    String.starts_with?(endpoint, "tokens")
+  defp url_with_auth_params(endpoint, key) do
+    if endpoint in @vault_endpoints do
+      key = key || Application.get_env(:omise, :public_key)
+
+      {@base_vault_uri <> endpoint, auth_params(key)}
+    else
+      key = key || Application.get_env(:omise, :secret_key)
+
+      {@base_api_uri <> endpoint, auth_params(key)}
+    end
   end
 
-  defp api_auth do
-    [hackney: [basic_auth: {secret_key(), ""}]]
+  defp auth_params(key) do
+    [hackney: [basic_auth: {key, ""}]]
   end
 
-  defp vault_auth do
-    [hackney: [basic_auth: {public_key(), ""}]]
-  end
-
-  defp public_key, do: Application.get_env(:omise, :public_key)
-
-  defp secret_key, do: Application.get_env(:omise, :secret_key)
-
-  defp req_headers do
-    case api_version() do
-      nil ->
-        default_req_headers()
-      _   ->
-        Map.merge(default_req_headers(), %{"Omise-Version" => api_version()})
+  defp req_headers(api_version) do
+    if api_version do
+      Map.merge(default_req_headers(), %{"Omise-Version" => api_version})
+    else
+      default_req_headers()
     end
   end
 
   defp default_req_headers do
-    %{"User-Agent"   => "OmiseElixir/#{project_version()} Elixir/#{elixir_version()}",
-      "Content-type" => "application/x-www-form-urlencoded"}
+    %{"User-Agent" => user_agent(), "Content-type" => "application/json"}
+  end
+
+  def user_agent do
+    """
+    OmiseElixir/#{Version.project_version} Elixir/#{Version.elixir_version}
+    """
   end
 end

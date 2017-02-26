@@ -1,9 +1,11 @@
 defmodule Omise.Account do
-  @moduledoc """
+  @moduledoc ~S"""
   Provides Account API interfaces.
 
   https://www.omise.co/account-api
   """
+
+  import Omise.HTTP
 
   defstruct [
     object:   "account",
@@ -23,7 +25,7 @@ defmodule Omise.Account do
 
   @endpoint "account"
 
-  @doc """
+  @doc ~S"""
   Retrieve the account.
 
   Returns `{:ok, account}` if the request is successful, `{:error, error}` otherwise.
@@ -32,9 +34,12 @@ defmodule Omise.Account do
 
       Omise.Account.retrieve
 
+      Omise.Account.retrieve(key: "skey_56ia27lqtvg32u7iww8")
+
   """
-  @spec retrieve :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve do
-    Omise.HTTP.make_request(:get, @endpoint, as: %__MODULE__{})
+  @spec retrieve(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve(opts \\ []) do
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    get(@endpoint, [], opts)
   end
 end
