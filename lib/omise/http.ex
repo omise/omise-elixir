@@ -88,7 +88,7 @@ defmodule Omise.HTTP do
     "OmiseElixir/#{Version.project_version} Elixir/#{Version.elixir_version}"
   end
 
-  def http_options do
+  defp http_options do
     Keyword.merge(
       [recv_timeout: 8_000],
       Application.get_env(:omise, :http_options, [])
