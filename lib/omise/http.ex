@@ -90,7 +90,7 @@ defmodule Omise.HTTP do
 
   defp http_options do
     Keyword.merge(
-      [recv_timeout: 8_000],
+      [timeout: 10_000, recv_timeout: 10_000],
       Application.get_env(:omise, :http_options, [])
     )
   end

@@ -42,7 +42,7 @@ To configure the HTTP options, you could optionally add `:http_options` key to t
 
 ```elixir
 config :omise,
-  http_options: [timeout: 10_000, recv_timeout: 10_000],
+  http_options: [timeout: 20_000, recv_timeout: 20_000]
 ```
 
 ## Example
