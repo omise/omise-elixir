@@ -13,7 +13,8 @@ defmodule Omise.Mixfile do
       start_permanent: Mix.env == :prod,
       deps:            deps(),
       package:         package(),
-      docs:            [extras: ["README.md"]]
+      docs:            [extras: ["README.md"]],
+      test_coverage:   [tool: ExCoveralls],
     ]
   end
 
@@ -44,6 +45,7 @@ defmodule Omise.Mixfile do
 
       # Test dependencies
       {:mock, "~> 0.2", only: :test},
+      {:excoveralls, "~> 0.6", only: :test},
 
       # Dev & Test dependencies
       {:credo, "~> 0.6", only: [:dev, :test]}

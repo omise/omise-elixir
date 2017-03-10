@@ -7,6 +7,7 @@ defmodule Omise.Config do
     api_version
     base_vault_uri
     base_api_uri
+    http_options
   )a
 
   @spec configure(Keyword.t) :: list

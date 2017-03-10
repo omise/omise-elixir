@@ -38,6 +38,13 @@ Or manually configure at runtime:
 Omise.configure(public_key: "pkey_test_xxx", secret_key: "skey_test_xxx")
 ```
 
+To configure the HTTP options, you could optionally add `:http_options` key to the omise configuration. For a full list of the available options, please check [HTTPoison documentation](https://github.com/edgurgel/httpoison).
+
+```elixir
+config :omise,
+  http_options: [timeout: 20_000, recv_timeout: 20_000]
+```
+
 ## Example
 
 ```elixir
