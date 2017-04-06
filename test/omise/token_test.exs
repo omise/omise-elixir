@@ -7,13 +7,15 @@ defmodule Omise.TokenTest do
   test "create a token" do
     with_mock_request "tokens-post", fn ->
       {:ok, token} = Omise.Token.create(
-        name: "Halsey",
-        city: "Bangkok",
-        postal_code: "10320",
-        number: 4242424242424242,
-        security_code: 123,
-        expiration_month: 10,
-        expiration_year: 2019
+        card: [
+          name: "Halsey",
+          city: "Bangkok",
+          postal_code: "10320",
+          number: 4242424242424242,
+          security_code: 123,
+          expiration_month: 10,
+          expiration_year: 2019
+        ]
       )
 
       assert %Omise.Token{} = token

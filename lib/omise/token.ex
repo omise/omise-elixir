@@ -53,13 +53,15 @@ defmodule Omise.Token do
   ## Examples
 
       params = [
-        name: "John Doe",
-        city: "Bangkok",
-        postal_code: 10320,
-        number: 4242424242424242,
-        security_code: 123,
-        expiration_month: 10,
-        expiration_year: 2019
+        card: [
+          name: "John Doe",
+          city: "Bangkok",
+          postal_code: 10320,
+          number: 4242424242424242,
+          security_code: 123,
+          expiration_month: 10,
+          expiration_year: 2019
+        ]
       ]
 
       Omise.Token.create(params)
