@@ -11,6 +11,7 @@ defmodule Omise.AccountTest do
       assert account.id
       assert account.location
       assert account.email
+      assert account.currency
       assert account.created
     end
   end

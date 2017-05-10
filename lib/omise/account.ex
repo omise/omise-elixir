@@ -12,6 +12,7 @@ defmodule Omise.Account do
     id:       nil,
     location: nil,
     email:    nil,
+    currency: nil,
     created:  nil
   ]
 
@@ -20,6 +21,7 @@ defmodule Omise.Account do
     id:       String.t,
     location: String.t,
     email:    String.t,
+    currency: String.t,
     created:  String.t
   }
 
