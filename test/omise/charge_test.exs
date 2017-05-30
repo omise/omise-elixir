@@ -180,4 +180,24 @@ defmodule Omise.ChargeTest do
       assert refund.created
     end
   end
+
+  test "list all schedules" do
+    with_mock_request "charges/schedules-get", fn ->
+      {:ok, list} = Omise.Charge.list_schedules
+
+      assert %Omise.List{data: schedules} = list
+      assert list.object == "list"
+      assert list.from
+      assert list.to
+      assert list.offset
+      assert list.limit
+      assert list.total
+      assert is_list(list.data)
+
+      Enum.each schedules, fn(schedule) ->
+        assert %Omise.Schedule{} = schedule
+        assert schedule.object == "schedule"
+      end
+    end
+  end
 end
