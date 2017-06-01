@@ -21,6 +21,16 @@ defmodule Omise.UtilsTest do
       },
 
       %{
+        input:  [id: 1, name: "elixir", codes: [1, 2, 3]],
+        output: "{\"name\":\"elixir\",\"id\":1,\"codes\":[1,2,3]}"
+      },
+
+      %{
+        input:  [id: 1, name: "elixir", codes: []],
+        output: "{\"name\":\"elixir\",\"id\":1,\"codes\":[]}"
+      },
+
+      %{
         input:  [id: 1, bank_account: [brand: "bbl", number: "9999999999"]],
         output: "{\"id\":1,\"bank_account\":{\"number\":\"9999999999\",\"brand\":\"bbl\"}}"
       }
