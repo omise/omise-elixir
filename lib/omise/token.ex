@@ -2,7 +2,7 @@ defmodule Omise.Token do
   @moduledoc ~S"""
   Provides Token API interfaces.
 
-  https://www.omise.co/tokens-api
+  <https://www.omise.co/tokens-api>
 
   ***NOTE***:
   Full Credit Card data should never go through your server.

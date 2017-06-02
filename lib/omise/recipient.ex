@@ -2,7 +2,7 @@ defmodule Omise.Recipient do
   @moduledoc ~S"""
   Provides Recipient API interfaces.
 
-  https://www.omise.co/recipients-api
+  <https://www.omise.co/recipients-api>
   """
 
   import Omise.HTTP
@@ -177,7 +177,7 @@ defmodule Omise.Recipient do
 
   ## Query Parameters:
 
-      https://www.omise.co/search-query-and-filters
+      <https://www.omise.co/search-query-and-filters>
 
   ## Examples
 

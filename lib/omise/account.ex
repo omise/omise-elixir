@@ -2,7 +2,7 @@ defmodule Omise.Account do
   @moduledoc ~S"""
   Provides Account API interfaces.
 
-  https://www.omise.co/account-api
+  <https://www.omise.co/account-api>
   """
 
   import Omise.HTTP

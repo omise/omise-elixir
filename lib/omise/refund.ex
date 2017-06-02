@@ -2,7 +2,7 @@ defmodule Omise.Refund do
   @moduledoc ~S"""
   Provides Refunds API interfaces.
 
-  https://www.omise.co/refunds-api
+  <https://www.omise.co/refunds-api>
   """
 
   import Omise.HTTP

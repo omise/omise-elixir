@@ -2,7 +2,7 @@ defmodule Omise.Search do
   @moduledoc ~S"""
   Provides Search API interfaces.
 
-  https://www.omise.co/search-api
+  <https://www.omise.co/search-api>
   """
 
   import Omise.HTTP

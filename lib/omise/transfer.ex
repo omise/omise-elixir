@@ -2,7 +2,7 @@ defmodule Omise.Transfer do
   @moduledoc ~S"""
   Provides Transfers API interfaces.
 
-  https://www.omise.co/transfers-api
+  <https://www.omise.co/transfers-api>
   """
 
   import Omise.HTTP

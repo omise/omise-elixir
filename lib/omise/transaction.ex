@@ -2,7 +2,7 @@ defmodule Omise.Transaction do
   @moduledoc ~S"""
   Provides Transaction API interfaces.
 
-  https://www.omise.co/transactions-api
+  <https://www.omise.co/transactions-api>
   """
 
   import Omise.HTTP

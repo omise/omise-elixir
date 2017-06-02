@@ -2,7 +2,7 @@ defmodule Omise.List do
   @moduledoc """
   Omise List Struct.
 
-  https://www.omise.co/api-pagination
+  <https://www.omise.co/api-pagination>
   """
 
   defstruct [

@@ -2,7 +2,7 @@ defmodule Omise.Document do
   @moduledoc ~S"""
   Provides Document API interfaces.
 
-  https://www.omise.co/documents-api
+  <https://www.omise.co/documents-api>
   """
 
   import Omise.HTTP

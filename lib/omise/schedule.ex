@@ -2,7 +2,7 @@ defmodule Omise.Schedule do
   @moduledoc ~S"""
   Provides Schedule API interfaces.
 
-  https://www.omise.co/schedules-api
+  <https://www.omise.co/schedules-api>
   """
 
   import Omise.HTTP

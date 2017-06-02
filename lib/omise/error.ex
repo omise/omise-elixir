@@ -2,7 +2,7 @@ defmodule Omise.Error do
   @moduledoc ~S"""
   Omise Error Struct.
 
-  https://www.omise.co/api-errors
+  <https://www.omise.co/api-errors>
   """
 
   defstruct [

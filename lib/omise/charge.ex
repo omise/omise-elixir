@@ -2,7 +2,7 @@ defmodule Omise.Charge do
   @moduledoc ~S"""
   Provides Charge API interfaces.
 
-  https://www.omise.co/charges-api
+  <https://www.omise.co/charges-api>
   """
 
   import Omise.HTTP
@@ -234,7 +234,7 @@ defmodule Omise.Charge do
 
   ## Query Parameters:
 
-      https://www.omise.co/search-query-and-filters
+      <https://www.omise.co/search-query-and-filters>
 
   ## Examples
 
