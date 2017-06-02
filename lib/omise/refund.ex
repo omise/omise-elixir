@@ -46,56 +46,12 @@ defmodule Omise.Refund do
 
   ## Examples
 
-      # List all refunds that belong to current account.
-      Omise.Refund.list("account")
+      Omise.Refund.list
 
-      # List all refunds that belong to a particular charge.
-      Omise.Refund.list("chrg_test_52oo08bwpgnwb95rye8")
   """
-  @spec list(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(refunds_owner, params \\ [], opts \\ [])
-  def list("account", params, opts) do
+  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list(params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
     get(@endpoint, params, opts)
-  end
-  def list(charge_id, params, opts) do
-    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
-    get("charges/#{charge_id}/#{@endpoint}", params, opts)
-  end
-
-  @doc ~S"""
-  Retrieve a refund.
-
-  Returns `{:ok, refund}` if the request is successful, `{:error, error}` otherwise.
-
-  ## Examples
-
-      Omise.Refund.retrieve("chrg_test_520jim7x8u6t4si58va", "rfnd_test_4zgf1d7jcw5kr123puq")
-
-  """
-  @spec retrieve(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(charge_id, id, opts \\ []) do
-    opts = Keyword.merge(opts, as: %__MODULE__{})
-    get("charges/#{charge_id}/#{@endpoint}/#{id}", [], opts)
-  end
-
-  @doc ~S"""
-  Create a refund.
-
-  Returns `{:ok, refund}` if the request is successful, `{:error, error}` otherwise.
-
-  ## Request Parameters:
-    * `amount` - The amount in the smallest subunits of the currency used.
-      So for thb (Thai Baht) you'll need to pass the amount in satangs.
-
-  ## Examples
-
-      Omise.Refund.create("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
-
-  """
-  @spec create(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def create(charge_id, params, opts \\ []) do
-    opts = Keyword.merge(opts, as: %__MODULE__{})
-    post("charges/#{charge_id}/#{@endpoint}", params, opts)
   end
 end

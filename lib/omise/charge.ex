@@ -247,4 +247,62 @@ defmodule Omise.Charge do
   def search(params \\ [], opts \\ []) do
     Omise.Search.execute("charge", params, opts)
   end
+
+  @doc ~S"""
+  Create a refund.
+
+  Returns `{:ok, refund}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Request Parameters:
+    * `amount` - The amount in the smallest subunits of the currency used.
+      So for thb (Thai Baht) you'll need to pass the amount in satangs.
+
+  ## Examples
+
+      Omise.Charge.refund("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
+
+  """
+  @spec refund(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def refund(id, params, opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.Refund{})
+    post("#{@endpoint}/#{id}/refunds", params, opts)
+  end
+
+  @doc ~S"""
+  List all refunds.
+
+  Returns `{:ok, refunds}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+    * `offset` - (optional, default: 0) The offset of the first record returned.
+    * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
+    * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
+    * `to` - (optional, default: current UTC Datetime, format: ISO 8601) The UTC date and time limiting the end of returned records.
+
+  ## Examples
+
+      Omise.Charge.list_refunds("chrg_test_52oo08bwpgnwb95rye8")
+
+  """
+  @spec list_refunds(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list_refunds(id, params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Refund{}]})
+    get("#{@endpoint}/#{id}/refunds", params, opts)
+  end
+
+  @doc ~S"""
+  Retrieve a refund.
+
+  Returns `{:ok, refund}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Examples
+
+      Omise.Charge.retrieve_refund("chrg_test_520jim7x8u6t4si58va", "rfnd_test_4zgf1d7jcw5kr123puq")
+
+  """
+  @spec retrieve_refund(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  def retrieve_refund(id, refund_id, opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.Refund{})
+    get("#{@endpoint}/#{id}/refunds/#{refund_id}", [], opts)
+  end
 end
