@@ -252,4 +252,26 @@ defmodule Omise.Customer do
     opts = Keyword.merge(opts, as: %Omise.Card{})
     delete("#{@endpoint}/#{id}/cards/#{card_id}", opts)
   end
+
+  @doc ~S"""
+  List all charge schedules for a given customer.
+
+  Returns `{:ok, schedules}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+    * `offset` - (optional, default: 0) The offset of the first record returned.
+    * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
+    * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
+    * `to` - (optional, default: current UTC Datetime, format: ISO 8601) The UTC date and time limiting the end of returned records.
+
+  ## Examples
+
+      Omise.Customer.list_schedules("cust_test_520j6g67py52xa7qbu2")
+
+  """
+  @spec list_schedules(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list_schedules(id, params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Schedule{}]})
+    get("#{@endpoint}/#{id}/schedules", params, opts)
+  end
 end

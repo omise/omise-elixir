@@ -127,7 +127,7 @@ defmodule Omise.CustomerTest do
   end
 
   test "list all cards" do
-    with_mock_request "customers/#{@customer_id}/cards", fn ->
+    with_mock_request "customers/#{@customer_id}/cards-get", fn ->
       {:ok, list} = Omise.Customer.list_cards(@customer_id)
 
       assert %Omise.List{data: cards} = list
@@ -202,6 +202,26 @@ defmodule Omise.CustomerTest do
       assert %Omise.Card{} = card
       assert card.id == @card_id
       assert card.deleted
+    end
+  end
+
+  test "list all schedules" do
+    with_mock_request "customers/#{@customer_id}/schedules-get", fn ->
+      {:ok, list} = Omise.Customer.list_schedules(@customer_id)
+
+      assert %Omise.List{data: schedules} = list
+      assert list.object == "list"
+      assert list.from
+      assert list.to
+      assert list.offset
+      assert list.limit
+      assert list.total
+      assert is_list(list.data)
+
+      Enum.each schedules, fn(schedule) ->
+        assert %Omise.Schedule{} = schedule
+        assert schedule.object == "schedule"
+      end
     end
   end
 end
