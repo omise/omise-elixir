@@ -10,7 +10,7 @@
 
   ```elixir
   def deps do
-    [{:omise, "~> 0.4"}]
+    [{:omise, "~> 0.5"}]
   end
   ```
 
@@ -42,23 +42,23 @@ To configure the HTTP options, you could optionally add `:http_options` key to t
 
 ```elixir
 config :omise,
-  http_options: [timeout: 20_000, recv_timeout: 20_000]
+  http_options: [timeout: 60_000, recv_timeout: 60_000]
 ```
 
 ## Example
 
 ```elixir
-response = Omise.Charge.create(
-  amount: 1000_00,
-  currency: "thb",
-  card: "tokn_51w6fvilnsxalda4cih"
-)
+charge_params = [amount: 100_00, currency: "thb", card: "tokn_xxx"]
 
-case response do
-  {:ok, charge} ->
-    # handle success
-  {:error, error} ->
-    # handle failure
+with {:ok, %Omise.Charge{paid: true}} <- Omise.Charge.create(charge_params) do
+  # handle success
+  IO.puts :+1:
+else
+  {:ok, %Omise.Charge{failure_code: failure_code}} ->
+    # handler failure
+
+  {:error, %Omise.Error{code: code, message: message}} ->
+    # handler error
 end
 ```
 
