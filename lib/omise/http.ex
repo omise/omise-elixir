@@ -6,6 +6,7 @@ defmodule Omise.HTTP do
   @vault_endpoints ~w(tokens)
   @base_vault_uri  "https://vault.omise.co/"
   @base_api_uri    "https://api.omise.co/"
+  @timeout         :timer.seconds(30)
 
   @spec get(String.t, Keyword.t, Keyword.t) :: {:ok, struct} | {:error, struct}
   def get(endpoint, query_params \\ [], opts \\ []) do
@@ -90,7 +91,7 @@ defmodule Omise.HTTP do
 
   defp http_options do
     Keyword.merge(
-      [timeout: 10_000, recv_timeout: 10_000],
+      [timeout: @timeout, recv_timeout: @timeout],
       Application.get_env(:omise, :http_options, [])
     )
   end
