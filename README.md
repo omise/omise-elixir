@@ -52,13 +52,13 @@ charge_params = [amount: 100_00, currency: "thb", card: "tokn_xxx"]
 
 with {:ok, %Omise.Charge{paid: true}} <- Omise.Charge.create(charge_params) do
   # handle success
-  IO.puts :+1:
+  IO.puts "Thank you :)"
 else
   {:ok, %Omise.Charge{failure_code: failure_code}} ->
-    # handler failure
+    # handle failure
 
   {:error, %Omise.Error{code: code, message: message}} ->
-    # handler error
+    # handle error
 end
 ```
 
