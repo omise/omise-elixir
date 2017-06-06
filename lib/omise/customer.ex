@@ -2,7 +2,7 @@ defmodule Omise.Customer do
   @moduledoc ~S"""
   Provides Customer API interfaces.
 
-  https://www.omise.co/customers-api
+  <https://www.omise.co/customers-api>
   """
 
   import Omise.HTTP
@@ -160,7 +160,7 @@ defmodule Omise.Customer do
 
   ## Query Parameters:
 
-      https://www.omise.co/search-query-and-filters
+      <https://www.omise.co/search-query-and-filters>
 
   ## Examples
 

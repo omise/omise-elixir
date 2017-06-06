@@ -2,7 +2,7 @@ defmodule Omise.Dispute do
   @moduledoc ~S"""
   Provides Dispute API interfaces.
 
-  https://www.omise.co/disputes-api
+  <https://www.omise.co/disputes-api>
   """
 
   use Omise.Document, resource: "disputes"
@@ -111,7 +111,7 @@ defmodule Omise.Dispute do
 
   ## Query Parameters:
 
-      https://www.omise.co/search-query-and-filters
+      <https://www.omise.co/search-query-and-filters>
 
   ## Examples
 

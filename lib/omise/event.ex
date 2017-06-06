@@ -2,7 +2,7 @@ defmodule Omise.Event do
   @moduledoc ~S"""
   Provides Event API interfaces.
 
-  https://www.omise.co/events-api
+  <https://www.omise.co/events-api>
   """
 
   import Omise.HTTP

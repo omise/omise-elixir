@@ -2,7 +2,7 @@ defmodule Omise.Card do
   @moduledoc ~S"""
   Provides Card API interfaces.
 
-  https://www.omise.co/cards-api
+  <https://www.omise.co/cards-api>
   """
 
   defstruct [

@@ -2,7 +2,7 @@ defmodule Omise.Occurrence do
   @moduledoc ~S"""
   Provides Occurrence API interfaces.
 
-  https://www.omise.co/occurrences-api
+  <https://www.omise.co/occurrences-api>
   """
 
   import Omise.HTTP

@@ -2,7 +2,7 @@ defmodule Omise.Balance do
   @moduledoc ~S"""
   Provides Balance API interfaces.
 
-  https://www.omise.co/balance-api
+  <https://www.omise.co/balance-api>
   """
 
   import Omise.HTTP

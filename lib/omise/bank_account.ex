@@ -2,7 +2,7 @@ defmodule Omise.BankAccount do
   @moduledoc ~S"""
   Omise Bank Account Struct.
 
-  https://www.omise.co/bank-account-api
+  <https://www.omise.co/bank-account-api>
   """
 
   defstruct [
