@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1 (2017-06-07)
+
+- Fix a bug when making an HTTP request to Search API
+
 ## 0.5.0 (2017-06-06)
 
 - Add support for [Charge Schedule API](https://www.omise.co/charge-schedules-api).
