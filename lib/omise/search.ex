@@ -59,6 +59,7 @@ defmodule Omise.Search do
   """
   @spec execute(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def execute(scope, params, opts \\ []) do
+    params = Omise.Utils.normalize_search_params(params) 
     module = Module.concat(Omise, String.capitalize(scope))
     opts   = Keyword.merge(opts, as: %Omise.Search{data: [struct(module)]})
 
