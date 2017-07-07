@@ -190,4 +190,26 @@ defmodule Omise.Recipient do
   def search(params \\ [], opts \\ []) do
     Omise.Search.execute("recipient", params, opts)
   end
+
+  @doc ~S"""
+  List all transfer schedules for a given recipient.
+
+  Returns `{:ok, schedules}` if the request is successful, `{:error, error}` otherwise.
+
+  ## Query Parameters:
+    * `offset` - (optional, default: 0) The offset of the first record returned.
+    * `limit` - (optional, default: 20, maximum: 100) The maximum amount of records returned.
+    * `from` - (optional, default: 1970-01-01T00:00:00Z, format: ISO 8601) The UTC date and time limiting the beginning of returned records.
+    * `to` - (optional, default: current UTC Datetime, format: ISO 8601) The UTC date and time limiting the end of returned records.
+
+  ## Examples
+
+      Omise.Recipient.list_schedules("recp_test_556jkf7u174ptxuytac")
+
+  """
+  @spec list_schedules(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  def list_schedules(id, params \\ [], opts \\ []) do
+    opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Schedule{}]})
+    get("#{@endpoint}/#{id}/schedules", params, opts)
+  end
 end
