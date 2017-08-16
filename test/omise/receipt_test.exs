@@ -4,6 +4,25 @@ defmodule Omise.ReceiptTest do
 
   @receipt_id "rcpt_test_12345"
 
+  test "list all receipts" do
+    with_mock_request "receipts-get", fn ->
+      {:ok, list} = Omise.Receipt.list
+
+      assert %Omise.List{data: receipts} = list
+      assert list.from
+      assert list.to
+      assert list.offset
+      assert list.limit
+      assert list.total
+      assert is_list(list.data)
+
+      Enum.each receipts, fn(receipt) ->
+        assert %Omise.Receipt{} = receipt
+        assert receipt.object == "receipt"
+      end
+    end
+  end
+
   test "retrieve a receipt" do
     with_mock_request "receipts/#{@receipt_id}-get", fn ->
       {:ok, receipt} = Omise.Receipt.retrieve(@receipt_id)
