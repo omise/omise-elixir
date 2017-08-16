@@ -2,7 +2,7 @@ defmodule Omise.Receipt do
   @moduledoc ~S"""
   Provides Receipt API interfaces.
 
-  https:://www.omise.co/receipt-api
+  <https://www.omise.co/receipt-api>
   """
 
   import Omise.HTTP
@@ -13,7 +13,7 @@ defmodule Omise.Receipt do
     number:                  nil,
     location:                nil,
     date:                    nil,
-    customer_name:            nil,
+    customer_name:           nil,
     customer_address:        nil,
     customer_tax_id:         nil,
     customer_email:          nil,
@@ -38,7 +38,7 @@ defmodule Omise.Receipt do
     number:                  String.t,
     location:                String.t,
     date:                    String.t,
-    customer_name:            String.t,
+    customer_name:           String.t,
     customer_address:        String.t,
     customer_tax_id:         String.t,
     customer_email:          String.t,
