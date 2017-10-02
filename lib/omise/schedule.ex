@@ -117,7 +117,8 @@ defmodule Omise.Schedule do
     * `start_date` - (optional) When the schedule should start, in ISO 8601 format (YYYY-MM-DD). Defaults to today.
     * `end_date` - When the schedule should end, in ISO 8601 format (YYYY-MM-DD).
     * `capture` - (optional) Whether or not you want the charge to be captured right away, when not specified it is set to true.
-    * `charge` - A charge hash.
+    * `charge` - A charge map. (for charge schedule)
+    * `transfer` - A transfer map. (for transfer schedule)
 
   ## Examples
 
@@ -182,6 +183,32 @@ defmodule Omise.Schedule do
         ]
       )
 
+      # Transfer a fixed amount every 2 days
+      Omise.Schedule.create(
+        every: 2,
+        period: "day",
+        start_date: "2017-07-8",
+        end_date: "2017-07-31",
+        transfer: [
+          recipient: "recp_test_55j2an6c8fd07xbccd3",
+          amount: 100_00_00,
+        ]
+      )
+
+      # Transfer a percentage of the balance every Monday and Friday
+      Omise.Schedule.create(
+        every: 1,
+        period: "week",
+        on: [
+          weekdays: ["monday", "friday"],
+        ],
+        start_date: "2017-07-8",
+        end_date: "2017-07-31",
+        transfer: [
+          recipient: "recp_test_556jkf7u174ptxuytac",
+          percentage_of_balance: 75,
+        ]
+      )
   """
   @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
   def create(params, opts \\ []) do
