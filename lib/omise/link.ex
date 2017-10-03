@@ -1,6 +1,8 @@
 defmodule Omise.Link do
   @moduledoc ~S"""
   Provides Link API interfaces.
+
+  <https://www.omise.co/links-api>
   """
 
   import Omise.HTTP
