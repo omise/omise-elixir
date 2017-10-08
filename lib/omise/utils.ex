@@ -1,11 +1,17 @@
 defmodule Omise.Utils do
   @moduledoc false
 
-  @spec encode_to_json(Keyword.t) :: iodata | no_return
   def encode_to_json(body_params) when is_list(body_params) do
     body_params
     |> normalize_params()
     |> Poison.encode!
+  end
+
+  def normalize_search_params(params) do
+    filters_params = params[:filters] || []
+    params
+    |> Keyword.take([:query])
+    |> Keyword.merge(normalize_filters_params(filters_params))
   end
 
   defp normalize_params(params) when is_list(params) do
@@ -18,13 +24,6 @@ defmodule Omise.Utils do
     do: {key, Enum.into(normalize_params(value), %{})}
   defp transform_value(kv),
     do: kv
-
-  def normalize_search_params(params) do
-    filters_params = params[:filters] || []
-    params
-    |> Keyword.take([:query])
-    |> Keyword.merge(normalize_filters_params(filters_params))
-  end
 
   defp normalize_filters_params(filters_params) do
     Enum.flat_map filters_params, fn({key, value}) ->

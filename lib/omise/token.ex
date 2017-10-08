@@ -12,29 +12,7 @@ defmodule Omise.Token do
   Sending card data from server requires a valid PCI-DSS certification. You can learn more about this in [Security Best Practices](https://www.omise.co/security-best-practices)
   """
 
-  import Omise.HTTP
-
-  defstruct [
-    object:   "token",
-    id:       nil,
-    livemode: nil,
-    location: nil,
-    used:     nil,
-    card:     %Omise.Card{},
-    created:  nil
-  ]
-
-  @type t :: %__MODULE__{
-    object:   String.t,
-    id:       String.t,
-    livemode: boolean,
-    location: String.t,
-    used:     boolean,
-    card:     Omise.Card.t,
-    created:  String.t
-  }
-
-  @endpoint "tokens"
+  use Omise.HTTPClient, endpoint: "tokens", key_type: :public_key
 
   @doc ~S"""
   Create a token.
@@ -67,10 +45,9 @@ defmodule Omise.Token do
       Omise.Token.create(params)
 
   """
-  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def create(params, opts \\ []) do
-    opts = Keyword.merge(opts, as: %__MODULE__{})
-    post(@endpoint, params, opts)
+  @spec create(Keyword.t, Keyword.t) :: {:ok, struct} | {:error, Omise.Error.t}
+  def create(params, options \\ []) do
+    post(@endpoint, params, options)
   end
 
   @doc ~S"""
@@ -82,9 +59,8 @@ defmodule Omise.Token do
 
       Omise.Token.retrieve("tokn_test_4xs9408a642a1htto8z")
   """
-  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(id, opts \\ []) do
-    opts = Keyword.merge(opts, as: %__MODULE__{})
-    get("#{@endpoint}/#{id}", [], opts)
+  @spec retrieve(String.t, Keyword.t) :: {:ok, struct} | {:error, Omise.Error.t}
+  def retrieve(id, options \\ []) do
+    get("#{@endpoint}/#{id}", [], options)
   end
 end

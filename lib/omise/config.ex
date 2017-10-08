@@ -8,6 +8,7 @@ defmodule Omise.Config do
     base_vault_uri
     base_api_uri
     http_options
+    decode
   )a
 
   @spec configure(Keyword.t) :: list

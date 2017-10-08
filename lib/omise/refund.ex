@@ -5,33 +5,7 @@ defmodule Omise.Refund do
   <https://www.omise.co/refunds-api>
   """
 
-  import Omise.HTTP
-
-  defstruct [
-    object:      "refund",
-    id:          nil,
-    location:    nil,
-    amount:      nil,
-    currency:    nil,
-    voided:      nil,
-    charge:      nil,
-    transaction: nil,
-    created:     nil
-  ]
-
-  @type t :: %__MODULE__{
-    object:      String.t,
-    id:          String.t,
-    location:    String.t,
-    amount:      integer,
-    currency:    String.t,
-    voided:      boolean,
-    charge:      String.t,
-    transaction: String.t,
-    created:     String.t
-  }
-
-  @endpoint "refunds"
+  use Omise.HTTPClient, endpoint: "refunds"
 
   @doc ~S"""
   List all refunds.
@@ -49,9 +23,8 @@ defmodule Omise.Refund do
       Omise.Refund.list
 
   """
-  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
-  def list(params \\ [], opts \\ []) do
-    opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
-    get(@endpoint, params, opts)
+  @spec list(Keyword.t, Keyword.t) :: {:ok, struct} | {:error, Omise.Error.t}
+  def list(params \\ [], options \\ []) do
+    get(@endpoint, params, options)
   end
 end

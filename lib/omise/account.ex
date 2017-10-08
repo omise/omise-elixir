@@ -5,27 +5,7 @@ defmodule Omise.Account do
   <https://www.omise.co/account-api>
   """
 
-  import Omise.HTTP
-
-  defstruct [
-    object:   "account",
-    id:       nil,
-    location: nil,
-    email:    nil,
-    currency: nil,
-    created:  nil
-  ]
-
-  @type t :: %__MODULE__{
-    object:   String.t,
-    id:       String.t,
-    location: String.t,
-    email:    String.t,
-    currency: String.t,
-    created:  String.t
-  }
-
-  @endpoint "account"
+  use Omise.HTTPClient, endpoint: "account"
 
   @doc ~S"""
   Retrieve the account.
@@ -39,9 +19,8 @@ defmodule Omise.Account do
       Omise.Account.retrieve(key: "skey_56ia27lqtvg32u7iww8")
 
   """
-  @spec retrieve(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
-  def retrieve(opts \\ []) do
-    opts = Keyword.merge(opts, as: %__MODULE__{})
-    get(@endpoint, [], opts)
+  @spec retrieve(Keyword.t) :: {:ok, struct} | {:error, Omise.Error.t}
+  def retrieve(options \\ []) do
+    get(@endpoint, [], options)
   end
 end

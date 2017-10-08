@@ -1,9 +1,5 @@
-defmodule Omise.List do
-  @moduledoc """
-  Omise List Struct.
-
-  <https://www.omise.co/api-pagination>
-  """
+defmodule Omise.V20140727.List do
+  @moduledoc false
 
   defstruct [
     object:   "list",
@@ -28,4 +24,12 @@ defmodule Omise.List do
     location: String.t,
     data:     list
   }
+
+  defimpl Poison.Decoder do
+    def decode(%{data: data} = list, options) do
+      decoded_data = Omise.Decoder.decode(data, options)
+
+      %{list | data: decoded_data}
+    end
+  end
 end
