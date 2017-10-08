@@ -34,9 +34,9 @@ defmodule Omise.HTTPClient do
   end
 
   def request(method, key_type, endpoint, req_params \\ [], options \\ []) do
-    key         = Keyword.get(options, :key, Application.get_env(:omise, key_type)) || raise "Expects #{key_type} to be set"
+    key         = Keyword.get(options, :key,         Application.get_env(:omise, key_type)) || raise "Expects #{key_type} to be set"
     api_version = Keyword.get(options, :api_version, Application.get_env(:omise, :api_version))
-    decode      = !!Keyword.get(options, :decode, Application.get_env(:omise, :decode, true))
+    decode      = Keyword.get(options, :decode,      Application.get_env(:omise, :decode, true))
 
     query_params = Keyword.get(req_params, :query_params, [])
     body_params  = Keyword.get(req_params, :body_params, [])
@@ -68,6 +68,7 @@ defmodule Omise.HTTPClient do
 
   defp handle_response(%HTTPoison.Response{body: body, headers: headers}, %{decode: decode}) do
     parsed_body = Poison.Parser.parse!(body)
+    decode      = Omise.Utils.to_boolean(decode)
 
     cond do
       parsed_body["object"] == "error" && not decode ->

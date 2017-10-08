@@ -14,6 +14,10 @@ defmodule Omise.Utils do
     |> Keyword.merge(normalize_filters_params(filters_params))
   end
 
+  def to_boolean(nil),   do: false
+  def to_boolean(false), do: false
+  def to_boolean(_),     do: true
+
   defp normalize_params(params) when is_list(params) do
     params
     |> Enum.map(&transform_value/1)
