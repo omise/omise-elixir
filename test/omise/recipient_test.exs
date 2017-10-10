@@ -1,126 +1,68 @@
 defmodule Omise.RecipientTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  @recipient_id "recp_test_50894vc13y8z4v51iuc"
+  it "can list all recipients", via: "recipients-get" do
+    {:ok, list} = Omise.Recipient.list
 
-  test "list all recipients" do
-    with_mock_request "recipients-get", fn ->
-      {:ok, list} = Omise.Recipient.list
-
-      assert %Omise.List{data: recipients} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each recipients, fn(recipient) ->
-        assert %Omise.Recipient{} = recipient
-        assert recipient.object == "recipient"
-      end
-    end
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "recipient"))
   end
 
-  test "retrieve a recipient" do
-    with_mock_request "recipients/#{@recipient_id}-get", fn ->
-      {:ok, recipient} = Omise.Recipient.retrieve(@recipient_id)
+  it "can retrieve the recipient", via: "recipients/recp_test_50894vc13y8z4v51iuc-get" do
+    {:ok, recipient} = Omise.Recipient.retrieve("recp_test_50894vc13y8z4v51iuc")
 
-      assert %Omise.Recipient{} = recipient
-      assert recipient.object == "recipient"
-      assert recipient.id
-      assert is_boolean(recipient.livemode)
-      assert recipient.location
-      assert is_boolean(recipient.verified)
-      assert is_boolean(recipient.active)
-      assert recipient.name
-      assert recipient.email
-      assert recipient.description
-      assert recipient.type
-      assert recipient.tax_id
-      assert recipient.bank_account
-      refute recipient.failure_code
-      assert recipient.created
-      refute recipient.deleted
-
-      bank_account = recipient.bank_account
-      assert %Omise.BankAccount{} = bank_account
-      assert bank_account.object == "bank_account"
-      assert bank_account.brand
-      assert bank_account.last_digits
-      assert bank_account.name
-      assert bank_account.created
-    end
+    assert recipient.object == "recipient"
+    assert recipient.id == "recp_test_50894vc13y8z4v51iuc"
+    assert recipient.bank_account.object == "bank_account"
   end
 
-  test "create a recipient" do
-    with_mock_request "recipients-post", fn ->
-      {:ok, recipient} = Omise.Recipient.create(
-        name: "john.doe@example.com",
-        email: "john.doe@example.com",
-        description: "Default recipient",
-        type: "individual",
-        bank_account: [
-          brand: "test",
-          number: "123456789",
-          name: "JOHN DOE"
-        ]
-      )
+  it "can create a recipient", via: "recipients-post" do
+    {:ok, recipient} = Omise.Recipient.create(
+      name:        "John Doe",
+      email:       "john.doe@example.com",
+      description: "Default recipient",
+      type:        "individual",
+      bank_account: [
+        brand:  "test",
+        number: "123456789",
+        name:   "JOHN DOE"
+      ]
+    )
 
-      assert %Omise.Recipient{} = recipient
-      assert recipient.object == "recipient"
-      assert recipient.name == "john.doe@example.com"
-
-      bank_account = recipient.bank_account
-      assert %Omise.BankAccount{} = bank_account
-      assert bank_account.object == "bank_account"
-      assert bank_account.brand == "test"
-      assert bank_account.last_digits == "6789"
-      assert bank_account.name == "JOHN DOE"
-      assert bank_account.created
-    end
+    assert recipient.object == "recipient"
+    assert recipient.bank_account.object == "bank_account"
   end
 
-  test "update a recipient" do
-    with_mock_request "recipients/#{@recipient_id}-patch", fn ->
-      description = "New description"
-      {:ok, recipient} = Omise.Recipient.update(@recipient_id, description: description)
+  it "can update the recipient", via: "recipients/recp_test_50894vc13y8z4v51iuc-patch" do
+    {:ok, recipient} = Omise.Recipient.update("recp_test_50894vc13y8z4v51iuc", description: "New descripition")
 
-      assert %Omise.Recipient{} = recipient
-      assert recipient.object == "recipient"
-      assert recipient.description == description
-      refute recipient.deleted
-    end
+    assert recipient.object == "recipient"
+    assert recipient.description == "New description"
   end
 
-  test "destroy a recipient" do
-    with_mock_request "recipients/#{@recipient_id}-delete", fn ->
-      {:ok, recipient} = Omise.Recipient.destroy(@recipient_id)
+  it "can destroy the recipient", via: "recipients/recp_test_50894vc13y8z4v51iuc-delete" do
+    {:ok, recipient} = Omise.Recipient.destroy("recp_test_50894vc13y8z4v51iuc")
 
-      assert %Omise.Recipient{} = recipient
-      assert recipient.object == "recipient"
-      assert recipient.deleted
-    end
+    assert recipient.object == "recipient"
+    assert recipient.deleted
   end
 
-  test "search recipients" do
-    with_mock_request "search-recipient-get", fn ->
-      {:ok, search_data} = Omise.Recipient.search(filters: [kind: "individual"])
+  it "can search for recipients", via: "search-recipient-get" do
+    {:ok, search} = Omise.Recipient.search(filters: [kind: "individual"])
 
-      assert %Omise.Search{data: data} = search_data
-      assert search_data.object == "search"
-      assert search_data.scope == "recipient"
-      assert search_data.query == ""
-      assert search_data.filters == %{"kind" => "individual"}
-      assert search_data.page == 1
-      assert search_data.total_pages == 1
-      assert search_data.total == 1
-      assert is_list(data)
-      Enum.each data, fn(recipient) ->
-        assert recipient.type == "individual"
-      end
-    end
+    assert search.object == "search"
+    assert search.scope == "recipient"
+    assert search.query == ""
+    assert search.filters == %{"kind" => "individual"}
+    assert is_list(search.data)
+  end
+
+  it "can list all schedules", via: "recipients/recp_test_50894vc13y8z4v51iuc/schedules-get" do
+    {:ok, list} = Omise.Recipient.list_schedules("recp_test_50894vc13y8z4v51iuc")
+
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "schedule"))
   end
 end

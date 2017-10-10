@@ -1,41 +1,18 @@
 defmodule Omise.EventTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  @event_id "evnt_test_52cin5n9bb6lytxduh9"
+  it "can list all events", via: "events-get" do
+    {:ok, list} = Omise.Event.list
 
-  test "list all events" do
-    with_mock_request "events-get", fn ->
-      {:ok, list} = Omise.Event.list
-
-      assert %Omise.List{data: events} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each events, fn(event) ->
-        assert %Omise.Event{data: data} = event
-        assert event.object == "event"
-        assert is_map(data)
-      end
-    end
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "event"))
   end
 
-  test "retrieve an event" do
-    with_mock_request "events/#{@event_id}-get", fn ->
-      {:ok, event} = Omise.Event.retrieve(@event_id)
+  it "can retrieve the event", via: "events/evnt_test_52cin5n9bb6lytxduh9-get" do
+    {:ok, event} = Omise.Event.retrieve("evnt_test_52cin5n9bb6lytxduh9")
 
-      assert %Omise.Event{} = event
-      assert event.object == "event"
-      assert event.id
-      assert is_boolean(event.livemode)
-      assert event.location
-      assert event.key
-      assert is_map(event.data)
-    end
+    assert event.object == "event"
+    assert event.id == "evnt_test_52cin5n9bb6lytxduh9"
   end
 end

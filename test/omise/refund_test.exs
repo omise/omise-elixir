@@ -1,24 +1,11 @@
 defmodule Omise.RefundTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  test "list all refunds" do
-    with_mock_request "refunds-get", fn ->
-      {:ok, list} = Omise.Refund.list
+  it "can list all refunds", via: "refunds-get" do
+    {:ok, list} = Omise.Refund.list
 
-      assert %Omise.List{data: refunds} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each refunds, fn(refund) ->
-        assert %Omise.Refund{} = refund
-        assert refund.object == "refund"
-      end
-    end
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "refund"))
   end
 end

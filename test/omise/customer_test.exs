@@ -1,227 +1,94 @@
 defmodule Omise.CustomerTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  @customer_id "cust_test_52p4kmy02q0i59akn84"
-  @card_id     "card_test_4yq6tuucl9h4erukfl0"
+  it "can list all customers", via: "customers-get" do
+    {:ok, list} = Omise.Customer.list
 
-  test "list all customers" do
-    with_mock_request "customers-get", fn ->
-      {:ok, list} = Omise.Customer.list
-
-      assert %Omise.List{data: customers} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each customers, fn(customer) ->
-        assert %Omise.Customer{} = customer
-        assert customer.object == "customer"
-      end
-    end
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "customer"))
   end
 
-  test "retrieve a customer" do
-    with_mock_request "customers/#{@customer_id}-get", fn ->
-      {:ok, customer} = Omise.Customer.retrieve(@customer_id)
+  it "can retrieve the customer", via: "customers/cust_test_52p4kmy02q0i59akn84-get" do
+    {:ok, customer} = Omise.Customer.retrieve("cust_test_52p4kmy02q0i59akn84")
 
-      assert %Omise.Customer{} = customer
-      assert customer.object == "customer"
-      assert customer.id
-      assert is_boolean(customer.livemode)
-      assert customer.location
-      assert customer.default_card
-      assert customer.email
-      assert customer.description
-      assert customer.created
-      assert customer.cards
-      refute customer.deleted
-
-      assert %Omise.List{} = customer.cards
-    end
+    assert customer.object == "customer"
+    assert customer.id == "cust_test_52p4kmy02q0i59akn84"
   end
 
-  test "create a customer" do
-    with_mock_request "customers-post", fn ->
-      email = "john.doe@example.com"
-      description = "John Doe (id: 30)"
-      {:ok, customer} = Omise.Customer.create(
-        email: email,
-        description: description,
-        card: "tokn_test_4xs9408a642a1htto8z"
-      )
+  it "can create a customer", via: "customers-post" do
+    {:ok, customer} = Omise.Customer.create(
+      email:       "john.doe@example.com",
+      description: "John Doe (id: 30)",
+      card:        "tokn_test_4xs9408a642a1htto8z"
+    )
 
-      assert %Omise.Customer{} = customer
-      assert customer.object == "customer"
-      assert customer.id
-      assert is_boolean(customer.livemode)
-      assert customer.location
-      assert customer.default_card
-      assert customer.email == email
-      assert customer.description == description
-      assert customer.created
-      assert customer.cards
-      refute customer.deleted
-
-      assert %Omise.List{} = customer.cards
-    end
+    assert customer.object == "customer"
   end
 
-  test "update a customer" do
-    with_mock_request "customers/#{@customer_id}-patch", fn ->
-      email       = "jane.doe@example.com"
-      description = "Jane Doe (id: 30)"
+  it "can update the customer", via: "customers/cust_test_52p4kmy02q0i59akn84-patch" do
+    {:ok, customer} = Omise.Customer.update("cust_test_52p4kmy02q0i59akn84", [
+      email:       "jane.doe@example.com",
+      description: "Jane Doe (id: 30)"
+    ])
 
-      {:ok, customer} = Omise.Customer.update(@customer_id, [
-        email:       email,
-        description: description,
-      ])
-
-      assert %Omise.Customer{} = customer
-      assert customer.object == "customer"
-      assert customer.id
-      assert is_boolean(customer.livemode)
-      assert customer.location
-      assert customer.default_card
-      assert customer.email == email
-      assert customer.description == description
-      assert customer.created
-      assert customer.cards
-      refute customer.deleted
-
-      assert %Omise.List{} = customer.cards
-    end
+    assert customer.object == "customer"
+    assert customer.id == "cust_test_52p4kmy02q0i59akn84"
+    assert customer.email == "jane.doe@example.com"
+    assert customer.description == "Jane Doe (id: 30)"
   end
 
-  test "destroy a customer" do
-    with_mock_request "customers/#{@customer_id}-delete", fn ->
-      {:ok, customer} = Omise.Customer.destroy(@customer_id)
+  it "can destroy the customer", via: "customers/cust_test_52p4kmy02q0i59akn84-delete" do
+    {:ok, customer} = Omise.Customer.destroy("cust_test_52p4kmy02q0i59akn84")
 
-      assert %Omise.Customer{} = customer
-      assert customer.object == "customer"
-      assert customer.deleted
-    end
+    assert customer.object == "customer"
+    assert customer.deleted
   end
 
-  test "search customers" do
-    with_mock_request "search-customer-get", fn ->
-      {:ok, search_data} = Omise.Customer.search(query: "elixir")
+  it "can search for customers", via: "search-customer-get" do
+    {:ok, search} = Omise.Customer.search(query: "elixir")
 
-      assert %Omise.Search{data: data} = search_data
-      assert search_data.object == "search"
-      assert search_data.scope == "customer"
-      assert search_data.query == "elixir"
-      assert search_data.filters == %{}
-      assert search_data.page == 1
-      assert search_data.total_pages == 1
-      assert search_data.total == 2
-      assert is_list(data)
-      Enum.each data, fn(customer) ->
-        assert Regex.match?(~r/elixir/i, customer.description)
-      end
-    end
+    assert search.object == "search"
+    assert search.scope == "customer"
+    assert search.query == "elixir"
+    assert search.filters == %{}
+    assert is_list(search.data)
   end
 
-  test "list all cards" do
-    with_mock_request "customers/#{@customer_id}/cards-get", fn ->
-      {:ok, list} = Omise.Customer.list_cards(@customer_id)
+  it "can list all cards", via: "customers/cust_test_52p4kmy02q0i59akn84/cards-get" do
+    {:ok, list} = Omise.Customer.list_cards("cust_test_52p4kmy02q0i59akn84")
 
-      assert %Omise.List{data: cards} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each cards, fn(card) ->
-        assert %Omise.Card{} = card
-        assert card.object == "card"
-      end
-    end
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "card"))
   end
 
-  test "retrieve a card" do
-    with_mock_request "customers/#{@customer_id}/cards/#{@card_id}-get", fn ->
-      {:ok, card} = Omise.Customer.retrieve_card(@customer_id, @card_id)
+  it "can retrieve the card", via: "customers/cust_test_52p4kmy02q0i59akn84/cards/card_test_4yq6tuucl9h4erukfl0-get" do
+    {:ok, card} = Omise.Customer.retrieve_card("cust_test_52p4kmy02q0i59akn84", "card_test_4yq6tuucl9h4erukfl0")
 
-      assert %Omise.Card{} = card
-      assert card.object == "card"
-      assert card.id
-      assert is_boolean(card.livemode)
-      assert card.location
-      assert card.country
-      assert card.city
-      assert card.postal_code
-      assert card.financing
-      assert card.bank
-      assert card.last_digits
-      assert card.brand
-      assert card.expiration_month
-      assert card.expiration_year
-      assert card.fingerprint
-      assert card.name
-      assert card.security_code_check
-      assert card.created
-      refute card.deleted
-    end
+    assert card.object == "card"
+    assert card.id == "card_test_4yq6tuucl9h4erukfl0"
   end
 
-  test "retrieve a non existing card" do
-    with_mock_request "customers/#{@customer_id}/cards/404-get", fn ->
-      {:error, error} = Omise.Customer.retrieve_card(@customer_id, "404")
+  it "can update the card", via: "customers/cust_test_52p4kmy02q0i59akn84/cards/card_test_4yq6tuucl9h4erukfl0-patch" do
+    {:ok, card} = Omise.Customer.update_card("cust_test_52p4kmy02q0i59akn84", "card_test_4yq6tuucl9h4erukfl0", city: "Surin")
 
-      assert %Omise.Error{} = error
-      assert error.object == "error"
-      assert error.code == "not_found"
-      assert error.location
-      assert error.message
-    end
+    assert card.object == "card"
+    assert card.city == "Surin"
   end
 
-  test "update a card"  do
-    with_mock_request "customers/#{@customer_id}/cards/#{@card_id}-patch", fn ->
-      {:ok, card} = Omise.Customer.update_card(@customer_id, @card_id, city: "Surin")
+  it "can destroy the card", via: "customers/cust_test_52p4kmy02q0i59akn84/cards/card_test_4yq6tuucl9h4erukfl0-delete" do
+    {:ok, card} = Omise.Customer.destroy_card("cust_test_52p4kmy02q0i59akn84", "card_test_4yq6tuucl9h4erukfl0")
 
-      assert %Omise.Card{} = card
-      assert card.id == @card_id
-      assert card.city == "Surin"
-      refute card.deleted
-    end
+    assert card.object == "card"
+    assert card.deleted
   end
 
-  test "destroy a card"  do
-    with_mock_request "customers/#{@customer_id}/cards/#{@card_id}-delete", fn ->
-      {:ok, card} = Omise.Customer.destroy_card(@customer_id, @card_id)
+  it "can list all schedules", via: "customers/cust_test_52p4kmy02q0i59akn84/schedules-get" do
+    {:ok, list} = Omise.Customer.list_schedules("cust_test_52p4kmy02q0i59akn84")
 
-      assert %Omise.Card{} = card
-      assert card.id == @card_id
-      assert card.deleted
-    end
-  end
-
-  test "list all schedules" do
-    with_mock_request "customers/#{@customer_id}/schedules-get", fn ->
-      {:ok, list} = Omise.Customer.list_schedules(@customer_id)
-
-      assert %Omise.List{data: schedules} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each schedules, fn(schedule) ->
-        assert %Omise.Schedule{} = schedule
-        assert schedule.object == "schedule"
-      end
-    end
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "schedule"))
   end
 end

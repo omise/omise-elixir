@@ -1,0 +1,216 @@
+{
+  "object": "list",
+  "from": "1970-01-01T00:00:00Z",
+  "to": "2017-10-11T06:34:53Z",
+  "offset": 0,
+  "limit": 20,
+  "total": 2,
+  "order": "chronological",
+  "location": "/recipients/recp_test_50894vc13y8z4v51iuc/schedules",
+  "data": [
+    {
+      "object": "schedule",
+      "id": "schd_test_58jwjs4bfpbjaijsfua",
+      "livemode": false,
+      "location": "/schedules/schd_test_58jwjs4bfpbjaijsfua",
+      "status": "expired",
+      "every": 1,
+      "period": "week",
+      "on": {
+        "weekdays": [
+          "monday",
+          "friday"
+        ]
+      },
+      "in_words": "Every 1 week(s) on Monday and Friday",
+      "start_date": "2017-07-08",
+      "end_date": "2017-07-31",
+      "transfer": {
+        "recipient": "recp_test_50894vc13y8z4v51iuc",
+        "amount": null,
+        "percentage_of_balance": 75.0,
+        "currency": "thb"
+      },
+      "occurrences": {
+        "object": "list",
+        "from": "1970-01-01T00:00:00Z",
+        "to": "2017-10-11T06:34:53Z",
+        "offset": 0,
+        "limit": 20,
+        "total": 7,
+        "order": null,
+        "location": "/schedules/schd_test_58jwjs4bfpbjaijsfua/occurrences",
+        "data": [
+          {
+            "object": "occurrence",
+            "id": "occu_test_58jwjs4dm573k86svls",
+            "livemode": false,
+            "location": "/occurrences/occu_test_58jwjs4dm573k86svls",
+            "schedule": "schd_test_58jwjs4bfpbjaijsfua",
+            "schedule_date": "2017-07-10",
+            "retry_date": null,
+            "processed_at": "2017-07-10T01:05:00Z",
+            "status": "successful",
+            "message": null,
+            "result": "trsf_test_58kwbtuoidqosq0gike",
+            "created": "2017-07-07T12:05:58Z"
+          },
+          {
+            "object": "occurrence",
+            "id": "occu_test_58kwbtvuf5jegs518bt",
+            "livemode": false,
+            "location": "/occurrences/occu_test_58kwbtvuf5jegs518bt",
+            "schedule": "schd_test_58jwjs4bfpbjaijsfua",
+            "schedule_date": "2017-07-14",
+            "retry_date": null,
+            "processed_at": "2017-07-14T01:05:00Z",
+            "status": "successful",
+            "message": null,
+            "result": "trsf_test_58mgngj62m4vnccbsqt",
+            "created": "2017-07-10T01:05:00Z"
+          },
+          {
+            "object": "occurrence",
+            "id": "occu_test_58mgngkjlxxfpimtt2h",
+            "livemode": false,
+            "location": "/occurrences/occu_test_58mgngkjlxxfpimtt2h",
+            "schedule": "schd_test_58jwjs4bfpbjaijsfua",
+            "schedule_date": "2017-07-17",
+            "retry_date": null,
+            "processed_at": "2017-07-17T01:05:00Z",
+            "status": "successful",
+            "message": null,
+            "result": "trsf_test_58nmw6hoe0zk3jcpa2p",
+            "created": "2017-07-14T01:05:00Z"
+          },
+          {
+            "object": "occurrence",
+            "id": "occu_test_58nmw6izzzhsiyo3dg5",
+            "livemode": false,
+            "location": "/occurrences/occu_test_58nmw6izzzhsiyo3dg5",
+            "schedule": "schd_test_58jwjs4bfpbjaijsfua",
+            "schedule_date": "2017-07-21",
+            "retry_date": null,
+            "processed_at": "2017-07-21T01:05:00Z",
+            "status": "successful",
+            "message": null,
+            "result": "trsf_test_58p77t4ancfp9ziged9",
+            "created": "2017-07-17T01:05:00Z"
+          },
+          {
+            "object": "occurrence",
+            "id": "occu_test_58p77t5x791bn8eannk",
+            "livemode": false,
+            "location": "/occurrences/occu_test_58p77t5x791bn8eannk",
+            "schedule": "schd_test_58jwjs4bfpbjaijsfua",
+            "schedule_date": "2017-07-24",
+            "retry_date": null,
+            "processed_at": "2017-07-24T01:05:00Z",
+            "status": "successful",
+            "message": null,
+            "result": "trsf_test_58qdgj3wlj22uichp0w",
+            "created": "2017-07-21T01:05:00Z"
+          },
+          {
+            "object": "occurrence",
+            "id": "occu_test_58qdgj527nxcdy90pg4",
+            "livemode": false,
+            "location": "/occurrences/occu_test_58qdgj527nxcdy90pg4",
+            "schedule": "schd_test_58jwjs4bfpbjaijsfua",
+            "schedule_date": "2017-07-28",
+            "retry_date": null,
+            "processed_at": "2017-07-28T01:05:00Z",
+            "status": "successful",
+            "message": null,
+            "result": "trsf_test_58rxs5qll5nbxv4hz9q",
+            "created": "2017-07-24T01:05:00Z"
+          },
+          {
+            "object": "occurrence",
+            "id": "occu_test_58rxs5rqdwgnt4hv8w7",
+            "livemode": false,
+            "location": "/occurrences/occu_test_58rxs5rqdwgnt4hv8w7",
+            "schedule": "schd_test_58jwjs4bfpbjaijsfua",
+            "schedule_date": "2017-07-31",
+            "retry_date": null,
+            "processed_at": "2017-07-31T01:05:00Z",
+            "status": "successful",
+            "message": null,
+            "result": "trsf_test_58t40vpz4rb88c9rad2",
+            "created": "2017-07-28T01:05:00Z"
+          }
+        ]
+      },
+      "next_occurrence_dates": [
+
+      ],
+      "created": "2017-07-07T12:05:58Z"
+    },
+    {
+      "object": "schedule",
+      "id": "schd_test_59huj8r7jt2i5zljfxs",
+      "livemode": false,
+      "location": "/schedules/schd_test_59huj8r7jt2i5zljfxs",
+      "status": "active",
+      "every": 2,
+      "period": "day",
+      "on": {
+      },
+      "in_words": "Every 2 day(s)",
+      "start_date": "2017-12-01",
+      "end_date": "2018-05-01",
+      "transfer": {
+        "recipient": "recp_test_50894vc13y8z4v51iuc",
+        "amount": 1000000,
+        "percentage_of_balance": null,
+        "currency": "thb"
+      },
+      "occurrences": {
+        "object": "list",
+        "from": "1970-01-01T00:00:00Z",
+        "to": "2017-10-11T06:34:53Z",
+        "offset": 0,
+        "limit": 20,
+        "total": 0,
+        "order": null,
+        "location": "/schedules/schd_test_59huj8r7jt2i5zljfxs/occurrences",
+        "data": [
+
+        ]
+      },
+      "next_occurrence_dates": [
+        "2017-12-01",
+        "2017-12-03",
+        "2017-12-05",
+        "2017-12-07",
+        "2017-12-09",
+        "2017-12-11",
+        "2017-12-13",
+        "2017-12-15",
+        "2017-12-17",
+        "2017-12-19",
+        "2017-12-21",
+        "2017-12-23",
+        "2017-12-25",
+        "2017-12-27",
+        "2017-12-29",
+        "2017-12-31",
+        "2018-01-02",
+        "2018-01-04",
+        "2018-01-06",
+        "2018-01-08",
+        "2018-01-10",
+        "2018-01-12",
+        "2018-01-14",
+        "2018-01-16",
+        "2018-01-18",
+        "2018-01-20",
+        "2018-01-22",
+        "2018-01-24",
+        "2018-01-26",
+        "2018-01-28"
+      ],
+      "created": "2017-10-02T06:55:00Z"
+    }
+  ]
+}

@@ -1,21 +1,13 @@
 defmodule Omise.SearchTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  test "search data" do
-    with_mock_request "search-charge-get", fn ->
-      {:ok, search_data} =
-        Omise.Search.execute("charge", [filters: [amount: 10000, paid: true]])
+  it "can search for the data", via: "search-charge-get" do
+    {:ok, search} = Omise.Search.execute("charge", [filters: [amount: 10000, paid: true]])
 
-      assert %Omise.Search{data: data} = search_data
-      assert search_data.object == "search"
-      assert search_data.scope == "charge"
-      assert search_data.query == ""
-      assert search_data.filters == %{"amount" => "10000", "paid" => "true"}
-      assert search_data.page == 1
-      assert search_data.total_pages == 1
-      assert search_data.total == 1
-      assert is_list(data)
-    end
+    assert search.object == "search"
+    assert search.scope == "charge"
+    assert search.query == ""
+    assert search.filters == %{"amount" => "10000", "paid" => "true"}
+    assert is_list(search.data)
   end
 end
