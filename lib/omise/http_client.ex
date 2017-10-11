@@ -12,23 +12,25 @@ defmodule Omise.HTTPClient do
 
   defmacro __using__(options) do
     quote bind_quoted: [options: options] do
+      import Omise.HTTPClient, only: [request: 5]
+
       @endpoint Keyword.fetch!(options, :endpoint)
       @key_type Keyword.get(options, :key_type, :secret_key)
 
-      def get(endpoint, query_params \\ [], options \\ []) do
-        Omise.HTTPClient.request(:get, @key_type, endpoint, [query_params: query_params], options)
+      defp get(endpoint, query_params \\ [], options \\ []) do
+        request(:get, @key_type, endpoint, [query_params: query_params], options)
       end
 
-      def post(endpoint, body_params \\ [], options \\ []) do
-        Omise.HTTPClient.request(:post, @key_type, endpoint, [body_params: body_params], options)
+      defp post(endpoint, body_params \\ [], options \\ []) do
+        request(:post, @key_type, endpoint, [body_params: body_params], options)
       end
 
-      def put(endpoint, body_params \\ [], options \\ []) do
-        Omise.HTTPClient.request(:put, @key_type, endpoint, [body_params: body_params], options)
+      defp put(endpoint, body_params \\ [], options \\ []) do
+        request(:put, @key_type, endpoint, [body_params: body_params], options)
       end
 
-      def delete(endpoint, options \\ []) do
-        Omise.HTTPClient.request(:delete, @key_type, endpoint, [], options)
+      defp delete(endpoint, options \\ []) do
+        request(:delete, @key_type, endpoint, [], options)
       end
     end
   end
