@@ -50,14 +50,14 @@ config :omise,
 ```elixir
 charge_params = [amount: 100_00, currency: "thb", card: "tokn_xxx"]
 
-with {:ok, %Omise.Charge{paid: true}} <- Omise.Charge.create(charge_params) do
+with {:ok, %{paid: true}} <- Omise.Charge.create(charge_params) do
   # handle success
   IO.puts "Thank you :)"
 else
-  {:ok, %Omise.Charge{failure_code: failure_code}} ->
+  {:ok, %{failure_code: failure_code}} ->
     # handle failure
 
-  {:error, %Omise.Error{code: code, message: message}} ->
+  {:error, %{code: code, message: message}} ->
     # handle error
 end
 ```
@@ -74,6 +74,17 @@ Omise.Charge.create([
   currency: "thb",
   customer: "cust_test_xxx"
 ], key: "skey_test_xxx")
+```
+
+It is possible to disable the decoding process which is set to `true` by default. This is achieved by configuring `decode` option in config file or pass it as an option in the function.
+
+```elixir
+# config.exs
+config :omise, decode: false
+
+# code.ex
+Omise.Account.retrieve(decode: false)
+
 ```
 
 ## Development
