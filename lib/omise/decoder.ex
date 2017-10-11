@@ -17,6 +17,7 @@ defmodule Omise.Decoder do
       link
       list
       occurrence
+      receipt
       recipient
       refund
       schedule
