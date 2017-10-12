@@ -1,17 +1,9 @@
 defmodule Omise.BalanceTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  test "retrieve the balance" do
-    with_mock_request "balance-get", fn ->
-      {:ok, balance} = Omise.Balance.retrieve
+  it "can retrieve the balance", via: "balance-get" do
+    {:ok, balance} = Omise.Balance.retrieve
 
-      assert %Omise.Balance{} = balance
-      assert balance.object == "balance"
-      assert balance.location
-      assert balance.available
-      assert balance.total
-      assert balance.currency
-    end
+    assert balance.object == "balance"
   end
 end

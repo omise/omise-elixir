@@ -1,9 +1,5 @@
-defmodule Omise.Card do
-  @moduledoc ~S"""
-  Provides Card API interfaces.
-
-  <https://www.omise.co/cards-api>
-  """
+defmodule Omise.V20140727.Card do
+  @moduledoc false
 
   defstruct [
     object:              "card",
@@ -12,9 +8,9 @@ defmodule Omise.Card do
     location:            nil,
     country:             nil,
     city:                nil,
-    bank:                nil,
     postal_code:         nil,
     financing:           nil,
+    bank:                nil,
     last_digits:         nil,
     brand:               nil,
     expiration_month:    nil,
@@ -33,9 +29,9 @@ defmodule Omise.Card do
     location:            String.t,
     country:             String.t,
     city:                String.t,
-    bank:                String.t,
     postal_code:         String.t,
     financing:           String.t,
+    bank:                String.t,
     last_digits:         String.t,
     brand:               String.t,
     expiration_month:    integer,
@@ -44,6 +40,6 @@ defmodule Omise.Card do
     name:                String.t,
     security_code_check: boolean,
     created:             String.t,
-    deleted:             boolean
+    deleted:             boolean,
   }
 end

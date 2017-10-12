@@ -1,86 +1,48 @@
 defmodule Omise.TransferTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  @transfer_id "trsf_test_4yqacz8t3cbipcj766u"
+  it "can list all transfers", via: "transfers-get" do
+    {:ok, list} = Omise.Transfer.list
 
-  test "list all transfers" do
-    with_mock_request "transfers-get", fn ->
-      {:ok, list} = Omise.Transfer.list
-
-      assert %Omise.List{data: transfers} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each transfers, fn(transfer) ->
-        assert %Omise.Transfer{} = transfer
-        assert transfer.object == "transfer"
-      end
-    end
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "transfer"))
   end
 
-  test "retrieve a transfer" do
-    with_mock_request "transfers/#{@transfer_id}-get", fn ->
-      {:ok, transfer} = Omise.Transfer.retrieve(@transfer_id)
+  it "can retrieve the transfer", via: "transfers/trsf_test_4yqacz8t3cbipcj766u-get" do
+    {:ok, transfer} = Omise.Transfer.retrieve("trsf_test_4yqacz8t3cbipcj766u")
 
-      assert %Omise.Transfer{} = transfer
-      assert transfer.object == "transfer"
-      assert transfer.id
-      assert is_boolean(transfer.livemode)
-      assert transfer.location
-      assert transfer.recipient
-      assert transfer.created
-      assert transfer.bank_account
-      assert is_boolean(transfer.sent)
-      assert is_boolean(transfer.paid)
-      assert transfer.amount
-      assert transfer.currency
-      assert transfer.fee
-      refute transfer.deleted
-
-      bank_account = transfer.bank_account
-      assert %Omise.BankAccount{} = bank_account
-      assert bank_account.object == "bank_account"
-      assert bank_account.brand
-      assert bank_account.last_digits
-      assert bank_account.name
-      assert bank_account.created
-    end
+    assert transfer.object == "transfer"
+    assert transfer.id == "trsf_test_4yqacz8t3cbipcj766u"
+    assert transfer.bank_account.object == "bank_account"
   end
 
-  test "create a transfer" do
-    with_mock_request "transfers-post", fn ->
-      {:ok, transfer} = Omise.Transfer.create(amount: 1000_00)
+  it "can create a transfer", via: "transfers-post" do
+    {:ok, transfer} = Omise.Transfer.create(amount: 100000)
 
-      assert %Omise.Transfer{} = transfer
-      assert transfer.object == "transfer"
-      assert transfer.amount == 1000_00
-    end
+    assert transfer.object == "transfer"
+    assert transfer.amount == 100000
   end
 
-  test "update a transfer" do
-    with_mock_request "transfers/#{@transfer_id}-patch", fn ->
-      {:ok, transfer} = Omise.Transfer.update(@transfer_id, amount: 2000_00)
+  it "can update the transfer", via: "transfers/trsf_test_4yqacz8t3cbipcj766u-patch" do
+    {:ok, transfer} = Omise.Transfer.update("trsf_test_4yqacz8t3cbipcj766u", amount: 200000)
 
-      assert %Omise.Transfer{} = transfer
-      assert transfer.object == "transfer"
-      assert transfer.amount == 2000_00
-    end
+    assert transfer.object == "transfer"
+    assert transfer.amount == 200000
   end
 
-  test "destroy a transfer" do
-    with_mock_request "transfers/#{@transfer_id}-delete", fn ->
-      {:ok, transfer} = Omise.Transfer.destroy(@transfer_id)
+  it "can destroy a transfer", via: "transfers/trsf_test_4yqacz8t3cbipcj766u-delete" do
+    {:ok, transfer} = Omise.Transfer.destroy("trsf_test_4yqacz8t3cbipcj766u", amount: 200000)
 
-      assert %Omise.Transfer{} = transfer
-      assert transfer.object == "transfer"
-      assert transfer.id == @transfer_id
-      assert transfer.deleted
-    end
+    assert transfer.object == "transfer"
+    assert transfer.deleted
+  end
+
+  it "can list all schedules", via: "transfers/schedules-get" do
+    {:ok, list} = Omise.Transfer.list_schedules
+
+    assert list.object == "list"
+    assert is_list(list.data)
+    assert Enum.all?(list.data, &(&1.object == "schedule"))
   end
 end
