@@ -53,8 +53,8 @@ defmodule Omise.HTTPClient do
     |> handle_response(%{decode: decode})
   end
 
-  defp base_uri(:secret_key), do: Application.get_env(:omise, :base_vault_uri, @base_api_uri)
-  defp base_uri(:public_key), do: Application.get_env(:omise, :base_api_uri, @base_vault_uri)
+  defp base_uri(:secret_key), do: Application.get_env(:omise, :base_api_uri, @base_api_uri)
+  defp base_uri(:public_key), do: Application.get_env(:omise, :base_vault_uri, @base_vault_uri)
 
   defp process_request_body({:multipart, _} = req_body), do: req_body
   defp process_request_body(req_body),                   do: Omise.Utils.encode_to_json(req_body)
