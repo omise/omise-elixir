@@ -25,8 +25,6 @@ defmodule Omise.Balance do
           reserve_amount: integer
         }
 
-  @endpoint "balance"
-
   @doc ~S"""
   Retrieve the balance.
 
