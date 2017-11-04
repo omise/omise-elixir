@@ -5,35 +5,33 @@ defmodule Omise.Customer do
   <https://www.omise.co/customers-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "customers"
 
-  defstruct [
-    object:       "customer",
-    id:           nil,
-    livemode:     nil,
-    location:     nil,
-    default_card: nil,
-    email:        nil,
-    description:  nil,
-    created:      nil,
-    cards:        %Omise.List{data: [%Omise.Card{}]},
-    deleted:      false
-  ]
+  defstruct object: "customer",
+            id: nil,
+            livemode: nil,
+            location: nil,
+            default_card: nil,
+            email: nil,
+            description: nil,
+            metadata: %{},
+            created: nil,
+            cards: %Omise.List{data: [%Omise.Card{}]},
+            deleted: false
 
   @type t :: %__MODULE__{
-    object:       String.t,
-    id:           String.t,
-    livemode:     boolean,
-    location:     String.t,
-    default_card: String.t,
-    email:        String.t,
-    description:  String.t,
-    created:      String.t,
-    cards:        Omise.List.t,
-    deleted:      boolean
-  }
-
-  @endpoint "customers"
+          object: String.t(),
+          id: String.t(),
+          livemode: boolean,
+          location: String.t(),
+          default_card: String.t(),
+          email: String.t(),
+          description: String.t(),
+          metadata: map,
+          created: String.t(),
+          cards: Omise.List.t(),
+          deleted: boolean
+        }
 
   @doc ~S"""
   List all customers.
@@ -53,7 +51,7 @@ defmodule Omise.Customer do
       Omise.Customer.list(limit: 5)
 
   """
-  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list(params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
     get(@endpoint, params, opts)
@@ -69,7 +67,7 @@ defmodule Omise.Customer do
       Omise.Customer.retrieve("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get("#{@endpoint}/#{id}", [], opts)
@@ -101,7 +99,7 @@ defmodule Omise.Customer do
       )
 
   """
-  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def create(params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     post(@endpoint, params, opts)
@@ -131,7 +129,7 @@ defmodule Omise.Customer do
       )
 
   """
-  @spec update(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec update(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def update(id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     put("#{@endpoint}/#{id}", params, opts)
@@ -147,7 +145,7 @@ defmodule Omise.Customer do
       Omise.Customer.destroy("cust_test_4xtrb759599jsxlhkrb")
 
   """
-  @spec destroy(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec destroy(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def destroy(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     delete("#{@endpoint}/#{id}", opts)
@@ -169,7 +167,7 @@ defmodule Omise.Customer do
       Omise.Customer.search(query: "eleven@omise.co")
 
   """
-  @spec search(Keyword.t, Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  @spec search(Keyword.t(), Keyword.t()) :: {:ok, Omise.Search.t()} | {:error, Omise.Error.t()}
   def search(params \\ [], opts \\ []) do
     Omise.Search.execute("customer", params, opts)
   end
@@ -191,7 +189,7 @@ defmodule Omise.Customer do
       Omise.Customer.list_cards("cust_test_520j6g67py52xa7qbu2")
 
   """
-  @spec list_cards(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list_cards(String.t(), Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list_cards(id, params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Card{}]})
     get("#{@endpoint}/#{id}/cards", params, opts)
@@ -207,7 +205,7 @@ defmodule Omise.Customer do
       Omise.Customer.retrieve_card("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec retrieve_card(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve_card(String.t(), String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve_card(id, card_id, opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.Card{})
     get("#{@endpoint}/#{id}/cards/#{card_id}", [], opts)
@@ -231,7 +229,7 @@ defmodule Omise.Customer do
       Omise.Customer.update_card("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d", params)
 
   """
-  @spec update_card(String.t, String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec update_card(String.t(), String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def update_card(id, card_id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.Card{})
     put("#{@endpoint}/#{id}/cards/#{card_id}", params, opts)
@@ -247,7 +245,7 @@ defmodule Omise.Customer do
       Omise.Customer.destroy_card("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d")
 
   """
-  @spec destroy_card(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec destroy_card(String.t(), String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def destroy_card(id, card_id, opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.Card{})
     delete("#{@endpoint}/#{id}/cards/#{card_id}", opts)
@@ -269,7 +267,7 @@ defmodule Omise.Customer do
       Omise.Customer.list_schedules("cust_test_520j6g67py52xa7qbu2")
 
   """
-  @spec list_schedules(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list_schedules(String.t(), Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list_schedules(id, params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Schedule{}]})
     get("#{@endpoint}/#{id}/schedules", params, opts)
