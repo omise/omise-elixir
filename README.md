@@ -7,20 +7,18 @@
 
 ## Installation
 
-  1. Add omise to your list of dependencies in `mix.exs`:
+  First, add `omise` to your list of dependencies in `mix.exs`:
 
   ```elixir
   def deps do
-    [{:omise, "~> 0.5"}]
+    [{:omise, "~> 0.6.0"}]
   end
   ```
 
-  2. Ensure omise is started before your application:
+  Then update your dependencies with:
 
-  ```elixir
-  def application do
-    [applications: [:omise]]
-  end
+  ```shell
+  $ mix deps.get
   ```
 
 ## Configuration
