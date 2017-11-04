@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{\"currency\":\"thb\",\"card\":\"tokn_test_59uscaeyd5kfjg8czrh\",\"amount\":50000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/charges?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"charge\",\n  \"id\": \"chrg_test_59uscezieqs255upg9u\",\n  \"livemode\": false,\n  \"location\": \"/charges/chrg_test_59uscezieqs255upg9u\",\n  \"amount\": 50000,\n  \"currency\": \"thb\",\n  \"description\": null,\n  \"metadata\": {\n  },\n  \"status\": \"successful\",\n  \"capture\": true,\n  \"authorized\": true,\n  \"reversed\": false,\n  \"paid\": true,\n  \"transaction\": \"trxn_test_59uscf1dzpaux0vdnp7\",\n  \"refunded\": 0,\n  \"refunds\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T08:52:08Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/charges/chrg_test_59uscezieqs255upg9u/refunds\",\n    \"data\": [\n\n    ]\n  },\n  \"return_uri\": null,\n  \"reference\": null,\n  \"authorize_uri\": null,\n  \"failure_code\": null,\n  \"failure_message\": null,\n  \"card\": {\n    \"object\": \"card\",\n    \"id\": \"card_test_59uscaex8yhxq6nowz6\",\n    \"livemode\": false,\n    \"country\": \"us\",\n    \"city\": \"Bangkok\",\n    \"postal_code\": \"10320\",\n    \"financing\": \"\",\n    \"bank\": \"\",\n    \"last_digits\": \"4242\",\n    \"brand\": \"Visa\",\n    \"expiration_month\": 10,\n    \"expiration_year\": 2019,\n    \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n    \"name\": \"John Doe\",\n    \"security_code_check\": true,\n    \"created\": \"2017-11-04T08:51:46Z\"\n  },\n  \"customer\": null,\n  \"ip\": null,\n  \"dispute\": null,\n  \"created\": \"2017-11-04T08:52:08Z\",\n  \"source\": null\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 08:52:08 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "512459cb-2cc5-43ab-9c1e-a183087c92a2",
+        "X-Runtime": "0.417137",
+        "Content-Length": "1374",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

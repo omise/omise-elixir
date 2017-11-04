@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/refunds?offset=2&limit=2"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"1970-01-01T00:00:00Z\",\n  \"to\": \"2017-11-04T13:23:08Z\",\n  \"offset\": 2,\n  \"limit\": 2,\n  \"total\": 6,\n  \"order\": \"chronological\",\n  \"location\": \"/refunds\",\n  \"data\": [\n    {\n      \"object\": \"refund\",\n      \"id\": \"rfnd_test_59htu09j851vhv4lc13\",\n      \"location\": \"/charges/chrg_test_59hswv1numidf7u4lhl/refunds/rfnd_test_59htu09j851vhv4lc13\",\n      \"amount\": 10000,\n      \"currency\": \"thb\",\n      \"voided\": false,\n      \"charge\": \"chrg_test_59hswv1numidf7u4lhl\",\n      \"transaction\": \"trxn_test_59htu09pjfcpghgeyw4\",\n      \"created\": \"2017-10-02T05:43:18Z\"\n    },\n    {\n      \"object\": \"refund\",\n      \"id\": \"rfnd_test_59k61pjd83lweny6740\",\n      \"location\": \"/charges/chrg_test_59k3ua8kdrnhi704oaw/refunds/rfnd_test_59k61pjd83lweny6740\",\n      \"amount\": 5000,\n      \"currency\": \"thb\",\n      \"voided\": false,\n      \"charge\": \"chrg_test_59k3ua8kdrnhi704oaw\",\n      \"transaction\": \"trxn_test_59k61pjk3fyh3yxb4qy\",\n      \"created\": \"2017-10-08T05:15:38Z\"\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 13:23:08 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "ee8298b8-d092-4d36-a816-a43b8b9f0818",
+        "X-Runtime": "0.085981",
+        "Content-Length": "993",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

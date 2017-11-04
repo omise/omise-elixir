@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/transactions?from=2017-11-01&to=2017-11-03"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"2017-11-01T00:00:00Z\",\n  \"to\": \"2017-11-03T00:00:00Z\",\n  \"offset\": 0,\n  \"limit\": 20,\n  \"total\": 3,\n  \"order\": \"chronological\",\n  \"location\": \"/transactions\",\n  \"data\": [\n    {\n      \"object\": \"transaction\",\n      \"id\": \"trxn_test_59ths2avj935oi6d9al\",\n      \"location\": \"/transactions/trxn_test_59ths2avj935oi6d9al\",\n      \"type\": \"credit\",\n      \"amount\": 96094,\n      \"currency\": \"thb\",\n      \"transferable\": \"2017-11-01T01:30:01Z\",\n      \"source\": \"chrg_test_59ths24kvjhxqmnb6i9\",\n      \"created\": \"2017-11-01T01:30:01Z\"\n    },\n    {\n      \"object\": \"transaction\",\n      \"id\": \"trxn_test_59ths2gwn9c12z0j1xo\",\n      \"location\": \"/transactions/trxn_test_59ths2gwn9c12z0j1xo\",\n      \"type\": \"credit\",\n      \"amount\": 19123,\n      \"currency\": \"thb\",\n      \"transferable\": \"2017-11-01T01:30:02Z\",\n      \"source\": \"chrg_test_59ths24elfiwc9dag2p\",\n      \"created\": \"2017-11-01T01:30:02Z\"\n    },\n    {\n      \"object\": \"transaction\",\n      \"id\": \"trxn_test_59tvuzadrid9tlf3pnd\",\n      \"location\": \"/transactions/trxn_test_59tvuzadrid9tlf3pnd\",\n      \"type\": \"credit\",\n      \"amount\": 19123,\n      \"currency\": \"thb\",\n      \"transferable\": \"2017-11-02T01:30:03Z\",\n      \"source\": \"chrg_test_59tvuysd2mkvbtpodvs\",\n      \"created\": \"2017-11-02T01:30:03Z\"\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 14:18:20 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "3690fd46-8cac-4f31-860a-e4d7246af1e4",
+        "X-Runtime": "0.231242",
+        "Content-Length": "1291",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

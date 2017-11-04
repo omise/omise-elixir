@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{\"currency\":\"thb\",\"card\":\"invalid_token\",\"amount\":50000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/charges?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#not-found\",\n  \"code\": \"not_found\",\n  \"message\": \"token invalid_token was not found\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 09:11:45 GMT",
+        "Server": "nginx",
+        "Status": "404 Not Found",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "bbaa8003-c204-4c3f-b144-21fd1d1db294",
+        "X-Runtime": "0.114538",
+        "Content-Length": "156",
+        "Connection": "keep-alive"
+      },
+      "status_code": 404,
+      "type": "ok"
+    }
+  }
+]

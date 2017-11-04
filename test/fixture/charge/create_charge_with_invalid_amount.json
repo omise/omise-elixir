@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"customer\":\"cust_test_59ur2ob5ltcsl9vjwb4\",\"currency\":\"thb\",\"amount\":10}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/charges?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#invalid-charge\",\n  \"code\": \"invalid_charge\",\n  \"message\": \"amount must be greater than or equal to 2000 (thb subunits)\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 09:11:45 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "dbcead12-a8d6-43c6-8810-f11ccd01b172",
+        "X-Runtime": "0.146135",
+        "Content-Length": "192",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

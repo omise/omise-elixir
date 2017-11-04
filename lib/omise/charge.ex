@@ -24,7 +24,7 @@ defmodule Omise.Charge do
             transaction: nil,
             source_of_fund: nil,
             refunded: nil,
-            refunds: nil,
+            refunds: %Omise.List{data: [%Omise.Refund{}]},
             return_uri: nil,
             offsite: nil,
             offline: nil,
@@ -33,10 +33,10 @@ defmodule Omise.Charge do
             authorize_uri: nil,
             failure_code: nil,
             failure_message: nil,
-            card: nil,
+            card: %Omise.Card{},
             customer: nil,
             ip: nil,
-            dispute: nil,
+            dispute: %Omise.Dispute{},
             created: nil
 
   @type t :: %__MODULE__{
@@ -57,7 +57,7 @@ defmodule Omise.Charge do
           transaction: String.t(),
           source_of_fund: String.t(),
           refunded: String.t(),
-          refunds: list,
+          refunds: Omise.List.t(),
           return_uri: String.t(),
           offsite: String.t(),
           offline: map,
@@ -66,10 +66,10 @@ defmodule Omise.Charge do
           authorize_uri: String.t(),
           failure_code: String.t(),
           failure_message: String.t(),
-          card: map,
+          card: Omise.Card.t(),
           customer: Stringt.t(),
           ip: Stringt.t(),
-          dispute: map,
+          dispute: Omise.Dispute.t(),
           created: Stringt.t()
         }
 

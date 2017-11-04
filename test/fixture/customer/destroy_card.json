@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "delete",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/customers/cust_test_59utuigfksnvsed9mi4/cards/card_test_59utu4qnjvldpwg434g?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"card\",\n  \"id\": \"card_test_59utu4qnjvldpwg434g\",\n  \"livemode\": false,\n  \"deleted\": true\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 11:44:07 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "e6bc3d7d-ffba-45ac-af07-5fc5e7c60432",
+        "X-Runtime": "0.118059",
+        "Content-Length": "104",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

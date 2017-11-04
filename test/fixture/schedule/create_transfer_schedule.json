@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{\"transfer\":{\"recipient\":\"recp_test_55j2lryr9wfpxm5c7js\",\"amount\":1000000},\"start_date\":\"2017-11-10\",\"period\":\"day\",\"every\":10,\"end_date\":\"2017-12-31\"}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/schedules?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"schedule\",\n  \"id\": \"schd_test_59uv6x4k6oj4swchy3c\",\n  \"livemode\": false,\n  \"location\": \"/schedules/schd_test_59uv6x4k6oj4swchy3c\",\n  \"status\": \"active\",\n  \"every\": 10,\n  \"period\": \"day\",\n  \"on\": {\n  },\n  \"in_words\": \"Every 10 day(s)\",\n  \"start_date\": \"2017-11-10\",\n  \"end_date\": \"2017-12-31\",\n  \"transfer\": {\n    \"recipient\": \"recp_test_55j2lryr9wfpxm5c7js\",\n    \"amount\": 1000000,\n    \"percentage_of_balance\": null,\n    \"currency\": \"thb\"\n  },\n  \"occurrences\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T13:43:19Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/schedules/schd_test_59uv6x4k6oj4swchy3c/occurrences\",\n    \"data\": [\n\n    ]\n  },\n  \"next_occurrence_dates\": [\n    \"2017-11-10\",\n    \"2017-11-20\",\n    \"2017-11-30\",\n    \"2017-12-10\",\n    \"2017-12-20\",\n    \"2017-12-30\"\n  ],\n  \"created\": \"2017-11-04T13:43:19Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 13:43:19 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "a18728b7-be94-411a-9ed0-6083941beb42",
+        "X-Runtime": "0.198719",
+        "Content-Length": "916",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

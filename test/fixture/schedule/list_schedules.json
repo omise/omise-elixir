@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/schedules?from=2017-10-01&limit=1&order=reverse_chronological"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"2017-10-01T00:00:00Z\",\n  \"to\": \"2017-11-04T13:29:42Z\",\n  \"offset\": 0,\n  \"limit\": 1,\n  \"total\": 9,\n  \"order\": \"reverse_chronological\",\n  \"location\": \"/schedules\",\n  \"data\": [\n    {\n      \"object\": \"schedule\",\n      \"id\": \"schd_test_59hulv2s8cebp5davso\",\n      \"livemode\": false,\n      \"location\": \"/schedules/schd_test_59hulv2s8cebp5davso\",\n      \"status\": \"active\",\n      \"every\": 1,\n      \"period\": \"week\",\n      \"on\": {\n        \"weekdays\": [\n          \"monday\",\n          \"friday\"\n        ]\n      },\n      \"in_words\": \"Every 1 week(s) on Monday and Friday\",\n      \"start_date\": \"2017-12-01\",\n      \"end_date\": \"2018-05-01\",\n      \"transfer\": {\n        \"recipient\": \"recp_test_55j2lebbrscmwwdh9gm\",\n        \"amount\": null,\n        \"percentage_of_balance\": 75.0,\n        \"currency\": \"thb\"\n      },\n      \"occurrences\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T13:29:42Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 0,\n        \"order\": null,\n        \"location\": \"/schedules/schd_test_59hulv2s8cebp5davso/occurrences\",\n        \"data\": [\n\n        ]\n      },\n      \"next_occurrence_dates\": [\n        \"2017-12-01\",\n        \"2017-12-04\",\n        \"2017-12-08\",\n        \"2017-12-11\",\n        \"2017-12-15\",\n        \"2017-12-18\",\n        \"2017-12-22\",\n        \"2017-12-25\",\n        \"2017-12-29\",\n        \"2018-01-01\",\n        \"2018-01-05\",\n        \"2018-01-08\",\n        \"2018-01-12\",\n        \"2018-01-15\",\n        \"2018-01-19\",\n        \"2018-01-22\",\n        \"2018-01-26\",\n        \"2018-01-29\",\n        \"2018-02-02\",\n        \"2018-02-05\",\n        \"2018-02-09\",\n        \"2018-02-12\",\n        \"2018-02-16\",\n        \"2018-02-19\",\n        \"2018-02-23\",\n        \"2018-02-26\",\n        \"2018-03-02\",\n        \"2018-03-05\",\n        \"2018-03-09\",\n        \"2018-03-12\"\n      ],\n      \"created\": \"2017-10-02T07:02:26Z\"\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 13:29:42 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "9cd6609b-0f02-43fc-86a6-203230a4f411",
+        "X-Runtime": "0.163829",
+        "Content-Length": "1910",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

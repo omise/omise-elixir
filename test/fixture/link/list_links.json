@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/links?limit=1"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"1970-01-01T00:00:00Z\",\n  \"to\": \"2017-11-04T12:38:35Z\",\n  \"offset\": 0,\n  \"limit\": 1,\n  \"total\": 15,\n  \"order\": \"chronological\",\n  \"location\": \"/links\",\n  \"data\": [\n    {\n      \"object\": \"link\",\n      \"id\": \"link_test_55s7o45gtn5nic6ycv7\",\n      \"livemode\": false,\n      \"location\": \"/links/link_test_55s7o45gtn5nic6ycv7\",\n      \"amount\": 100000,\n      \"currency\": \"thb\",\n      \"used\": false,\n      \"multiple\": true,\n      \"title\": \"Elixir book\",\n      \"description\": \"This book is awesome!\",\n      \"charges\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T12:38:35Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 2,\n        \"order\": null,\n        \"location\": \"/links/link_test_55s7o45gtn5nic6ycv7/charges\",\n        \"data\": [\n          {\n            \"object\": \"charge\",\n            \"id\": \"chrg_test_55s7qs0zuwllp0pbvq1\",\n            \"livemode\": false,\n            \"location\": \"/charges/chrg_test_55s7qs0zuwllp0pbvq1\",\n            \"amount\": 100000,\n            \"currency\": \"thb\",\n            \"description\": \"Elixir book\\n\\nThis book is awesome!\",\n            \"metadata\": {\n            },\n            \"status\": \"successful\",\n            \"capture\": true,\n            \"authorized\": true,\n            \"reversed\": false,\n            \"paid\": true,\n            \"transaction\": \"trxn_test_55s7qs2rv3mriqoi64u\",\n            \"refunded\": 0,\n            \"refunds\": {\n              \"object\": \"list\",\n              \"from\": \"1970-01-01T00:00:00Z\",\n              \"to\": \"2017-11-04T12:38:35Z\",\n              \"offset\": 0,\n              \"limit\": 20,\n              \"total\": 0,\n              \"order\": null,\n              \"location\": \"/charges/chrg_test_55s7qs0zuwllp0pbvq1/refunds\",\n              \"data\": [\n\n              ]\n            },\n            \"return_uri\": \"https://link.omise.co/60CA5DF4/complete\",\n            \"reference\": \"paym_test_55s7qs1dsrb7j9sgkh7\",\n            \"authorize_uri\": \"https://api.omise.co/payments/paym_test_55s7qs1dsrb7j9sgkh7/authorize\",\n            \"failure_code\": null,\n            \"failure_message\": null,\n            \"card\": {\n              \"object\": \"card\",\n              \"id\": \"card_test_55s7qrs5i8onwoavhtq\",\n              \"livemode\": false,\n              \"country\": \"us\",\n              \"city\": null,\n              \"postal_code\": null,\n              \"financing\": \"\",\n              \"bank\": \"\",\n              \"last_digits\": \"4242\",\n              \"brand\": \"Visa\",\n              \"expiration_month\": 6,\n              \"expiration_year\": 2021,\n              \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n              \"name\": \"manta\",\n              \"security_code_check\": true,\n              \"created\": \"2016-10-25T15:08:44Z\"\n            },\n            \"customer\": null,\n            \"ip\": \"171.97.98.142\",\n            \"dispute\": null,\n            \"created\": \"2016-10-25T15:08:45Z\",\n            \"source\": null\n          },\n          {\n            \"object\": \"charge\",\n            \"id\": \"chrg_test_55s7qko16ogz9fhie7l\",\n            \"livemode\": false,\n            \"location\": \"/charges/chrg_test_55s7qko16ogz9fhie7l\",\n            \"amount\": 100000,\n            \"currency\": \"thb\",\n            \"description\": \"Elixir book\\n\\nThis book is awesome!\",\n            \"metadata\": {\n            },\n            \"status\": \"successful\",\n            \"capture\": true,\n            \"authorized\": true,\n            \"reversed\": false,\n            \"paid\": true,\n            \"transaction\": \"trxn_test_55s7qkpxw5933arm35h\",\n            \"refunded\": 0,\n            \"refunds\": {\n              \"object\": \"list\",\n              \"from\": \"1970-01-01T00:00:00Z\",\n              \"to\": \"2017-11-04T12:38:35Z\",\n              \"offset\": 0,\n              \"limit\": 20,\n              \"total\": 0,\n              \"order\": null,\n              \"location\": \"/charges/chrg_test_55s7qko16ogz9fhie7l/refunds\",\n              \"data\": [\n\n              ]\n            },\n            \"return_uri\": \"https://link.omise.co/60CA5DF4/complete\",\n            \"reference\": \"paym_test_55s7qkofno5lgyhfn61\",\n            \"authorize_uri\": \"https://api.omise.co/payments/paym_test_55s7qkofno5lgyhfn61/authorize\",\n            \"failure_code\": null,\n            \"failure_message\": null,\n            \"card\": {\n              \"object\": \"card\",\n              \"id\": \"card_test_55s7qkf56w4xi21qthp\",\n              \"livemode\": false,\n              \"country\": \"us\",\n              \"city\": null,\n              \"postal_code\": null,\n              \"financing\": \"\",\n              \"bank\": \"JPMORGAN CHASE BANK, N.A.\",\n              \"last_digits\": \"1111\",\n              \"brand\": \"Visa\",\n              \"expiration_month\": 3,\n              \"expiration_year\": 2020,\n              \"fingerprint\": \"BGCSfmEVsDHvgi7OuFC7pWEHbZzkYSOEVZQFpgoIXJ0=\",\n              \"name\": \"teerawat\",\n              \"security_code_check\": true,\n              \"created\": \"2016-10-25T15:08:09Z\"\n            },\n            \"customer\": null,\n            \"ip\": \"171.97.98.142\",\n            \"dispute\": null,\n            \"created\": \"2016-10-25T15:08:10Z\",\n            \"source\": null\n          }\n        ]\n      },\n      \"payment_uri\": \"https://link.omise.co/60CA5DF4\",\n      \"created\": \"2016-10-25T15:01:11Z\"\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:38:35 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "0c84aff5-17eb-4c91-b53f-a7bdfc700a1c",
+        "X-Runtime": "0.137317",
+        "Content-Length": "5211",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

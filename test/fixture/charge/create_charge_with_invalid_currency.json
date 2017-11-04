@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"customer\":\"cust_test_59ur2ob5ltcsl9vjwb4\",\"currency\":\"invalid\",\"amount\":10000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/charges?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#invalid-charge\",\n  \"code\": \"invalid_charge\",\n  \"message\": \"currency is currently not supported\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 09:14:44 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "b2390f55-7232-4260-8886-ffda84e04b74",
+        "X-Runtime": "0.117622",
+        "Content-Length": "168",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

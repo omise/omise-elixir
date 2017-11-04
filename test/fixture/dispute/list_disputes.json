@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/disputes/?limit=1"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"1970-01-01T00:00:00Z\",\n  \"to\": \"2017-11-04T11:59:20Z\",\n  \"offset\": 0,\n  \"limit\": 1,\n  \"total\": 2,\n  \"order\": \"chronological\",\n  \"location\": \"/disputes\",\n  \"data\": [\n    {\n      \"object\": \"dispute\",\n      \"id\": \"dspt_test_55aj9q9iipt3tcdwb5r\",\n      \"livemode\": false,\n      \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r\",\n      \"amount\": 1000000,\n      \"currency\": \"thb\",\n      \"status\": \"open\",\n      \"transaction\": \"trxn_test_55aj9q9nyokxlvall1i\",\n      \"message\": null,\n      \"reason_code\": \"goods_or_services_not_provided\",\n      \"reason_message\": \"Services not provided or Merchandise not received\",\n      \"charge\": \"chrg_test_557ib11djeat7p5k22r\",\n      \"documents\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T11:59:20Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 6,\n        \"order\": null,\n        \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents\",\n        \"data\": [\n          {\n            \"object\": \"document\",\n            \"id\": \"docu_test_55am2tt3xave44l7vni\",\n            \"livemode\": false,\n            \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55am2tt3xave44l7vni\",\n            \"filename\": \"screenshot.png\",\n            \"created\": \"2016-09-10T15:05:33Z\"\n          },\n          {\n            \"object\": \"document\",\n            \"id\": \"docu_test_55alzusch6dw7w81cf1\",\n            \"livemode\": false,\n            \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzusch6dw7w81cf1\",\n            \"filename\": \"screenshot.png\",\n            \"created\": \"2016-09-10T14:57:07Z\"\n          },\n          {\n            \"object\": \"document\",\n            \"id\": \"docu_test_55alzscjq4pfhxfkk18\",\n            \"livemode\": false,\n            \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzscjq4pfhxfkk18\",\n            \"filename\": \"screenshot.png\",\n            \"created\": \"2016-09-10T14:56:55Z\"\n          },\n          {\n            \"object\": \"document\",\n            \"id\": \"docu_test_55alzpo2x5r9mkedkng\",\n            \"livemode\": false,\n            \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzpo2x5r9mkedkng\",\n            \"filename\": \"screenshot.png\",\n            \"created\": \"2016-09-10T14:56:42Z\"\n          },\n          {\n            \"object\": \"document\",\n            \"id\": \"docu_test_55alzjapkv99mbelg6q\",\n            \"livemode\": false,\n            \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzjapkv99mbelg6q\",\n            \"filename\": \"screenshot.png\",\n            \"created\": \"2016-09-10T14:56:12Z\"\n          },\n          {\n            \"object\": \"document\",\n            \"id\": \"docu_test_55alwcu1phxmsxx3y9p\",\n            \"livemode\": false,\n            \"location\": \"/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alwcu1phxmsxx3y9p\",\n            \"filename\": \"screenshot.png\",\n            \"created\": \"2016-09-10T14:47:10Z\"\n          }\n        ]\n      },\n      \"created\": \"2016-09-10T10:18:21Z\",\n      \"closed_at\": null\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 11:59:20 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "f9eed5c9-a95c-4678-a6fc-7f87044203d2",
+        "X-Runtime": "0.126926",
+        "Content-Length": "3106",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

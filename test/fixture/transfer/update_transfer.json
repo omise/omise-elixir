@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{\"amount\":350000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "put",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/transfers/trsf_test_59uvmrtx6v57s2xrvh4?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"transfer\",\n  \"id\": \"trsf_test_59uvmrtx6v57s2xrvh4\",\n  \"livemode\": false,\n  \"location\": \"/transfers/trsf_test_59uvmrtx6v57s2xrvh4\",\n  \"recipient\": \"recp_test_55j2lebbrscmwwdh9gm\",\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"lhb\",\n    \"last_digits\": \"7890\",\n    \"name\": \"Margot Robbie\",\n    \"created\": \"2016-10-02T06:07:33Z\"\n  },\n  \"sent\": false,\n  \"paid\": false,\n  \"amount\": 350000,\n  \"currency\": \"thb\",\n  \"fee\": 3000,\n  \"fail_fast\": false,\n  \"failure_code\": null,\n  \"failure_message\": null,\n  \"transaction\": null,\n  \"created\": \"2017-11-04T14:28:21Z\",\n  \"sent_at\": null,\n  \"paid_at\": null\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 14:31:00 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "f1e7ebd8-f8f8-480b-91e6-c8231ce7bc2c",
+        "X-Runtime": "0.135659",
+        "Content-Length": "625",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"currency\":\"thb\",\"card\":\"tokn_test_59usgcsw7es0ilk0514\",\"amount\":50000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/charges?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#used-token\",\n  \"code\": \"used_token\",\n  \"message\": \"token was already used\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 09:28:17 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "f26849cc-0abe-4bad-8e89-3de828654411",
+        "X-Runtime": "0.131039",
+        "Content-Length": "147",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]
