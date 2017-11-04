@@ -5,45 +5,41 @@ defmodule Omise.Recipient do
   <https://www.omise.co/recipients-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "recipients"
 
-  defstruct [
-    object:       "recipient",
-    id:           nil,
-    livemode:     nil,
-    location:     nil,
-    verified:     nil,
-    active:       nil,
-    name:         nil,
-    email:        nil,
-    description:  nil,
-    type:         nil,
-    tax_id:       nil,
-    bank_account: %Omise.BankAccount{},
-    failure_code: nil,
-    created:      nil,
-    deleted:      false
-  ]
+  defstruct object: "recipient",
+            id: nil,
+            livemode: nil,
+            location: nil,
+            verified: nil,
+            active: nil,
+            name: nil,
+            email: nil,
+            description: nil,
+            type: nil,
+            tax_id: nil,
+            bank_account: %Omise.BankAccount{},
+            failure_code: nil,
+            created: nil,
+            deleted: false
 
   @type t :: %__MODULE__{
-    object:       String.t,
-    id:           String.t,
-    livemode:     boolean,
-    location:     String.t,
-    verified:     boolean,
-    active:       boolean,
-    name:         String.t,
-    email:        String.t,
-    description:  String.t,
-    type:         String.t,
-    tax_id:       String.t,
-    bank_account: Omise.BankAccount.t,
-    failure_code: String.t,
-    created:      String.t,
-    deleted:      boolean
-  }
-
-  @endpoint "recipients"
+          object: String.t(),
+          id: String.t(),
+          livemode: boolean,
+          location: String.t(),
+          verified: boolean,
+          active: boolean,
+          name: String.t(),
+          email: String.t(),
+          description: String.t(),
+          type: String.t(),
+          tax_id: String.t(),
+          bank_account: Omise.BankAccount.t(),
+          failure_code: String.t(),
+          created: String.t(),
+          deleted: boolean
+        }
 
   @doc ~S"""
   List all recipients.
@@ -63,7 +59,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.list(limit: 5)
 
   """
-  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list(params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
     get(@endpoint, params, opts)
@@ -79,7 +75,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.retrieve("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get("#{@endpoint}/#{id}", [], opts)
@@ -115,7 +111,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.create(params)
 
   """
-  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def create(params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     post(@endpoint, params, opts)
@@ -148,7 +144,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.update("recp_test_4z6p7e0m4k40txecj5oparams", params)
 
   """
-  @spec update(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec update(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def update(id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     put("#{@endpoint}/#{id}", params, opts)
@@ -164,7 +160,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.destroy("recp_test_4z6p7e0m4k40txecj5o")
 
   """
-  @spec destroy(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec destroy(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def destroy(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     delete("#{@endpoint}/#{id}", opts)
@@ -186,7 +182,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.search(query: "recp_235k46kl6ljl")
 
   """
-  @spec search(Keyword.t, Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  @spec search(Keyword.t(), Keyword.t()) :: {:ok, Omise.Search.t()} | {:error, Omise.Error.t()}
   def search(params \\ [], opts \\ []) do
     Omise.Search.execute("recipient", params, opts)
   end
@@ -207,7 +203,7 @@ defmodule Omise.Recipient do
       Omise.Recipient.list_schedules("recp_test_556jkf7u174ptxuytac")
 
   """
-  @spec list_schedules(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list_schedules(String.t(), Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list_schedules(id, params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Schedule{}]})
     get("#{@endpoint}/#{id}/schedules", params, opts)
