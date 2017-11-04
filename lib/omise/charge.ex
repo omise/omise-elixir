@@ -67,10 +67,10 @@ defmodule Omise.Charge do
           failure_code: String.t(),
           failure_message: String.t(),
           card: Omise.Card.t(),
-          customer: Stringt.t(),
-          ip: Stringt.t(),
+          customer: String.t(),
+          ip: String.t(),
           dispute: Omise.Dispute.t(),
-          created: Stringt.t()
+          created: String.t()
         }
 
   @doc ~S"""

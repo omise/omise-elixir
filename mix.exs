@@ -30,6 +30,7 @@ defmodule Omise.Mixfile do
 
       # Dev dependencies
       {:ex_doc, "~> 0.13", only: :dev, runtime: false},
+      {:dialyxir, "~> 0.5", only: :dev, runtime: false},
 
       # Test dependencies
       {:excoveralls, "~> 0.6", only: :test},

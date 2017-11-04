@@ -1,12 +1,14 @@
 defmodule Omise.Utils do
   @moduledoc false
 
+  @spec encode_to_json(Keyword.t()) :: String.t()
   def encode_to_json(body_params) when is_list(body_params) do
     body_params
     |> normalize_params()
     |> Poison.encode!()
   end
 
+  @spec normalize_search_params(Keyword.t()) :: Keyword.t()
   def normalize_search_params(params) do
     filters_params = params[:filters] || []
 

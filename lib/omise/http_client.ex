@@ -38,7 +38,7 @@ defmodule Omise.HTTPClient do
     end
   end
 
-  @spec request(atom, String.t(), Stringt.t(), Keyword.t(), Keyword.t()) :: {:ok, struct} | {:error, struct}
+  @spec request(atom, atom, String.t(), Keyword.t(), Keyword.t()) :: {:ok, struct} | {:error, struct}
   def request(method, key_type, endpoint, req_params \\ [], options \\ []) do
     key = Keyword.get(options, :key, Application.get_env(:omise, key_type)) || raise "Expects #{key_type} to be set"
     api_version = Keyword.get(options, :api_version, Application.get_env(:omise, :api_version))
