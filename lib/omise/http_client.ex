@@ -42,7 +42,6 @@ defmodule Omise.HTTPClient do
   def request(method, key_type, endpoint, req_params \\ [], options \\ []) do
     key = Keyword.get(options, :key, Application.get_env(:omise, key_type)) || raise "Expects #{key_type} to be set"
     api_version = Keyword.get(options, :api_version, Application.get_env(:omise, :api_version))
-    decode = Keyword.get(options, :decode, Application.get_env(:omise, :decode, true))
     as = Keyword.fetch!(options, :as)
 
     query_params = Keyword.get(req_params, :query_params, [])
