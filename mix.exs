@@ -9,7 +9,6 @@ defmodule Omise.Mixfile do
       version: @version,
       elixir: "~> 1.4",
       description: description(),
-      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
@@ -19,7 +18,9 @@ defmodule Omise.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :httpoison]]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp deps do
@@ -28,8 +29,7 @@ defmodule Omise.Mixfile do
       {:poison, "~> 2.2 or ~> 3.0"},
 
       # Dev dependencies
-      {:earmark, "~> 1.0", only: :dev},
-      {:ex_doc, "~> 0.13", only: :dev},
+      {:ex_doc, "~> 0.13", only: :dev, runtime: false},
 
       # Test dependencies
       {:excoveralls, "~> 0.6", only: :test},
