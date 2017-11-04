@@ -5,31 +5,29 @@ defmodule Omise.Transaction do
   <https://www.omise.co/transactions-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "transactions"
 
-  defstruct [
-    object:       "transaction",
-    id:           nil,
-    location:     nil,
-    type:         nil,
-    amount:       nil,
-    currency:     nil,
-    transferable: nil,
-    created:      nil
-  ]
+  defstruct object: "transaction",
+            id: nil,
+            location: nil,
+            type: nil,
+            source: nil,
+            amount: nil,
+            currency: nil,
+            transferable: nil,
+            created: nil
 
   @type t :: %__MODULE__{
-    object:       String.t,
-    id:           String.t,
-    location:     String.t,
-    type:         String.t,
-    amount:       integer,
-    currency:     String.t,
-    transferable: String.t,
-    created:      String.t
-  }
-
-  @endpoint "transactions"
+          object: String.t(),
+          id: String.t(),
+          location: String.t(),
+          type: String.t(),
+          source: String.t(),
+          amount: integer,
+          currency: String.t(),
+          transferable: String.t(),
+          created: String.t()
+        }
 
   @doc ~S"""
   List all transactions.
@@ -49,7 +47,7 @@ defmodule Omise.Transaction do
       Omise.Transaction.list(limit: 5)
 
   """
-  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list(params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
     get(@endpoint, params, opts)
@@ -65,7 +63,7 @@ defmodule Omise.Transaction do
       Omise.Transaction.retrieve("trxn_test_51yg3xs2yggzsfbai3e")
 
   """
-  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get("#{@endpoint}/#{id}", [], opts)
