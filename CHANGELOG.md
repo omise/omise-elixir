@@ -1,8 +1,19 @@
 # Changelog
 
+## 0.6.0 (2017-11-04)
+
+- Add support for [Receipt API](https://www.omise.co/receipt-api).
+- Fix a bug when uploading dispute document.
+- Handle http request errors.
+- Drop support for Elixir 1.2 and 1.3.
+
+## 0.5.2 (2017-10-02)
+
+- Add support for [Transfer Schedule API](https://www.omise.co/transfer-schedules-api).
+
 ## 0.5.1 (2017-06-07)
 
-- Fix a bug when making an HTTP request to Search API
+- Fix a bug when making an HTTP request to Search API.
 
 ## 0.5.0 (2017-06-06)
 
