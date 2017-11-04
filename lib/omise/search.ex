@@ -5,33 +5,29 @@ defmodule Omise.Search do
   <https://www.omise.co/search-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "search"
 
-  defstruct [
-    object:      "search",
-    location:    nil,
-    scope:       nil,
-    query:       nil,
-    filters:     nil,
-    page:        nil,
-    total_pages: nil,
-    total:       nil,
-    data:        []
-  ]
+  defstruct object: "search",
+            location: nil,
+            scope: nil,
+            query: nil,
+            filters: nil,
+            page: nil,
+            total_pages: nil,
+            total: nil,
+            data: []
 
   @type t :: %__MODULE__{
-    object:      String.t,
-    location:    String.t,
-    scope:       String.t,
-    query:       String.t,
-    filters:     map,
-    page:        integer,
-    total_pages: integer,
-    total:       integer,
-    data:        list
-  }
-
-  @endpoint "search"
+          object: String.t(),
+          location: String.t(),
+          scope: String.t(),
+          query: String.t(),
+          filters: map,
+          page: integer,
+          total_pages: integer,
+          total: integer,
+          data: list
+        }
 
   @doc ~S"""
   Retrieve a search data.
@@ -57,11 +53,11 @@ defmodule Omise.Search do
       )
 
   """
-  @spec execute(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec execute(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def execute(scope, params, opts \\ []) do
-    params = Omise.Utils.normalize_search_params(params) 
+    params = Omise.Utils.normalize_search_params(params)
     module = Module.concat(Omise, String.capitalize(scope))
-    opts   = Keyword.merge(opts, as: %Omise.Search{data: [struct(module)]})
+    opts = Keyword.merge(opts, as: %Omise.Search{data: [struct(module)]})
 
     get(@endpoint, Keyword.merge(params, scope: scope), opts)
   end
