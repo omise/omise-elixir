@@ -7,7 +7,7 @@ defmodule Omise.Mixfile do
     [
       app: :omise,
       version: @version,
-      elixir: "~> 1.3",
+      elixir: "~> 1.4",
       description: description(),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
