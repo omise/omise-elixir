@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/recipients/recp_test_55j2lryr9wfpxm5c7js?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"recipient\",\n  \"id\": \"recp_test_55j2lryr9wfpxm5c7js\",\n  \"livemode\": false,\n  \"location\": \"/recipients/recp_test_55j2lryr9wfpxm5c7js\",\n  \"verified\": true,\n  \"active\": true,\n  \"name\": \"Mary Elizabeth Winstead\",\n  \"email\": \"mary@omise.co\",\n  \"description\": \"\",\n  \"type\": \"individual\",\n  \"tax_id\": \"\",\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"bnp\",\n    \"last_digits\": \"7890\",\n    \"name\": \"Mary Elizabeth Winstead\",\n    \"created\": \"2016-10-02T06:08:37Z\"\n  },\n  \"failure_code\": null,\n  \"created\": \"2016-10-02T06:08:37Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:54:17 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "838841be-4165-41d3-b337-07821f81ffa8",
+        "X-Runtime": "0.109368",
+        "Content-Length": "553",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

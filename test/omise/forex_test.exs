@@ -1,17 +1,22 @@
 defmodule Omise.ForexTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  test "retrieve a forex" do
-    with_mock_request "forex/usd", fn ->
-      {:ok, forex} = Omise.Forex.retrieve("usd")
+  alias Omise.Forex
 
-      assert %Omise.Forex{} = forex
-      assert forex.object == "forex"
-      assert forex.from == "usd"
-      assert forex.to == "thb"
-      assert is_float(forex.rate)
-      assert forex.location
+  setup_all do: set_fixture_dir("forex")
+
+  describe "retrieve/2" do
+    test "retrieves forex" do
+      use_cassette "retrieve_forex" do
+        assert Forex.retrieve("usd") ==
+                 {:ok, %Omise.Forex{
+                   from: "usd",
+                   location: "/forex/usd",
+                   object: "forex",
+                   rate: 31.895433500000003,
+                   to: "thb"
+                 }}
+      end
     end
   end
 end

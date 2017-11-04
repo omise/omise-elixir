@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/charges/chrg_test_556qgv7yxa759kavn8v/reverse?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#failed-reverse\",\n  \"code\": \"failed_reverse\",\n  \"message\": \"only uncaptured authorized charges can be reversed\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 09:26:04 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "c40d5980-a974-457a-b3a0-f4b70ceec4bc",
+        "X-Runtime": "0.112119",
+        "Content-Length": "183",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

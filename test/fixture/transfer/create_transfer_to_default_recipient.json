@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{\"amount\":500000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/transfers?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"transfer\",\n  \"id\": \"trsf_test_59uvmrw7uo0c2om9ros\",\n  \"livemode\": false,\n  \"location\": \"/transfers/trsf_test_59uvmrw7uo0c2om9ros\",\n  \"recipient\": \"recp_test_556jkf7u174ptxuytac\",\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"test\",\n    \"last_digits\": \"6789\",\n    \"name\": \"DEFAULT BANK ACCOUNT\",\n    \"created\": \"2016-08-31T05:22:15Z\"\n  },\n  \"sent\": false,\n  \"paid\": false,\n  \"amount\": 500000,\n  \"currency\": \"thb\",\n  \"fee\": 3000,\n  \"fail_fast\": false,\n  \"failure_code\": null,\n  \"failure_message\": null,\n  \"transaction\": null,\n  \"created\": \"2017-11-04T14:28:22Z\",\n  \"sent_at\": null,\n  \"paid_at\": null\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 14:28:22 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "cac7deb4-a92a-49b2-b053-79bbc6e76c33",
+        "X-Runtime": "0.137027",
+        "Content-Length": "633",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

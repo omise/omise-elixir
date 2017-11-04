@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/customers?limit=2&order=reverse_chronological"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"1970-01-01T00:00:00Z\",\n  \"to\": \"2017-11-04T11:17:20Z\",\n  \"offset\": 0,\n  \"limit\": 2,\n  \"total\": 4,\n  \"order\": \"reverse_chronological\",\n  \"location\": \"/customers\",\n  \"data\": [\n    {\n      \"object\": \"customer\",\n      \"id\": \"cust_test_59ur2ob5ltcsl9vjwb4\",\n      \"livemode\": false,\n      \"location\": \"/customers/cust_test_59ur2ob5ltcsl9vjwb4\",\n      \"default_card\": \"card_test_59ur2aloj4ofih2m8ct\",\n      \"email\": \"adele@gmail.com\",\n      \"description\": \"Burnnnn\",\n      \"metadata\": {\n      },\n      \"created\": \"2017-11-04T06:42:11Z\",\n      \"cards\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T11:17:20Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 1,\n        \"order\": null,\n        \"location\": \"/customers/cust_test_59ur2ob5ltcsl9vjwb4/cards\",\n        \"data\": [\n          {\n            \"object\": \"card\",\n            \"id\": \"card_test_59ur2aloj4ofih2m8ct\",\n            \"livemode\": false,\n            \"location\": \"/customers/cust_test_59ur2ob5ltcsl9vjwb4/cards/card_test_59ur2aloj4ofih2m8ct\",\n            \"country\": \"us\",\n            \"city\": \"Bangkok\",\n            \"postal_code\": \"10320\",\n            \"financing\": \"\",\n            \"bank\": \"\",\n            \"last_digits\": \"4242\",\n            \"brand\": \"Visa\",\n            \"expiration_month\": 10,\n            \"expiration_year\": 2019,\n            \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n            \"name\": \"John Doe\",\n            \"security_code_check\": true,\n            \"created\": \"2017-11-04T06:41:07Z\"\n          }\n        ]\n      }\n    },\n    {\n      \"object\": \"customer\",\n      \"id\": \"cust_test_576rin7dke7hxnx8rxc\",\n      \"livemode\": false,\n      \"location\": \"/customers/cust_test_576rin7dke7hxnx8rxc\",\n      \"default_card\": null,\n      \"email\": \"john.smith@example.com\",\n      \"description\": \"Another description\",\n      \"metadata\": {\n      },\n      \"created\": \"2017-03-03T20:52:00Z\",\n      \"cards\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T11:17:20Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 0,\n        \"order\": null,\n        \"location\": \"/customers/cust_test_576rin7dke7hxnx8rxc/cards\",\n        \"data\": [\n\n        ]\n      }\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 11:17:21 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "eaf1508a-d15d-4bfa-afff-13d56be1e9d5",
+        "X-Runtime": "0.120217",
+        "Content-Length": "2277",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

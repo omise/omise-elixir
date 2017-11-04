@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/search?query=adele&scope=charge"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"search\",\n  \"order\": \"chronological\",\n  \"scope\": \"charge\",\n  \"query\": \"adele\",\n  \"filters\": {\n  },\n  \"page\": 1,\n  \"per_page\": 30,\n  \"location\": \"/search\",\n  \"total_pages\": 1,\n  \"total\": 2,\n  \"data\": [\n    {\n      \"object\": \"charge\",\n      \"id\": \"chrg_test_59usep2shcycq9vrn70\",\n      \"livemode\": false,\n      \"location\": \"/charges/chrg_test_59usep2shcycq9vrn70\",\n      \"amount\": 50000,\n      \"currency\": \"thb\",\n      \"description\": null,\n      \"metadata\": {\n      },\n      \"status\": \"successful\",\n      \"capture\": true,\n      \"authorized\": true,\n      \"reversed\": false,\n      \"paid\": true,\n      \"transaction\": \"trxn_test_59usep4owrp5i83x4dq\",\n      \"refunded\": 0,\n      \"refunds\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T09:33:57Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 0,\n        \"order\": null,\n        \"location\": \"/charges/chrg_test_59usep2shcycq9vrn70/refunds\",\n        \"data\": [\n\n        ]\n      },\n      \"return_uri\": null,\n      \"reference\": null,\n      \"authorize_uri\": null,\n      \"failure_code\": null,\n      \"failure_message\": null,\n      \"card\": {\n        \"object\": \"card\",\n        \"id\": \"card_test_59ur2aloj4ofih2m8ct\",\n        \"livemode\": false,\n        \"location\": \"/customers/cust_test_59ur2ob5ltcsl9vjwb4/cards/card_test_59ur2aloj4ofih2m8ct\",\n        \"country\": \"us\",\n        \"city\": \"Bangkok\",\n        \"postal_code\": \"10320\",\n        \"financing\": \"\",\n        \"bank\": \"\",\n        \"last_digits\": \"4242\",\n        \"brand\": \"Visa\",\n        \"expiration_month\": 10,\n        \"expiration_year\": 2019,\n        \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n        \"name\": \"John Doe\",\n        \"security_code_check\": true,\n        \"created\": \"2017-11-04T06:41:07Z\"\n      },\n      \"customer\": \"cust_test_59ur2ob5ltcsl9vjwb4\",\n      \"ip\": null,\n      \"dispute\": null,\n      \"created\": \"2017-11-04T08:58:37Z\",\n      \"source\": null\n    },\n    {\n      \"object\": \"charge\",\n      \"id\": \"chrg_test_59use551gec8gaockk7\",\n      \"livemode\": false,\n      \"location\": \"/charges/chrg_test_59use551gec8gaockk7\",\n      \"amount\": 50000,\n      \"currency\": \"thb\",\n      \"description\": null,\n      \"metadata\": {\n      },\n      \"status\": \"successful\",\n      \"capture\": true,\n      \"authorized\": true,\n      \"reversed\": false,\n      \"paid\": true,\n      \"transaction\": \"trxn_test_59use57kldk75i8br9b\",\n      \"refunded\": 0,\n      \"refunds\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T09:33:57Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 0,\n        \"order\": null,\n        \"location\": \"/charges/chrg_test_59use551gec8gaockk7/refunds\",\n        \"data\": [\n\n        ]\n      },\n      \"return_uri\": null,\n      \"reference\": null,\n      \"authorize_uri\": null,\n      \"failure_code\": null,\n      \"failure_message\": null,\n      \"card\": {\n        \"object\": \"card\",\n        \"id\": \"card_test_59ur2aloj4ofih2m8ct\",\n        \"livemode\": false,\n        \"location\": \"/customers/cust_test_59ur2ob5ltcsl9vjwb4/cards/card_test_59ur2aloj4ofih2m8ct\",\n        \"country\": \"us\",\n        \"city\": \"Bangkok\",\n        \"postal_code\": \"10320\",\n        \"financing\": \"\",\n        \"bank\": \"\",\n        \"last_digits\": \"4242\",\n        \"brand\": \"Visa\",\n        \"expiration_month\": 10,\n        \"expiration_year\": 2019,\n        \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n        \"name\": \"John Doe\",\n        \"security_code_check\": true,\n        \"created\": \"2017-11-04T06:41:07Z\"\n      },\n      \"customer\": \"cust_test_59ur2ob5ltcsl9vjwb4\",\n      \"ip\": null,\n      \"dispute\": null,\n      \"created\": \"2017-11-04T08:57:02Z\",\n      \"source\": null\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 09:33:57 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "84957ca9-fb9a-4dee-be5d-ed43634d6afa",
+        "X-Runtime": "0.237782",
+        "Content-Length": "3688",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

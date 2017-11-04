@@ -1,0 +1,41 @@
+[
+  {
+    "request": {
+      "body": "{\"card\":{\"security_code\":123,\"number\":4242424242424242,\"name\":\"John Doe\",\"expiration_year\":2025,\"expiration_month\":10}}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://vault.omise.co/tokens?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"token\",\n  \"id\": \"tokn_test_59uvguluact4trbfjbq\",\n  \"livemode\": false,\n  \"location\": \"https://vault.omise.co/tokens/tokn_test_59uvguluact4trbfjbq\",\n  \"used\": false,\n  \"card\": {\n    \"object\": \"card\",\n    \"id\": \"card_test_59uvgulszd6ybf9mlet\",\n    \"livemode\": false,\n    \"country\": \"us\",\n    \"city\": null,\n    \"postal_code\": null,\n    \"financing\": \"\",\n    \"bank\": \"\",\n    \"last_digits\": \"4242\",\n    \"brand\": \"Visa\",\n    \"expiration_month\": 10,\n    \"expiration_year\": 2025,\n    \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n    \"name\": \"John Doe\",\n    \"security_code_check\": true,\n    \"created\": \"2017-11-04T14:11:32Z\"\n  },\n  \"created\": \"2017-11-04T14:11:32Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json",
+        "Date": "Sat, 04 Nov 2017 14:11:39 GMT",
+        "Omise-Version": "Aitne",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Request-Id": "30cad963-475e-4016-8ee3-a8be83910c51",
+        "X-Runtime": "0.519689",
+        "X-XSS-Protection": "1; mode=block",
+        "Content-Length": "690",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

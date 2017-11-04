@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/recipients?limit=2"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"1970-01-01T00:00:00Z\",\n  \"to\": \"2017-11-04T12:54:16Z\",\n  \"offset\": 0,\n  \"limit\": 2,\n  \"total\": 12,\n  \"order\": \"chronological\",\n  \"location\": \"/recipients\",\n  \"data\": [\n    {\n      \"object\": \"recipient\",\n      \"id\": \"recp_test_556jkf7u174ptxuytac\",\n      \"livemode\": false,\n      \"location\": \"/recipients/recp_test_556jkf7u174ptxuytac\",\n      \"verified\": true,\n      \"active\": true,\n      \"name\": \"The A-Team\",\n      \"email\": \"m.mantastyle@gmail.com\",\n      \"description\": \"Default recipient\",\n      \"type\": \"individual\",\n      \"tax_id\": \"\",\n      \"bank_account\": {\n        \"object\": \"bank_account\",\n        \"brand\": \"test\",\n        \"last_digits\": \"6789\",\n        \"name\": \"DEFAULT BANK ACCOUNT\",\n        \"created\": \"2016-08-31T05:22:15Z\"\n      },\n      \"failure_code\": null,\n      \"created\": \"2016-08-31T05:22:15Z\"\n    },\n    {\n      \"object\": \"recipient\",\n      \"id\": \"recp_test_55j2an6c8fd07xbccd3\",\n      \"livemode\": false,\n      \"location\": \"/recipients/recp_test_55j2an6c8fd07xbccd3\",\n      \"verified\": true,\n      \"active\": true,\n      \"name\": \"Omega\",\n      \"email\": \"omega@gmail.com\",\n      \"description\": \"\",\n      \"type\": \"individual\",\n      \"tax_id\": \"1212312121\",\n      \"bank_account\": {\n        \"object\": \"bank_account\",\n        \"brand\": \"tmb\",\n        \"last_digits\": \"7890\",\n        \"name\": \"Omega\",\n        \"created\": \"2016-10-02T05:37:00Z\"\n      },\n      \"failure_code\": null,\n      \"created\": \"2016-10-02T05:37:00Z\"\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:54:16 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "4c9b5e59-461a-4f41-924a-e7fee7661c6a",
+        "X-Runtime": "0.110536",
+        "Content-Length": "1477",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -5,47 +5,42 @@ defmodule Omise.Schedule do
   <https://www.omise.co/schedules-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "schedules"
 
-  defstruct [
-    object:                "schedule",
-    id:                    nil,
-    livemode:              nil,
-    location:              nil,
-    status:                nil,
-    deleted:               nil,
-    every:                 nil,
-    period:                nil,
-    on:                    nil,
-    in_words:              nil,
-    start_date:            nil,
-    end_date:              nil,
-    charge:                %{},
-    occurrences:           %Omise.List{data: [%Omise.Occurrence{}]},
-    next_occurrence_dates: nil,
-    created:               nil,
-  ]
+  defstruct object: "schedule",
+            id: nil,
+            livemode: nil,
+            location: nil,
+            status: nil,
+            every: nil,
+            period: nil,
+            on: nil,
+            in_words: nil,
+            start_date: nil,
+            end_date: nil,
+            charge: %{},
+            transfer: %{},
+            occurrences: %Omise.List{data: [%Omise.Occurrence{}]},
+            next_occurrence_dates: nil,
+            created: nil
 
   @type t :: %__MODULE__{
-    object:                String.t,
-    id:                    String.t,
-    livemode:              boolean,
-    location:              String.t,
-    status:                String.t,
-    deleted:               boolean,
-    every:                 integer,
-    period:                String.t,
-    on:                    map,
-    in_words:              String.t,
-    start_date:            String.t,
-    end_date:              String.t,
-    charge:                map,
-    occurrences:           Omise.List.t,
-    next_occurrence_dates: list,
-    created:               String.t,
-  }
-
-  @endpoint "schedules"
+          object: String.t(),
+          id: String.t(),
+          livemode: boolean,
+          location: String.t(),
+          status: String.t(),
+          every: integer,
+          period: String.t(),
+          on: map,
+          in_words: String.t(),
+          start_date: String.t(),
+          end_date: String.t(),
+          charge: map,
+          occurrences: Omise.List.t(),
+          next_occurrence_dates: list,
+          created: String.t()
+        }
 
   @doc ~S"""
   List all schedules.
@@ -63,7 +58,7 @@ defmodule Omise.Schedule do
       Omise.Schedule.list(limit: 10)
 
   """
-  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list(params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
     get(@endpoint, params, opts)
@@ -85,7 +80,7 @@ defmodule Omise.Schedule do
       Omise.Schedule.list_occurrences("schd_test_584yqgiuavbzrfng7mv")
 
   """
-  @spec list_occurrences(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list_occurrences(String.t(), Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list_occurrences(id, params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Occurrence{}]})
     get("#{@endpoint}/#{id}/occurrences", params, opts)
@@ -99,7 +94,7 @@ defmodule Omise.Schedule do
       Omise.Schedule.retrieve("schd_test_5850ga4l8a6r6bgj4oj")
 
   """
-  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get("#{@endpoint}/#{id}", [], opts)
@@ -210,7 +205,7 @@ defmodule Omise.Schedule do
         ]
       )
   """
-  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def create(params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     post(@endpoint, params, opts)
@@ -226,7 +221,7 @@ defmodule Omise.Schedule do
       Omise.Schedule.destroy("schd_test_584yqgiuavbzrfng7mv")
 
   """
-  @spec destroy(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec destroy(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def destroy(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     delete("#{@endpoint}/#{id}", opts)

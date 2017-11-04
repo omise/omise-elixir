@@ -1,18 +1,25 @@
 defmodule Omise.AccountTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  test "retrieve the account" do
-    with_mock_request "account-get", fn ->
-      {:ok, account} = Omise.Account.retrieve
+  alias Omise.Account
 
-      assert %Omise.Account{} = account
-      assert account.object == "account"
-      assert account.id
-      assert account.location
-      assert account.email
-      assert account.currency
-      assert account.created
+  setup_all do: set_fixture_dir("account")
+
+  describe "retrieve/1" do
+    test "retrieves account" do
+      use_cassette "retrieve_account" do
+        assert Account.retrieve() ==
+                 {:ok, %Omise.Account{
+                   created: "2016-08-31T05:22:15Z",
+                   currency: "thb",
+                   email: "m.mantastyle@gmail.com",
+                   id: "acct_51n45m422m7yrgri706",
+                   livemode: false,
+                   location: "/account",
+                   object: "account",
+                   supported_currencies: ["thb", "jpy", "usd", "eur", "gbp", "sgd"]
+                 }}
+      end
     end
   end
 end

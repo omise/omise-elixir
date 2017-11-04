@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{:multipart, [file: \"cat_pic.jpg\"]}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/disputes/dspt_test_59uuaz72tx6inasbfuj/documents?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"document\",\n  \"id\": \"docu_test_59uubg00s3hlytq56jz\",\n  \"livemode\": false,\n  \"location\": \"/disputes/dspt_test_59uuaz72tx6inasbfuj/documents/docu_test_59uubg00s3hlytq56jz\",\n  \"filename\": \"cat_pic.jpg\",\n  \"created\": \"2017-11-04T12:13:54Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:13:54 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "70ec9e9a-3d03-4c2f-9c08-f8a7cc189753",
+        "X-Runtime": "0.166522",
+        "Content-Length": "252",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

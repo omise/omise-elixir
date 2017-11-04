@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{\"start_date\":\"2017-12-15\",\"period\":\"month\",\"on\":{\"days_of_month\":[15]},\"every\":1,\"end_date\":\"2018-03-15\",\"charge\":{\"description\":\"Membership fee\",\"customer\":\"cust_test_59ur2ob5ltcsl9vjwb4\",\"amount\":19900}}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/schedules?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"schedule\",\n  \"id\": \"schd_test_59uv8cx9595f4zttqax\",\n  \"livemode\": false,\n  \"location\": \"/schedules/schd_test_59uv8cx9595f4zttqax\",\n  \"status\": \"active\",\n  \"every\": 1,\n  \"period\": \"month\",\n  \"on\": {\n    \"days_of_month\": [\n      15\n    ]\n  },\n  \"in_words\": \"Every 1 month(s) on the 15th\",\n  \"start_date\": \"2017-12-15\",\n  \"end_date\": \"2018-03-15\",\n  \"charge\": {\n    \"amount\": 19900,\n    \"currency\": \"thb\",\n    \"description\": \"Membership fee\",\n    \"customer\": \"cust_test_59ur2ob5ltcsl9vjwb4\",\n    \"card\": null\n  },\n  \"occurrences\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T13:47:24Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/schedules/schd_test_59uv8cx9595f4zttqax/occurrences\",\n    \"data\": [\n\n    ]\n  },\n  \"next_occurrence_dates\": [\n    \"2017-12-15\",\n    \"2018-01-15\",\n    \"2018-02-15\",\n    \"2018-03-15\"\n  ],\n  \"created\": \"2017-11-04T13:47:24Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 13:47:24 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "e6a688cc-3500-460e-947a-e2b5f759e70e",
+        "X-Runtime": "0.170447",
+        "Content-Length": "947",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

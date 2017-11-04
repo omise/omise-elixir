@@ -5,79 +5,73 @@ defmodule Omise.Charge do
   <https://www.omise.co/charges-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "charges"
 
-  defstruct [
-    object:          "charge",
-    id:              nil,
-    livemode:        nil,
-    location:        nil,
-    status:          nil,
-    amount:          nil,
-    currency:        nil,
-    description:     nil,
-    capture:         nil,
-    authorized:      nil,
-    reversed:        nil,
-
-    # Version: 2014-07-27 => captured
-    # Version: 2015-11-17 => paid
-    captured:        nil,
-    paid:            nil,
-
-    transaction:     nil,
-    card:            %Omise.Card{},
-    refunded:        nil,
-    refunds:         %Omise.List{data: [%Omise.Refund{}]},
-    failure_code:    nil,
-    failure_message: nil,
-    customer:        nil,
-    ip:              nil,
-    dispute:         %Omise.Dispute{},
-    created:         nil,
-    return_uri:      nil,
-    authorize_uri:   nil,
-
-    # Deprecated Attribute
-    reference:       nil
-  ]
+  defstruct object: "charge",
+            id: nil,
+            livemode: nil,
+            location: nil,
+            amount: nil,
+            currency: nil,
+            description: nil,
+            metadata: nil,
+            status: nil,
+            capture: nil,
+            authorized: nil,
+            reversed: nil,
+            captured: nil,
+            paid: nil,
+            transaction: nil,
+            source_of_fund: nil,
+            refunded: nil,
+            refunds: %Omise.List{data: [%Omise.Refund{}]},
+            return_uri: nil,
+            offsite: nil,
+            offline: nil,
+            installment_terms: nil,
+            reference: nil,
+            authorize_uri: nil,
+            failure_code: nil,
+            failure_message: nil,
+            card: %Omise.Card{},
+            customer: nil,
+            ip: nil,
+            dispute: %Omise.Dispute{},
+            created: nil
 
   @type t :: %__MODULE__{
-    object:          String.t,
-    id:              String.t,
-    livemode:        boolean,
-    location:        String.t,
-    status:          String.t,
-    amount:          integer,
-    currency:        String.t,
-    description:     String.t,
-    capture:         boolean,
-    authorized:      boolean,
-    reversed:        boolean,
-
-    # Version: 2014-07-27 => captured
-    # Version: 2015-11-17 => paid
-    captured:        boolean,
-    paid:            boolean,
-
-    transaction:     String.t,
-    card:            Omise.Card.t,
-    refunded:        integer,
-    refunds:         Omise.List.t,
-    failure_code:    String.t,
-    failure_message: String.t,
-    customer:        String.t,
-    ip:              String.t,
-    dispute:         Omise.Dispute.t,
-    created:         String.t,
-    return_uri:      String.t,
-    authorize_uri:   String.t,
-
-    # Deprecated Attribute
-    reference:       String.t
-  }
-
-  @endpoint "charges"
+          object: String.t(),
+          id: String.t(),
+          livemode: boolean,
+          location: String.t(),
+          amount: String.t(),
+          currency: String.t(),
+          description: String.t(),
+          metadata: map,
+          status: String.t(),
+          capture: boolean,
+          authorized: boolean,
+          reversed: boolean,
+          captured: boolean,
+          paid: boolean,
+          transaction: String.t(),
+          source_of_fund: String.t(),
+          refunded: String.t(),
+          refunds: Omise.List.t(),
+          return_uri: String.t(),
+          offsite: String.t(),
+          offline: map,
+          installment_terms: integer,
+          reference: String.t(),
+          authorize_uri: String.t(),
+          failure_code: String.t(),
+          failure_message: String.t(),
+          card: Omise.Card.t(),
+          customer: Stringt.t(),
+          ip: Stringt.t(),
+          dispute: Omise.Dispute.t(),
+          created: Stringt.t()
+        }
 
   @doc ~S"""
   List all charges.
@@ -97,7 +91,7 @@ defmodule Omise.Charge do
       Omise.Charge.list(limit: 10)
 
   """
-  @spec list(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list(Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list(params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%__MODULE__{}]})
     get(@endpoint, params, opts)
@@ -111,7 +105,7 @@ defmodule Omise.Charge do
       Omise.Charge.retrieve("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get("#{@endpoint}/#{id}", [], opts)
@@ -161,7 +155,7 @@ defmodule Omise.Charge do
       )
 
   """
-  @spec create(Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec create(Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def create(params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     post(@endpoint, params, opts)
@@ -181,7 +175,7 @@ defmodule Omise.Charge do
         description: "The funny thing is that when I am okay, oh it makes me wish for rain")
 
   """
-  @spec update(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec update(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def update(id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     put("#{@endpoint}/#{id}", params, opts)
@@ -201,7 +195,7 @@ defmodule Omise.Charge do
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec capture(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec capture(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def capture(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     post("#{@endpoint}/#{id}/capture", [], opts)
@@ -221,7 +215,7 @@ defmodule Omise.Charge do
       Omise.Charge.reverse("chrg_test_4xso2s8ivdej29pqnhz")
 
   """
-  @spec reverse(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec reverse(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def reverse(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     post("#{@endpoint}/#{id}/reverse", [], opts)
@@ -243,7 +237,7 @@ defmodule Omise.Charge do
       Omise.Charge.search(query: "omise")
 
   """
-  @spec search(Keyword.t, Keyword.t) :: {:ok, Omise.Search.t} | {:error, Omise.Error.t}
+  @spec search(Keyword.t(), Keyword.t()) :: {:ok, Omise.Search.t()} | {:error, Omise.Error.t()}
   def search(params \\ [], opts \\ []) do
     Omise.Search.execute("charge", params, opts)
   end
@@ -262,7 +256,7 @@ defmodule Omise.Charge do
       Omise.Charge.refund("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
 
   """
-  @spec refund(String.t, Keyword.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec refund(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def refund(id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.Refund{})
     post("#{@endpoint}/#{id}/refunds", params, opts)
@@ -284,7 +278,7 @@ defmodule Omise.Charge do
       Omise.Charge.list_refunds("chrg_test_52oo08bwpgnwb95rye8")
 
   """
-  @spec list_refunds(String.t, Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list_refunds(String.t(), Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list_refunds(id, params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Refund{}]})
     get("#{@endpoint}/#{id}/refunds", params, opts)
@@ -300,7 +294,7 @@ defmodule Omise.Charge do
       Omise.Charge.retrieve_refund("chrg_test_520jim7x8u6t4si58va", "rfnd_test_4zgf1d7jcw5kr123puq")
 
   """
-  @spec retrieve_refund(String.t, String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve_refund(String.t(), String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve_refund(id, refund_id, opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.Refund{})
     get("#{@endpoint}/#{id}/refunds/#{refund_id}", [], opts)
@@ -322,7 +316,7 @@ defmodule Omise.Charge do
       Omise.Charge.list_schedules
 
   """
-  @spec list_schedules(Keyword.t, Keyword.t) :: {:ok, Omise.List.t} | {:error, Omise.Error.t}
+  @spec list_schedules(Keyword.t(), Keyword.t()) :: {:ok, Omise.List.t()} | {:error, Omise.Error.t()}
   def list_schedules(params \\ [], opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.List{data: [%Omise.Schedule{}]})
     get("#{@endpoint}/schedules", params, opts)

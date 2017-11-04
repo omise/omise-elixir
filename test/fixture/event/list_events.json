@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/events?limit=2&order=reverse_chronological"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"1970-01-01T00:00:00Z\",\n  \"to\": \"2017-11-04T12:25:42Z\",\n  \"offset\": 0,\n  \"limit\": 2,\n  \"total\": 2501,\n  \"order\": \"reverse_chronological\",\n  \"location\": \"/events\",\n  \"data\": [\n    {\n      \"object\": \"event\",\n      \"id\": \"evnt_test_59uuf7adj2rrisn5u9l\",\n      \"livemode\": false,\n      \"location\": \"/events/evnt_test_59uuf7adj2rrisn5u9l\",\n      \"key\": \"charge.create\",\n      \"created\": \"2017-11-04T12:24:35+00:00\",\n      \"data\": {\n        \"object\": \"charge\",\n        \"id\": \"chrg_test_59uuf77h7is4o1rsztm\",\n        \"livemode\": false,\n        \"location\": \"/charges/chrg_test_59uuf77h7is4o1rsztm\",\n        \"amount\": 49900,\n        \"currency\": \"thb\",\n        \"description\": null,\n        \"metadata\": {\n        },\n        \"status\": \"successful\",\n        \"capture\": true,\n        \"authorized\": true,\n        \"reversed\": false,\n        \"paid\": true,\n        \"transaction\": \"trxn_test_59uuf7a0o272na5lg9f\",\n        \"refunded\": 0,\n        \"refunds\": {\n          \"object\": \"list\",\n          \"from\": \"1970-01-01T00:00:00Z\",\n          \"to\": \"2017-11-04T12:24:35Z\",\n          \"offset\": 0,\n          \"limit\": 20,\n          \"total\": 0,\n          \"order\": null,\n          \"location\": \"/charges/chrg_test_59uuf77h7is4o1rsztm/refunds\",\n          \"data\": [\n\n          ]\n        },\n        \"return_uri\": null,\n        \"reference\": null,\n        \"authorize_uri\": null,\n        \"failure_code\": null,\n        \"failure_message\": null,\n        \"card\": {\n          \"object\": \"card\",\n          \"id\": \"card_test_59uuezoxvvgtvyeqppx\",\n          \"livemode\": false,\n          \"country\": \"us\",\n          \"city\": \"Bangkok\",\n          \"postal_code\": \"10320\",\n          \"financing\": \"\",\n          \"bank\": \"\",\n          \"last_digits\": \"4242\",\n          \"brand\": \"Visa\",\n          \"expiration_month\": 10,\n          \"expiration_year\": 2019,\n          \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n          \"name\": \"John Doe\",\n          \"security_code_check\": true,\n          \"created\": \"2017-11-04T12:23:59Z\"\n        },\n        \"customer\": null,\n        \"ip\": null,\n        \"dispute\": null,\n        \"created\": \"2017-11-04T12:24:34Z\",\n        \"source\": null\n      }\n    },\n    {\n      \"object\": \"event\",\n      \"id\": \"evnt_test_59uuaz7nvrjsq35qh5c\",\n      \"livemode\": false,\n      \"location\": \"/events/evnt_test_59uuaz7nvrjsq35qh5c\",\n      \"key\": \"dispute.create\",\n      \"created\": \"2017-11-04T19:12:35+07:00\",\n      \"data\": {\n        \"object\": \"dispute\",\n        \"id\": \"dspt_test_59uuaz72tx6inasbfuj\",\n        \"livemode\": false,\n        \"location\": \"/disputes/dspt_test_59uuaz72tx6inasbfuj\",\n        \"amount\": 50000,\n        \"currency\": \"thb\",\n        \"status\": \"open\",\n        \"transaction\": \"trxn_test_59uuaz7cd582g1ynune\",\n        \"message\": null,\n        \"reason_code\": \"goods_or_services_not_provided\",\n        \"reason_message\": \"Services not provided or Merchandise not received\",\n        \"charge\": \"chrg_test_59usep2shcycq9vrn70\",\n        \"documents\": {\n          \"object\": \"list\",\n          \"from\": \"1970-01-01T07:00:00+07:00\",\n          \"to\": \"2017-11-04T19:12:35+07:00\",\n          \"offset\": 0,\n          \"limit\": 20,\n          \"total\": 0,\n          \"order\": null,\n          \"location\": \"/disputes/dspt_test_59uuaz72tx6inasbfuj/documents\",\n          \"data\": [\n\n          ]\n        },\n        \"created\": \"2017-11-04T19:12:35+07:00\",\n        \"closed_at\": null\n      }\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:25:43 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "50ae0692-8468-4d38-8830-be201503087b",
+        "X-Runtime": "0.150951",
+        "Content-Length": "3394",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

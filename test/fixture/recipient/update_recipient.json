@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{\"description\":\"I got new rules, I count them.\"}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "put",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/recipients/recp_test_59uuqzsagk159pa08gc?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"recipient\",\n  \"id\": \"recp_test_59uuqzsagk159pa08gc\",\n  \"livemode\": false,\n  \"location\": \"/recipients/recp_test_59uuqzsagk159pa08gc\",\n  \"verified\": false,\n  \"active\": false,\n  \"name\": \"Dua Lipa\",\n  \"email\": \"dua@gmail.com\",\n  \"description\": \"I got new rules, I count them.\",\n  \"type\": \"individual\",\n  \"tax_id\": null,\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"bbl\",\n    \"last_digits\": \"7890\",\n    \"name\": \"Dua Lipa\",\n    \"created\": \"2017-11-04T12:58:05Z\"\n  },\n  \"failure_code\": null,\n  \"created\": \"2017-11-04T12:58:05Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 13:00:02 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "84f2e61d-1d76-4658-a9a3-ec50145870c3",
+        "X-Runtime": "0.298009",
+        "Content-Length": "557",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/occurrences/occu_test_59f0sida1ola85gf8pn?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"occurrence\",\n  \"id\": \"occu_test_59f0sida1ola85gf8pn\",\n  \"livemode\": false,\n  \"location\": \"/occurrences/occu_test_59f0sida1ola85gf8pn\",\n  \"schedule\": \"schd_test_584zb13ghl396u8va3q\",\n  \"schedule_date\": \"2017-09-27\",\n  \"retry_date\": null,\n  \"processed_at\": \"2017-09-27T01:30:02Z\",\n  \"status\": \"successful\",\n  \"message\": null,\n  \"result\": \"chrg_test_59fsyaz8f57p54998fg\",\n  \"created\": \"2017-09-25T01:30:04Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:47:19 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "b4924e30-c0a0-4a5a-ad68-71b035f2b335",
+        "X-Runtime": "0.165342",
+        "Content-Length": "422",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

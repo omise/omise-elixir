@@ -5,17 +5,15 @@ defmodule Omise.Error do
   <https://www.omise.co/api-errors>
   """
 
-  defstruct [
-    object:   "error",
-    location: nil,
-    code:     nil,
-    message:  nil
-  ]
+  defstruct object: "error",
+            location: nil,
+            code: nil,
+            message: nil
 
   @type t :: %__MODULE__{
-    object:   String.t,
-    location: String.t,
-    code:     String.t,
-    message:  String.t
-  }
+          object: String.t(),
+          location: String.t(),
+          code: String.t(),
+          message: String.t()
+        }
 end

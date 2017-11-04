@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/customers/cust_test_55c6cjwyr9kl4rt4jso/schedules?limit=1"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"1970-01-01T00:00:00Z\",\n  \"to\": \"2017-11-04T11:48:48Z\",\n  \"offset\": 0,\n  \"limit\": 1,\n  \"total\": 18,\n  \"order\": \"chronological\",\n  \"location\": \"/customers/cust_test_55c6cjwyr9kl4rt4jso/schedules\",\n  \"data\": [\n    {\n      \"object\": \"schedule\",\n      \"id\": \"schd_test_584yqgiuavbzrfng7mv\",\n      \"livemode\": false,\n      \"location\": \"/schedules/schd_test_584yqgiuavbzrfng7mv\",\n      \"status\": \"deleted\",\n      \"every\": 1,\n      \"period\": \"day\",\n      \"on\": {\n      },\n      \"in_words\": \"Every 1 day(s)\",\n      \"start_date\": \"2017-05-30\",\n      \"end_date\": \"2018-05-30\",\n      \"charge\": {\n        \"amount\": 10000,\n        \"currency\": \"thb\",\n        \"description\": \"Let the rain come down!\",\n        \"customer\": \"cust_test_55c6cjwyr9kl4rt4jso\",\n        \"card\": null\n      },\n      \"occurrences\": {\n        \"object\": \"list\",\n        \"from\": \"1970-01-01T00:00:00Z\",\n        \"to\": \"2017-11-04T11:48:48Z\",\n        \"offset\": 0,\n        \"limit\": 20,\n        \"total\": 1,\n        \"order\": null,\n        \"location\": \"/schedules/schd_test_584yqgiuavbzrfng7mv/occurrences\",\n        \"data\": [\n          {\n            \"object\": \"occurrence\",\n            \"id\": \"occu_test_584yqgivyi2p1g828pl\",\n            \"livemode\": false,\n            \"location\": \"/occurrences/occu_test_584yqgivyi2p1g828pl\",\n            \"schedule\": \"schd_test_584yqgiuavbzrfng7mv\",\n            \"schedule_date\": \"2017-05-30\",\n            \"retry_date\": null,\n            \"processed_at\": \"2017-05-30T07:25:10Z\",\n            \"status\": \"successful\",\n            \"message\": null,\n            \"result\": \"chrg_test_584yqgjb0pf8vj3lq1k\",\n            \"created\": \"2017-05-30T07:25:10Z\"\n          }\n        ]\n      },\n      \"next_occurrence_dates\": [\n\n      ],\n      \"created\": \"2017-05-30T07:25:10Z\"\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 11:48:48 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "f145a622-7d05-4eb7-a8cb-915d44a410a3",
+        "X-Runtime": "0.188787",
+        "Content-Length": "1784",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

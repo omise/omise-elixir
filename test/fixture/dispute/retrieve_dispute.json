@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/disputes/dspt_test_59uu7g9ijua6xcbd3yg?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"dispute\",\n  \"id\": \"dspt_test_59uu7g9ijua6xcbd3yg\",\n  \"livemode\": false,\n  \"location\": \"/disputes/dspt_test_59uu7g9ijua6xcbd3yg\",\n  \"amount\": 50000,\n  \"currency\": \"thb\",\n  \"status\": \"open\",\n  \"transaction\": \"trxn_test_59uu7g9vwd1kr6714pm\",\n  \"message\": null,\n  \"reason_code\": \"goods_or_services_not_provided\",\n  \"reason_message\": \"Services not provided or Merchandise not received\",\n  \"charge\": \"chrg_test_59utsg8rdkbgfgdztay\",\n  \"documents\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T12:03:10Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/disputes/dspt_test_59uu7g9ijua6xcbd3yg/documents\",\n    \"data\": [\n\n    ]\n  },\n  \"created\": \"2017-11-04T12:02:34Z\",\n  \"closed_at\": null\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:03:10 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "b16e5538-aa1d-445e-b0e7-1b53f5f70c45",
+        "X-Runtime": "0.111654",
+        "Content-Length": "774",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/search?filters%5Btype%5D=corporation&scope=recipient"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"search\",\n  \"order\": \"chronological\",\n  \"scope\": \"recipient\",\n  \"query\": \"\",\n  \"filters\": {\n    \"type\": \"corporation\"\n  },\n  \"page\": 1,\n  \"per_page\": 30,\n  \"location\": \"/search\",\n  \"total_pages\": 0,\n  \"total\": 0,\n  \"data\": [\n\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 13:10:09 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "de335f6f-da0b-4ce1-9290-bc1e8890dd01",
+        "X-Runtime": "0.080649",
+        "Content-Length": "246",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

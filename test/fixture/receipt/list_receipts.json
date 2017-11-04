@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/receipts?from=2017-11-03&to=2017-11-03"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"list\",\n  \"from\": \"2017-11-03T00:00:00Z\",\n  \"to\": \"2017-11-03T23:59:59Z\",\n  \"offset\": 0,\n  \"limit\": 20,\n  \"total\": 1,\n  \"order\": \"chronological\",\n  \"location\": \"/receipts\",\n  \"data\": [\n    {\n      \"object\": \"receipt\",\n      \"id\": \"rcpt_59unfpvug2yllbnkphv\",\n      \"number\": \"OMTH201711030001\",\n      \"location\": \"/receipts/rcpt_59unfpvug2yllbnkphv\",\n      \"date\": \"2017-11-03T16:59:59Z\",\n      \"customer_name\": \"Teerawat Lamanchart\",\n      \"customer_address\": \"212\\n12\\nBangkok 10400\",\n      \"customer_tax_id\": \"\",\n      \"customer_email\": \"ton@omise.co\",\n      \"customer_statement_name\": \"\",\n      \"company_name\": \"Omise Company Limited\",\n      \"company_address\": \"1448/4, J2 Building, Soi Ladprao 87\\r\\n(Chandrasuk), Praditmanutham Road,\\r\\nKlongchan, Bangkapi, Bangkok, 10240\",\n      \"company_tax_id\": \"0105556091152\",\n      \"charge_fee\": 4548000,\n      \"voided_fee\": 0,\n      \"transfer_fee\": 0,\n      \"subtotal\": 4548000,\n      \"vat\": 318360,\n      \"wht\": 0,\n      \"total\": 4866360,\n      \"credit_note\": false,\n      \"currency\": \"thb\"\n    }\n  ]\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 14:45:50 GMT",
+        "Omise-Version": "2015-11-17",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "0505e082-c152-4a13-912d-047064444c69",
+        "X-Runtime": "0.183662",
+        "Content-Length": "1064",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

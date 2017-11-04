@@ -1,17 +1,24 @@
 defmodule Omise.BalanceTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  test "retrieve the balance" do
-    with_mock_request "balance-get", fn ->
-      {:ok, balance} = Omise.Balance.retrieve
+  alias Omise.Balance
 
-      assert %Omise.Balance{} = balance
-      assert balance.object == "balance"
-      assert balance.location
-      assert balance.available
-      assert balance.total
-      assert balance.currency
+  setup_all do: set_fixture_dir("balance")
+
+  describe "retrieve/1" do
+    test "retrieves balance" do
+      use_cassette "retrieve_balance" do
+        assert Balance.retrieve() ==
+                 {:ok, %Omise.Balance{
+                   currency: "thb",
+                   livemode: false,
+                   location: "/balance",
+                   object: "balance",
+                   reserve_amount: 0,
+                   available: 393_336_607,
+                   total: 393_336_607
+                 }}
+      end
     end
   end
 end

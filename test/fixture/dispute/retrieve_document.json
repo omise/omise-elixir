@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/disputes/dspt_test_59uuaz72tx6inasbfuj/documents/docu_test_59uubg00s3hlytq56jz?"
+    },
+    "response": {
+      "body": "{\"object\":\"document\",\"id\":\"docu_test_59uubg00s3hlytq56jz\",\"livemode\":false,\"location\":\"/disputes/dspt_test_59uuaz72tx6inasbfuj/documents/docu_test_59uubg00s3hlytq56jz\",\"filename\":\"cat_pic.jpg\",\"created\":\"2017-11-04T12:13:54Z\"}",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:17:51 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "1e5a15df-7882-49b2-b3e5-356f88c43b7c",
+        "X-Runtime": "0.108182",
+        "Content-Length": "226",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/transactions/trxn_test_59tvuzadrid9tlf3pnd?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"transaction\",\n  \"id\": \"trxn_test_59tvuzadrid9tlf3pnd\",\n  \"location\": \"/transactions/trxn_test_59tvuzadrid9tlf3pnd\",\n  \"type\": \"credit\",\n  \"amount\": 19123,\n  \"currency\": \"thb\",\n  \"transferable\": \"2017-11-02T01:30:03Z\",\n  \"source\": \"chrg_test_59tvuysd2mkvbtpodvs\",\n  \"created\": \"2017-11-02T01:30:03Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 14:19:07 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "e2a8d32b-608a-4291-acdd-ed152bd1ef9c",
+        "X-Runtime": "0.098794",
+        "Content-Length": "316",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -10,7 +10,7 @@ defmodule Omise.Config do
     http_options
   )a
 
-  @spec configure(Keyword.t) :: list
+  @spec configure(Keyword.t()) :: list
   def configure(params) do
     params
     |> Enum.filter(fn {k, _} -> k in @permitted_params end)

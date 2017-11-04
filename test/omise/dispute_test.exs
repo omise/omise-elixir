@@ -1,129 +1,436 @@
 defmodule Omise.DisputeTest do
-  use ExUnit.Case
-  import TestHelper
+  use Omise.TestCase
 
-  @dispute_id "dspt_test_5089off452g5m5te7xs"
-  @document_id "docu_test_55alihcdq6r2upo9slb"
+  alias Omise.Dispute
 
-  test "list all disputes" do
-    with_mock_request "disputes-get", fn ->
-      {:ok, list} = Omise.Dispute.list
+  setup_all do: set_fixture_dir("dispute")
 
-      assert %Omise.List{data: disputes} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
+  describe "list/2" do
+    test "lists all disputes" do
+      use_cassette "list_disputes" do
+        assert Dispute.list(limit: 1) ==
+                 {:ok, %Omise.List{
+                   data: [
+                     %Omise.Dispute{
+                       amount: 1_000_000,
+                       charge: "chrg_test_557ib11djeat7p5k22r",
+                       closed_at: nil,
+                       created: "2016-09-10T10:18:21Z",
+                       currency: "thb",
+                       documents: %Omise.List{
+                         data: [
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55am2tt3xave44l7vni",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55am2tt3xave44l7vni",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzusch6dw7w81cf1",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzusch6dw7w81cf1",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzscjq4pfhxfkk18",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzscjq4pfhxfkk18",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzpo2x5r9mkedkng",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzpo2x5r9mkedkng",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzjapkv99mbelg6q",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzjapkv99mbelg6q",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alwcu1phxmsxx3y9p",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alwcu1phxmsxx3y9p",
+                             object: "document"
+                           }
+                         ],
+                         from: "1970-01-01T00:00:00Z",
+                         limit: 20,
+                         location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents",
+                         object: "list",
+                         offset: 0,
+                         order: nil,
+                         to: "2017-11-04T11:59:20Z",
+                         total: 6
+                       },
+                       id: "dspt_test_55aj9q9iipt3tcdwb5r",
+                       livemode: false,
+                       location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r",
+                       message: nil,
+                       object: "dispute",
+                       reason_code: "goods_or_services_not_provided",
+                       reason_message: "Services not provided or Merchandise not received",
+                       status: "open",
+                       transaction: "trxn_test_55aj9q9nyokxlvall1i"
+                     }
+                   ],
+                   from: "1970-01-01T00:00:00Z",
+                   limit: 1,
+                   location: "/disputes",
+                   object: "list",
+                   offset: 0,
+                   order: "chronological",
+                   to: "2017-11-04T11:59:20Z",
+                   total: 2
+                 }}
+      end
+    end
 
-      Enum.each disputes, fn(dispute) ->
-        assert %Omise.Dispute{} = dispute
-        assert dispute.object == "dispute"
+    test "lists all open disputes" do
+      use_cassette "list_open_disputes" do
+        assert Dispute.list(status: "open", limit: 1) ==
+                 {:ok, %Omise.List{
+                   data: [
+                     %Omise.Dispute{
+                       amount: 1_000_000,
+                       charge: "chrg_test_557ib11djeat7p5k22r",
+                       closed_at: nil,
+                       created: "2016-09-10T10:18:21Z",
+                       currency: "thb",
+                       documents: %Omise.List{
+                         data: [
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55am2tt3xave44l7vni",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55am2tt3xave44l7vni",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzusch6dw7w81cf1",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzusch6dw7w81cf1",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzscjq4pfhxfkk18",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzscjq4pfhxfkk18",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzpo2x5r9mkedkng",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzpo2x5r9mkedkng",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alzjapkv99mbelg6q",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alzjapkv99mbelg6q",
+                             object: "document"
+                           },
+                           %Omise.Document{
+                             deleted: false,
+                             filename: "screenshot.png",
+                             id: "docu_test_55alwcu1phxmsxx3y9p",
+                             livemode: false,
+                             location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents/docu_test_55alwcu1phxmsxx3y9p",
+                             object: "document"
+                           }
+                         ],
+                         from: "1970-01-01T00:00:00Z",
+                         limit: 20,
+                         location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r/documents",
+                         object: "list",
+                         offset: 0,
+                         order: nil,
+                         to: "2017-11-04T11:59:21Z",
+                         total: 6
+                       },
+                       id: "dspt_test_55aj9q9iipt3tcdwb5r",
+                       livemode: false,
+                       location: "/disputes/dspt_test_55aj9q9iipt3tcdwb5r",
+                       message: nil,
+                       object: "dispute",
+                       reason_code: "goods_or_services_not_provided",
+                       reason_message: "Services not provided or Merchandise not received",
+                       status: "open",
+                       transaction: "trxn_test_55aj9q9nyokxlvall1i"
+                     }
+                   ],
+                   from: "1970-01-01T00:00:00Z",
+                   limit: 1,
+                   location: "/disputes/open",
+                   object: "list",
+                   offset: 0,
+                   order: "chronological",
+                   to: "2017-11-04T11:59:21Z",
+                   total: 2
+                 }}
+      end
+    end
+
+    test "lists all pending disputes" do
+      use_cassette "list_pending_disputes" do
+        assert Dispute.list(status: "pending", limit: 1) ==
+                 {:ok, %Omise.List{
+                   data: [],
+                   from: "1970-01-01T00:00:00Z",
+                   limit: 1,
+                   location: "/disputes/pending",
+                   object: "list",
+                   offset: 0,
+                   order: "chronological",
+                   to: "2017-11-04T11:59:21Z",
+                   total: 0
+                 }}
+      end
+    end
+
+    test "lists all closed disputes" do
+      use_cassette "list_closed_disputes" do
+        assert Dispute.list(status: "closed", limit: 1) ==
+                 {:ok, %Omise.List{
+                   data: [],
+                   from: "1970-01-01T00:00:00Z",
+                   limit: 1,
+                   location: "/disputes/closed",
+                   object: "list",
+                   offset: 0,
+                   order: "chronological",
+                   to: "2017-11-04T11:59:20Z",
+                   total: 0
+                 }}
       end
     end
   end
 
-  test "retrieve a dispute" do
-    with_mock_request "disputes/#{@dispute_id}-get", fn ->
-      {:ok, dispute} = Omise.Dispute.retrieve(@dispute_id)
-
-      assert %Omise.Dispute{} = dispute
-      assert dispute.object == "dispute"
-      assert dispute.id
-      assert is_boolean(dispute.livemode)
-      assert dispute.location
-      assert dispute.amount
-      assert dispute.currency
-      assert dispute.status
-      refute dispute.message
-      assert dispute.charge
-      assert dispute.created
-    end
-  end
-
-  test "update a dispute" do
-    with_mock_request "disputes/#{@dispute_id}-patch", fn ->
-      message = "Take me to your best friend house"
-      {:ok, dispute} = Omise.Dispute.update(@dispute_id, message: message)
-
-      assert %Omise.Dispute{} = dispute
-      assert dispute.object == "dispute"
-      assert dispute.message == message
-    end
-  end
-
-  test "search disputes" do
-    with_mock_request "search-dispute-get", fn ->
-      {:ok, search_data} = Omise.Dispute.search(filters: [status: "open"])
-
-      assert %Omise.Search{data: data} = search_data
-      assert search_data.object == "search"
-      assert search_data.scope == "dispute"
-      assert search_data.query == ""
-      assert search_data.filters == %{"status" => "open"}
-      assert search_data.page == 1
-      assert search_data.total_pages == 1
-      assert search_data.total == 2
-      assert is_list(data)
-      Enum.each data, fn(dispute) ->
-        assert dispute.status == "open"
+  describe "retrieve/2" do
+    test "retrieves dispute" do
+      use_cassette "retrieve_dispute" do
+        assert Dispute.retrieve("dspt_test_59uu7g9ijua6xcbd3yg") ==
+                 {:ok, %Omise.Dispute{
+                   amount: 50000,
+                   charge: "chrg_test_59utsg8rdkbgfgdztay",
+                   closed_at: nil,
+                   created: "2017-11-04T12:02:34Z",
+                   currency: "thb",
+                   documents: %Omise.List{
+                     data: [],
+                     from: "1970-01-01T00:00:00Z",
+                     limit: 20,
+                     location: "/disputes/dspt_test_59uu7g9ijua6xcbd3yg/documents",
+                     object: "list",
+                     offset: 0,
+                     order: nil,
+                     to: "2017-11-04T12:03:10Z",
+                     total: 0
+                   },
+                   id: "dspt_test_59uu7g9ijua6xcbd3yg",
+                   livemode: false,
+                   location: "/disputes/dspt_test_59uu7g9ijua6xcbd3yg",
+                   message: nil,
+                   object: "dispute",
+                   reason_code: "goods_or_services_not_provided",
+                   reason_message: "Services not provided or Merchandise not received",
+                   status: "open",
+                   transaction: "trxn_test_59uu7g9vwd1kr6714pm"
+                 }}
       end
     end
   end
 
-  test "list all documents" do
-    with_mock_request "disputes/#{@dispute_id}/documents-get", fn ->
-      {:ok, list} = Omise.Dispute.list_documents(@dispute_id)
-
-      assert %Omise.List{data: documents} = list
-      assert list.object == "list"
-      assert list.from
-      assert list.to
-      assert list.offset
-      assert list.limit
-      assert list.total
-      assert is_list(list.data)
-
-      Enum.each documents, fn(document) ->
-        assert %Omise.Document{} = document
-        assert document.object == "document"
+  describe "update/3" do
+    test "updates dispute" do
+      use_cassette "update_dispute" do
+        assert Dispute.update("dspt_test_59uu9r7em9ynw5n6ce8", message: "bad charge") ==
+                 {:ok, %Omise.Dispute{
+                   amount: 50000,
+                   charge: "chrg_test_59utsg0q0mf94fp2qvu",
+                   closed_at: nil,
+                   created: "2017-11-04T12:09:06Z",
+                   currency: "thb",
+                   documents: %Omise.List{
+                     data: [],
+                     from: "1970-01-01T00:00:00Z",
+                     limit: 20,
+                     location: "/disputes/dspt_test_59uu9r7em9ynw5n6ce8/documents",
+                     object: "list",
+                     offset: 0,
+                     order: nil,
+                     to: "2017-11-04T12:09:31Z",
+                     total: 0
+                   },
+                   id: "dspt_test_59uu9r7em9ynw5n6ce8",
+                   livemode: false,
+                   location: "/disputes/dspt_test_59uu9r7em9ynw5n6ce8",
+                   message: "bad charge",
+                   object: "dispute",
+                   reason_code: "goods_or_services_not_provided",
+                   reason_message: "Services not provided or Merchandise not received",
+                   status: "pending",
+                   transaction: "trxn_test_59uu9r7mkpj2ndax49d"
+                 }}
       end
     end
   end
 
-  test "retrieve a document" do
-    with_mock_request "disputes/#{@dispute_id}/documents/#{@document_id}-get", fn ->
-      {:ok, document} = Omise.Dispute.retrieve_document(@dispute_id, @document_id)
-
-      assert %Omise.Document{} = document
-      assert document.object == "document"
-      assert document.id
-      refute document.livemode
-      assert document.filename
+  describe "search/2" do
+    test "searches all disputes" do
+      use_cassette "search_disputes" do
+        assert Dispute.search(query: "bad") ==
+                 {:ok, %Omise.Search{
+                   data: [
+                     %Omise.Dispute{
+                       amount: 50000,
+                       charge: "chrg_test_59utsg0q0mf94fp2qvu",
+                       closed_at: nil,
+                       created: "2017-11-04T12:09:06Z",
+                       currency: "thb",
+                       documents: %Omise.List{
+                         data: [],
+                         from: "1970-01-01T00:00:00Z",
+                         limit: 20,
+                         location: "/disputes/dspt_test_59uu9r7em9ynw5n6ce8/documents",
+                         object: "list",
+                         offset: 0,
+                         order: nil,
+                         to: "2017-11-04T12:09:56Z",
+                         total: 0
+                       },
+                       id: "dspt_test_59uu9r7em9ynw5n6ce8",
+                       livemode: false,
+                       location: "/disputes/dspt_test_59uu9r7em9ynw5n6ce8",
+                       message: "bad charge",
+                       object: "dispute",
+                       reason_code: "goods_or_services_not_provided",
+                       reason_message: "Services not provided or Merchandise not received",
+                       status: "pending",
+                       transaction: "trxn_test_59uu9r7mkpj2ndax49d"
+                     }
+                   ],
+                   filters: %{},
+                   location: "/search",
+                   object: "search",
+                   page: 1,
+                   query: "bad",
+                   scope: "dispute",
+                   total: 1,
+                   total_pages: 1
+                 }}
+      end
     end
   end
 
-  test "upload a document" do
-    with_mock_request "disputes/#{@dispute_id}/documents-post", fn ->
-      {:ok, document} = Omise.Dispute.upload_document(@dispute_id, file: "screenshot.png")
-
-      assert %Omise.Document{} = document
-      assert document.object == "document"
-      assert document.id
-      refute document.livemode
-      assert document.filename
+  describe "list_documents/3" do
+    test "lists dispute documents" do
+      use_cassette "list_documents" do
+        assert Dispute.list_documents("dspt_test_59uuaz72tx6inasbfuj") ==
+                 {:ok, %Omise.List{
+                   data: [
+                     %Omise.Document{
+                       deleted: false,
+                       filename: "cat_pic.jpg",
+                       id: "docu_test_59uubg00s3hlytq56jz",
+                       livemode: false,
+                       location: "/disputes/dspt_test_59uuaz72tx6inasbfuj/documents/docu_test_59uubg00s3hlytq56jz",
+                       object: "document"
+                     }
+                   ],
+                   from: "1970-01-01T00:00:00Z",
+                   limit: 20,
+                   location: "/disputes/dspt_test_59uuaz72tx6inasbfuj/documents",
+                   object: "list",
+                   offset: 0,
+                   order: "chronological",
+                   to: "2017-11-04T12:16:35Z",
+                   total: 1
+                 }}
+      end
     end
   end
 
-  test "destroy a document" do
-    with_mock_request "disputes/#{@dispute_id}/documents-delete", fn ->
-      {:ok, document} = Omise.Dispute.destroy_document(@dispute_id, @document_id)
+  describe "retrieve_document/3" do
+    test "retrieves document" do
+      use_cassette "retrieve_document" do
+        assert Dispute.retrieve_document("dspt_test_59uuaz72tx6inasbfuj", "docu_test_59uubg00s3hlytq56jz") ==
+                 {:ok, %Omise.Document{
+                   deleted: false,
+                   filename: "cat_pic.jpg",
+                   id: "docu_test_59uubg00s3hlytq56jz",
+                   livemode: false,
+                   location: "/disputes/dspt_test_59uuaz72tx6inasbfuj/documents/docu_test_59uubg00s3hlytq56jz",
+                   object: "document"
+                 }}
+      end
+    end
+  end
 
-      assert %Omise.Document{} = document
-      assert document.object == "document"
-      assert document.deleted
+  describe "upload_document/3" do
+    test "uploads document with valid file" do
+      use_cassette "upload_document_with_valid_file" do
+        assert Dispute.upload_document("dspt_test_59uuaz72tx6inasbfuj", file: "cat_pic.jpg") ==
+                 {:ok, %Omise.Document{
+                   deleted: false,
+                   filename: "cat_pic.jpg",
+                   id: "docu_test_59uubg00s3hlytq56jz",
+                   livemode: false,
+                   location: "/disputes/dspt_test_59uuaz72tx6inasbfuj/documents/docu_test_59uubg00s3hlytq56jz",
+                   object: "document"
+                 }}
+      end
+    end
+
+    test "uploads document with invalid file" do
+      use_cassette "upload_document_with_invalid_file" do
+        assert Dispute.upload_document("dspt_test_59uuaz72tx6inasbfuj", file: "README.md") ==
+                 {:error, %Omise.Error{
+                   code: "invalid_file_type",
+                   location: "https://www.omise.co/api-errors#invalid-file-type",
+                   message: "invalid content-type",
+                   object: "error"
+                 }}
+      end
+    end
+  end
+
+  describe "destroy_document/3" do
+    test "destroys document" do
+      use_cassette "destroy_document" do
+        assert Dispute.destroy_document("dspt_test_59uuaz72tx6inasbfuj", "docu_test_59uubg00s3hlytq56jz") ==
+                 {:ok, %Omise.Document{
+                   deleted: true,
+                   filename: nil,
+                   id: "docu_test_59uubg00s3hlytq56jz",
+                   livemode: false,
+                   location: nil,
+                   object: "document"
+                 }}
+      end
     end
   end
 end

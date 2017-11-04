@@ -5,39 +5,35 @@ defmodule Omise.Occurrence do
   <https://www.omise.co/occurrences-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "occurrences"
 
-  defstruct [
-    object:        "occurrence",
-    id:            nil,
-    livemode:      nil,
-    location:      nil,
-    schedule:      nil,
-    schedule_date: nil,
-    retry_date:    nil,
-    processed_at:  nil,
-    status:        nil,
-    message:       nil,
-    result:        nil,
-    created:       nil,
-  ]
+  defstruct object: "occurrence",
+            id: nil,
+            livemode: nil,
+            location: nil,
+            schedule: nil,
+            schedule_date: nil,
+            retry_date: nil,
+            processed_at: nil,
+            status: nil,
+            message: nil,
+            result: nil,
+            created: nil
 
   @type t :: %__MODULE__{
-    object:        String.t,
-    id:            String.t,
-    livemode:      boolean,
-    location:      String.t,
-    schedule:      String.t,
-    schedule_date: String.t,
-    retry_date:    String.t,
-    processed_at:  String.t,
-    status:        String.t,
-    message:       String.t,
-    result:        String.t,
-    created:       String.t,
-  }
-
-  @endpoint "occurrences"
+          object: String.t(),
+          id: String.t(),
+          livemode: boolean,
+          location: String.t(),
+          schedule: String.t(),
+          schedule_date: String.t(),
+          retry_date: String.t(),
+          processed_at: String.t(),
+          status: String.t(),
+          message: String.t(),
+          result: String.t(),
+          created: String.t()
+        }
 
   @doc ~S"""
   Retrieve an occurrence.
@@ -47,7 +43,7 @@ defmodule Omise.Occurrence do
       Omise.Occurrence.retrieve("occu_test_584yqgivyi2p1g828pl")
 
   """
-  @spec retrieve(String.t, Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get("#{@endpoint}/#{id}", [], opts)

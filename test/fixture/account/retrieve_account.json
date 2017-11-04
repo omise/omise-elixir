@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/account?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"account\",\n  \"id\": \"acct_51n45m422m7yrgri706\",\n  \"livemode\": false,\n  \"location\": \"/account\",\n  \"email\": \"m.mantastyle@gmail.com\",\n  \"currency\": \"thb\",\n  \"supported_currencies\": [\n    \"thb\",\n    \"jpy\",\n    \"usd\",\n    \"eur\",\n    \"gbp\",\n    \"sgd\"\n  ],\n  \"created\": \"2016-08-31T05:22:15Z\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 08:52:09 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "6c13c42c-c4dd-4aa9-8666-6c07a8f248c4",
+        "X-Runtime": "0.071343",
+        "Content-Length": "302",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

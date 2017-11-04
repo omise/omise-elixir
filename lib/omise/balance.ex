@@ -5,27 +5,25 @@ defmodule Omise.Balance do
   <https://www.omise.co/balance-api>
   """
 
-  import Omise.HTTP
+  use Omise.HTTPClient, endpoint: "balance"
 
-  defstruct [
-    object:    "balance",
-    livemode:  nil,
-    location:  nil,
-    available: nil,
-    total:     nil,
-    currency:  nil
-  ]
+  defstruct object: "balance",
+            livemode: nil,
+            location: nil,
+            available: nil,
+            total: nil,
+            currency: nil,
+            reserve_amount: nil
 
   @type t :: %__MODULE__{
-    object:    String.t,
-    livemode:  boolean,
-    location:  String.t,
-    available: integer,
-    total:     integer,
-    currency:  String.t
-  }
-
-  @endpoint "balance"
+          object: String.t(),
+          livemode: boolean,
+          location: String.t(),
+          available: integer,
+          total: integer,
+          currency: String.t(),
+          reserve_amount: integer
+        }
 
   @doc ~S"""
   Retrieve the balance.
@@ -39,7 +37,7 @@ defmodule Omise.Balance do
       Omise.Balance.retrieve(key: "skey_56ia27lqtvg32u7iww8")
 
   """
-  @spec retrieve(Keyword.t) :: {:ok, t} | {:error, Omise.Error.t}
+  @spec retrieve(Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def retrieve(opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get(@endpoint, [], opts)

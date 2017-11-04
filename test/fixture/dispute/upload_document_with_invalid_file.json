@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{:multipart, [file: \"README.md\"]}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/disputes/dspt_test_59uuaz72tx6inasbfuj/documents?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#invalid-file-type\",\n  \"code\": \"invalid_file_type\",\n  \"message\": \"invalid content-type\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 12:15:07 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "af4f7e84-5573-4935-a1c1-2467f3a1ce78",
+        "X-Runtime": "0.106112",
+        "Content-Length": "159",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]
