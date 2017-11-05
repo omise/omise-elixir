@@ -156,6 +156,21 @@ defmodule Omise.Charge do
         card: "card_test_51w6jblhhpzmc2g8bcm"
       )
 
+      # Create an internet banking charge
+      Omise.Charge.create(
+        amount: 1000_00,
+        currency: "thb",
+        return_uri: "https://example.com/orders/123/complete",
+        source: "src_test_59vbms154ab4pe4jh2i"
+      )
+
+      # Create a bill payment charge
+      Omise.Charge.create(
+        amount: 1000_00,
+        currency: "thb",
+        source: "src_test_59vb8av645gxw48glui"
+      )
+
   """
   @spec create(Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def create(params, opts \\ []) do
