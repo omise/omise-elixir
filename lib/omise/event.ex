@@ -78,9 +78,5 @@ defmodule Omise.Event do
       data = Poison.Decode.decode(raw_data, as: struct(module))
       %{event | data: data}
     end
-
-    def decode(event, _) do
-      event
-    end
   end
 end
