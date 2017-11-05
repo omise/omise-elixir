@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"type\":\"alipay\",\"currency\":\"thb\",\"amount\":\"invalid_amount\"}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.6.0 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/sources?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#bad-request\",\n  \"code\": \"bad_request\",\n  \"message\": \"amount is not a number\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sun, 05 Nov 2017 17:17:17 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "fec41c85-f4ca-40b7-ab60-14c638e0c41a",
+        "X-Runtime": "0.094860",
+        "Content-Length": "149",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

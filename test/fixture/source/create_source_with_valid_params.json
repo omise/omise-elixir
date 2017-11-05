@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{\"type\":\"bill_payment_tesco_lotus\",\"currency\":\"thb\",\"amount\":100000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.6.0 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/sources?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"source\",\n  \"id\": \"src_test_59vbbpdylvrd15kn36u\",\n  \"type\": \"bill_payment_tesco_lotus\",\n  \"flow\": \"offline\",\n  \"amount\": 100000,\n  \"currency\": \"thb\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sun, 05 Nov 2017 17:13:11 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "a8ce50d1-a8c2-43fa-b033-857991d61014",
+        "X-Runtime": "0.113289",
+        "Content-Length": "165",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

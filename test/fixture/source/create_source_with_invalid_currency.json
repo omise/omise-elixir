@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"type\":\"internet_banking_bbl\",\"currency\":\"invalid\",\"amount\":100000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.6.0 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/sources?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#bad-request\",\n  \"code\": \"bad_request\",\n  \"message\": \"currency is currently not supported\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sun, 05 Nov 2017 17:18:25 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "92c0399b-beab-4f62-b5c8-121850b2869d",
+        "X-Runtime": "0.072879",
+        "Content-Length": "162",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

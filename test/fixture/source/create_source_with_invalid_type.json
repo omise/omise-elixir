@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"type\":\"invalid\",\"currency\":\"thb\",\"amount\":100000}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.6.0 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/sources?"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#bad-request\",\n  \"code\": \"bad_request\",\n  \"message\": \"type is currently not supported\"\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sun, 05 Nov 2017 17:15:23 GMT",
+        "Server": "nginx",
+        "Status": "400 Bad Request",
+        "X-Request-Id": "b820cb18-41e7-4410-b562-9eeea5eeb022",
+        "X-Runtime": "0.101201",
+        "Content-Length": "158",
+        "Connection": "keep-alive"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]
