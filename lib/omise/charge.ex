@@ -37,7 +37,8 @@ defmodule Omise.Charge do
             customer: nil,
             ip: nil,
             dispute: %Omise.Dispute{},
-            created: nil
+            created: nil,
+            source: %Omise.Source{}
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -70,7 +71,8 @@ defmodule Omise.Charge do
           customer: String.t(),
           ip: String.t(),
           dispute: Omise.Dispute.t(),
-          created: String.t()
+          created: String.t(),
+          source: Omise.Source.t()
         }
 
   @doc ~S"""

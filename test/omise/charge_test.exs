@@ -69,6 +69,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59uscf1dzpaux0vdnp7"
@@ -131,6 +132,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59usbyrwtbdujixpga1"
@@ -211,6 +213,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59ur0jca0mv51z6laom"
@@ -285,6 +288,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59uscf1dzpaux0vdnp7"
@@ -357,6 +361,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59use57kldk75i8br9b"
@@ -430,6 +435,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59usep4owrp5i83x4dq"
@@ -564,6 +570,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59ur0jca0mv51z6laom"
@@ -634,6 +641,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59ushm59uy5kf6o909e"
@@ -704,6 +712,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: true,
+                   source: nil,
                    source_of_fund: nil,
                    status: "reversed",
                    transaction: nil
@@ -788,6 +797,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59usep4owrp5i83x4dq"
@@ -850,6 +860,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59use57kldk75i8br9b"
