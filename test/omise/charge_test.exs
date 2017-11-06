@@ -69,6 +69,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59uscf1dzpaux0vdnp7"
@@ -131,6 +132,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59usbyrwtbdujixpga1"
@@ -211,6 +213,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59ur0jca0mv51z6laom"
@@ -285,6 +288,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59uscf1dzpaux0vdnp7"
@@ -357,6 +361,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59use57kldk75i8br9b"
@@ -430,9 +435,75 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59usep4owrp5i83x4dq"
+                 }}
+      end
+    end
+
+    test "creates charge with source" do
+      use_cassette "create_charge_with_source" do
+        assert Charge.create(
+                 [
+                   amount: 1000_00,
+                   currency: "thb",
+                   return_uri: "https://example.com/orders/123/complete",
+                   source: "src_test_59vbms154ab4pe4jh2i"
+                 ],
+                 api_version: "2017-11-02"
+               ) ==
+                 {:ok, %Omise.Charge{
+                   amount: 100_000,
+                   authorize_uri: "https://pay.omise.co/offsites/ofsp_test_59vbnbnlmlkeauu9yxq/pay",
+                   authorized: false,
+                   capture: true,
+                   captured: nil,
+                   card: nil,
+                   created: "2017-11-05T17:46:12Z",
+                   currency: "thb",
+                   customer: nil,
+                   description: nil,
+                   dispute: nil,
+                   failure_code: nil,
+                   failure_message: nil,
+                   id: "chrg_test_59vbnbnjorfk2x5nand",
+                   installment_terms: nil,
+                   ip: nil,
+                   livemode: false,
+                   location: "/charges/chrg_test_59vbnbnjorfk2x5nand",
+                   metadata: %{},
+                   object: "charge",
+                   offline: nil,
+                   offsite: nil,
+                   paid: false,
+                   reference: "ofsp_test_59vbnbnlmlkeauu9yxq",
+                   refunded: 0,
+                   refunds: %Omise.List{
+                     data: [],
+                     from: "1970-01-01T00:00:00Z",
+                     limit: 20,
+                     location: "/charges/chrg_test_59vbnbnjorfk2x5nand/refunds",
+                     object: "list",
+                     offset: 0,
+                     order: nil,
+                     to: "2017-11-05T17:46:12Z",
+                     total: 0
+                   },
+                   return_uri: "https://example.com/orders/123/complete",
+                   reversed: false,
+                   source: %Omise.Source{
+                     amount: 100_000,
+                     currency: "thb",
+                     flow: "redirect",
+                     id: "src_test_59vbms154ab4pe4jh2i",
+                     object: "source",
+                     type: "internet_banking_bbl"
+                   },
+                   source_of_fund: nil,
+                   status: "pending",
+                   transaction: nil
                  }}
       end
     end
@@ -564,6 +635,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59ur0jca0mv51z6laom"
@@ -634,6 +706,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: false,
+                   source: nil,
                    source_of_fund: nil,
                    status: "successful",
                    transaction: "trxn_test_59ushm59uy5kf6o909e"
@@ -704,6 +777,7 @@ defmodule Omies.ChargeTest do
                    },
                    return_uri: nil,
                    reversed: true,
+                   source: nil,
                    source_of_fund: nil,
                    status: "reversed",
                    transaction: nil
@@ -788,6 +862,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59usep4owrp5i83x4dq"
@@ -850,6 +925,7 @@ defmodule Omies.ChargeTest do
                        },
                        return_uri: nil,
                        reversed: false,
+                       source: nil,
                        source_of_fund: nil,
                        status: "successful",
                        transaction: "trxn_test_59use57kldk75i8br9b"

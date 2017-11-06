@@ -73,6 +73,7 @@ defmodule Omise.LinkTest do
                              },
                              return_uri: "https://link.omise.co/60CA5DF4/complete",
                              reversed: false,
+                             source: nil,
                              source_of_fund: nil,
                              status: "successful",
                              transaction: "trxn_test_55s7qs2rv3mriqoi64u"
@@ -135,6 +136,7 @@ defmodule Omise.LinkTest do
                              },
                              return_uri: "https://link.omise.co/60CA5DF4/complete",
                              reversed: false,
+                             source: nil,
                              source_of_fund: nil,
                              status: "successful",
                              transaction: "trxn_test_55s7qkpxw5933arm35h"

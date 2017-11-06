@@ -37,7 +37,8 @@ defmodule Omise.Charge do
             customer: nil,
             ip: nil,
             dispute: %Omise.Dispute{},
-            created: nil
+            created: nil,
+            source: %Omise.Source{}
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -70,7 +71,8 @@ defmodule Omise.Charge do
           customer: String.t(),
           ip: String.t(),
           dispute: Omise.Dispute.t(),
-          created: String.t()
+          created: String.t(),
+          source: Omise.Source.t()
         }
 
   @doc ~S"""
@@ -152,6 +154,21 @@ defmodule Omise.Charge do
         currency: "thb",
         customer: "cust_test_51vtchzn51al0jaa92q",
         card: "card_test_51w6jblhhpzmc2g8bcm"
+      )
+
+      # Create an internet banking charge
+      Omise.Charge.create(
+        amount: 1000_00,
+        currency: "thb",
+        return_uri: "https://example.com/orders/123/complete",
+        source: "src_test_59vbms154ab4pe4jh2i"
+      )
+
+      # Create a bill payment charge
+      Omise.Charge.create(
+        amount: 1000_00,
+        currency: "thb",
+        source: "src_test_59vb8av645gxw48glui"
       )
 
   """

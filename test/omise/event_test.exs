@@ -71,6 +71,7 @@ defmodule Omise.EventTest do
                          },
                          return_uri: nil,
                          reversed: false,
+                         source: nil,
                          source_of_fund: nil,
                          status: "successful",
                          transaction: "trxn_test_59uuf7a0o272na5lg9f"
