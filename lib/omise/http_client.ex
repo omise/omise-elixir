@@ -83,8 +83,12 @@ defmodule Omise.HTTPClient do
   end
 
   defp handle_response(%Response{body: body, status_code: status_code}, _) do
-    {:error, Poison.decode!(body, as: %Error{})}
-  rescue
-    Poison.SyntaxError -> {:error, %Error{code: status_code, message: "http request error"}}
+    case Poison.decode(body, as: %Error{}) do
+      {:ok, decoded_body} ->
+        {:error, decoded_body}
+
+      _ ->
+        {:error, %Error{code: status_code, message: "http request error"}}
+    end
   end
 end
