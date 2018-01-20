@@ -9,15 +9,16 @@ defmodule Omise.BalanceTest do
     test "retrieves balance" do
       use_cassette "retrieve_balance" do
         assert Balance.retrieve() ==
-                 {:ok, %Omise.Balance{
-                   currency: "thb",
-                   livemode: false,
-                   location: "/balance",
-                   object: "balance",
-                   reserve_amount: 0,
-                   available: 393_336_607,
-                   total: 393_336_607
-                 }}
+                 {:ok,
+                  %Omise.Balance{
+                    currency: "thb",
+                    livemode: false,
+                    location: "/balance",
+                    object: "balance",
+                    reserve_amount: 0,
+                    available: 393_336_607,
+                    total: 393_336_607
+                  }}
       end
     end
   end

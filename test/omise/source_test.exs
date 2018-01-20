@@ -13,14 +13,15 @@ defmodule Omise.SourceTest do
                  currency: "thb",
                  type: "bill_payment_tesco_lotus"
                ) ==
-                 {:ok, %Omise.Source{
-                   amount: 100_000,
-                   currency: "thb",
-                   flow: "offline",
-                   object: "source",
-                   type: "bill_payment_tesco_lotus",
-                   id: "src_test_59vbbpdylvrd15kn36u"
-                 }}
+                 {:ok,
+                  %Omise.Source{
+                    amount: 100_000,
+                    currency: "thb",
+                    flow: "offline",
+                    object: "source",
+                    type: "bill_payment_tesco_lotus",
+                    id: "src_test_59vbbpdylvrd15kn36u"
+                  }}
       end
     end
 
@@ -31,12 +32,13 @@ defmodule Omise.SourceTest do
                  currency: "thb",
                  type: "alipay"
                ) ==
-                 {:error, %Omise.Error{
-                   code: "bad_request",
-                   location: "https://www.omise.co/api-errors#bad-request",
-                   message: "amount is not a number",
-                   object: "error"
-                 }}
+                 {:error,
+                  %Omise.Error{
+                    code: "bad_request",
+                    location: "https://www.omise.co/api-errors#bad-request",
+                    message: "amount is not a number",
+                    object: "error"
+                  }}
       end
     end
 
@@ -47,12 +49,13 @@ defmodule Omise.SourceTest do
                  currency: "invalid",
                  type: "internet_banking_bbl"
                ) ==
-                 {:error, %Omise.Error{
-                   code: "bad_request",
-                   location: "https://www.omise.co/api-errors#bad-request",
-                   message: "currency is currently not supported",
-                   object: "error"
-                 }}
+                 {:error,
+                  %Omise.Error{
+                    code: "bad_request",
+                    location: "https://www.omise.co/api-errors#bad-request",
+                    message: "currency is currently not supported",
+                    object: "error"
+                  }}
       end
     end
 
@@ -63,12 +66,13 @@ defmodule Omise.SourceTest do
                  currency: "thb",
                  type: "invalid"
                ) ==
-                 {:error, %Omise.Error{
-                   code: "bad_request",
-                   location: "https://www.omise.co/api-errors#bad-request",
-                   message: "type is currently not supported",
-                   object: "error"
-                 }}
+                 {:error,
+                  %Omise.Error{
+                    code: "bad_request",
+                    location: "https://www.omise.co/api-errors#bad-request",
+                    message: "type is currently not supported",
+                    object: "error"
+                  }}
       end
     end
   end
