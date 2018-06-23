@@ -1,9 +1,9 @@
 defmodule Omise.CustomerTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Customer
 
-  setup_all do: set_fixture_dir("customer")
+  setup do: set_fixture_dir("customer")
 
   describe "list/2" do
     test "lists all customers" do

@@ -1,9 +1,9 @@
 defmodule Omise.TokenTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Token
 
-  setup_all do: set_fixture_dir("token")
+  setup do: set_fixture_dir("token")
 
   describe "create/2" do
     test "creates token" do

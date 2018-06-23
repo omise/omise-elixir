@@ -1,9 +1,9 @@
 defmodule Omise.ScheduleTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Schedule
 
-  setup_all do: set_fixture_dir("schedule")
+  setup do: set_fixture_dir("schedule")
 
   describe "list/2" do
     test "lists all schedules" do

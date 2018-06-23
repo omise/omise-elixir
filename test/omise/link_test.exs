@@ -1,9 +1,9 @@
 defmodule Omise.LinkTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Link
 
-  setup_all do: set_fixture_dir("link")
+  setup do: set_fixture_dir("link")
 
   describe "list/2" do
     test "lists links" do

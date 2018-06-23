@@ -1,9 +1,9 @@
 defmodule Omise.TransferTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Transfer
 
-  setup_all do: set_fixture_dir("transfer")
+  setup do: set_fixture_dir("transfer")
 
   describe "list/2" do
     test "lists all transfers" do

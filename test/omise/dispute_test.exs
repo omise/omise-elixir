@@ -1,9 +1,9 @@
 defmodule Omise.DisputeTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Dispute
 
-  setup_all do: set_fixture_dir("dispute")
+  setup do: set_fixture_dir("dispute")
 
   describe "list/2" do
     test "lists all disputes" do

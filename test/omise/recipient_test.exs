@@ -1,9 +1,9 @@
 defmodule Omise.RecipientTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Recipient
 
-  setup_all do: set_fixture_dir("recipient")
+  setup do: set_fixture_dir("recipient")
 
   describe "list/2" do
     test "lists all recipients" do

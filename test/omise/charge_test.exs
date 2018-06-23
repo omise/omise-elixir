@@ -1,9 +1,9 @@
 defmodule Omies.ChargeTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Charge
 
-  setup_all do: set_fixture_dir("charge")
+  setup do: set_fixture_dir("charge")
 
   describe "list/1" do
     test "lists all charges" do

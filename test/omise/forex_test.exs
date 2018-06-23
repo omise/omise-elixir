@@ -1,9 +1,9 @@
 defmodule Omise.ForexTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Forex
 
-  setup_all do: set_fixture_dir("forex")
+  setup do: set_fixture_dir("forex")
 
   describe "retrieve/2" do
     test "retrieves forex" do

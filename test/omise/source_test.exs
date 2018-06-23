@@ -1,9 +1,9 @@
 defmodule Omise.SourceTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Source
 
-  setup_all do: set_fixture_dir("source")
+  setup do: set_fixture_dir("source")
 
   describe "create/2" do
     test "creates source with valid params" do

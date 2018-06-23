@@ -1,9 +1,9 @@
 defmodule Omise.EventTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Event
 
-  setup_all do: set_fixture_dir("event")
+  setup do: set_fixture_dir("event")
 
   describe "list/2" do
     test "lists all events" do

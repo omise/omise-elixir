@@ -1,9 +1,9 @@
 defmodule Omise.AccountTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Account
 
-  setup_all do: set_fixture_dir("account")
+  setup do: set_fixture_dir("account")
 
   describe "retrieve/1" do
     test "retrieves account" do

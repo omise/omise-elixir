@@ -1,9 +1,9 @@
 defmodule Omise.OccurrenceTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Occurrence
 
-  setup_all do: set_fixture_dir("occurrence")
+  setup do: set_fixture_dir("occurrence")
 
   describe "retrieve/2" do
     test "retrieves occurrence" do

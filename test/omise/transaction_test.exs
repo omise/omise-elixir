@@ -1,9 +1,9 @@
 defmodule Omise.TransactionTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Transaction
 
-  setup_all do: set_fixture_dir("transaction")
+  setup do: set_fixture_dir("transaction")
 
   describe "list/2" do
     test "lists all transactions" do

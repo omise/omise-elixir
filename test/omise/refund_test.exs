@@ -1,9 +1,9 @@
 defmodule Omise.RefundTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Refund
 
-  setup_all do: set_fixture_dir("refund")
+  setup do: set_fixture_dir("refund")
 
   describe "list/2" do
     test "lists all refunds" do

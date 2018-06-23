@@ -1,9 +1,9 @@
 defmodule Omise.BalanceTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Balance
 
-  setup_all do: set_fixture_dir("balance")
+  setup do: set_fixture_dir("balance")
 
   describe "retrieve/1" do
     test "retrieves balance" do

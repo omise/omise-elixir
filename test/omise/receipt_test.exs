@@ -1,9 +1,9 @@
 defmodule Omise.ReceiptTest do
-  use Omise.TestCase
+  use Omise.TestCase, async: true
 
   alias Omise.Receipt
 
-  setup_all do: set_fixture_dir("receipt")
+  setup do: set_fixture_dir("receipt")
 
   describe "list/2" do
     test "lists all receipts" do
