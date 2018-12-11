@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/account?"
+      "url": "https://api.omise.co/account"
     },
     "response": {
       "body": "{\n  \"object\": \"account\",\n  \"id\": \"acct_51n45m422m7yrgri706\",\n  \"livemode\": false,\n  \"location\": \"/account\",\n  \"email\": \"m.mantastyle@gmail.com\",\n  \"currency\": \"thb\",\n  \"supported_currencies\": [\n    \"thb\",\n    \"jpy\",\n    \"usd\",\n    \"eur\",\n    \"gbp\",\n    \"sgd\"\n  ],\n  \"created\": \"2016-08-31T05:22:15Z\"\n}\n",

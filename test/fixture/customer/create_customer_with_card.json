@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/customers?"
+      "url": "https://api.omise.co/customers"
     },
     "response": {
       "body": "{\n  \"object\": \"customer\",\n  \"id\": \"cust_test_59utuigfksnvsed9mi4\",\n  \"livemode\": false,\n  \"location\": \"/customers/cust_test_59utuigfksnvsed9mi4\",\n  \"default_card\": \"card_test_59utu4qnjvldpwg434g\",\n  \"email\": \"mike@strangerthings.com\",\n  \"description\": \"crazy little body\",\n  \"metadata\": {\n  },\n  \"created\": \"2017-11-04T11:25:48Z\",\n  \"cards\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T11:25:48Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 1,\n    \"order\": null,\n    \"location\": \"/customers/cust_test_59utuigfksnvsed9mi4/cards\",\n    \"data\": [\n      {\n        \"object\": \"card\",\n        \"id\": \"card_test_59utu4qnjvldpwg434g\",\n        \"livemode\": false,\n        \"location\": \"/customers/cust_test_59utuigfksnvsed9mi4/cards/card_test_59utu4qnjvldpwg434g\",\n        \"country\": \"us\",\n        \"city\": \"Bangkok\",\n        \"postal_code\": \"10320\",\n        \"financing\": \"\",\n        \"bank\": \"\",\n        \"last_digits\": \"4242\",\n        \"brand\": \"Visa\",\n        \"expiration_month\": 10,\n        \"expiration_year\": 2019,\n        \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n        \"name\": \"John Doe\",\n        \"security_code_check\": true,\n        \"created\": \"2017-11-04T11:24:43Z\"\n      }\n    ]\n  }\n}\n",

@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/sources?"
+      "url": "https://api.omise.co/sources"
     },
     "response": {
       "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#bad-request\",\n  \"code\": \"bad_request\",\n  \"message\": \"type is currently not supported\"\n}\n",

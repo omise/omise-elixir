@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/transfers/trsf_test_59uvmrtx6v57s2xrvh4?"
+      "url": "https://api.omise.co/transfers/trsf_test_59uvmrtx6v57s2xrvh4"
     },
     "response": {
       "body": "{\n  \"object\": \"transfer\",\n  \"id\": \"trsf_test_59uvmrtx6v57s2xrvh4\",\n  \"livemode\": false,\n  \"deleted\": true\n}\n",

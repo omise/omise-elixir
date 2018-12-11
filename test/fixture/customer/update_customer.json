@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/customers/cust_test_59uttqwkl62x5wf9qys?"
+      "url": "https://api.omise.co/customers/cust_test_59uttqwkl62x5wf9qys"
     },
     "response": {
       "body": "{\n  \"object\": \"customer\",\n  \"id\": \"cust_test_59uttqwkl62x5wf9qys\",\n  \"livemode\": false,\n  \"location\": \"/customers/cust_test_59uttqwkl62x5wf9qys\",\n  \"default_card\": \"card_test_59utvh4vu7cx3jrjtqx\",\n  \"email\": \"eleven@strangerthings.com\",\n  \"description\": \"crazy little girl\",\n  \"metadata\": {\n  },\n  \"created\": \"2017-11-04T11:23:38Z\",\n  \"cards\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T11:28:53Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 1,\n    \"order\": null,\n    \"location\": \"/customers/cust_test_59uttqwkl62x5wf9qys/cards\",\n    \"data\": [\n      {\n        \"object\": \"card\",\n        \"id\": \"card_test_59utvh4vu7cx3jrjtqx\",\n        \"livemode\": false,\n        \"location\": \"/customers/cust_test_59uttqwkl62x5wf9qys/cards/card_test_59utvh4vu7cx3jrjtqx\",\n        \"country\": \"us\",\n        \"city\": \"Bangkok\",\n        \"postal_code\": \"10320\",\n        \"financing\": \"\",\n        \"bank\": \"\",\n        \"last_digits\": \"4242\",\n        \"brand\": \"Visa\",\n        \"expiration_month\": 10,\n        \"expiration_year\": 2019,\n        \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n        \"name\": \"John Doe\",\n        \"security_code_check\": true,\n        \"created\": \"2017-11-04T11:28:33Z\"\n      }\n    ]\n  }\n}\n",

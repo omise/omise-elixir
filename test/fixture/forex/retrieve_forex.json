@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/forex/usd?"
+      "url": "https://api.omise.co/forex/usd"
     },
     "response": {
       "body": "{\n  \"object\": \"forex\",\n  \"from\": \"usd\",\n  \"to\": \"thb\",\n  \"rate\": 31.895433500000003,\n  \"location\": \"/forex/usd\"\n}\n",

@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/recipients?"
+      "url": "https://api.omise.co/recipients"
     },
     "response": {
       "body": "{\n  \"object\": \"recipient\",\n  \"id\": \"recp_test_59uuqzsagk159pa08gc\",\n  \"livemode\": false,\n  \"location\": \"/recipients/recp_test_59uuqzsagk159pa08gc\",\n  \"verified\": false,\n  \"active\": false,\n  \"name\": \"Dua Lipa\",\n  \"email\": \"dua@gmail.com\",\n  \"description\": \"One! Don't pick up the phone...\",\n  \"type\": \"individual\",\n  \"tax_id\": null,\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"bbl\",\n    \"last_digits\": \"7890\",\n    \"name\": \"Dua Lipa\",\n    \"created\": \"2017-11-04T12:58:05Z\"\n  },\n  \"failure_code\": null,\n  \"created\": \"2017-11-04T12:58:05Z\"\n}\n",

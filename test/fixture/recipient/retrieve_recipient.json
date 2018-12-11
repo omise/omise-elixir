@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/recipients/recp_test_55j2lryr9wfpxm5c7js?"
+      "url": "https://api.omise.co/recipients/recp_test_55j2lryr9wfpxm5c7js"
     },
     "response": {
       "body": "{\n  \"object\": \"recipient\",\n  \"id\": \"recp_test_55j2lryr9wfpxm5c7js\",\n  \"livemode\": false,\n  \"location\": \"/recipients/recp_test_55j2lryr9wfpxm5c7js\",\n  \"verified\": true,\n  \"active\": true,\n  \"name\": \"Mary Elizabeth Winstead\",\n  \"email\": \"mary@omise.co\",\n  \"description\": \"\",\n  \"type\": \"individual\",\n  \"tax_id\": \"\",\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"bnp\",\n    \"last_digits\": \"7890\",\n    \"name\": \"Mary Elizabeth Winstead\",\n    \"created\": \"2016-10-02T06:08:37Z\"\n  },\n  \"failure_code\": null,\n  \"created\": \"2016-10-02T06:08:37Z\"\n}\n",

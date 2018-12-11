@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/charges/chrg_test_59use551gec8gaockk7/refunds?"
+      "url": "https://api.omise.co/charges/chrg_test_59use551gec8gaockk7/refunds"
     },
     "response": {
       "body": "{\n  \"object\": \"refund\",\n  \"id\": \"rfnd_test_59uss4fpv3otofm2ri1\",\n  \"location\": \"/charges/chrg_test_59use551gec8gaockk7/refunds/rfnd_test_59uss4fpv3otofm2ri1\",\n  \"amount\": 10000,\n  \"currency\": \"thb\",\n  \"voided\": false,\n  \"charge\": \"chrg_test_59use551gec8gaockk7\",\n  \"transaction\": \"trxn_test_59uss4fwydrqn3ddwlg\",\n  \"created\": \"2017-11-04T09:36:45Z\"\n}\n",

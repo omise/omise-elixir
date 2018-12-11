@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/charges/chrg_test_556qgv7yxa759kavn8v/reverse?"
+      "url": "https://api.omise.co/charges/chrg_test_556qgv7yxa759kavn8v/reverse"
     },
     "response": {
       "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#failed-reverse\",\n  \"code\": \"failed_reverse\",\n  \"message\": \"only uncaptured authorized charges can be reversed\"\n}\n",

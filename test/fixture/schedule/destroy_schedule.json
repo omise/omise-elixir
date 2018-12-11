@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/schedules/schd_test_59uv6x4k6oj4swchy3c?"
+      "url": "https://api.omise.co/schedules/schd_test_59uv6x4k6oj4swchy3c"
     },
     "response": {
       "body": "{\n  \"object\": \"schedule\",\n  \"id\": \"schd_test_59uv6x4k6oj4swchy3c\",\n  \"livemode\": false,\n  \"location\": \"/schedules/schd_test_59uv6x4k6oj4swchy3c\",\n  \"status\": \"deleted\",\n  \"every\": 10,\n  \"period\": \"day\",\n  \"on\": {\n  },\n  \"in_words\": \"Every 10 day(s)\",\n  \"start_date\": \"2017-11-10\",\n  \"end_date\": \"2017-12-31\",\n  \"transfer\": {\n    \"recipient\": \"recp_test_55j2lryr9wfpxm5c7js\",\n    \"amount\": 1000000,\n    \"percentage_of_balance\": null,\n    \"currency\": \"thb\"\n  },\n  \"occurrences\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T13:49:19Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/schedules/schd_test_59uv6x4k6oj4swchy3c/occurrences\",\n    \"data\": [\n\n    ]\n  },\n  \"next_occurrence_dates\": [\n\n  ],\n  \"created\": \"2017-11-04T13:43:19Z\"\n}\n",

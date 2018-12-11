@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/customers/cust_test_59utuigfksnvsed9mi4/cards/card_test_59utu4qnjvldpwg434g?"
+      "url": "https://api.omise.co/customers/cust_test_59utuigfksnvsed9mi4/cards/card_test_59utu4qnjvldpwg434g"
     },
     "response": {
       "body": "{\n  \"object\": \"card\",\n  \"id\": \"card_test_59utu4qnjvldpwg434g\",\n  \"livemode\": false,\n  \"deleted\": true\n}\n",

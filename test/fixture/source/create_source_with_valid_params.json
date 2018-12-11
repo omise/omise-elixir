@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/sources?"
+      "url": "https://api.omise.co/sources"
     },
     "response": {
       "body": "{\n  \"object\": \"source\",\n  \"id\": \"src_test_59vbbpdylvrd15kn36u\",\n  \"type\": \"bill_payment_tesco_lotus\",\n  \"flow\": \"offline\",\n  \"amount\": 100000,\n  \"currency\": \"thb\"\n}\n",

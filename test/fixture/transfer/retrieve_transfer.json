@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/transfers/trsf_test_59hzc6ttkz93cztqbgk?"
+      "url": "https://api.omise.co/transfers/trsf_test_59hzc6ttkz93cztqbgk"
     },
     "response": {
       "body": "{\n  \"object\": \"transfer\",\n  \"id\": \"trsf_test_59hzc6ttkz93cztqbgk\",\n  \"livemode\": false,\n  \"location\": \"/transfers/trsf_test_59hzc6ttkz93cztqbgk\",\n  \"recipient\": \"recp_test_556jkf7u174ptxuytac\",\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"test\",\n    \"last_digits\": \"6789\",\n    \"name\": \"DEFAULT BANK ACCOUNT\",\n    \"created\": \"2016-08-31T05:22:15Z\"\n  },\n  \"sent\": true,\n  \"paid\": true,\n  \"amount\": 100000,\n  \"currency\": \"thb\",\n  \"fee\": 3000,\n  \"fail_fast\": false,\n  \"failure_code\": null,\n  \"failure_message\": null,\n  \"transaction\": \"trxn_test_59i9afontdj37o5xlta\",\n  \"created\": \"2017-10-02T15:06:18Z\",\n  \"sent_at\": \"2017-10-03T08:03:59Z\",\n  \"paid_at\": \"2017-10-03T08:04:01Z\"\n}\n",

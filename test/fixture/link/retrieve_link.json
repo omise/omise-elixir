@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/links/link_test_59ur6gqhjjc8u4s29eq?"
+      "url": "https://api.omise.co/links/link_test_59ur6gqhjjc8u4s29eq"
     },
     "response": {
       "body": "{\n  \"object\": \"link\",\n  \"id\": \"link_test_59ur6gqhjjc8u4s29eq\",\n  \"livemode\": false,\n  \"location\": \"/links/link_test_59ur6gqhjjc8u4s29eq\",\n  \"amount\": 20000,\n  \"currency\": \"thb\",\n  \"used\": false,\n  \"multiple\": true,\n  \"title\": \"Robbers - The 1975\",\n  \"description\": \"Nice song\",\n  \"charges\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T12:40:14Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/links/link_test_59ur6gqhjjc8u4s29eq/charges\",\n    \"data\": [\n\n    ]\n  },\n  \"payment_uri\": \"https://link.omise.co/7D900F21\",\n  \"created\": \"2017-11-04T06:52:57Z\"\n}\n",

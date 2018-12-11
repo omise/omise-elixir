@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/schedules?"
+      "url": "https://api.omise.co/schedules"
     },
     "response": {
       "body": "{\n  \"object\": \"schedule\",\n  \"id\": \"schd_test_59uv8cx9595f4zttqax\",\n  \"livemode\": false,\n  \"location\": \"/schedules/schd_test_59uv8cx9595f4zttqax\",\n  \"status\": \"active\",\n  \"every\": 1,\n  \"period\": \"month\",\n  \"on\": {\n    \"days_of_month\": [\n      15\n    ]\n  },\n  \"in_words\": \"Every 1 month(s) on the 15th\",\n  \"start_date\": \"2017-12-15\",\n  \"end_date\": \"2018-03-15\",\n  \"charge\": {\n    \"amount\": 19900,\n    \"currency\": \"thb\",\n    \"description\": \"Membership fee\",\n    \"customer\": \"cust_test_59ur2ob5ltcsl9vjwb4\",\n    \"card\": null\n  },\n  \"occurrences\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T13:47:24Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/schedules/schd_test_59uv8cx9595f4zttqax/occurrences\",\n    \"data\": [\n\n    ]\n  },\n  \"next_occurrence_dates\": [\n    \"2017-12-15\",\n    \"2018-01-15\",\n    \"2018-02-15\",\n    \"2018-03-15\"\n  ],\n  \"created\": \"2017-11-04T13:47:24Z\"\n}\n",

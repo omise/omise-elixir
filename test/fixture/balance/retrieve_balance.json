@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/balance?"
+      "url": "https://api.omise.co/balance"
     },
     "response": {
       "body": "{\n  \"object\": \"balance\",\n  \"livemode\": false,\n  \"location\": \"/balance\",\n  \"available\": 393336607,\n  \"total\": 393336607,\n  \"currency\": \"thb\",\n  \"reserve_amount\": 0\n}\n",

@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/disputes/dspt_test_59uuaz72tx6inasbfuj/documents?"
+      "url": "https://api.omise.co/disputes/dspt_test_59uuaz72tx6inasbfuj/documents"
     },
     "response": {
       "body": "{\n  \"object\": \"document\",\n  \"id\": \"docu_test_59uubg00s3hlytq56jz\",\n  \"livemode\": false,\n  \"location\": \"/disputes/dspt_test_59uuaz72tx6inasbfuj/documents/docu_test_59uubg00s3hlytq56jz\",\n  \"filename\": \"cat_pic.jpg\",\n  \"created\": \"2017-11-04T12:13:54Z\"\n}\n",

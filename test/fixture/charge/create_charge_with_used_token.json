@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/charges?"
+      "url": "https://api.omise.co/charges"
     },
     "response": {
       "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#used-token\",\n  \"code\": \"used_token\",\n  \"message\": \"token was already used\"\n}\n",

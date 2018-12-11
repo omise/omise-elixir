@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/transactions/trxn_test_59tvuzadrid9tlf3pnd?"
+      "url": "https://api.omise.co/transactions/trxn_test_59tvuzadrid9tlf3pnd"
     },
     "response": {
       "body": "{\n  \"object\": \"transaction\",\n  \"id\": \"trxn_test_59tvuzadrid9tlf3pnd\",\n  \"location\": \"/transactions/trxn_test_59tvuzadrid9tlf3pnd\",\n  \"type\": \"credit\",\n  \"amount\": 19123,\n  \"currency\": \"thb\",\n  \"transferable\": \"2017-11-02T01:30:03Z\",\n  \"source\": \"chrg_test_59tvuysd2mkvbtpodvs\",\n  \"created\": \"2017-11-02T01:30:03Z\"\n}\n",

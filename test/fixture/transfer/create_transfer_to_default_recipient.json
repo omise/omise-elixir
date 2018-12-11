@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/transfers?"
+      "url": "https://api.omise.co/transfers"
     },
     "response": {
       "body": "{\n  \"object\": \"transfer\",\n  \"id\": \"trsf_test_59uvmrw7uo0c2om9ros\",\n  \"livemode\": false,\n  \"location\": \"/transfers/trsf_test_59uvmrw7uo0c2om9ros\",\n  \"recipient\": \"recp_test_556jkf7u174ptxuytac\",\n  \"bank_account\": {\n    \"object\": \"bank_account\",\n    \"brand\": \"test\",\n    \"last_digits\": \"6789\",\n    \"name\": \"DEFAULT BANK ACCOUNT\",\n    \"created\": \"2016-08-31T05:22:15Z\"\n  },\n  \"sent\": false,\n  \"paid\": false,\n  \"amount\": 500000,\n  \"currency\": \"thb\",\n  \"fee\": 3000,\n  \"fail_fast\": false,\n  \"failure_code\": null,\n  \"failure_message\": null,\n  \"transaction\": null,\n  \"created\": \"2017-11-04T14:28:22Z\",\n  \"sent_at\": null,\n  \"paid_at\": null\n}\n",

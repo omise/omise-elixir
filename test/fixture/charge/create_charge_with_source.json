@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/charges?"
+      "url": "https://api.omise.co/charges"
     },
     "response": {
       "body": "{\n  \"object\": \"charge\",\n  \"id\": \"chrg_test_59vbnbnjorfk2x5nand\",\n  \"livemode\": false,\n  \"location\": \"/charges/chrg_test_59vbnbnjorfk2x5nand\",\n  \"amount\": 100000,\n  \"currency\": \"thb\",\n  \"description\": null,\n  \"metadata\": {\n  },\n  \"status\": \"pending\",\n  \"capture\": true,\n  \"authorized\": false,\n  \"reversed\": false,\n  \"paid\": false,\n  \"transaction\": null,\n  \"refunded\": 0,\n  \"refunds\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-05T17:46:12Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/charges/chrg_test_59vbnbnjorfk2x5nand/refunds\",\n    \"data\": [\n\n    ]\n  },\n  \"return_uri\": \"https://example.com/orders/123/complete\",\n  \"reference\": \"ofsp_test_59vbnbnlmlkeauu9yxq\",\n  \"authorize_uri\": \"https://pay.omise.co/offsites/ofsp_test_59vbnbnlmlkeauu9yxq/pay\",\n  \"failure_code\": null,\n  \"failure_message\": null,\n  \"card\": null,\n  \"customer\": null,\n  \"ip\": null,\n  \"dispute\": null,\n  \"created\": \"2017-11-05T17:46:12Z\",\n  \"source\": {\n    \"object\": \"source\",\n    \"id\": \"src_test_59vbms154ab4pe4jh2i\",\n    \"type\": \"internet_banking_bbl\",\n    \"flow\": \"redirect\",\n    \"amount\": 100000,\n    \"currency\": \"thb\"\n  }\n}\n",

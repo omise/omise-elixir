@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/links?"
+      "url": "https://api.omise.co/links"
     },
     "response": {
       "body": "{\n  \"object\": \"link\",\n  \"id\": \"link_test_59uuloykfosnx1a944s\",\n  \"livemode\": false,\n  \"location\": \"/links/link_test_59uuloykfosnx1a944s\",\n  \"amount\": 59900,\n  \"currency\": \"thb\",\n  \"used\": false,\n  \"multiple\": true,\n  \"title\": \"Big fish\",\n  \"description\": \"Great old movie\",\n  \"charges\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T12:43:01Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/links/link_test_59uuloykfosnx1a944s/charges\",\n    \"data\": [\n\n    ]\n  },\n  \"payment_uri\": \"https://link.omise.co/F89392D0\",\n  \"created\": \"2017-11-04T12:43:01Z\"\n}\n",

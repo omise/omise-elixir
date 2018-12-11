@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/disputes/dspt_test_59uuaz72tx6inasbfuj/documents?"
+      "url": "https://api.omise.co/disputes/dspt_test_59uuaz72tx6inasbfuj/documents"
     },
     "response": {
       "body": "{\n  \"object\": \"error\",\n  \"location\": \"https://www.omise.co/api-errors#invalid-file-type\",\n  \"code\": \"invalid_file_type\",\n  \"message\": \"invalid content-type\"\n}\n",

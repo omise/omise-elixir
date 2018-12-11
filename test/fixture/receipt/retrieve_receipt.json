@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/receipts/rcpt_59unfpvug2yllbnkphv?"
+      "url": "https://api.omise.co/receipts/rcpt_59unfpvug2yllbnkphv"
     },
     "response": {
       "body": "{\n  \"object\": \"receipt\",\n  \"id\": \"rcpt_59unfpvug2yllbnkphv\",\n  \"number\": \"OMTH201711030001\",\n  \"location\": \"/receipts/rcpt_59unfpvug2yllbnkphv\",\n  \"date\": \"2017-11-03T16:59:59Z\",\n  \"customer_name\": \"Teerawat Lamanchart\",\n  \"customer_address\": \"212\\n12\\nBangkok 10400\",\n  \"customer_tax_id\": \"\",\n  \"customer_email\": \"ton@omise.co\",\n  \"customer_statement_name\": \"\",\n  \"company_name\": \"Omise Company Limited\",\n  \"company_address\": \"1448/4, J2 Building, Soi Ladprao 87\\r\\n(Chandrasuk), Praditmanutham Road,\\r\\nKlongchan, Bangkapi, Bangkok, 10240\",\n  \"company_tax_id\": \"0105556091152\",\n  \"charge_fee\": 4548000,\n  \"voided_fee\": 0,\n  \"transfer_fee\": 0,\n  \"subtotal\": 4548000,\n  \"vat\": 318360,\n  \"wht\": 0,\n  \"total\": 4866360,\n  \"credit_note\": false,\n  \"currency\": \"thb\"\n}\n",

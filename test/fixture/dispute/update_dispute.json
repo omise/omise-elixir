@@ -13,7 +13,7 @@
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://api.omise.co/disputes/dspt_test_59uu9r7em9ynw5n6ce8?"
+      "url": "https://api.omise.co/disputes/dspt_test_59uu9r7em9ynw5n6ce8"
     },
     "response": {
       "body": "{\n  \"object\": \"dispute\",\n  \"id\": \"dspt_test_59uu9r7em9ynw5n6ce8\",\n  \"livemode\": false,\n  \"location\": \"/disputes/dspt_test_59uu9r7em9ynw5n6ce8\",\n  \"amount\": 50000,\n  \"currency\": \"thb\",\n  \"status\": \"pending\",\n  \"transaction\": \"trxn_test_59uu9r7mkpj2ndax49d\",\n  \"message\": \"bad charge\",\n  \"reason_code\": \"goods_or_services_not_provided\",\n  \"reason_message\": \"Services not provided or Merchandise not received\",\n  \"charge\": \"chrg_test_59utsg0q0mf94fp2qvu\",\n  \"documents\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T12:09:31Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/disputes/dspt_test_59uu9r7em9ynw5n6ce8/documents\",\n    \"data\": [\n\n    ]\n  },\n  \"created\": \"2017-11-04T12:09:06Z\",\n  \"closed_at\": null\n}\n",
