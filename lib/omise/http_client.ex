@@ -6,11 +6,6 @@ defmodule Omise.HTTPClient do
 
   @base_vault_uri "https://vault.omise.co/"
   @base_api_uri "https://api.omise.co/"
-
-  @default_req_headers %{
-    "User-Agent" => "OmiseElixir/#{Mix.Project.config()[:version]} Elixir/#{System.version()}",
-    "Content-type" => "application/json"
-  }
   @default_http_options [timeout: :timer.seconds(60), recv_timeout: :timer.seconds(60)]
 
   defmacro __using__(options) do
@@ -67,13 +62,22 @@ defmodule Omise.HTTPClient do
   defp process_request_body({:multipart, _} = req_body), do: req_body
   defp process_request_body(req_body), do: Omise.Utils.encode_to_json(req_body)
 
-  defp process_request_headers(nil), do: @default_req_headers
-  defp process_request_headers(api_version), do: Map.merge(@default_req_headers, %{"Omise-Version" => api_version})
+  defp process_request_headers(nil), do: default_req_headers()
+  defp process_request_headers(api_version), do: Map.merge(default_req_headers(), %{"Omise-Version" => api_version})
 
   defp process_request_options(query_params, key) do
-    [params: query_params] ++
-      [hackney: [basic_auth: {key, ""}]] ++
-      Keyword.merge(@default_http_options, Application.get_env(:omise, :http_options, []))
+    params_opts = [params: query_params]
+    auth_opts = [hackney: [basic_auth: {key, ""}]]
+    http_opts = Keyword.merge(@default_http_options, Application.get_env(:omise, :http_options, []))
+
+    params_opts ++ auth_opts ++ http_opts
+  end
+
+  defp default_req_headers do
+    %{
+      "User-Agent" => "OmiseElixir/#{Application.spec(:omise, :vsn)} Elixir/#{System.version()}",
+      "Content-type" => "application/json"
+    }
   end
 
   ## Response handler
