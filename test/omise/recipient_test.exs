@@ -204,7 +204,7 @@ defmodule Omise.RecipientTest do
         assert Recipient.destroy("recp_test_59uuqzsagk159pa08gc") ==
                  {:ok,
                   %Omise.Recipient{
-                    bank_account: %Omise.BankAccount{},
+                    bank_account: nil,
                     deleted: true,
                     id: "recp_test_59uuqzsagk159pa08gc",
                     livemode: false,

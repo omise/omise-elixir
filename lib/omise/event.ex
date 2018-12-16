@@ -72,11 +72,17 @@ defmodule Omise.Event do
     get("#{@endpoint}/#{id}", [], opts)
   end
 
-  defimpl Poison.Decoder do
-    def decode(%{data: %{"object" => object} = raw_data} = event, _) do
+  defimpl Omise.Json.StructTransformer do
+    alias Omise.Event
+    alias Omise.Json.Decoder
+
+    def transform(%Event{data: %{"object" => object} = data} = event) do
       module = Module.concat(Omise, String.capitalize(object))
-      data = Poison.Decode.decode(raw_data, as: struct(module))
-      %{event | data: data}
+
+      %{
+        event
+        | data: Decoder.transform_decoded_data(data, as: struct(module))
+      }
     end
   end
 end

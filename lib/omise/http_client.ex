@@ -2,7 +2,7 @@ defmodule Omise.HTTPClient do
   @moduledoc false
 
   alias HTTPoison.Response
-  alias Omise.Error
+  alias Omise.{Error, Json}
 
   @base_vault_uri "https://vault.omise.co/"
   @base_api_uri "https://api.omise.co/"
@@ -60,7 +60,7 @@ defmodule Omise.HTTPClient do
   ## Request handler
 
   defp process_request_body({:multipart, _} = req_body), do: req_body
-  defp process_request_body(req_body), do: Omise.Utils.encode_to_json(req_body)
+  defp process_request_body(req_body), do: Json.encode!(req_body)
 
   defp process_request_headers(nil), do: default_req_headers()
   defp process_request_headers(api_version), do: Map.merge(default_req_headers(), %{"Omise-Version" => api_version})
@@ -83,11 +83,11 @@ defmodule Omise.HTTPClient do
   ## Response handler
 
   defp handle_response(%Response{body: body, status_code: 200}, %{as: as}) do
-    {:ok, Poison.decode!(body, as: as)}
+    {:ok, _} = Json.decode(body, as: as)
   end
 
   defp handle_response(%Response{body: body, status_code: status_code}, _) do
-    case Poison.decode(body, as: %Error{}) do
+    case Json.decode(body, as: %Error{}) do
       {:ok, decoded_body} ->
         {:error, decoded_body}
 
