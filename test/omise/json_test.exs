@@ -3,7 +3,7 @@ defmodule Omise.JsonTest do
 
   alias Omise.Json
 
-  describe "encode!/1" do
+  describe "encode/1" do
     test "encodes keyword" do
       input = [
         id: 1,
@@ -14,9 +14,10 @@ defmodule Omise.JsonTest do
         codes: [1, 2, 3]
       ]
 
-      result = Json.encode!(input)
+      result = Json.encode(input)
 
-      assert result == "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"
+      assert result ==
+               {:ok, "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"}
     end
 
     test "encodes map" do
@@ -29,9 +30,10 @@ defmodule Omise.JsonTest do
         codes: [1, 2, 3]
       }
 
-      result = Json.encode!(input)
+      result = Json.encode(input)
 
-      assert result == "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"
+      assert result ==
+               {:ok, "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"}
     end
 
     test "encodes keyword and map" do
@@ -44,17 +46,18 @@ defmodule Omise.JsonTest do
         codes: [1, 2, 3]
       ]
 
-      result = Json.encode!(input)
+      result = Json.encode(input)
 
-      assert result == "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"
+      assert result ==
+               {:ok, "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"}
     end
 
-    test "raises an error if the given input is invalid" do
+    test "returns error tuple if the given input is invalid" do
       input = {}
 
-      assert_raise Json.Encoder.Error, fn ->
-        Json.encode!(input)
-      end
+      result = Json.encode(input)
+
+      assert result == {:error, :invalid_input_data}
     end
   end
 

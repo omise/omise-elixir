@@ -59,8 +59,14 @@ defmodule Omise.HTTPClient do
 
   ## Request handler
 
-  defp process_request_body({:multipart, _} = req_body), do: req_body
-  defp process_request_body(req_body), do: Json.encode!(req_body)
+  defp process_request_body({:multipart, _} = req_body) do
+    req_body
+  end
+
+  defp process_request_body(req_body) do
+    {:ok, encoded_req_body} = Json.encode(req_body)
+    encoded_req_body
+  end
 
   defp process_request_headers(nil), do: default_req_headers()
   defp process_request_headers(api_version), do: Map.merge(default_req_headers(), %{"Omise-Version" => api_version})

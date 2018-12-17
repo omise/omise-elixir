@@ -1,25 +1,21 @@
 defmodule Omise.Json do
   alias Omise.Json.{Decoder, Encoder}
 
-  defdelegate encode!(input), to: Encoder
+  defdelegate encode(input), to: Encoder
   defdelegate decode(input, opts \\ []), to: Decoder
 end
 
 defmodule Omise.Json.Encoder do
-  defmodule Error do
-    defexception [:message]
-  end
-
-  def encode!(input) do
+  def encode(input) do
     input
     |> transform_data()
     |> Jason.encode()
     |> case do
       {:ok, output} ->
-        output
+        {:ok, output}
 
       _ ->
-        raise Error, "invalid input data"
+        {:error, :invalid_input_data}
     end
   end
 
