@@ -237,7 +237,7 @@ defmodule Omise.TransferTest do
         assert Transfer.destroy("trsf_test_59uvmrtx6v57s2xrvh4") ==
                  {:ok,
                   %Omise.Transfer{
-                    bank_account: %Omise.BankAccount{},
+                    bank_account: nil,
                     deleted: true,
                     id: "trsf_test_59uvmrtx6v57s2xrvh4",
                     livemode: false,

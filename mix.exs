@@ -26,7 +26,7 @@ defmodule Omise.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.9 or ~> 1.0"},
-      {:poison, "~> 2.2 or ~> 3.0"},
+      {:jason, "~> 1.0"},
 
       # Dev dependencies
       {:ex_doc, "~> 0.13", only: :dev, runtime: false},

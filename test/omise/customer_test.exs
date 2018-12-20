@@ -295,7 +295,7 @@ defmodule Omise.CustomerTest do
         assert Customer.destroy("cust_test_59uttqwkl62x5wf9qys") ==
                  {:ok,
                   %Omise.Customer{
-                    cards: %Omise.List{data: [%Omise.Card{}]},
+                    cards: nil,
                     deleted: true,
                     id: "cust_test_59uttqwkl62x5wf9qys",
                     livemode: false,
