@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.2 (2018-12-11)
+
+- Update the required version of `httpoison` dependency to support `version ~> 1.0`.
+- Fix an issue when getting application version via `Mix` module by using `Application.spec/2` instead.
+
+## 0.6.1 (2017-11-14)
+
+- Support [Source API](https://www.omise.co/source-api).
+
 ## 0.6.0 (2017-11-04)
 
 - Add support for [Receipt API](https://www.omise.co/receipt-api).
