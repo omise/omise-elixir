@@ -273,7 +273,7 @@ defmodule Omise.Charge do
       Omise.Charge.refund("chrg_test_520jim7x8u6t4si58va", amount: 100_00)
 
   """
-  @spec refund(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
+  @spec refund(String.t(), Keyword.t(), Keyword.t()) :: {:ok, Omise.Refund.t()} | {:error, Omise.Error.t()}
   def refund(id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.Refund{})
     post("#{@endpoint}/#{id}/refunds", params, opts)
