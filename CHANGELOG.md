@@ -1,12 +1,12 @@
 # Changelog
 
-## 0.7.1
+## 0.8.0
 
 - Update `Charge.refund/3` type so that it matches the function behavior
 
 ## 0.7.0
 
-???
+- Various fixes
 
 ## 0.6.2 (2018-12-11)
 
