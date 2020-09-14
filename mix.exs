@@ -33,7 +33,7 @@ defmodule Omise.Mixfile do
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
 
       # Test dependencies
-      {:excoveralls, "~> 0.6", only: :test},
+      {:excoveralls, "~> 0.13", only: :test},
       {:exvcr, "~> 0.10", only: :test}
     ]
   end
