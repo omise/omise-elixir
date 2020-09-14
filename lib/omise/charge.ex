@@ -125,7 +125,7 @@ defmodule Omise.Charge do
     * `card` - (required or optional) A valid unused `TOKEN_ID` or `CARD_ID`.
       In the case of the `CARD_ID` the customer parameter must be present and be the owner of the card.
       For the `TOKEN_ID`, the customer must not be passed.
-    * `amount` - (required, minimum: 2000, maximum: 100000000) The amount in the smallest subunits of the currency used.
+    * `amount` - (required) The amount in the smallest subunits of the currency used.
       For thb (Thai Baht) you'll need to pass the amount in satangs.
     * `currency` - (required) The currency in which you want the charge to be done. The default and only valid value is thb.
     * `description` - (optional) A custom description for the charge. This value can be searched for in your dashboard.
