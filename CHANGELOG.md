@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0
+
+- Update `Charge.refund/3` type so that it matches the function behavior
+
+## 0.7.0
+
+- Various fixes
+
 ## 0.6.2 (2018-12-11)
 
 - Update the required version of `httpoison` dependency to support `version ~> 1.0`.
