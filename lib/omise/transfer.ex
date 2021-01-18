@@ -22,7 +22,14 @@ defmodule Omise.Transfer do
             failure_message: nil,
             transaction: nil,
             created: nil,
-            deleted: false
+            deleted: false,
+            fee_vat: nil,
+            metadata: nil,
+            net: nil,
+            sendable: nil,
+            total_fee: nil,
+            transactions: nil,
+            schedule: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -40,7 +47,14 @@ defmodule Omise.Transfer do
           failure_message: String.t(),
           transaction: String.t(),
           created: String.t(),
-          deleted: boolean
+          deleted: boolean,
+          fee_vat: integer,
+          metadata: map,
+          net: integer,
+          sendable: boolean,
+          total_fee: integer,
+          transactions: list,
+          schedule: String.t()
         }
 
   @doc ~S"""

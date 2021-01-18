@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/capability"
+    },
+    "response": {
+      "body": "{ \"object\": \"capability\", \"location\": \"/capability\", \"banks\": [ \"test\", \"bbl\", \"kbank\", \"rbs\", \"ktb\", \"jpm\", \"mufg\", \"tmb\", \"scb\", \"citi\", \"smbc\", \"sc\", \"cimb\", \"uob\", \"bay\", \"mega\", \"boa\", \"cacib\", \"gsb\", \"hsbc\", \"db\", \"ghb\", \"baac\", \"mb\", \"bnp\", \"tbank\", \"ibank\", \"tisco\", \"kk\", \"icbc\", \"tcrb\", \"lhb\" ], \"payment_methods\": [ { \"object\": \"payment_method\", \"name\": \"card\", \"currencies\": [ \"THB\", \"JPY\", \"USD\", \"EUR\", \"GBP\", \"SGD\", \"AUD\", \"CHF\", \"CNY\", \"DKK\", \"HKD\" ], \"card_brands\": [ \"JCB\", \"Visa\", \"MasterCard\" ], \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"internet_banking_bay\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"internet_banking_ktb\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"internet_banking_scb\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"internet_banking_bbl\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"alipay\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"installment_bay\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": [ 3, 4, 6, 9, 10 ] }, { \"object\": \"payment_method\", \"name\": \"installment_kbank\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": [ 3, 4, 6, 10 ] }, { \"object\": \"payment_method\", \"name\": \"installment_ktc\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": [ 3, 4, 5, 6, 7, 8, 9, 10 ] }, { \"object\": \"payment_method\", \"name\": \"installment_bbl\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": [ 4, 6, 8, 9, 10 ] }, { \"object\": \"payment_method\", \"name\": \"installment_first_choice\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": [ 3, 4, 6, 9, 10, 12, 18, 24, 36 ] }, { \"object\": \"payment_method\", \"name\": \"bill_payment_tesco_lotus\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"barcode_alipay\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"promptpay\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"mobile_banking_scb\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"truemoney\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null }, { \"object\": \"payment_method\", \"name\": \"installment_scb\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": [ 3, 4, 6, 9, 10 ] }, { \"object\": \"payment_method\", \"name\": \"points_citi\", \"currencies\": [ \"THB\" ], \"card_brands\": null, \"installment_terms\": null } ], \"country\": \"TH\", \"zero_interest_installments\": false }\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 08:52:08 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "96bea51e-2765-473f-b1a3-1262deb6da37",
+        "X-Runtime": "0.093101",
+        "Content-Length": "1375",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -13,7 +13,9 @@ defmodule Omise.Balance do
             available: nil,
             total: nil,
             currency: nil,
-            reserve_amount: nil
+            reserve_amount: nil,
+            reserve: nil,
+            transferable: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -22,7 +24,9 @@ defmodule Omise.Balance do
           available: integer,
           total: integer,
           currency: String.t(),
-          reserve_amount: integer
+          reserve_amount: integer,
+          reserve: integer,
+          transferable: integer
         }
 
   @doc ~S"""

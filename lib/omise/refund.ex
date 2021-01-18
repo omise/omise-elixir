@@ -15,7 +15,9 @@ defmodule Omise.Refund do
             voided: nil,
             charge: nil,
             transaction: nil,
-            created: nil
+            created: nil,
+            funding_amount: nil,
+            funding_currency: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -26,7 +28,9 @@ defmodule Omise.Refund do
           voided: boolean,
           charge: String.t(),
           transaction: String.t(),
-          created: String.t()
+          created: String.t(),
+          funding_amount: integer,
+          funding_currency: String.t()
         }
 
   @doc ~S"""
