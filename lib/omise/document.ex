@@ -10,6 +10,7 @@ defmodule Omise.Document do
             livemode: nil,
             location: nil,
             filename: nil,
+            download_uri: nil,
             deleted: false
 
   @type t :: %__MODULE__{
@@ -18,6 +19,7 @@ defmodule Omise.Document do
           livemode: boolean,
           location: String.t(),
           filename: String.t(),
+          download_uri: String.t(),
           deleted: boolean
         }
 end

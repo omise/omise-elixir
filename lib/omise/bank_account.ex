@@ -13,7 +13,8 @@ defmodule Omise.BankAccount do
             last_digits: nil,
             name: nil,
             created: nil,
-            deleted: false
+            deleted: false,
+            type: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -24,6 +25,7 @@ defmodule Omise.BankAccount do
           last_digits: String.t(),
           name: String.t(),
           created: String.t(),
-          deleted: boolean
+          deleted: boolean,
+          type: String.t()
         }
 end

@@ -11,7 +11,7 @@
 
   ```elixir
   def deps do
-    [{:omise, "~> 0.8.0"}]
+    [{:omise, "~> 0.9.0"}]
   end
   ```
 

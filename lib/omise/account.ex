@@ -14,7 +14,15 @@ defmodule Omise.Account do
             email: nil,
             currency: nil,
             supported_currencies: nil,
-            created: nil
+            created: nil,
+            api_version: nil,
+            auto_activate_recipients: nil,
+            chain_enabled: nil,
+            chain_return_uri: nil,
+            country: nil,
+            metadata_export_keys: nil,
+            team: nil,
+            webhook_uri: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -24,7 +32,15 @@ defmodule Omise.Account do
           email: String.t(),
           currency: String.t(),
           supported_currencies: list,
-          created: String.t()
+          created: String.t(),
+          api_version: String.t(),
+          auto_activate_recipients: boolean,
+          chain_enabled: boolean,
+          chain_return_uri: String.t(),
+          country: String.t(),
+          metadata_export_keys: map,
+          team: String.t(),
+          webhook_uri: String.t()
         }
 
   @doc ~S"""

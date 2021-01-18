@@ -15,7 +15,10 @@ defmodule Omise.Transaction do
             amount: nil,
             currency: nil,
             transferable: nil,
-            created: nil
+            created: nil,
+            direction: nil,
+            key: nil,
+            origin: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -26,7 +29,10 @@ defmodule Omise.Transaction do
           amount: integer,
           currency: String.t(),
           transferable: String.t(),
-          created: String.t()
+          created: String.t(),
+          direction: String.t(),
+          key: String.t(),
+          origin: String.t()
         }
 
   @doc ~S"""

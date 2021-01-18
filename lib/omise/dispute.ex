@@ -21,7 +21,10 @@ defmodule Omise.Dispute do
             transaction: nil,
             documents: %Omise.List{data: [%Omise.Document{}]},
             created: nil,
-            closed_at: nil
+            closed_at: nil,
+            funding_amount: nil,
+            funding_currency: nil,
+            transactions: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -38,7 +41,10 @@ defmodule Omise.Dispute do
           transaction: String.t(),
           documents: Omise.List.t(),
           created: String.t(),
-          closed_at: String.t()
+          closed_at: String.t(),
+          funding_amount: integer,
+          funding_currency: String.t(),
+          transactions: list
         }
 
   @doc ~S"""

@@ -14,11 +14,13 @@ defmodule Omise.Occurrence do
             schedule: nil,
             schedule_date: nil,
             retry_date: nil,
+            retry_on: nil,
             processed_at: nil,
             status: nil,
             message: nil,
             result: nil,
-            created: nil
+            created: nil,
+            scheduled_on: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -28,11 +30,13 @@ defmodule Omise.Occurrence do
           schedule: String.t(),
           schedule_date: String.t(),
           retry_date: String.t(),
+          retry_on: String.t(),
           processed_at: String.t(),
           status: String.t(),
           message: String.t(),
           result: String.t(),
-          created: String.t()
+          created: String.t(),
+          scheduled_on: String.t()
         }
 
   @doc ~S"""

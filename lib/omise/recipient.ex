@@ -21,7 +21,9 @@ defmodule Omise.Recipient do
             bank_account: %Omise.BankAccount{},
             failure_code: nil,
             created: nil,
-            deleted: false
+            deleted: false,
+            default: false,
+            schedule: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -38,7 +40,9 @@ defmodule Omise.Recipient do
           bank_account: Omise.BankAccount.t(),
           failure_code: String.t(),
           created: String.t(),
-          deleted: boolean
+          deleted: boolean,
+          default: boolean,
+          schedule: String.t()
         }
 
   @doc ~S"""

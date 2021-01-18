@@ -22,7 +22,11 @@ defmodule Omise.Schedule do
             transfer: %{},
             occurrences: %Omise.List{data: [%Omise.Occurrence{}]},
             next_occurrence_dates: nil,
-            created: nil
+            created: nil,
+            deleted: nil,
+            end_on: nil,
+            ended_at: nil,
+            active: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -39,7 +43,11 @@ defmodule Omise.Schedule do
           charge: map,
           occurrences: Omise.List.t(),
           next_occurrence_dates: list,
-          created: String.t()
+          created: String.t(),
+          deleted: boolean,
+          end_on: String.t(),
+          ended_at: String.t(),
+          active: boolean
         }
 
   @doc ~S"""

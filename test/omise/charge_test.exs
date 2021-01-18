@@ -953,7 +953,9 @@ defmodule Omies.ChargeTest do
                     query: "adele",
                     scope: "charge",
                     total: 2,
-                    total_pages: 1
+                    total_pages: 1,
+                    order: "chronological",
+                    per_page: 30
                   }}
       end
     end

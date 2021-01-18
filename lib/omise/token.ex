@@ -20,7 +20,8 @@ defmodule Omise.Token do
             location: nil,
             used: nil,
             card: %Omise.Card{},
-            created: nil
+            created: nil,
+            charge_status: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -29,7 +30,8 @@ defmodule Omise.Token do
           location: String.t(),
           used: boolean,
           card: Omise.Card.t(),
-          created: String.t()
+          created: String.t(),
+          charge_status: String.t()
         }
 
   @doc ~S"""
