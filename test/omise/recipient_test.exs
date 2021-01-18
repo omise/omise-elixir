@@ -228,7 +228,9 @@ defmodule Omise.RecipientTest do
                     query: "",
                     scope: "recipient",
                     total: 0,
-                    total_pages: 0
+                    total_pages: 0,
+                    order: "chronological",
+                    per_page: 30
                   }}
       end
     end

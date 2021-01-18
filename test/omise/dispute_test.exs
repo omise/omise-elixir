@@ -359,7 +359,9 @@ defmodule Omise.DisputeTest do
                     query: "bad",
                     scope: "dispute",
                     total: 1,
-                    total_pages: 1
+                    total_pages: 1,
+                    order: "chronological",
+                    per_page: 30
                   }}
       end
     end
