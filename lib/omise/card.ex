@@ -22,7 +22,11 @@ defmodule Omise.Card do
             name: nil,
             security_code_check: nil,
             created: nil,
-            deleted: false
+            deleted: false,
+            phone_number: nil,
+            state: nil,
+            street1: nil,
+            street2: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -42,6 +46,10 @@ defmodule Omise.Card do
           name: String.t(),
           security_code_check: boolean,
           created: String.t(),
-          deleted: boolean
+          deleted: boolean,
+          phone_number: String.t(),
+          state: String.t(),
+          street1: String.t(),
+          street2: String.t()
         }
 end

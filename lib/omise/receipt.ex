@@ -28,7 +28,9 @@ defmodule Omise.Receipt do
             wht: nil,
             total: nil,
             credit_note: false,
-            currency: nil
+            currency: nil,
+            adjustment_transaction: nil,
+            issued_on: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -52,7 +54,9 @@ defmodule Omise.Receipt do
           wht: integer,
           total: integer,
           credit_note: boolean,
-          currency: String.t()
+          currency: String.t(),
+          adjustment_transaction: String.t(),
+          issued_on: String.t()
         }
 
   @doc ~S"""

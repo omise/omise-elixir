@@ -15,7 +15,10 @@ defmodule Omise.Search do
             page: nil,
             total_pages: nil,
             total: nil,
-            data: []
+            data: [],
+            export: nil,
+            order: nil,
+            per_page: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -26,7 +29,10 @@ defmodule Omise.Search do
           page: integer,
           total_pages: integer,
           total: integer,
-          data: list
+          data: list,
+          export: String.t(),
+          order: String.t(),
+          per_page: integer
         }
 
   @doc ~S"""
