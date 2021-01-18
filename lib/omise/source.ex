@@ -26,8 +26,8 @@ defmodule Omise.Source do
             store_name: nil,
             terminal_id: nil,
             zero_interest_installments: nil,
-            references: %Omise.Reference{},
-            scannable_code: %Omise.ScannableCode{}
+            references: nil,
+            scannable_code: nil
 
   @type t :: %__MODULE__{
           object: String.t(),
@@ -50,7 +50,7 @@ defmodule Omise.Source do
           terminal_id: String.t(),
           zero_interest_installments: boolean,
           references: Omise.Reference.t(),
-          scannable_code: Omise.ScannableCode.t()
+          scannable_code: Omise.Barcode.t()
         }
 
   @doc ~S"""
@@ -101,5 +101,23 @@ defmodule Omise.Source do
   def retrieve(id, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
     get("#{@endpoint}/#{id}", [], opts)
+  end
+
+  defimpl Omise.Json.StructTransformer do
+    alias Omise.Source
+    alias Omise.Json.Decoder
+
+    def transform(%Source{:scannable_code => scannable_code} = source) do
+      case scannable_code do
+        nil ->
+          source
+
+        _ ->
+          %{
+            source
+            | scannable_code: Decoder.transform_decoded_data(scannable_code, as: struct(Omise.Barcode))
+          }
+      end
+    end
   end
 end

@@ -1,10 +1,10 @@
-defmodule Omise.ScannableCode do
+defmodule Omise.Barcode do
   @moduledoc ~S"""
-  Provides ScannableCode API interfaces.
+  Provides Barcode API interfaces.
   """
 
   defstruct object: "barcode",
-            type: "barcode",
+            type: nil,
             image: %Omise.Document{}
 
   @type t :: %__MODULE__{
