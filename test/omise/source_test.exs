@@ -75,5 +75,48 @@ defmodule Omise.SourceTest do
                   }}
       end
     end
+
+    test "retrieve source" do
+      use_cassette "retrieve_source" do
+        assert Source.retrieve("src_test_5mkpd5uqxnnqw4p411c") ==
+                 {:ok,
+                  %Omise.Source{
+                    amount: 1_000_000,
+                    barcode: nil,
+                    charge_status: "pending",
+                    created: nil,
+                    currency: "THB",
+                    flow: "offline",
+                    id: "src_test_5mkpd5uqxnnqw4p411c",
+                    installment_term: nil,
+                    livemode: false,
+                    location: "/sources/src_test_5mkpd5uqxnnqw4p411c",
+                    mobile_number: nil,
+                    name: nil,
+                    object: "source",
+                    phone_number: nil,
+                    references: nil,
+                    scannable_code: %Omise.Barcode{
+                      image: %Omise.Document{
+                        deleted: false,
+                        download_uri:
+                          "https://api.omise.co/charges/chrg_test_5mkpd5wcoazpu1xde6c/documents/docu_test_5mkpd5xuko50s1rv98d/downloads/9D53860BFB89AC18",
+                        filename: "qrcode.png",
+                        id: "docu_test_5mkpd5xuko50s1rv98d",
+                        livemode: false,
+                        location: "/charges/chrg_test_5mkpd5wcoazpu1xde6c/documents/docu_test_5mkpd5xuko50s1rv98d",
+                        object: "document"
+                      },
+                      object: "barcode",
+                      type: "qr"
+                    },
+                    store_id: nil,
+                    store_name: nil,
+                    terminal_id: nil,
+                    type: "promptpay",
+                    zero_interest_installments: nil
+                  }}
+      end
+    end
   end
 end
