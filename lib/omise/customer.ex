@@ -132,7 +132,7 @@ defmodule Omise.Customer do
   @spec update(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def update(id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
-    put("#{@endpoint}/#{id}", params, opts)
+    patch("#{@endpoint}/#{id}", params, opts)
   end
 
   @doc ~S"""
@@ -225,14 +225,14 @@ defmodule Omise.Customer do
 
   ## Examples
 
-      params = [expiration_month: 2018, city: "Bangkok"]
+      params = [expiration_month: 12, city: "Bangkok"]
       Omise.Customer.update_card("cust_test_520j6g67py52xa7qbu2", "card_test_520j6g4rxrmurw16b2d", params)
 
   """
   @spec update_card(String.t(), String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def update_card(id, card_id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %Omise.Card{})
-    put("#{@endpoint}/#{id}/cards/#{card_id}", params, opts)
+    patch("#{@endpoint}/#{id}/cards/#{card_id}", params, opts)
   end
 
   @doc ~S"""

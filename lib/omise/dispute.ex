@@ -111,7 +111,7 @@ defmodule Omise.Dispute do
   @spec update(String.t(), Keyword.t(), Keyword.t()) :: {:ok, struct} | {:error, Omise.Error.t()}
   def update(id, params, opts \\ []) do
     opts = Keyword.merge(opts, as: %__MODULE__{})
-    put("#{@endpoint}/#{id}", params, opts)
+    patch("#{@endpoint}/#{id}", params, opts)
   end
 
   @doc ~S"""

@@ -23,8 +23,8 @@ defmodule Omise.HTTPClient do
         request(:post, @key_type, endpoint, [body_params: body_params], options)
       end
 
-      defp put(endpoint, body_params \\ [], options \\ []) do
-        request(:put, @key_type, endpoint, [body_params: body_params], options)
+      defp patch(endpoint, body_params \\ [], options \\ []) do
+        request(:patch, @key_type, endpoint, [body_params: body_params], options)
       end
 
       defp delete(endpoint, options \\ []) do

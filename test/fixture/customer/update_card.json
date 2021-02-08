@@ -6,7 +6,7 @@
         "Content-type": "application/json",
         "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
       },
-      "method": "put",
+      "method": "patch",
       "options": {
         "recv_timeout": 60000,
         "connect_timeout": 60000,
