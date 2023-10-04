@@ -12,6 +12,9 @@ defmodule Omise.Charge do
             livemode: nil,
             location: nil,
             amount: nil,
+            authorization_type: nil,
+            authorized_amount: nil,
+            captured_amount: nil,
             currency: nil,
             description: nil,
             metadata: nil,
@@ -254,12 +257,20 @@ defmodule Omise.Charge do
   ## Examples
 
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz")
+      Omise.Charge.capture(charge_id,[capture_amount: 3000])
+      Omise.Charge.capture(charge_id,[key: "skey_test_123"],[capture_amount: 3000])
 
   """
-  @spec capture(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
-  def capture(id, opts \\ []) do
-    opts = Keyword.merge(opts, as: %__MODULE__{})
-    post("#{@endpoint}/#{id}/capture", [], opts)
+  @spec capture(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
+  def capture(id, opts \\ [], params \\ []) do
+    contains_secret_key= Enum.any?(opts, fn {key, _} -> key == :key end)
+    {newParams, newOpts} = if opts != [] and !contains_secret_key do
+      {opts,[]}
+    else
+      {params,opts}
+    end
+    newOpts = Keyword.merge(newOpts, as: %__MODULE__{})
+    post("#{@endpoint}/#{id}/capture", newParams, newOpts)
   end
 
   @doc ~S"""
