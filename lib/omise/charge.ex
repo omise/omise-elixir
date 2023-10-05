@@ -257,8 +257,8 @@ defmodule Omise.Charge do
   ## Examples
 
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz")
-      Omise.Charge.capture(charge_id,[capture_amount: 3000])
-      Omise.Charge.capture(charge_id,[key: "skey_test_123"],[capture_amount: 3000])
+      Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz",[capture_amount: 3000])
+      Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz",[key: "skey_test_123"],[capture_amount: 3000])
 
   """
   @spec capture(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
