@@ -257,6 +257,7 @@ defmodule Omise.Charge do
   ## Examples
 
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz")
+      Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz",key: "skey_test_123")
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz",[capture_amount: 3000])
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz",[key: "skey_test_123"],[capture_amount: 3000])
 
