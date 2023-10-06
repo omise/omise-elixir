@@ -1,0 +1,45 @@
+# Based on the elixir-setup action in https://github.com/felt/ultimate-elixir-ci
+name: Setup Elixir Project
+description: Sets up Erlang / OTP and Elixir, and manages deps and build caching.
+inputs:
+  elixir-version:
+    required: true
+    type: string
+    description: Elixir version to set up
+  otp-version:
+    required: true
+    type: string
+    description: OTP version to set up
+outputs:
+  otp-version:
+    description: "Exact OTP version selected by the BEAM setup step"
+    value: ${{ steps.beam.outputs.otp-version }}
+  elixir-version:
+    description: "Exact Elixir version selected by the BEAM setup step"
+    value: ${{ steps.beam.outputs.elixir-version }}
+runs:
+  using: "composite"
+  steps:
+    - name: Setup elixir
+      uses: erlef/setup-beam@v1
+      id: beam
+      with:
+        elixir-version: ${{ inputs.elixir-version }}
+        otp-version: ${{ inputs.otp-version }}
+
+    - name: Deps cache
+      uses: actions/cache@v3
+      with:
+        path: deps/
+        key: deps-${{ runner.os }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          deps-${{ runner.os }}-
+
+    - name: Build cache
+      uses: actions/cache@v3
+      id: build-cache
+      with:
+        path: _build/${{env.MIX_ENV}}/
+        key: build-${{ runner.os }}-${{ inputs.otp-version }}-${{ inputs.elixir-version }}-${{ env.MIX_ENV }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          build-${{ runner.os }}-${{ inputs.otp-version }}-${{ inputs.elixir-version }}-${{ env.MIX_ENV }}-
