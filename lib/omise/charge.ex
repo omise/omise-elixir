@@ -262,16 +262,11 @@ defmodule Omise.Charge do
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz",[key: "skey_test_123"],[capture_amount: 3000])
 
   """
-  @spec capture(String.t(), Keyword.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
-  def capture(id, opts \\ [], params \\ []) do
-    contains_secret_key= Enum.any?(opts, fn {key, _} -> key == :key end)
-    {newParams, newOpts} = if opts != [] and !contains_secret_key do
-      {opts,[]}
-    else
-      {params,opts}
-    end
-    newOpts = Keyword.merge(newOpts, as: %__MODULE__{})
-    post("#{@endpoint}/#{id}/capture", newParams, newOpts)
+  @spec capture(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
+  def capture(id, opts \\ []) do
+    {params, opts} = Keyword.split(opts, [:capture_amount])
+    opts = Keyword.merge(opts, as: %__MODULE__{})
+    post("#{@endpoint}/#{id}/capture", params, opts)
   end
 
   @doc ~S"""
