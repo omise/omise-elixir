@@ -18,6 +18,9 @@ jobs:
         sudo apt-get update -y
         sudo apt-get install libtinfo5 -y
     - uses: actions/checkout@v2
+    - name: Install OpenSSL
+      run: |
+        sudo apt-get install -y libssl-dev
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
       with:
