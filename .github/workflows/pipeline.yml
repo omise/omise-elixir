@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install libtinfo5
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install libtinfo5 -y
     - uses: actions/checkout@v2
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
       with:
         elixir-version: '1.10.3'
         otp-version: '22.3'
-    - name: Install libtinfo5
-      run: |
-        sudo apt-get update -y
-        sudo apt-get install libtinfo5 -y
     - name: Restore dependencies cache
       uses: actions/cache@v2
       with:
@@ -33,3 +33,4 @@ jobs:
       run: mix deps.get
     - name: Run tests
       run: mix test
+
