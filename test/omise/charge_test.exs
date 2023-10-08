@@ -725,6 +725,78 @@ defmodule Omies.ChargeTest do
                   }}
       end
     end
+    test "partial capture a charge" do
+      use_cassette "capture_charge_partial" do
+        assert Charge.capture("chrg_test_59usgo8ll198f7473cs",capture_amount: 3000) ==
+                 {:ok,
+                  %Omise.Charge{
+                    amount: 50000,
+                    authorization_type: "pre_auth",
+                    authorized_amount: 50000,
+                    captured_amount: 3000,
+                    authorize_uri: nil,
+                    authorized: true,
+                    capture: false,
+                    captured: nil,
+                    card: %Omise.Card{
+                      bank: "",
+                      brand: "Visa",
+                      city: "Bangkok",
+                      country: "us",
+                      created: "2017-11-04T09:03:19Z",
+                      deleted: false,
+                      expiration_month: 10,
+                      expiration_year: 2019,
+                      financing: "",
+                      fingerprint: "WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=",
+                      id: "card_test_59usgcsv3e22bcznla6",
+                      last_digits: "4242",
+                      livemode: false,
+                      location: nil,
+                      name: "John Doe",
+                      object: "card",
+                      postal_code: "10320",
+                      security_code_check: true
+                    },
+                    created: "2017-11-04T09:04:13Z",
+                    currency: "thb",
+                    customer: nil,
+                    description: nil,
+                    dispute: nil,
+                    failure_code: nil,
+                    failure_message: nil,
+                    id: "chrg_test_59usgo8ll198f7473cs",
+                    installment_terms: nil,
+                    ip: nil,
+                    livemode: false,
+                    location: "/charges/chrg_test_59usgo8ll198f7473cs",
+                    metadata: %{},
+                    object: "charge",
+                    offline: nil,
+                    offsite: nil,
+                    paid: true,
+                    reference: nil,
+                    refunded: 0,
+                    refunds: %Omise.List{
+                      data: [],
+                      from: "1970-01-01T00:00:00Z",
+                      limit: 20,
+                      location: "/charges/chrg_test_59usgo8ll198f7473cs/refunds",
+                      object: "list",
+                      offset: 0,
+                      order: nil,
+                      to: "2017-11-04T09:06:54Z",
+                      total: 0
+                    },
+                    return_uri: nil,
+                    reversed: false,
+                    source: nil,
+                    source_of_fund: nil,
+                    status: "successful",
+                    transaction: "trxn_test_59ushm59uy5kf6o909e"
+                  }}
+      end
+    end
   end
 
   describe "reverse/2" do
