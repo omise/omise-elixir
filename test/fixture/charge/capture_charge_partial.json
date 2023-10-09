@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-type": "application/json",
+        "User-Agent": "OmiseElixir/0.5.2 Elixir/1.6.0-dev"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000,
+        "basic_auth": "***"
+      },
+      "request_body": "",
+      "url": "https://api.omise.co/charges/chrg_test_59usgo8ll198f7473cs/capture"
+    },
+    "response": {
+      "body": "{\n  \"object\": \"charge\",\n  \"id\": \"chrg_test_59usgo8ll198f7473cs\",\n  \"livemode\": false,\n  \"location\": \"/charges/chrg_test_59usgo8ll198f7473cs\",\n  \"amount\": 50000,\n  \"authorization_type\": \"pre_auth\",\n  \"authorized_amount\": 50000,\n  \"captured_amount\": 3000,\n  \"currency\": \"thb\",\n  \"description\": null,\n  \"metadata\": {\n  },\n  \"status\": \"successful\",\n  \"capture\": false,\n  \"authorized\": true,\n  \"reversed\": false,\n  \"paid\": true,\n  \"transaction\": \"trxn_test_59ushm59uy5kf6o909e\",\n  \"refunded\": 0,\n  \"refunds\": {\n    \"object\": \"list\",\n    \"from\": \"1970-01-01T00:00:00Z\",\n    \"to\": \"2017-11-04T09:06:54Z\",\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 0,\n    \"order\": null,\n    \"location\": \"/charges/chrg_test_59usgo8ll198f7473cs/refunds\",\n    \"data\": [\n\n    ]\n  },\n  \"return_uri\": null,\n  \"reference\": null,\n  \"authorize_uri\": null,\n  \"failure_code\": null,\n  \"failure_message\": null,\n  \"card\": {\n    \"object\": \"card\",\n    \"id\": \"card_test_59usgcsv3e22bcznla6\",\n    \"livemode\": false,\n    \"country\": \"us\",\n    \"city\": \"Bangkok\",\n    \"postal_code\": \"10320\",\n    \"financing\": \"\",\n    \"bank\": \"\",\n    \"last_digits\": \"4242\",\n    \"brand\": \"Visa\",\n    \"expiration_month\": 10,\n    \"expiration_year\": 2019,\n    \"fingerprint\": \"WJhoQrhdxrPYDBcGBNeZu+R4TcX/D23HitUUud8tELs=\",\n    \"name\": \"John Doe\",\n    \"security_code_check\": true,\n    \"created\": \"2017-11-04T09:03:19Z\"\n  },\n  \"customer\": null,\n  \"ip\": null,\n  \"dispute\": null,\n  \"created\": \"2017-11-04T09:04:13Z\",\n  \"source\": null\n}\n",
+      "headers": {
+        "Cache-Control": "no-cache, no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 04 Nov 2017 09:06:54 GMT",
+        "Omise-Version": "2017-11-02",
+        "Server": "nginx",
+        "Status": "200 OK",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Vary": "Accept-Encoding",
+        "X-Request-Id": "25ccc8a0-25c7-4a24-a7b0-96c565539be4",
+        "X-Runtime": "0.397799",
+        "Content-Length": "1375",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

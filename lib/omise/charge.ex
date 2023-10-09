@@ -12,6 +12,9 @@ defmodule Omise.Charge do
             livemode: nil,
             location: nil,
             amount: nil,
+            authorization_type: nil,
+            authorized_amount: nil,
+            captured_amount: nil,
             currency: nil,
             description: nil,
             metadata: nil,
@@ -250,16 +253,19 @@ defmodule Omise.Charge do
   ***NOTE***:
   If you have created a charge and passed `capture=false` you'll have an authorized only charge that you can capture at a later time.
   You can hold it for as long as permitted by the issuing bank. This delay may vary between cards from 1 to 30 days.
+  To create a partial capture charge you must set your charge `authorization_type="pre_auth"` and `capture=false` then you can partially capture the charge with `capture_amount=amount`
 
   ## Examples
 
       Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz")
+      Omise.Charge.capture("chrg_test_4xso2s8ivdej29pqnhz", key: "skey_test_123", capture_amount: 3000)
 
   """
   @spec capture(String.t(), Keyword.t()) :: {:ok, t} | {:error, Omise.Error.t()}
   def capture(id, opts \\ []) do
+    {params, opts} = Keyword.split(opts, [:capture_amount])
     opts = Keyword.merge(opts, as: %__MODULE__{})
-    post("#{@endpoint}/#{id}/capture", [], opts)
+    post("#{@endpoint}/#{id}/capture", params, opts)
   end
 
   @doc ~S"""
