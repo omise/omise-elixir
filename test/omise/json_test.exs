@@ -14,10 +14,11 @@ defmodule Omise.JsonTest do
         codes: [1, 2, 3]
       ]
 
-      result = Json.encode(input)
+      assert {:ok, json} = Json.encode(input)
 
-      assert result ==
-               {:ok, "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"}
+      assert Jason.decode(json) ==
+               {:ok,
+                %{"bank_account" => %{"brand" => "bbl", "number" => "9999999999"}, "codes" => [1, 2, 3], "id" => 1}}
     end
 
     test "encodes map" do
@@ -30,10 +31,11 @@ defmodule Omise.JsonTest do
         codes: [1, 2, 3]
       }
 
-      result = Json.encode(input)
+      assert {:ok, json} = Json.encode(input)
 
-      assert result ==
-               {:ok, "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"}
+      assert Jason.decode(json) ==
+               {:ok,
+                %{"bank_account" => %{"brand" => "bbl", "number" => "9999999999"}, "codes" => [1, 2, 3], "id" => 1}}
     end
 
     test "encodes keyword and map" do
@@ -46,10 +48,11 @@ defmodule Omise.JsonTest do
         codes: [1, 2, 3]
       ]
 
-      result = Json.encode(input)
+      assert {:ok, json} = Json.encode(input)
 
-      assert result ==
-               {:ok, "{\"bank_account\":{\"brand\":\"bbl\",\"number\":\"9999999999\"},\"codes\":[1,2,3],\"id\":1}"}
+      assert Jason.decode(json) ==
+               {:ok,
+                %{"bank_account" => %{"brand" => "bbl", "number" => "9999999999"}, "codes" => [1, 2, 3], "id" => 1}}
     end
 
     test "returns error tuple if the given input is invalid" do

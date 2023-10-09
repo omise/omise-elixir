@@ -25,12 +25,12 @@ defmodule Omise.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 1.7"},
+      {:httpoison, "~> 2.1"},
       {:jason, "~> 1.0"},
 
       # Dev dependencies
       {:ex_doc, "~> 0.13", only: :dev, runtime: false},
-      {:dialyxir, "~> 0.5", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.0", only: :dev, runtime: false},
 
       # Test dependencies
       {:excoveralls, "~> 0.13", only: :test},
