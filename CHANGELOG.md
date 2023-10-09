@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.10.0
+
+- Update failing CI [(#32)](https://github.com/omise/omise-elixir/pull/32)
+- Update dependencies [(#33)](https://github.com/omise/omise-elixir/pull/33)
+- Add support for partial capture [(#31)](https://github.com/omise/omise-elixir/pull/31)
+
+## 0.9.0
+
+- Add more supported attributes for API version 2019
+
 ## 0.8.0
 
 - Update `Charge.refund/3` type so that it matches the function behavior
