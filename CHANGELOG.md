@@ -9,6 +9,7 @@
 ## 0.9.0
 
 - Add more supported attributes for API version 2019
+
 ## 0.8.0
 
 - Update `Charge.refund/3` type so that it matches the function behavior
