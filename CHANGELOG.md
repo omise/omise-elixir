@@ -5,6 +5,7 @@
 - Update failing CI [(#32)](https://github.com/omise/omise-elixir/pull/32)
 - Update dependencies [(#33)](https://github.com/omise/omise-elixir/pull/33)
 - Add support for partial capture [(#31)](https://github.com/omise/omise-elixir/pull/31)
+
 ## 0.9.0
 
 - Add more supported attributes for API version 2019
