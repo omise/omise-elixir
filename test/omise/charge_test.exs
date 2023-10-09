@@ -725,9 +725,10 @@ defmodule Omies.ChargeTest do
                   }}
       end
     end
+
     test "partial capture a charge" do
       use_cassette "capture_charge_partial" do
-        assert Charge.capture("chrg_test_59usgo8ll198f7473cs",capture_amount: 3000) ==
+        assert Charge.capture("chrg_test_59usgo8ll198f7473cs", capture_amount: 3000) ==
                  {:ok,
                   %Omise.Charge{
                     amount: 50000,
