@@ -1,0 +1,33 @@
+name: Publish to Hex
+
+on:
+  release:
+    types: [created]
+
+env:
+  HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+
+jobs:
+  publish:
+    name: Publish to hex.pm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Elixir
+        uses: ./.github/actions/elixir-setup
+        with:
+          elixir-version: "1.15.6"
+          otp-version: "26.1"
+
+      - name: Install Dependencies
+        run: mix deps.get
+
+      - name: Run tests
+        run: mix test
+      - name: Install Hex
+        run: mix local.hex --force
+      - name: Install Hex Publisher
+        run: mix local.rebar --force
+      - name: Publish to Hex.pm
+        run: mix hex.publish --yes
