@@ -2,10 +2,11 @@ name: Elixir CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
-
+    branches: [master]
+  release:
+    types: [created]
 jobs:
   build:
     name: Build and test
@@ -16,11 +17,25 @@ jobs:
       - name: Setup Elixir
         uses: ./.github/actions/elixir-setup
         with:
-          elixir-version: "1.15.6" # Define the elixir version [required]
-          otp-version: "26.1" # Define the OTP version [required]
+          elixir-version: "1.15.6"
+          otp-version: "26.1"
 
       - name: Install Dependencies
         run: mix deps.get
 
       - name: Run tests
         run: mix test
+
+  publish:
+    name: Publish to hex.pm
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Install Hex
+        run: mix local.hex --for
+      - name: Install Hex Publisher
+        run: mix local.rebar --for
+      - name: Configure Hex Environment
+        run: echo "export HEX_API_KEY=${{ secrets.HEX_API_KEY }}" >> $GITHUB_E
+      - name: Publish to Hex.pm
+        run: mix hex.publish --y
