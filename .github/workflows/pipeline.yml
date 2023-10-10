@@ -32,10 +32,10 @@ jobs:
     needs: build
     steps:
       - name: Install Hex
-        run: mix local.hex --for
+        run: mix local.hex --force
       - name: Install Hex Publisher
-        run: mix local.rebar --for
+        run: mix local.rebar --force
       - name: Configure Hex Environment
-        run: echo "export HEX_API_KEY=${{ secrets.HEX_API_KEY }}" >> $GITHUB_E
+        run: echo "export HEX_API_KEY=${{ secrets.HEX_API_KEY }}" >> $GITHUB_ENV
       - name: Publish to Hex.pm
-        run: mix hex.publish --y
+        run: mix hex.publish --yes
