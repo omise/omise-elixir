@@ -30,4 +30,4 @@ jobs:
       - name: Install Hex Publisher
         run: mix local.rebar --force
       - name: Publish to Hex.pm
-        run: mix hex.publish --yes
+        run: mix hex.publish --dry-run
