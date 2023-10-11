@@ -1,15 +1,13 @@
 name: Publish to Hex
 
-on:
-  push
-
-env:
-  HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+on: push
 
 jobs:
   publish:
     name: Publish to hex.pm
     runs-on: ubuntu-latest
+    env:
+      HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
     steps:
       - uses: actions/checkout@v3
 
