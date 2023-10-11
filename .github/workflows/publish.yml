@@ -6,8 +6,6 @@ jobs:
   publish:
     name: Publish to hex.pm
     runs-on: ubuntu-latest
-    env:
-      HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
     steps:
       - uses: actions/checkout@v3
 
@@ -27,4 +25,6 @@ jobs:
       - name: Install Hex Publisher
         run: mix local.rebar --force
       - name: Publish to Hex.pm
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
         run: mix hex.publish --dry-run
