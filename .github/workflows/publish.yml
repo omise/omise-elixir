@@ -1,6 +1,8 @@
 name: Publish to Hex
 
-on: push
+on:
+  release:
+    types: [created]
 
 jobs:
   publish:
@@ -27,4 +29,4 @@ jobs:
       - name: Publish to Hex.pm
         env:
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
-        run: mix hex.publish --dry-run
+        run: mix hex.publish --yes
