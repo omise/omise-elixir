@@ -1,5 +1,5 @@
 # Omise Elixir Client
-![Build Status](https://github.com/omise/omise-elixir/workflows/Elixir%20CI/badge.svg)
+[![Build Status](https://github.com/omise/omise-elixir/actions/workflows/pipeline.yml/badge.svg)](https://github.com/omise/omise-elixir/actions/workflows/pipeline.yml)
 [![Hex.pm](https://img.shields.io/hexpm/v/omise.svg?style=flat-square)](https://hex.pm/packages/omise)
 [![Coverage Status](https://coveralls.io/repos/github/omise/omise-elixir/badge.svg?branch=master)](https://coveralls.io/github/omise/omise-elixir?branch=master)
 
