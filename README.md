@@ -61,7 +61,7 @@ else
 end
 ```
 
-You can also set a per-request key and api version when making an API call:
+You can also set a per-request key and API version when making an API call:
 
 ```elixir
 Omise.Charge.list([], key: "skey_test_xxx", api_version: "2015-11-17")
