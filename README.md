@@ -3,7 +3,7 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/omise.svg?style=flat-square)](https://hex.pm/packages/omise)
 [![Coverage Status](https://coveralls.io/repos/github/omise/omise-elixir/badge.svg?branch=master)](https://coveralls.io/github/omise/omise-elixir?branch=master)
 
-**Omise for Elixir**
+**Opn Payments for Elixir**
 
 ## Installation
 
@@ -23,7 +23,7 @@
 
 ## Configuration
 
-Set the following configuration variables in `config/config.exs` file:
+Set the following configuration variables in `config/config.exs`:
 
 ```elixir
 config :omise,
@@ -37,7 +37,7 @@ Or manually configure at runtime:
 Omise.configure(public_key: "pkey_test_xxx", secret_key: "skey_test_xxx")
 ```
 
-To configure the HTTP options, you could optionally add `:http_options` key to the omise configuration. For a full list of the available options, please check [HTTPoison documentation](https://github.com/edgurgel/httpoison).
+To configure the HTTP options, you could optionally add the `:http_options` key to the Opn Payments configuration. For a full list of the available options, please check [HTTPoison documentation](https://github.com/edgurgel/httpoison).
 
 ```elixir
 config :omise,
@@ -82,4 +82,4 @@ Omise.Charge.create([
 
 ## Documentation
 
- * http://hexdocs.pm/omise/
+ * [https://hexdocs.pm/omise/api-reference.html](https://hexdocs.pm/omise/api-reference.html)
