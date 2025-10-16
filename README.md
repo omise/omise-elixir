@@ -1,4 +1,5 @@
 # Omise Elixir Client
+
 [![Build Status](https://github.com/omise/omise-elixir/actions/workflows/pipeline.yml/badge.svg)](https://github.com/omise/omise-elixir/actions/workflows/pipeline.yml)
 [![Hex.pm](https://img.shields.io/hexpm/v/omise.svg?style=flat-square)](https://hex.pm/packages/omise)
 [![Coverage Status](https://coveralls.io/repos/github/omise/omise-elixir/badge.svg?branch=master)](https://coveralls.io/github/omise/omise-elixir?branch=master)
@@ -7,19 +8,19 @@
 
 ## Installation
 
-  First, add `omise` to your list of dependencies in `mix.exs`:
+First, add `omise` to your list of dependencies in `mix.exs`:
 
-  ```elixir
-  def deps do
-    [{:omise, "~> 0.10.0"}]
-  end
-  ```
+```elixir
+def deps do
+  [{:omise, "~> 0.10.0"}]
+end
+```
 
-  Then update your dependencies with:
+Then update your dependencies with:
 
-  ```shell
-  $ mix deps.get
-  ```
+```shell
+$ mix deps.get
+```
 
 ## Configuration
 
@@ -75,6 +76,39 @@ Omise.Charge.create([
 ], key: "skey_test_xxx")
 ```
 
+# Passkey Integration
+
+The Omise Elixir SDK supports Passkey authentication for enhanced security and user experience. Passkey provides a passwordless authentication method that uses biometric authentication or device PINs, making payments more secure and convenient for users.
+
+## Prerequisites
+
+Before implementing Passkey authentication:
+
+- Ensure your Omise account supports Passkey authentication
+- Configure your frontend to collect proper card holder data (email/phoneNumber)
+
+## Implementation
+
+### Requesting Cardholder Data
+
+To use Passkey authentication, you must request cardholder data fields (email or phone number) during the payment process on the frontend. This information is required for the backend Passkey authentication setup.
+
+### Creating a Passkey Charge
+
+Once you have created a token on the frontend that includes the email/phoneNumber of the user, you can now use this token to create a passkey charge.
+To create a passkey charge you must set the `authentication` field in the charge request to `PASSKEY`. This will trigger the required flows and you will also be able to check the `authenticated_by` field in the charge response in order to check the actual authentication method. Here is an example code for creating a charge with the passkey flow:
+
+```elixir
+Omise.Charge.create(
+        amount: 10_000,
+        currency: "thb",
+        card: token.id,
+        capture: true,
+        return_uri: "https://www.example.com/complete",
+        authentication: "PASSKEY"
+      )
+```
+
 ## Development
 
 - Install all dependencies with `mix deps.get`
@@ -82,4 +116,4 @@ Omise.Charge.create([
 
 ## Documentation
 
- * [https://hexdocs.pm/omise/api-reference.html](https://hexdocs.pm/omise/api-reference.html)
+* [https://hexdocs.pm/omise/api-reference.html](https://hexdocs.pm/omise/api-reference.html)

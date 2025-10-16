@@ -63,6 +63,7 @@ defmodule Omise.Charge do
             schedule: nil,
             terminal: nil,
             zero_interest_installments: nil,
+            authenticated_by: nil,
             source: %Omise.Source{}
 
   @type t :: %__MODULE__{
@@ -119,6 +120,7 @@ defmodule Omise.Charge do
           schedule: String.t(),
           terminal: String.t(),
           zero_interest_installments: boolean,
+          authenticated_by: String.t() | nil,
           source: Omise.Source.t()
         }
 
