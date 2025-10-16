@@ -12,7 +12,7 @@ First, add `omise` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:omise, "~> 0.10.0"}]
+  [{:omise, "~> 0.11.0"}]
 end
 ```
 
@@ -116,4 +116,4 @@ Omise.Charge.create(
 
 ## Documentation
 
-* [https://hexdocs.pm/omise/api-reference.html](https://hexdocs.pm/omise/api-reference.html)
+- [https://hexdocs.pm/omise/api-reference.html](https://hexdocs.pm/omise/api-reference.html)

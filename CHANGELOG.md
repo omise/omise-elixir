@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0
+
+- Add support for TAS Passkey authentication [(#39)](https://github.com/omise/omise-elixir/pull/39)
+
 ## 0.10.0
 
 - Update failing CI [(#32)](https://github.com/omise/omise-elixir/pull/32)
