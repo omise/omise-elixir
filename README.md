@@ -116,4 +116,4 @@ Omise.Charge.create(
 
 ## Documentation
 
-- [https://hexdocs.pm/omise/api-reference.html](https://hexdocs.pm/omise/api-reference.html)
+* [https://hexdocs.pm/omise/api-reference.html](https://hexdocs.pm/omise/api-reference.html)
