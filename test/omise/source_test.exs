@@ -47,7 +47,7 @@ defmodule Omise.SourceTest do
         assert Source.create(
                  amount: 1000_00,
                  currency: "invalid",
-                 type: "internet_banking_bbl"
+                 type: "alipay"
                ) ==
                  {:error,
                   %Omise.Error{

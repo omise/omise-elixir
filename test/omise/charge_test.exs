@@ -505,7 +505,7 @@ defmodule Omies.ChargeTest do
                       flow: "redirect",
                       id: "src_test_59vbms154ab4pe4jh2i",
                       object: "source",
-                      type: "internet_banking_bbl"
+                      type: "alipay"
                     },
                     source_of_fund: nil,
                     status: "pending",
