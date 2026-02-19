@@ -60,34 +60,6 @@ defmodule Omise.CapabilityTest do
                         card_brands: nil,
                         currencies: ["THB"],
                         installment_terms: nil,
-                        name: "internet_banking_bay",
-                        object: "payment_method"
-                      },
-                      %Omise.PaymentMethod{
-                        card_brands: nil,
-                        currencies: ["THB"],
-                        installment_terms: nil,
-                        name: "internet_banking_ktb",
-                        object: "payment_method"
-                      },
-                      %Omise.PaymentMethod{
-                        card_brands: nil,
-                        currencies: ["THB"],
-                        installment_terms: nil,
-                        name: "internet_banking_scb",
-                        object: "payment_method"
-                      },
-                      %Omise.PaymentMethod{
-                        card_brands: nil,
-                        currencies: ["THB"],
-                        installment_terms: nil,
-                        name: "internet_banking_bbl",
-                        object: "payment_method"
-                      },
-                      %Omise.PaymentMethod{
-                        card_brands: nil,
-                        currencies: ["THB"],
-                        installment_terms: nil,
                         name: "alipay",
                         object: "payment_method"
                       },

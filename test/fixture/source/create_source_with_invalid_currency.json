@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{\"type\":\"internet_banking_bbl\",\"currency\":\"invalid\",\"amount\":100000}",
+      "body": "{\"type\":\"alipay\",\"currency\":\"invalid\",\"amount\":100000}",
       "headers": {
         "Content-type": "application/json",
         "User-Agent": "OmiseElixir/0.6.0 Elixir/1.6.0-dev"
